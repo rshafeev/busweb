@@ -1,0 +1,157 @@
+<%@ tag body-content="empty" %>
+
+<%@ attribute name="head" required="true" fragment="true" %>
+<%@ attribute name="body" required="true" fragment="true" %>
+<%@ attribute name="foot" required="true" fragment="true" %>
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="css/styles.css">
+<link rel="stylesheet" type="text/css" href="css/bus_styles.css">
+<link rel="stylesheet" type="text/css" href="css/marsh.css">
+</head>
+
+<body>
+   
+          <div class="head">
+    <div class="head_block">
+      <div class="logotip"><a href="#"><img border="0" alt="logotip" src="css/images/Logo.png" width="250" height="100"></a></div>
+ 		<jsp:invoke fragment="head"/>
+      <div class="clr"></div>
+    </div>
+  </div>
+
+  <div class="clr"></div>
+          <div class="slider2">
+          </br>
+ 
+  <div class="transparent">
+<span class="r1"></span><span class="r2"></span><span class="r3"></span><span class="r4"></span>
+  <div class="block-round-content">
+  <table class="menu_table" cellpadding="10" cellspacing="10">
+  <tbody>
+  <tr>
+  <td>
+  <div class="mini_table_town" >
+  <div class="zagolovok_town">
+<p style="text-align: center; margin-bottom: 0em;margin-top: 0em;">Town:</p>
+</div>
+<p style="text-align: center;margin-bottom: 1em;margin-top: 1em;">Kharkov</p></br>
+</div>
+</td>
+
+<td>
+   <div class="mini_table_route" >
+  <div class="zagolovok_route">
+<p style="text-align: center; margin-bottom: 0em;margin-top: 0em;">Path:</p>
+</div>
+<table class="b-search__points">
+<tbody>
+<tr>
+	<td class="b-search__point-name">
+		<div class="b-search__name b-search__name_type_start">A</div>
+	<td class="b-search__point-input">
+		<span class="b-form-input b-form-input_autocomplete_yes b-form-input_has-clear_yes b-form-input_size_m i-bem b-form-input_js_inited" onclick="return {'b-form-input':{'popupMods':{'gradient':'yes'},'dataprovider':{'name':'b-search__dataprovider','search_type':'tp'}}}">
+		<span class="b-form-input__box">
+			<input class="b-form-input__input" id="uniq161" autocomplete="off" style="margin-bottom:10px; margin-top:5px;width:200px;"></input>
+			<span class="b-form-input__clear b-form-input__clear_visibility_visible"/>
+			</span>
+</span>
+	</td>
+</tr>
+<tr class="b-search__point">
+	<td class="b-search__point-name">
+		<div class="b-search__name b-search__name_type_finish">B</div>
+		</td>
+	<td class="b-search__point-input">
+	<span class="b-form-input b-form-input_autocomplete_yes b-form-input_has-clear_yes b-form-input_size_m i-bem b-form-input_js_inited b-form-input_focused_yes" onclick="return {'b-form-input':{'popupMods':{'gradient':'yes'},'dataprovider':{'name':'b-search__dataprovider','search_type':'tp'}}}">
+	<span class="b-form-input__box">
+	<input class="b-form-input__input" id="uniq162" autocomplete="off" style="margin-bottom:10px; width:200px;"></input>
+<span class="b-form-input__clear b-form-input__clear_visibility_visible"/>
+</span>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</td>
+
+<td>
+  <div class="mini_table_transp" >
+  <div class="zagolovok_transp">
+<p style="text-align: center; margin-bottom: 0em;margin-top: 0em;">Transport type:</p>
+</div>
+<button style="margin-bottom:10px;margin-top:10px; margin-left:10px;">Metro</button>
+<button style="margin-bottom:10px; margin-left:36px;">Tram</button>
+<button style="margin-bottom:10px; margin-left:10px;">Trolleybus</button>
+<button style="margin-bottom:10px; margin-left:10px;">Bus</button>
+</div>
+</td>
+
+<td>
+  <div class="mini_table_marsh" >
+  <div class="zagolovok_marsh">
+<p style="text-align: center; margin-bottom: 0em;margin-top: 0em;">Marshryt:</p>
+</div>
+<table >
+<tbody>
+<tr>
+<td class="padding_right" style="width:100px;">
+	<label for="optimal" id="optimal_tip_label" title="" style="word-wrap: break-word;">optimal</label>
+	<input type="radio" name="way_options" id="optimal" value="optimal" checked="checked" style="cursor: pointer;"></input><br>
+</td>
+ <td class="padding_right">
+	<label for="fast" id="fast_tip_label" title="">fast</label>	
+	<input type="radio" name="way_options" id="fast" value="fast" style="margin-left: 35px; cursor: pointer;"></input>
+</td>
+</tr>
+<tr>
+<td>
+	<label for="cheap" id="cheap_tip_label" title="">cheep</label>
+	<input type="radio" name="way_options" id="cheap" value="cheap" style="margin-left: 18px; cursor: pointer;"></input>
+</td>
+</tr>
+<tr>
+<td colspan="3">
+	<label for="direct" id="direct_tip_label" title="">bez peresadok</label>
+	<input type="checkbox" id="direct"style="cursor: pointer;"></input>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</td>
+<td>
+<p style="text-align: center"><button>Search path</button></p>
+</td>
+</tr>
+</tbody>
+</table>
+  </div>
+  <span class="r4"></span><span class="r3"></span><span class="r2"></span><span class="r1"></span>
+  </div>
+  </div>
+  <div class="top_sup">
+    <div class="clr"></div>
+  </div>
+</body>
+<body>
+    <jsp:invoke fragment="body"/>
+   		<div class="main_page">
+		</div>
+</body>
+<body>
+	<jsp:invoke fragment="foot"/>
+	<div class="footer">
+  <div class="footer_resize"> <a href="#"><img border="0" alt="picture" src="css/images/foot_logo.png" width="150" height="80"></a>
+				<p class="leftt">Design by <a href="#">Marianna</a><br>
+				  Copyright © PremiumGIS.com. All Rights Reserved<br>
+      <a href="home_page.htm">Home</a> | <a href="contact_us.htm">Contact</a> | <a href="#">RSS </a></p>
+    <div class="clr"></div>
+  </div>
+  <div class="clr"></div>
+	</div>
+</body>
+</html>
