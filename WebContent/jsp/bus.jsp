@@ -18,7 +18,7 @@
     </jsp:attribute>
     <jsp:attribute name="body">
 <div class="body">
-    <img alt="picture" src="css/images/big_map.bmp" style="width: 100%;">
+  <div id="map_canvas" style="width:100%; height:100%"></div>
       <div class="clr"></div>
    </div>
     </jsp:attribute>

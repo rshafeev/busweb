@@ -1,9 +1,13 @@
 @CHARSET "UTF-8";
 body 
 		{
-			margin: 0px;
+			height: auto !important;
+min-height: 100%;
+min-width: 980px;
+position: relative;
+			/*margin: 0px;
 			padding: 0px;
-			width: 100%;
+			width: 100%;*/
 		}
 html 
 {
@@ -15,6 +19,8 @@ html
 	margin: 0px auto; 
 	padding: 0px; 
 	width: 100%;
+	min-width: 980px;
+	position: relative;
 }
 .resize
  {
@@ -26,6 +32,8 @@ html
 	background: url("images/head_image.gif") repeat-x top; 
 	margin: 0px auto;
 	padding: 0px;
+	position: relative;
+	
 }
 .head_block
  {
@@ -33,6 +41,7 @@ html
 	padding: 0px; 
 	border: currentColor;
 	width: 960px;
+	position: relative;
 }
 .logotip
 {
@@ -485,12 +494,17 @@ p.response
 	margin: 0px; 
 	padding: 0px; 
 	height: 109px;
+	width:100%;
+	position:relative;
 }
 .footer_resize
  {
 	margin: 0px auto; 
 	padding: 0px; 
 	width: 990px;
+	/*min-width: 990px;
+position: relative;
+z-index: 1003;*/
 }
 .footer p
  {
