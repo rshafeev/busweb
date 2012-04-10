@@ -1,6 +1,6 @@
-
-*.d*.project
-
-
+*.project~
+*.classpath~
 *.project
 *.classpath
+*.settings
+*.private
