@@ -14,6 +14,6 @@ public class HelloController implements Controller {
     public ModelAndView handleRequest(HttpServletRequest request, 
             HttpServletResponse response) throws ServletException, IOException { 
        // logger.info(«Returning hello view»); 
-        return new ModelAndView("jsp/hello.jsp"); 
+        return new ModelAndView("jsp/temp.jsp"); 
     } 
 }

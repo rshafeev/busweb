@@ -1,0 +1,131 @@
+/*html, body, h1, h2, h3, h4, h5, h6, a, img, form, label, table, tbody, tfoot, thead, tr, th, td {
+    border: 0 none;
+    font: inherit;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+body {
+    background: none repeat scroll 0 0 #FFFFFF;
+    font: 13px/16px "Helvetica Neue",Arial,Tahoma,sans-serif;
+}
+html, body {
+    height: 100%;
+}
+table {
+    border: 0 none;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+td {
+    padding: 0;
+    vertical-align: top;
+}
+img {
+    border: 0 none;
+}
+a, a:link {
+    color: #0857A6;
+    text-decoration: none;
+}
+a:visited {
+    color: #0857A6;
+    text-decoration: none;
+}
+a:hover {
+    color: #F26D00;
+    text-decoration: underline;
+}
+a:active {
+    color: #F26D00;
+    text-decoration: underline;
+}
+a:focus {
+    color: #F26D00;
+    text-decoration: underline;
+}
+#disclaimer {
+    color: #7F7F7F;
+    font-family: Tahoma;
+    font-size: 9px;
+    padding: 5px 5%;
+    text-align: right;
+}
+#disclaimer:empty {
+    display: none;
+}*/
+.main-wrap {
+    height: auto !important;
+    min-height: 800px;
+    min-width: 980px;
+    position: relative;
+}
+.layout {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 11px;
+    max-width: 1280px;
+    padding-bottom: 32px;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+.layout {
+    margin-top: 11px;
+}
+.layout {
+    margin-top: 13px;
+}
+.layout {
+    margin-top: 23px;
+}
+.layout__leftcol {
+    float: left;
+    position: relative;
+    width: 24%;
+}
+.layout__content {
+    margin-left: 24%;
+    padding-left: 24px;
+}
+.layout__content {
+    padding-left: 35px;
+}
+.layout__content {
+    padding-left: 24px;
+}
+.layout__centercol {
+    float: left;
+    width: 100%;
+}
+.layout__centercol__wrap {
+    margin-right: 324px;
+}
+.layout__centercol__wrap {
+    margin-right: 335px;
+}
+.layout__centercol__wrap {
+    margin-right: 324px;
+}
+.layout__rightcol {
+    float: left;
+    margin-left: -300px;
+    width: 300px;
+}
+.layout__footer {
+    bottom: 0;
+    height: 29px;
+    left: 0;
+    min-width: 980px;
+    position: absolute;
+    width: 100%;
+}
+.clearfix:before, .clearfix:after {
+    content: " ";
+    display: block;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+}
+.clearfix:after {
+    clear: both;
+}

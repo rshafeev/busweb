@@ -1,13 +1,12 @@
 @CHARSET "UTF-8";
 body 
 		{
-			height: auto !important;
-min-height: 100%;
-min-width: 980px;
-position: relative;
-			/*margin: 0px;
-			padding: 0px;
-			width: 100%;*/
+font-family: "Verdana", "Arial", "Tahoma";
+font-size: 13px;
+height: 100%;
+margin: 0px;
+padding: 0px;
+width: 100%;
 		}
 html 
 {
@@ -16,11 +15,12 @@ html
 }
 .main_page
 {
-	margin: 0px auto; 
-	padding: 0px; 
-	width: 100%;
-	min-width: 980px;
-	position: relative;
+background: -o-linear-gradient(top, #3FB9E0, #1A7D9D) transparent;
+margin: 0px auto;
+padding: 0px;
+width: 158px;
+/*min-width: 980px;*/
+
 }
 .resize
  {
@@ -29,19 +29,30 @@ html
 }
 .head
 {
-	background: url("images/head_image.gif") repeat-x top; 
-	margin: 0px auto;
+
+	/*background: url("images/head_image.gif") repeat-x transparent; */
+		/*display: block;
+	margin: 0px;
 	padding: 0px;
-	position: relative;
+	width:100%;
+position: relative;
+z-index: 1;*/
+background: url("images/head_image.gif") repeat-x transparent;
+/*background: url("images/head_image.gif") 100% 2px no-repeat transparent;*/
+margin: 0px;
+padding: 0px;
+width: 100%;
 	
 }
 .head_block
  {
-	margin: 0px auto; 
+ display: block;
+	/*margin: 0px auto; 
 	padding: 0px; 
 	border: currentColor;
 	width: 960px;
 	position: relative;
+	z-index: 1;*/
 }
 .logotip
 {

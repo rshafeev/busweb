@@ -7,9 +7,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="css/styles.css">
+<link rel="stylesheet" type="text/css" href="css/mail_head1.css">
+<link rel="stylesheet" type="text/css" href="css/mail_head2.css">
+<link rel="stylesheet" type="text/css" href="css/mail_main.css">
+<link rel="stylesheet" type="text/css" href="css/new.css">
 <link rel="stylesheet" type="text/css" href="css/bus_styles.css">
-<link rel="stylesheet" type="text/css" href="css/marsh.css">
 
 
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
@@ -38,20 +40,33 @@
 </head>
 
 <body onload="initialize()">
-   
-          <div class="head">
+        <!--   <div class="head">
     <div class="head_block">
       <div class="logotip"><a href="#"><img border="0" alt="logotip" src="css/images/Logo.png" width="250" height="100"></a></div>
  		<jsp:invoke fragment="head"/>
       <div class="clr"></div>
     </div>
-  </div>
+  </div>--> 
 
+<div class="main-wrap clearfix">
+	<div class="portal-headline">
+	<div class="block_header">
+<jsp:invoke fragment="head"/><div class="logotip"><a href="#"><img border="0" alt="logotip" src="css/images/Logo.png" width="250" height="100"></a></div>
+
+
+      </div>
   <div class="clr"></div>
-          <div class="slider2">
-          </br>
+	   <div class="slider2">
+	   Slider
+	   </div>
  
-  <div class="transparent">
+ 
+ <body>
+   		<jsp:invoke fragment="body"/>
+
+</body>
+
+ <!-- <div class="transparent">
 <span class="r1"></span><span class="r2"></span><span class="r3"></span><span class="r4"></span>
   <div class="block-round-content">
   <table class="menu_table" cellpadding="10" cellspacing="10">
@@ -156,16 +171,11 @@
 </table>
   </div>
   <span class="r4"></span><span class="r3"></span><span class="r2"></span><span class="r1"></span>
-  </div>
+  </div>-->
   </div>
   <div class="top_sup">
     <div class="clr"></div>
   </div>
-</body>
-<body>
-    <jsp:invoke fragment="body"/>
-   		<div class="main_page">
-		</div>
 </body>
 <body>
 	<jsp:invoke fragment="foot"/>
@@ -178,5 +188,8 @@
   </div>
   <div class="clr"></div>
 	</div>
+	
+	</div>
 </body>
+
 </html>

@@ -7,10 +7,10 @@
            <div class="menu">
        	 <ul>
           <li><a class="active" href="home_page.htm"><span>Home</span></a></li>
-          <li><a class="active" href="programms.htm"><span>Programms</span></a></li>
-          <li><a class="active" href="service.htm"><span>Service</span></a></li>
-          <li><a class="active" href="support.htm"><span>Support</span></a></li>
-          <li><a class="active" href="contact_us.htm"><span>Contact us</span></a></li>
+          <li><a  href="programms.htm"><span>Programms</span></a></li>
+          <li><a  href="service.htm"><span>Service</span></a></li>
+          <li><a href="support.htm"><span>Support</span></a></li>
+          <li><a  href="contact_us.htm"><span>Contact us</span></a></li>
         </ul>
         
       </div>
