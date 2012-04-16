@@ -1,4 +1,3 @@
-
 .block_header { 
 border: medium none currentColor;
 margin: 0px auto;
@@ -108,13 +107,26 @@ width: 480px;
 	background: url("images/slider_fon.gif") repeat-x top; 
 	margin: 0px auto;
 	padding: 0px; 
-	height: 432px;
+	height: 390px;
 }
 
 .slider2 
 {
-	background: url("images/slider_fon.gif") repeat-x top;
-	margin: 0px auto; padding: 0px; height: 160px;
+	/*background: url("images/slider_fon.gif") repeat-x top;*/
+	background-image: linear-gradient(bottom, rgb(214,214,214) 0%, rgb(247,250,250) 58%);
+background-image: -o-linear-gradient(bottom, rgb(214,214,214) 0%, rgb(247,250,250) 58%);
+background-image: -moz-linear-gradient(bottom, rgb(214,214,214) 0%, rgb(247,250,250) 58%);
+background-image: -webkit-linear-gradient(bottom, rgb(214,214,214) 0%, rgb(247,250,250) 58%);
+background-image: -ms-linear-gradient(bottom, rgb(214,214,214) 0%, rgb(247,250,250) 58%);
+
+background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0, rgb(214,214,214)),
+	color-stop(0.58, rgb(247,250,250))
+);
+	margin: 0px auto; padding: 0px; height: 100px;
 }
 .main_page
 {
@@ -128,18 +140,22 @@ width: 958px;
 
 .footer 
 {
-	background: url("images/footer_fon.gif") repeat-x top; 
+	background: url("images/footer_fon.gif") repeat-x top;
+	/*background:yellow;*/
 	margin: 0px; 
 	padding: 0px; 
-	height: 109px;
+	height: 50px;
 	width:100%;
-	position:relative;
+	overflow: hidden;
+position: relative;
 }
 .footer_resize
  {
 	margin: 0px auto; 
 	padding: 0px; 
 	width: 990px;
+		overflow: hidden;
+position: relative;
 	/*min-width: 990px;
 position: relative;
 z-index: 1003;*/

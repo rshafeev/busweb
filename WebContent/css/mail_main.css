@@ -1,64 +1,8 @@
-/*html, body, h1, h2, h3, h4, h5, h6, a, img, form, label, table, tbody, tfoot, thead, tr, th, td {
-    border: 0 none;
-    font: inherit;
-    margin: 0;
-    padding: 0;
-    vertical-align: baseline;
-}
-body {
-    background: none repeat scroll 0 0 #FFFFFF;
-    font: 13px/16px "Helvetica Neue",Arial,Tahoma,sans-serif;
-}
-html, body {
-    height: 100%;
-}
-table {
-    border: 0 none;
-    border-collapse: collapse;
-    border-spacing: 0;
-}
-td {
-    padding: 0;
-    vertical-align: top;
-}
-img {
-    border: 0 none;
-}
-a, a:link {
-    color: #0857A6;
-    text-decoration: none;
-}
-a:visited {
-    color: #0857A6;
-    text-decoration: none;
-}
-a:hover {
-    color: #F26D00;
-    text-decoration: underline;
-}
-a:active {
-    color: #F26D00;
-    text-decoration: underline;
-}
-a:focus {
-    color: #F26D00;
-    text-decoration: underline;
-}
-#disclaimer {
-    color: #7F7F7F;
-    font-family: Tahoma;
-    font-size: 9px;
-    padding: 5px 5%;
-    text-align: right;
-}
-#disclaimer:empty {
-    display: none;
-}*/
 .main-wrap {
     height: auto !important;
-    min-height: 800px;
     min-width: 980px;
     position: relative;
+
 }
 .layout {
     margin-left: auto;

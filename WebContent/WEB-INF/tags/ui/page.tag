@@ -8,7 +8,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="css/mail_head1.css">
-<link rel="stylesheet" type="text/css" href="css/mail_head2.css">
 <link rel="stylesheet" type="text/css" href="css/mail_main.css">
 <link rel="stylesheet" type="text/css" href="css/new.css">
 <link rel="stylesheet" type="text/css" href="css/bus_styles.css">
@@ -16,9 +15,9 @@
 
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 <style type="text/css">
-  html { height: 100% }
-  body { height: 100%; margin: 0px; padding: 0px }
-  #map_canvas { height: 100% }
+  html { height: 100% ;overflow-y:  hidden;}
+  body { height: 100%; margin: 0px; padding: 0px;overflow-y:  hidden; }
+  #map_canvas { height: 100% ;overflow-y:  hidden;}
 </style>
 <script type="text/javascript"
     src="https://maps.google.com/maps/api/js?sensor=true">
@@ -50,16 +49,18 @@
 
 <div class="main-wrap clearfix">
 	<div class="portal-headline">
+	<div class="header">
 	<div class="block_header">
-<jsp:invoke fragment="head"/><div class="logotip"><a href="#"><img border="0" alt="logotip" src="css/images/Logo.png" width="250" height="100"></a></div>
+<jsp:invoke fragment="head"/>
+<div class="logotip"><a href="#"><img border="0" alt="logotip" src="css/images/logotip1.png" width="250" height="50px"></a></div> 
 
 
-      </div>
+      </div></div>
   <div class="clr"></div>
 	   <div class="slider2">
 	   Slider
 	   </div>
- 
+ </div> 
  
  <body>
    		<jsp:invoke fragment="body"/>
@@ -172,24 +173,17 @@
   </div>
   <span class="r4"></span><span class="r3"></span><span class="r2"></span><span class="r1"></span>
   </div>-->
-  </div>
-  <div class="top_sup">
+ 
+  <!-- <div class="top_sup">
     <div class="clr"></div>
-  </div>
-</body>
+  </div> -->
+
+
 <body>
 	<jsp:invoke fragment="foot"/>
-	<div class="footer">
-  <div class="footer_resize"> <a href="#"><img border="0" alt="picture" src="css/images/foot_logo.png" width="150" height="80"></a>
-				<p class="leftt">Design by <a href="#">Marianna</a><br>
-				  Copyright © PremiumGIS.com. All Rights Reserved<br>
-      <a href="home_page.htm">Home</a> | <a href="contact_us.htm">Contact</a> | <a href="#">RSS </a></p>
-    <div class="clr"></div>
-  </div>
-  <div class="clr"></div>
-	</div>
-	
-	</div>
-</body>
 
+	 
+</body>
+  </div>
+  </body>
 </html>
