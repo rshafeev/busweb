@@ -17,20 +17,13 @@
       
     </jsp:attribute>
     <jsp:attribute name="body">
-<div class="body" style="background:black;height:33.5em; max-height:98%;   ">
-  <div id="map_canvas" style="width:100%; overflow-y:  hidden; "></div>
-      <div class="clr"></div>
-   </div>
+<div class="body">
+  <div id="map_canvas" style="width:100%; height:100%"></div>
+  
+   </div>  	
     </jsp:attribute>
-    
-        
-
-	<jsp:attribute name="foot">
-        	<div class="footer">
-  <div class="clr"></div>
-	</div>
-
-
-
-    </jsp:attribute>
+   
+         	<jsp:attribute name="foot">
+  <div class="footer" style="margin-bottom: 0px;"></div>
+    </jsp:attribute> 	    
 </ui:page>

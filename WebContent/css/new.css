@@ -113,20 +113,20 @@ width: 480px;
 .slider2 
 {
 	/*background: url("images/slider_fon.gif") repeat-x top;*/
-	background-image: linear-gradient(bottom, rgb(214,214,214) 0%, rgb(247,250,250) 58%);
-background-image: -o-linear-gradient(bottom, rgb(214,214,214) 0%, rgb(247,250,250) 58%);
-background-image: -moz-linear-gradient(bottom, rgb(214,214,214) 0%, rgb(247,250,250) 58%);
-background-image: -webkit-linear-gradient(bottom, rgb(214,214,214) 0%, rgb(247,250,250) 58%);
-background-image: -ms-linear-gradient(bottom, rgb(214,214,214) 0%, rgb(247,250,250) 58%);
+background-image: linear-gradient(bottom, rgb(194,190,188) 23%, rgb(242,242,242) 62%);
+background-image: -o-linear-gradient(bottom, rgb(194,190,188) 23%, rgb(242,242,242) 62%);
+background-image: -moz-linear-gradient(bottom, rgb(194,190,188) 23%, rgb(242,242,242) 62%);
+background-image: -webkit-linear-gradient(bottom, rgb(194,190,188) 23%, rgb(242,242,242) 62%);
+background-image: -ms-linear-gradient(bottom, rgb(194,190,188) 23%, rgb(242,242,242) 62%);
 
 background-image: -webkit-gradient(
 	linear,
 	left bottom,
 	left top,
-	color-stop(0, rgb(214,214,214)),
-	color-stop(0.58, rgb(247,250,250))
+	color-stop(0.23, rgb(194,190,188)),
+	color-stop(0.62, rgb(242,242,242))
 );
-	margin: 0px auto; padding: 0px; height: 100px;
+	margin: 0px auto; padding: 0px; height: 129px;
 }
 .main_page
 {
@@ -138,27 +138,41 @@ width: 958px;
 
 }
 
-.footer 
+.footer, .header
 {
-	background: url("images/footer_fon.gif") repeat-x top;
-	/*background:yellow;*/
-	margin: 0px; 
-	padding: 0px; 
-	height: 50px;
-	width:100%;
-	overflow: hidden;
-position: relative;
+	
+	    border: solid 1px rgb(226,226,226);
 }
-.footer_resize
+
+.footer
+{
+background: url("images/footer_fon.gif") repeat-x top;
+	/*background:green;*/
+   position: absolute;
+   bottom: 0;
+   height: 50px;
+width:100%;
+}
+
+.hFooter { /* это распорка в основном блоке - резервируем место для подвала */
+height: 50px; /* высота нашего подвала */
+
+}
+/*.footer_resize
  {
-	margin: 0px auto; 
-	padding: 0px; 
-	width: 990px;
-		overflow: hidden;
-position: relative;
+height: 100%; 
+overflow-y: hidden;
 	/*min-width: 990px;
 position: relative;
-z-index: 1003;*/
+z-index: 1003;
+min-height:50px;
+}*/
+
+.main_map
+{
+	background: red; /* цвет фона основного блока (для наглядности) */
+height: 100%; /* задаем минимальную высоту основного блока */
+	overflow-y: hidden;
 }
 .footer p
  {
@@ -198,4 +212,55 @@ z-index: 1003;*/
 	width: 50%;
 	text-align: right;
 	float: right;
+}
+
+
+#metro
+{
+	background: transparent url("http://www.eway.in.ua/images/metro.png") no-repeat center center;
+}
+
+#metro.selected
+{
+	background: transparent url("http://www.eway.in.ua/images/metro_selected.png") no-repeat center center;
+}
+.menu_transport_buttons_div a
+{
+	width: 32px;
+	height: 32px;
+	float: left;
+	margin: 5px 5px 0 0;
+	padding: 0;
+	
+}
+
+a
+{
+	font-family: Verdana, Arial, Tahoma;
+	font-size: 12px;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.selected span.transport_selected_span
+{
+	width: 100%;
+	height: 100%;
+	display: block;
+	background: transparent url("http://www.eway.in.ua/images/plus.png") no-repeat bottom right;
+}
+
+.transport_selected_span
+{
+	width: 100%;
+	height: 100%;
+	display: block;
+	background: transparent url("http://www.eway.in.ua/images/minus.png") no-repeat bottom right;
+}
+#map_canvas:after {
+   content: ".";
+   display: block;
+   height: 0;
+   visibility: hidden;
+   clear: both;
 }

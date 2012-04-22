@@ -1710,58 +1710,99 @@ a.button_link
 	margin: 0;
 	padding: 0;
 }
-   .transparent {
-	display: block;
-   	height: 110px;
-	width: 1500px;
-    top: 120px;
+   .transparent, .header, .slider2,  .mini_table_town {
+    border: solid 1px rgb(226,226,226);
+	/*display: block;
+   	height: 50px;
+   min-width:500px;
+   	max-width:1450px;
+    top: 70px;
     left: 30px;
-        -moz-box-shadow: 0 0 30px rgba(0,0,0,0.5); /* Для Firefox */
-    -webkit-box-shadow: 0 0 30px rgba(0,0,0,0.5); /* Для Safari и Chrome */
-  box-shadow: 0 0 30px rgba(0,0,0,0.5); /* Параметры тени */
+        -moz-box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0 0 30px rgba(0,0,0,0.5); 
+  box-shadow: 0 0 30px rgba(0,0,0,0.5); 
     padding: 10px;
-  position: absolute; 
+  position: absolute; */
+   }
+   .transparent
+   {
+    background: rgb(226,226,226); /* Old browsers */
+background: -moz-linear-gradient(top, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 50%, rgba(209,209,209,1) 51%, rgba(254,254,254,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(226,226,226,1)), color-stop(50%,rgba(219,219,219,1)), color-stop(51%,rgba(209,209,209,1)), color-stop(100%,rgba(254,254,254,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, rgba(226,226,226,1) 0%,rgba(219,219,219,1) 50%,rgba(209,209,209,1) 51%,rgba(254,254,254,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, rgba(226,226,226,1) 0%,rgba(219,219,219,1) 50%,rgba(209,209,209,1) 51%,rgba(254,254,254,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, rgba(226,226,226,1) 0%,rgba(219,219,219,1) 50%,rgba(209,209,209,1) 51%,rgba(254,254,254,1) 100%); /* IE10+ */
+background: linear-gradient(top, rgba(226,226,226,1) 0%,rgba(219,219,219,1) 50%,rgba(209,209,209,1) 51%,rgba(254,254,254,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe',GradientType=0 ); /* IE6-9 */
+    border: solid 10px rgb(226,226,226);
+    height:79px;
+margin-top:20px;
+-moz-box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0 0 30px rgba(0,0,0,0.5); 
+  box-shadow: 0 0 30px rgba(0,0,0,0.5); 
    }
       
-      .r1, .r2,  .r3, .r4 {
+   /*   .r1, .r2,  .r3, .r4 {
     display: block; 
     position: fixed;
     height:1px;
-    background-color: rgba(240, 220, 203, 0.1); /* Цвет фона и значение прозрачности */
+    background-color: rgba(240, 220, 203, 0.1); 
     overflow: hidden;
    }
    .r1 {  margin: 0 5px;  }
    .r2 {  margin: 0 3px; }
    .r3 {  margin: 0 2px;  }
-   .r4 {  margin: 0 1px; height: 2px; }
+   .r4 {  margin: 0 1px; height: 2px; }    */
    .block-round-content { 
-   background-color: rgba(240, 220, 203, 0.1); /* Цвет фона и значение прозрачности */
-    padding: 0px; /* Поля вокруг текста */
+   background-color: rgba(240, 220, 203, 0.1); /
+    padding: 0px; 
+    margin-top:-20px;
   }
-  
+
   .mini_table_town
   {
   background-color: rgba(240, 220, 203, 0.2);
   box-shadow: inset 0 0 6px;
   border-radius: 10px;
-  width:200px; 
+ /* width:200px; */
   margin-left:150px;
+  margin-top:-47px;
   }
-  
+
   .zagolovok_town
   {
   	border-radius: 10px 10px 5px 5px; 
-  	background-color: rgba(240, 220, 203, 0.2);
-  	width:200px;
+  background-image: linear-gradient(bottom, rgb(235,235,235) 21%, rgb(220,224,224) 61%, rgb(201,201,201) 81%);
+background-image: -o-linear-gradient(bottom, rgb(235,235,235) 21%, rgb(220,224,224) 61%, rgb(201,201,201) 81%);
+background-image: -moz-linear-gradient(bottom, rgb(235,235,235) 21%, rgb(220,224,224) 61%, rgb(201,201,201) 81%);
+background-image: -webkit-linear-gradient(bottom, rgb(235,235,235) 21%, rgb(220,224,224) 61%, rgb(201,201,201) 81%);
+background-image: -ms-linear-gradient(bottom, rgb(235,235,235) 21%, rgb(220,224,224) 61%, rgb(201,201,201) 81%);
 
+background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0.21, rgb(235,235,235)),
+	color-stop(0.61, rgb(220,224,224)),
+	color-stop(0.81, rgb(201,201,201))
+);
+box-shadow: inset 0 0 2px;
+  	float:center;
   }
   
     .mini_table_route
   {
-  background-color: rgba(240, 220, 203, 0.2);
+  background: rgb(255,255,255); /* Old browsers */
+background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(229,229,229,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(229,229,229,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* IE10+ */
+background: linear-gradient(top, rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 ); /* IE6-9 */
   box-shadow: inset 0 0 6px;
   	border-radius: 10px;
-  width:250px;
+ /* width:250px;*/
   margin-left:40px;
   margin-top:0px;
     float:left;
@@ -1770,46 +1811,103 @@ a.button_link
   .zagolovok_route
   {
   	border-radius: 10px 10px 5px 5px; 
-  	background-color: rgba(240, 220, 203, 0.2);
-  	width:250px;
-  	float:left;
+  	background-image: linear-gradient(bottom, rgb(235,235,235) 21%, rgb(220,224,224) 61%, rgb(201,201,201) 81%);
+background-image: -o-linear-gradient(bottom, rgb(235,235,235) 21%, rgb(220,224,224) 61%, rgb(201,201,201) 81%);
+background-image: -moz-linear-gradient(bottom, rgb(235,235,235) 21%, rgb(220,224,224) 61%, rgb(201,201,201) 81%);
+background-image: -webkit-linear-gradient(bottom, rgb(235,235,235) 21%, rgb(220,224,224) 61%, rgb(201,201,201) 81%);
+background-image: -ms-linear-gradient(bottom, rgb(235,235,235) 21%, rgb(220,224,224) 61%, rgb(201,201,201) 81%);
+
+background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0.21, rgb(235,235,235)),
+	color-stop(0.61, rgb(220,224,224)),
+	color-stop(0.81, rgb(201,201,201))
+);
+box-shadow: inset 0 0 2px;
+  	float:center;
   
   }
   
     .mini_table_transp
   {
-  background-color: rgba(240, 220, 203, 0.2);
+   background: rgb(255,255,255); /* Old browsers */
+background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(229,229,229,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(229,229,229,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* IE10+ */
+background: linear-gradient(top, rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 ); /* IE6-9 */
   box-shadow: inset 0 0 6px;
   	border-radius: 10px;
-  width:200px; 
+  /*width:200px; */
   margin-left:40px;
    float:left;
+   clear:both;
+   float:left;
+  /* margin-top:-46px;*/
   }
   
   .zagolovok_transp
   {
   	border-radius: 10px 10px 5px 5px; 
-  	background-color: rgba(240, 220, 203, 0.2);
-  	width:200px;
-  	  float:left;
+  	background-image: linear-gradient(bottom, rgb(235,235,235) 21%, rgb(220,224,224) 61%, rgb(201,201,201) 81%);
+background-image: -o-linear-gradient(bottom, rgb(235,235,235) 21%, rgb(220,224,224) 61%, rgb(201,201,201) 81%);
+background-image: -moz-linear-gradient(bottom, rgb(235,235,235) 21%, rgb(220,224,224) 61%, rgb(201,201,201) 81%);
+background-image: -webkit-linear-gradient(bottom, rgb(235,235,235) 21%, rgb(220,224,224) 61%, rgb(201,201,201) 81%);
+background-image: -ms-linear-gradient(bottom, rgb(235,235,235) 21%, rgb(220,224,224) 61%, rgb(201,201,201) 81%);
+
+background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0.21, rgb(235,235,235)),
+	color-stop(0.61, rgb(220,224,224)),
+	color-stop(0.81, rgb(201,201,201))
+);
+box-shadow: inset 0 0 2px;
+  	float:center;
   }
   
     .mini_table_marsh
   {
-  background-color: rgba(240, 220, 203, 0.2);
+ background: rgb(255,255,255); /* Old browsers */
+background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(229,229,229,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(229,229,229,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* IE10+ */
+background: linear-gradient(top, rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 ); /* IE6-9 */
   box-shadow: inset 0 0 6px;
   	border-radius: 10px;
-  width:200px; 
+ /* width:200px; */
   margin-left:40px;
     float:left;
+    margin-top:-22px;
   }
   
   .zagolovok_marsh
   {
   	border-radius: 10px 10px 5px 5px; 
-  	background-color: rgba(240, 220, 203, 0.2);
-  	width:200px;
-  	  float:left;
+background-image: linear-gradient(bottom, rgb(235,235,235) 21%, rgb(220,224,224) 61%, rgb(201,201,201) 81%);
+background-image: -o-linear-gradient(bottom, rgb(235,235,235) 21%, rgb(220,224,224) 61%, rgb(201,201,201) 81%);
+background-image: -moz-linear-gradient(bottom, rgb(235,235,235) 21%, rgb(220,224,224) 61%, rgb(201,201,201) 81%);
+background-image: -webkit-linear-gradient(bottom, rgb(235,235,235) 21%, rgb(220,224,224) 61%, rgb(201,201,201) 81%);
+background-image: -ms-linear-gradient(bottom, rgb(235,235,235) 21%, rgb(220,224,224) 61%, rgb(201,201,201) 81%);
+
+background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0.21, rgb(235,235,235)),
+	color-stop(0.61, rgb(220,224,224)),
+	color-stop(0.81, rgb(201,201,201))
+);
+box-shadow: inset 0 0 2px;
+  	float:center;
   }
   
   .menu_options_table tr td.padding_right
