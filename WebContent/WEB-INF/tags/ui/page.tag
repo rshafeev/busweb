@@ -17,6 +17,14 @@
 * {margin: 0; padding: 0;}
  html {height: 100%; overflow: hidden;}
  body {
+ background: rgb(226,226,226); /* Old browsers */
+background: -moz-linear-gradient(top, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 50%, rgba(209,209,209,1) 51%, rgba(254,254,254,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(226,226,226,1)), color-stop(50%,rgba(219,219,219,1)), color-stop(51%,rgba(209,209,209,1)), color-stop(100%,rgba(254,254,254,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, rgba(226,226,226,1) 0%,rgba(219,219,219,1) 50%,rgba(209,209,209,1) 51%,rgba(254,254,254,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, rgba(226,226,226,1) 0%,rgba(219,219,219,1) 50%,rgba(209,209,209,1) 51%,rgba(254,254,254,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, rgba(226,226,226,1) 0%,rgba(219,219,219,1) 50%,rgba(209,209,209,1) 51%,rgba(254,254,254,1) 100%); /* IE10+ */
+background: linear-gradient(top, rgba(226,226,226,1) 0%,rgba(219,219,219,1) 50%,rgba(209,209,209,1) 51%,rgba(254,254,254,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe',GradientType=0 ); /* IE6-9 */
    height: auto !important;
    height: 100%;
    min-height: 100%;
@@ -29,7 +37,7 @@ src="https://maps.google.com/maps/api/js?sensor=false">
 </script>
 <script type="text/javascript">
   function initialize() {
-    var latlng = new google.maps.LatLng(-34.397, 150.644);
+    var latlng = new google.maps.LatLng(41, 2);
     var myOptions = {
       zoom: 8,
       center: latlng,
@@ -49,9 +57,8 @@ src="https://maps.google.com/maps/api/js?sensor=false">
 <jsp:invoke fragment="head"/>
  <div class="logotip"><a href="#"><img border="0" alt="logotip" src="css/images/logotip1.png" width="250" height="50px"></a></div>
 </div></div>
-  <div class="clr"></div>
- <div class="slider2">
-<div class="transparent">
+<div class="slider2"> 
+<div class="transparent"> 
 
   <div class="block-round-content">
   <table class="menu_table" cellpadding="10" cellspacing="10">
@@ -159,8 +166,8 @@ src="https://maps.google.com/maps/api/js?sensor=false">
 </table>
   </div>
   <span class="r4"></span><span class="r3"></span><span class="r2"></span><span class="r1"></span>
-  </div>
-   </div> 
+ </div> 
+</div> 
  </div>
  <body>
    		<jsp:invoke fragment="body"/>
