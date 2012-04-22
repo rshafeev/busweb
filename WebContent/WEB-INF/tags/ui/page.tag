@@ -17,7 +17,6 @@
 * {margin: 0; padding: 0;}
  html {height: 100%; overflow: hidden;}
  body {
-	background:red;
    height: auto !important;
    height: 100%;
    min-height: 100%;
