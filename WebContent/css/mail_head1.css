@@ -6,6 +6,8 @@
     text-align: left;
     white-space: nowrap;
     z-index: 1003;
+    width:90%;
+    margin-left:78px;
 }
 .portal-headline__link, .portal-headline__link:link, .portal-headline__link:visited, .portal-headline__link:hover, .portal-headline__link:active, .portal-headline__link:focus {
     color: #0857A6;
