@@ -1,4 +1,4 @@
-package bus.web; 
+package com.pgis.bus.server.controllers; 
 
 import org.springframework.web.servlet.mvc.Controller; 
 import org.springframework.web.servlet.ModelAndView; 
