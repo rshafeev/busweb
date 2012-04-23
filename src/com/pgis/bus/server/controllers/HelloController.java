@@ -9,11 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException; 
 
 public class HelloController implements Controller { 
-    //protected final Log logger = LogFactory.getLog(getClass()); 
 
     public ModelAndView handleRequest(HttpServletRequest request, 
             HttpServletResponse response) throws ServletException, IOException { 
-       // logger.info(«Returning hello view»); 
         return new ModelAndView("jsp/temp.jsp"); 
     } 
 }
