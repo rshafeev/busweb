@@ -17,7 +17,7 @@
 * {margin: 0; padding: 0;}
  html {height: 100%; overflow: hidden;}
  body {
- background: rgb(226,226,226); /* Old browsers */
+  background: rgb(226,226,226); /* Old browsers */
 background: -moz-linear-gradient(top, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 50%, rgba(209,209,209,1) 51%, rgba(254,254,254,1) 100%); /* FF3.6+ */
 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(226,226,226,1)), color-stop(50%,rgba(219,219,219,1)), color-stop(51%,rgba(209,209,209,1)), color-stop(100%,rgba(254,254,254,1))); /* Chrome,Safari4+ */
 background: -webkit-linear-gradient(top, rgba(226,226,226,1) 0%,rgba(219,219,219,1) 50%,rgba(209,209,209,1) 51%,rgba(254,254,254,1) 100%); /* Chrome10+,Safari5.1+ */
@@ -76,7 +76,7 @@ src="https://maps.google.com/maps/api/js?sensor=false">
 <td>
    <div class="mini_table_route" >
   <div class="zagolovok_route">
-<p style="text-align: center; margin-bottom: 0em;margin-top: 0em; font-size: 11px;">Path:</p>
+<p style="text-align: center; margin-bottom: 0px;margin-top: 0em; font-size: 11px;">Path:</p>
 </div>
 <table class="b-search__points">
 <tbody>
@@ -99,7 +99,7 @@ src="https://maps.google.com/maps/api/js?sensor=false">
 	<td class="b-search__point-input">
 	<span class="b-form-input b-form-input_autocomplete_yes b-form-input_has-clear_yes b-form-input_size_m i-bem b-form-input_js_inited b-form-input_focused_yes" onclick="return {'b-form-input':{'popupMods':{'gradient':'yes'},'dataprovider':{'name':'b-search__dataprovider','search_type':'tp'}}}">
 	<span class="b-form-input__box">
-	<input class="b-form-input__input" id="uniq162" autocomplete="off" style="margin-bottom:2px; width:200px;"></input>
+	<input class="b-form-input__input" id="uniq162" autocomplete="off" style="margin-bottom:5px; width:200px;"></input>
 <span class="b-form-input__clear b-form-input__clear_visibility_visible">
 </span>
 </span>
@@ -130,7 +130,11 @@ src="https://maps.google.com/maps/api/js?sensor=false">
   <div class="zagolovok_marsh">
 <p style="text-align: center; margin-bottom: 0em;margin-top: 0em; font-size: 11px; ">Marshryt:</p>
 </div>
-<table >
+<p style="font-size: 11px; margin-right:50px; margin-bottom:2px;"><input type="radio" name="labeled" value="1" id="labeled_1" style="margin-right:3px; margin-left:3px;"/><label for="labeled_1">Optimal</label></p>
+<p style="font-size: 11px; margin-bottom:2px;"><input type="radio" name="labeled" value="2" id="labeled_2" style="margin-right:3px; margin-left:3px;" /><label for="labeled_2">Fast</label></p>
+<p style="font-size: 11px; margin-bottom:2px;"><input type="radio" name="labeled" value="3" id="labeled_3" style="margin-right:3px; margin-left:3px;" /><label for="labeled_3">Cheep</label></p>
+<p style="font-size: 11px; margin-right:50px; margin-bottom:2px; cursor: pointer;"><input name="rememberme" type="checkbox" "value="1" class = "checkbox style="margin-right:3px; margin-left:3px;""/><label >Bez peresadok</label></p>
+<!--  <table >
 <tbody>
 <tr>
 <td class="padding_right" style="width:100px;">
@@ -155,7 +159,7 @@ src="https://maps.google.com/maps/api/js?sensor=false">
 </td>
 </tr>
 </tbody>
-</table>
+</table>-->
 </div>
 </td>
 <td>
