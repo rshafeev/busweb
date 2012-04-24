@@ -1,4 +1,4 @@
-package bus.web; 
+package com.pgis.bus.server.controllers; 
 
 import org.springframework.web.servlet.mvc.Controller; 
 import org.springframework.web.servlet.ModelAndView; 
@@ -8,11 +8,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException; 
 
-public class BusController implements Controller { 
-    //protected final Log logger = LogFactory.getLog(getClass()); 
+public class HelloController implements Controller { 
 
     public ModelAndView handleRequest(HttpServletRequest request, 
             HttpServletResponse response) throws ServletException, IOException { 
-        return new ModelAndView("jsp/bus.jsp"); 
+        return new ModelAndView("jsp/temp.jsp"); 
     } 
 }
