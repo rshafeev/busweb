@@ -30,20 +30,7 @@ public class BasicServiceListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce)
     {
-   		 String poolNameJndi = "jdbc/busPoolDB";
-         String prefix = "java:/comp/env";
-    	
-    	ServletContext servletContext = sce.getServletContext();   
-    	String dataSourceJndiName = servletContext.getInitParameter(prefix); 
-    	try
-    	{
-    		   DBConnectionFactory.init(poolNameJndi);
-    	}
-    	catch(Exception e)
-    	{
-    		log.error(e.getMessage());
-    	}
-    	
+    	DBConnectionFactory.init("jdbc/busPoolDB");
     	log.debug("contextInitialized");
 
     }
