@@ -9,7 +9,7 @@
 
 
 	<repositories>
-		<!-- Publish the versioned releases here -->
+		<!-- Premiumgis repository -->
 		<repository>
 			<id>pgis-nexus-server</id>
 			<name>pgis-nexus server</name>
@@ -71,12 +71,23 @@
 
 	</repositories>
 
-
 	<dependencies>
 		<dependency>
-			<groupId>com.premiumgis</groupId>
-			<artifactId>busWeb.data</artifactId>
-			<version>0.0.1 </version>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-jsp-api</artifactId>
+			<version>7.0.27</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.0.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
@@ -93,12 +104,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>3.0.1</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
 			<version>3.1.1.RELEASE</version>
@@ -110,13 +115,76 @@
 			<version>3.1.1.RELEASE</version>
 			<scope>compile</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>3.1.0.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>3.1.0.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>3.1.0.RELEASE</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.0.2</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+			<version>1.0.2</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.7</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.premiumgis</groupId>
+			<artifactId>busWeb.data</artifactId>
+			<version>0.0.1 </version>
+		</dependency>
+
 
 	</dependencies>
 
 	<build>
-		<sourceDirectory>${basedir}/src</sourceDirectory>
+		<sourceDirectory>${basedir}/src/main/java</sourceDirectory>
+		<resources>
+			<resource>
+				<directory>
+		  ${basedir}/src/main/resources
+		</directory>
+			</resource>
+		</resources>
+		<testSourceDirectory>${basedir}/src/test/java</testSourceDirectory>
+
+		<testResources>
+			<testResource>
+				<directory>${basedir}/src/test/resources</directory>
+			</testResource>
+		</testResources>
 		<outputDirectory>${basedir}/bin</outputDirectory>
-		<directory>${basedir}/bin</directory>
+		<directory>${basedir}/target</directory>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -134,32 +202,82 @@
 			</plugin>
 
 			<plugin>
-				<artifactId>maven-antrun-plugin</artifactId>
-				<version>1.6</version>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<warSourceDirectory>WebContent</warSourceDirectory>
+				</configuration>
 				<executions>
 					<execution>
-						<phase> <!-- a lifecycle phase -->
-								</phase>
+						<id>default-war</id>
+						<phase>deploy</phase>
 						<goals>
-							<goal>run</goal>
+							<goal>war</goal>
 						</goals>
+					</execution>
+				</executions>
+			</plugin>
 
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<configuration>
+					<url>http://localhost:8080/manager</url>
+					<server>apache-tomcat7</server>
+					<path>/busWeb.admin</path>
+					<warFile>${project.build.directory}/${project.build.finalName}.war</warFile>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-dependencies</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
 						<configuration>
-							<target>
+							<outputDirectory>${basedir}/WebContent/WEB-INF/lib/</outputDirectory>
+							<overWriteReleases>false</overWriteReleases>
+							<overWriteSnapshots>false</overWriteSnapshots>
+							<overWriteIfNewer>true</overWriteIfNewer>
+							<excludeArtifactIds>javax.servlet-api,tomcat-jsp-api,tomcat-jsp-api,tomcat-el-api,jstl,
+								tomcat-servlet-api
+							</excludeArtifactIds>
 
-								<!-- Здесь можно расположить любые Ant задачи - то, что расположено 
-									между тэгами <target> и </target> в build.xml -->
-								<echo message="maven-antrun-plugin:run: hello world" />
-
-							</target>
 						</configuration>
 					</execution>
 				</executions>
 			</plugin>
 
+			<plugin>
+				<!--Testing settings plugin -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.4.2</version>
+				<configuration>
+					<forkMode>never</forkMode>
+					<systemProperties>
+						<property>
+							<name>logback.configuration</name>
+							<value>file:src/test/resources/logback.xml</value>
+						</property>
+					</systemProperties>
+					<excludes>
+					</excludes>
+					<includes>
+						<include>**/*Test_local.java</include>
+						<include>**/*Test.java</include>
+					</includes>
+				</configuration>
+			</plugin>
 		</plugins>
 
 	</build>
 
 
+	<packaging>war</packaging>
 </project>

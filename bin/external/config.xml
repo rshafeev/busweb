@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>Client properties</comment>
+<entry key="user_password">rar</entry>
+<entry key="user_email">roman@mail.ru</entry>
+<entry key="server_host">localhost</entry>
+<entry key="server_port">9397</entry>
+</properties>
