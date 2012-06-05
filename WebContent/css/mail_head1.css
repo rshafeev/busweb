@@ -1,277 +1,340 @@
 .portal-headline {
 	background: url("images/head_image.gif") repeat-x transparent;
-    font: 12px/12px Arial,sans-serif;
-    padding-top: 6px;
-    position: relative;
-    text-align: left;
-    white-space: nowrap;
-    z-index: 1003;
-    width:90%;
-    margin-left:78px;
+	font: 12px/12px Arial, sans-serif;
+	padding-top: 6px;
+	position: relative;
+	text-align: left;
+	white-space: nowrap;
+	z-index: 1003;
+	width: 90%;
+	margin-left: 78px;
 }
-.portal-headline__link, .portal-headline__link:link, .portal-headline__link:visited, .portal-headline__link:hover, .portal-headline__link:active, .portal-headline__link:focus {
-    color: #0857A6;
-    display: inline;
-    font-size: 12px;
-    line-height: 14px;
-    margin-right: 18px;
-    text-decoration: none;
-    white-space: nowrap;
+
+.portal-headline__link,.portal-headline__link:link,.portal-headline__link:visited,.portal-headline__link:hover,.portal-headline__link:active,.portal-headline__link:focus
+	{
+	color: #0857A6;
+	display: inline;
+	font-size: 12px;
+	line-height: 14px;
+	margin-right: 18px;
+	text-decoration: none;
+	white-space: nowrap;
 }
-.portal-headline__link:hover, .portal-headline__link:active {
-    color: #F26D00;
+
+.portal-headline__link:hover,.portal-headline__link:active {
+	color: #F26D00;
 }
-.portal-headline__link_first, .portal-headline__link_first:link, .portal-headline__link_first:visited, .portal-headline__link_first:hover, .portal-headline__link_first:active, .portal-headline__link_first:focus {
-    margin-left: 18px;
+
+.portal-headline__link_first,.portal-headline__link_first:link,.portal-headline__link_first:visited,.portal-headline__link_first:hover,.portal-headline__link_first:active,.portal-headline__link_first:focus
+	{
+	margin-left: 18px;
 }
-.portal-headline__link_ext, .portal-headline__link_ext:link, .portal-headline__link_ext:visited, .portal-headline__link_ext:hover, .portal-headline__link_ext:active, .portal-headline__link_ext:focus {
-    margin-right: 5px;
-    text-decoration: none;
+
+.portal-headline__link_ext,.portal-headline__link_ext:link,.portal-headline__link_ext:visited,.portal-headline__link_ext:hover,.portal-headline__link_ext:active,.portal-headline__link_ext:focus
+	{
+	margin-right: 5px;
+	text-decoration: none;
 }
+
 .portal-headline__link_selected {
-    font-weight: bold;
+	font-weight: bold;
 }
+
 .portal-headline__link__text {
-    cursor: pointer;
-    font-style: normal;
-    text-decoration: none;
+	cursor: pointer;
+	font-style: normal;
+	text-decoration: none;
 }
+
 .portal-headline__link:hover .portal-headline__link__text {
-    color: #F26D00;
-    text-decoration: none;
+	color: #F26D00;
+	text-decoration: none;
 }
+
 .portal-headline__link__balloon {
-    background-color: #FFAA00;
-    border-radius: 2px 2px 2px 2px;
-    color: #FFFFFF;
-    cursor: pointer;
-    display: none;
-    font-size: 11px;
-    font-style: normal;
-    font-weight: normal;
-    line-height: 12px;
-    margin-left: 3px;
-    margin-right: 5px;
-    min-width: 9px;
-    padding-left: 4px;
-    padding-right: 4px;
-    text-align: center;
+	background-color: #FFAA00;
+	border-radius: 2px 2px 2px 2px;
+	color: #FFFFFF;
+	cursor: pointer;
+	display: none;
+	font-size: 11px;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 12px;
+	margin-left: 3px;
+	margin-right: 5px;
+	min-width: 9px;
+	padding-left: 4px;
+	padding-right: 4px;
+	text-align: center;
 }
+
 .portal-headline__link_ext .portal-headline__link__balloon {
-    display: inline-block;
+	display: inline-block;
 }
+
 .portal-headline__projects {
-    display: inline-block;
-    font-size: 12px;
-    line-height: 12px;
-    position: relative;
-    z-index: 1004;
+	display: inline-block;
+	font-size: 12px;
+	line-height: 12px;
+	position: relative;
+	z-index: 1004;
 }
-.portal-headline__projects__link, .portal-headline__projects__link:link, .portal-headline__projects__link:visited, .portal-headline__projects__link:hover, .portal-headline__projects__link:active, .portal-headline__projects__link:focus {
-    cursor: pointer;
-    outline: 0 none;
-    text-decoration: none;
+
+.portal-headline__projects__link,.portal-headline__projects__link:link,.portal-headline__projects__link:visited,.portal-headline__projects__link:hover,.portal-headline__projects__link:active,.portal-headline__projects__link:focus
+	{
+	cursor: pointer;
+	outline: 0 none;
+	text-decoration: none;
 }
-.portal-headline__projects__link__text, .portal-headline__projects_open .portal-headline__projects__link:hover .portal-headline__projects__link__text {
-    border-bottom: 1px dotted #FFFFFF;
-    color: #0857A6;
-    display: inline-block;
-    font-style: normal;
-    text-decoration: none;
+
+.portal-headline__projects__link__text,.portal-headline__projects_open .portal-headline__projects__link:hover .portal-headline__projects__link__text
+	{
+	border-bottom: 1px dotted #FFFFFF;
+	color: #0857A6;
+	display: inline-block;
+	font-style: normal;
+	text-decoration: none;
 }
-.portal-headline__projects__link:hover .portal-headline__projects__link__text {
-    border-bottom: 1px dotted #FFFFFF;
-    color: #F26D00;
+
+.portal-headline__projects__link:hover .portal-headline__projects__link__text
+	{
+	border-bottom: 1px dotted #FFFFFF;
+	color: #F26D00;
 }
-.portal-headline__projects__link__icon, .portal-headline__projects_open .portal-headline__projects__link:hover .portal-headline__projects__link__icon {
-    border-color: #0857A6 #FFFFFF #FFFFFF;
-    border-style: solid;
-    border-width: 4px;
-    display: inline-block;
-    font: 0pt/0 a;
-    height: 0;
-    position: relative;
-    top: 3px;
-    width: 0;
+
+.portal-headline__projects__link__icon,.portal-headline__projects_open .portal-headline__projects__link:hover .portal-headline__projects__link__icon
+	{
+	border-color: #0857A6 #FFFFFF #FFFFFF;
+	border-style: solid;
+	border-width: 4px;
+	display: inline-block;
+	font: 0pt/0 a;
+	height: 0;
+	position: relative;
+	top: 3px;
+	width: 0;
 }
-.portal-headline__projects__link:hover .portal-headline__projects__link__icon {
-    border-color: #F26D00 #FFFFFF #FFFFFF;
+
+.portal-headline__projects__link:hover .portal-headline__projects__link__icon
+	{
+	border-color: #F26D00 #FFFFFF #FFFFFF;
 }
+
 .portal-headline__projects_open {
-    margin: -2px -6px -6px;
+	margin: -2px -6px -6px;
 }
+
 .portal-headline__projects_open .portal-headline__projects__link {
-    -moz-animation-duration: 0.5s;
-    -moz-animation-name: slideinL;
-    -moz-border-bottom-colors: none;
-    -moz-border-image: none;
-    -moz-border-left-colors: none;
-    -moz-border-right-colors: none;
-    -moz-border-top-colors: none;
-    background: none repeat scroll 0 0 #FFFFFF;
-    border-color: #9FC1EB #9FC1EB -moz-use-text-color;
-    border-radius: 2px 2px 0 0;
-    border-style: solid solid none;
-    border-width: 1px 1px medium;
-    display: inline-block;
-    padding: 1px 5px 6px;
-    position: relative;
-    z-index: 1006;
+	-moz-animation-duration: 0.5s;
+	-moz-animation-name: slideinL;
+	-moz-border-bottom-colors: none;
+	-moz-border-image: none;
+	-moz-border-left-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-top-colors: none;
+	background: none repeat scroll 0 0 #FFFFFF;
+	border-color: #9FC1EB #9FC1EB -moz-use-text-color;
+	border-radius: 2px 2px 0 0;
+	border-style: solid solid none;
+	border-width: 1px 1px medium;
+	display: inline-block;
+	padding: 1px 5px 6px;
+	position: relative;
+	z-index: 1006;
 }
+
 .portal-headline__projects__wrap {
-    background: none repeat scroll 0 0 #FFFFFF;
-    border: 1px solid #9FC1EB;
-    border-radius: 2px 2px 2px 2px;
-    box-shadow: 2px 2px 2px -2px #656972;
-    display: none;
-    position: absolute;
-    top: 20px;
-    width: 380px;
-    z-index: 1005;
+	background: none repeat scroll 0 0 #FFFFFF;
+	border: 1px solid #9FC1EB;
+	border-radius: 2px 2px 2px 2px;
+	box-shadow: 2px 2px 2px -2px #656972;
+	display: none;
+	position: absolute;
+	top: 20px;
+	width: 380px;
+	z-index: 1005;
 }
+
 .portal-headline__projects_open .portal-headline__projects__wrap {
-    -moz-animation-duration: 0.5s;
-    -moz-animation-name: slidein;
-    display: block;
+	-moz-animation-duration: 0.5s;
+	-moz-animation-name: slidein;
+	display: block;
 }
+
 .portal-headline__projects_open_left .portal-headline__projects__wrap {
-    left: 0;
+	left: 0;
 }
+
 .portal-headline__projects_open_right .portal-headline__projects__wrap {
-    right: 0;
+	right: 0;
 }
+
 .portal-headline__projects__column {
-    float: left;
-    padding-bottom: 4px;
-    padding-left: 4px;
-    padding-top: 4px;
-    width: 120px;
+	float: left;
+	padding-bottom: 4px;
+	padding-left: 4px;
+	padding-top: 4px;
+	width: 120px;
 }
+
 .portal-headline__projects__column_separator {
-    border-bottom: 1px solid #D9DEED;
-    margin-bottom: 10px;
-    padding-bottom: 10px;
+	border-bottom: 1px solid #D9DEED;
+	margin-bottom: 10px;
+	padding-bottom: 10px;
 }
-.portal-headline__project__link, .portal-headline__project__link:link, .portal-headline__project__link:visited, .portal-headline__project__link:hover, .portal-headline__project__link:active, .portal-headline__project__link:focus {
-    border-bottom: 1px solid #FFFFFF;
-    color: #0857A6;
-    cursor: pointer;
-    display: block;
-    padding: 4px 8px;
-    text-align: left;
-    text-decoration: none;
-    white-space: nowrap;
+
+.portal-headline__project__link,.portal-headline__project__link:link,.portal-headline__project__link:visited,.portal-headline__project__link:hover,.portal-headline__project__link:active,.portal-headline__project__link:focus
+	{
+	border-bottom: 1px solid #FFFFFF;
+	color: #0857A6;
+	cursor: pointer;
+	display: block;
+	padding: 4px 8px;
+	text-align: left;
+	text-decoration: none;
+	white-space: nowrap;
 }
-.portal-headline__project__link:hover, .portal-headline__project__link:active {
-    background: none repeat scroll 0 0 #E7EFFF;
-    color: #0857A6;
+
+.portal-headline__project__link:hover,.portal-headline__project__link:active
+	{
+	background: none repeat scroll 0 0 #E7EFFF;
+	color: #0857A6;
 }
-.portal-headline__project__link_icon, .portal-headline__project__link_icon:link, .portal-headline__project__link_icon:visited, .portal-headline__project__link_icon:hover, .portal-headline__project__link_icon:active, .portal-headline__project__link_icon:focus {
-    padding-left: 30px;
+
+.portal-headline__project__link_icon,.portal-headline__project__link_icon:link,.portal-headline__project__link_icon:visited,.portal-headline__project__link_icon:hover,.portal-headline__project__link_icon:active,.portal-headline__project__link_icon:focus
+	{
+	padding-left: 30px;
 }
+
 .portal-headline__project__link_icon__pic {
-    background-image: url("//img.imgsmail.ru/r/portal/portal-headline/portal-headline__project__link_icon.png?v=2");
-    background-repeat: no-repeat;
-    height: 18px;
-    margin-left: -22px;
-    margin-top: -2px;
-    position: absolute;
-    width: 18px;
+	background-image:
+		url("//img.imgsmail.ru/r/portal/portal-headline/portal-headline__project__link_icon.png?v=2");
+	background-repeat: no-repeat;
+	height: 18px;
+	margin-left: -22px;
+	margin-top: -2px;
+	position: absolute;
+	width: 18px;
 }
+
 .portal-headline__project__link_icon__pic_agent {
-    background-position: 0 2px;
+	background-position: 0 2px;
 }
+
 .portal-headline__project__link_icon__pic_sputnik {
-    background-position: 0 -18px;
+	background-position: 0 -18px;
 }
+
 .portal-headline__project__link_icon__pic_icq {
-    background-position: 0 -40px;
+	background-position: 0 -40px;
 }
+
 .portal-headline__project__link_icon__pic_chrome {
-    background-position: 0 -61px;
+	background-position: 0 -61px;
 }
+
 .portal-headline__login {
-    display: block;
-    font-size: 12px;
-    height: 15px;
-    line-height: 14px;
-    text-align: right;
+	display: block;
+	font-size: 12px;
+	height: 15px;
+	line-height: 14px;
+	text-align: right;
 }
-.portal-headline__login__link, .portal-headline__login__link:link, .portal-headline__login__link:visited, .portal-headline__login__link:hover, .portal-headline__login__link:active, .portal-headline__login__link:focus {
-    color: #0857A6;
-    text-decoration: none;
+
+.portal-headline__login__link,.portal-headline__login__link:link,.portal-headline__login__link:visited,.portal-headline__login__link:hover,.portal-headline__login__link:active,.portal-headline__login__link:focus
+	{
+	color: #0857A6;
+	text-decoration: none;
 }
-.portal-headline__login__link:hover, .portal-headline__login__link:active {
-    color: #F26D00;
-    text-decoration: none;
+
+.portal-headline__login__link:hover,.portal-headline__login__link:active
+	{
+	color: #F26D00;
+	text-decoration: none;
 }
+
 .portal-headline__login__link_settings {
-    margin-right: 10px;
+	margin-right: 10px;
 }
+
 .w-portal-headline {
-    border: 0 none;
-    border-collapse: collapse;
-    border-spacing: 0;
-    width: 100%;
+	border: 0 none;
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 100%;
 }
+
 .w-portal-headline__col {
-    height: 22px;
-    padding: 0;
-    vertical-align: top;
-    white-space: nowrap;
+	height: 22px;
+	padding: 0;
+	vertical-align: top;
+	white-space: nowrap;
 }
+
 .w-portal-headline__col_left {
-    padding-right: 28px;
-    text-align: left;
-    width: 1%;
+	padding-right: 28px;
+	text-align: left;
+	width: 1%;
 }
+
 .w-portal-headline__col_right {
-    text-align: right;
+	text-align: right;
 }
+
 .w-portal-headline__login {
-    border: 0 none;
-    border-spacing: 0;
-    width: 100%;
+	border: 0 none;
+	border-spacing: 0;
+	width: 100%;
 }
+
 .w-portal-headline__login__col {
-    padding: 0;
-    vertical-align: top;
-    white-space: nowrap;
+	padding: 0;
+	vertical-align: top;
+	white-space: nowrap;
 }
+
 .w-portal-headline__login__col_left {
-    text-align: right;
-    width: 99%;
+	text-align: right;
+	width: 99%;
 }
+
 .w-portal-headline__login__col_right {
-    padding-left: 10px;
-    padding-right: 18px;
+	padding-left: 10px;
+	padding-right: 18px;
 }
+
 .portal-headline__login_out {
-    padding-right: 18px;
+	padding-right: 18px;
 }
+
 .w-portal-menu__user-email {
-    display: block;
-    height: 15px;
-    line-height: 14px;
-    overflow: hidden;
-    position: relative;
-    width: 100%;
+	display: block;
+	height: 15px;
+	line-height: 14px;
+	overflow: hidden;
+	position: relative;
+	width: 100%;
 }
+
 .w-portal-menu__user-email_inner {
-    max-width: 100%;
-    position: absolute;
-    right: 0;
-    text-align: left;
+	max-width: 100%;
+	position: absolute;
+	right: 0;
+	text-align: left;
 }
+
 .w-portal-menu__user-email__fade {
-    background: url("//img.imgsmail.ru/r/portal/portal-headline/fade.png") no-repeat scroll 0 0 transparent;
-    height: 20px;
-    overflow: hidden;
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 10px;
+	background: url("//img.imgsmail.ru/r/portal/portal-headline/fade.png")
+		no-repeat scroll 0 0 transparent;
+	height: 20px;
+	overflow: hidden;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 10px;
 }
+
 .portal-menu__user-email {
-    padding-right: 10px;
+	padding-right: 10px;
 }

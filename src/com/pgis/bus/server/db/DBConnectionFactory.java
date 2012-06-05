@@ -18,7 +18,7 @@ import com.pgis.bus.server.listeners.BasicServiceListener;
 
 public class DBConnectionFactory {
    private static DataSource source=null;
-   private  static final Logger log = LoggerFactory.getLogger( BasicServiceListener.class );
+   private  static final Logger log = LoggerFactory.getLogger( DBConnectionFactory.class );
 	
    public static  void init(String dataSourceName) throws NamingException
    {

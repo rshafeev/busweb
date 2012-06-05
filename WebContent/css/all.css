@@ -1,0 +1,123 @@
+a{
+	text-decoration:none;
+	color:#0282b2;
+	outline:none;
+}
+a:hover{text-decoration:underline;}
+input,
+textarea,
+select{
+	font:100% arial,sans-serif;
+	vertical-align:middle;
+}
+form,fieldset{
+	margin:0;
+	padding:0;
+	border:none;
+}
+#main {
+	overflow:hidden;
+	position:relative;
+	/*border:1px solid #3a3a3a;*/
+	width:100%;
+	height:100%;
+	color:#fff;
+}
+
+.block {
+	background:#2a2a2a;
+	position:absolute;
+	overflow:hidden;
+	height:150px;
+}
+.block div {height:140px;}
+a.opener {
+	background:#005b7f;
+	color:#fff;
+}
+a.opener:hover {text-decoration:none;}
+.blockChange a.opener {
+	background:#6699FF;
+}
+
+/* header */
+#leftBlock {
+	width:200px;
+	top:0;
+	left:-180px;
+}
+#leftBlock div {
+	float:left;
+	width:170px;
+	padding:5px;
+}
+#leftBlock a.opener {
+	float:left;
+	text-align:center;
+	width:20px;
+	height:150px;
+	line-height:150px;
+}
+#rightBlock {
+	position:relative;
+	width:200px;
+	float:right;
+	overflow:hidden;
+	margin-right:-180px;
+	
+}
+#rightBlock div {
+	float:right;
+	width:170px;
+	overflow:hidden;
+	padding:5px;
+}
+#rightBlock a.opener {
+	float:right;
+	text-align:center;
+	width:20px;
+	height:150px;
+	line-height:150px;
+}
+
+#leftBlock {
+	width:200px;
+	top:0;
+	left:-180px;
+}
+#leftBlock div {
+	float:left;
+	width:170px;
+	padding:5px;
+}
+#leftBlock a.opener {
+	float:left;
+	text-align:center;
+	width:20px;
+	height:150px;
+	line-height:150px;
+}
+#topBlock {
+	position:absolute;
+	width:200px;
+	height:150px;
+	top:-130px;
+	left:215px;
+}
+#topBlock div {
+	width:190px;
+	height:120px;
+	padding:5px;
+}
+#topBlock a.opener {
+	text-align:center;
+	height:20px;
+	display:block;
+	width:200px;
+	line-height:20px;
+}
+
+.txt {
+	text-align:center;
+	line-height:150px;
+}

@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="ui" tagdir="/WEB-INF/tags/ui" %>
 
-<ui:page>
+<!--<ui:page>
     <jsp:attribute name="head">
         <title>Title</title>
            <div class="menu">
@@ -47,4 +47,4 @@
     
         <jsp:attribute name="foot">
     </jsp:attribute>
-</ui:page>
+</ui:page>-->

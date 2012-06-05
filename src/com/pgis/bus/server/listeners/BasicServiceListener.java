@@ -12,6 +12,12 @@ import org.slf4j.LoggerFactory;
 
 import com.pgis.bus.server.db.DBConnectionFactory;
 
+/**
+ * навешивает логику на момент создания/удаления сервлета
+ * @author marianna
+ *
+ */
+
 
 public class BasicServiceListener implements ServletContextListener {
 	private  static final Logger log = LoggerFactory.getLogger( BasicServiceListener.class );

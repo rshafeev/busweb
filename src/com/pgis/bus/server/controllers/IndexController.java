@@ -8,10 +8,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException; 
 
-public class HelloController implements Controller { 
+public class IndexController implements Controller { 
 
     public ModelAndView handleRequest(HttpServletRequest request, 
             HttpServletResponse response) throws ServletException, IOException { 
-        return new ModelAndView("jsp/hello.jsp"); 
+        return new ModelAndView("jsp/index.jsp"); 
     } 
 }

@@ -6,4 +6,5 @@
 	<!-- the application context definition for the springapp DispatcherServlet -->
 	<bean name="/hello.htm" class="com.pgis.bus.server.controllers.HelloController" />
 	<bean name="/bus.htm"   class="com.pgis.bus.server.controllers.BusController" />
+	<bean name="/index.htm"   class="com.pgis.bus.server.controllers.IndexController" />
 </beans>
