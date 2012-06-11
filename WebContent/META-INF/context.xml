@@ -16,7 +16,8 @@
             logAbandoned="true"
             minEvictableIdleTimeMillis="30000"
             jmxEnabled="true"
+            validationQuery="SELECT 1"
+			testOnBorrow="true"
       /> 
-      
  </Context>
       

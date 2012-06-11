@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+
+	<appender name="JPANEL"
+		class="com.pgis.vrp.distcomp.client.JPanelAppender">
+		<!-- <evaluator class="ch.qos.logback.classic.boolex.OnMarkerEvaluator"> 
+			<marker>USER_MARKER</marker> </evaluator> -->
+	</appender>
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%d{yyyy-MM-dd HH:mm:ss} %c{1} [%p] %m%n</pattern>
+		</layout>
+		
+	</appender>
+
+	<appender name="FileAppender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<Append>true</Append>
+		<File>logs/vrp_distcomp-client.log</File>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss} %c{1} [%p] %m%n</pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>logs/vrp_distcomp-client.log.%d{yyyy-MM-dd}
+			</fileNamePattern>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+	</appender>
+
+	<logger name="org.w3c.tidy" level="ON" />
+	<logger name="ch.qos" level="ON" />
+	<logger name="org.slf4j" level="ON" />
+
+	<root>
+		<level value="ALL" />
+		<appender-ref ref="JPANEL" />
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="FileAppender" />
+	</root>
+</configuration>
+
