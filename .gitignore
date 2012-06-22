@@ -7,6 +7,7 @@
 *.private
 =======
 *.private
+*.jar
 >>>>>>> 96600d1929838e5e765d5e12f72d64af681041c8
 
 bin*/
