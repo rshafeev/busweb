@@ -15,23 +15,19 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import com.pgis.bus.server.db.*;
+import com.pgis.bus.data.*;
 
 
 public class BusController implements Controller { 
 	private  static final Logger log = LoggerFactory.getLogger( BusController.class ); // 1. Объявляем переменную логгера
 
     public ModelAndView handleRequest(HttpServletRequest request, 
-            HttpServletResponse response) throws ServletException, IOException { 
+            HttpServletResponse response) throws ServletException, IOException, SQLException { 
     	log.info("Open BusController...");
     	
-    	try {
-			Connection c = DBConnectionFactory.getConnectionFactory();
+		Connection c = DBConnectionFactory.getConnection();
 			
-		} catch (NamingException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
         return new ModelAndView("jsp/bus.jsp"); 
     } 
 }
