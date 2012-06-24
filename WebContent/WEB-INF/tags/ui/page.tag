@@ -86,7 +86,6 @@
 	}
 </script>
 
-
 <style type="text/css">
 * {
 	margin: 0;
@@ -292,21 +291,24 @@ body {
 													</p>
 												</div>
 												<div class="mini_table_transp_temp" style="height: 5px;"></div>
-												<input type="radio" name="labeled" value="1" id="labeled_1"
-													style="margin-right: 3px; margin-left: 3px; margin-top: 10px; margin-bottom: 2px;"></input>
-												<label for="labeled_1" style="font-size: 12px;">Optimal</label><br>
+												<div class="mini_temp" style="height:8px;"></div>
+												<input type="radio" name="labeled" value="1" id="labeled_1" style="margin-left:5px;"></input>
+												<label for="labeled_1" style="font-size: 12px; ">Optimal</label>
+	
+												<div class="mini_temp" style="height:1px;"></div>
 												<input type="radio" name="labeled" value="2" id="labeled_2"
-													style="margin-right: 3px; margin-left: 3px; margin-top: 2px;" ></input>
-													<label for="labeled_1" style="font-size: 12px; margin-left: 5px;">Fast</label><br>
-												<input type="radio" name="labeled" value="3" id="labeled_3"
-													style="margin-right: 3px; margin-left: 3px; margin-top: 2px;" ></input><label
-													for="labeled_1" style="font-size: 12px; margin-left: 5px;">Cheep</label>
+													style="margin-left:5px;"></input>
+													<label for="labeled_2" style="font-size: 12px; ">Fast</label>
+													
+													<div class="mini_temp" style="height:1px;"></div>
+													<input type="radio" name="labeled" value="3" id="labeled_3" style="margin-left:5px;"></input>
+													<label for="labeled_3" id="labeled_3" style="font-size: 12px; ">Cheep</label><br>
 											</div>
 										</div>
 									</td>
 									<td>
 										<button style="width: 120px; height: 40px; margin-left: 50px;"
-											type="submit" class="button">Calculate</button>
+											type="submit" class="button" id="zoomOutX" onclick="zoomOutX('map_canvas'); var el = document.getElementById('test'); el.style.display = (el.style.display == 'block') ? 'none' : 'block';" >Calculate</button>
 									</td>
 								</tr>
 							</tbody>
@@ -318,36 +320,14 @@ body {
 			</div>
 		</div>
 		
-		<div class="temp" style="width:90%; height:75%; 
- position:absolute;margin-left:78px;
-background-image: linear-gradient(bottom, rgb(227,227,227) 27%, rgb(230,230,230) 65%);
-background-image: -o-linear-gradient(bottom, rgb(227,227,227) 27%, rgb(230,230,230) 65%);
-background-image: -moz-linear-gradient(bottom, rgb(227,227,227) 27%, rgb(230,230,230) 65%);
-background-image: -webkit-linear-gradient(bottom, rgb(227,227,227) 27%, rgb(230,230,230) 65%);
-background-image: -ms-linear-gradient(bottom, rgb(227,227,227) 27%, rgb(230,230,230) 65%);
-
-background-image: -webkit-gradient(
-	linear,
-	left bottom,
-	left top,
-	color-stop(0.27, rgb(227,227,227)),
-	color-stop(0.65, rgb(230,230,230))
-);
--moz-box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-	-webkit-box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-	box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);">				
+		<div class="temp">				
 		<jsp:invoke fragment="content" />
 		</div>
-
-
-
 <div class="footer" >
 
 <jsp:invoke fragment="foot" />
 </div>
 
-			
-
-	</div>
+</div>
 </body>
 </html>

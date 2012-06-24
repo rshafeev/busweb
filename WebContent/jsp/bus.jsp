@@ -22,35 +22,21 @@
 	
 
 	<div id="main">
- 
-	<!-- <div id="map_canvas" style="width:97%;  height: 100%; margin-left: 15px; margin-top: 0px; border: 2px solid white;">
-	</div> -->
+	
+				<div class="right_col" >
+	<div id="test" style="display:none"><h2 style="color:black;">Появляется текст</h2></div>		
+<div class="map_button" id="zoomOutX" onclick="zoomOutX('map_canvas')"></div>
+<div class="map_button map_button_selected" id="zoomInX" onclick="zoomInX('map_canvas')"></div>
 
-<!--  <div id="map_canvas" style="width:300;  height: 100%; margin-left: 15px; margin-top: 0px; border: 2px solid white; position:absolute;" onclick="changeSizeImage(this)">
- 
- 
-	</div> -->
-	<div id="map_canvas" style="width:97%;  height: 100%; margin-left: 10px; margin-top: 0px; border: 2px solid white; position:absolute;" onclick="changeSizeImage(this)">
-	
-	</div> 
-	
-			<div class="right_col" style="float:right;">
-			<!-- <button id="zoomInX" value="Увеличить блок (только по горизонтали)" onclick="zoomInX('map_canvas')" >Size up</button>
-<button id="zoomOutX" value="Уменьшить блок (только по горизонтали)" onclick="zoomOutX('map_canvas')">Size down</button> -->
-<input type="image" id="zoomOutX" onclick="zoomOutX('map_canvas')" style="cursor: pointer;
-display: block;
-float: right;
-" src='css/images/arrow_left.png'>
-<input type="image" id="zoomInX" onclick="zoomInX('map_canvas')" src='css/images/arrow_right.png'>	 
-		
+
 </div>
- <!-- <div id="leftBlock" class="block">
-	<div class="content">
-
-	</div>
-	<a href="#" class="opener">op</a>
-</div> --> 
-
+	<div id="map_canvas" style="width:97%;  height: 100%; margin-left: 10px; margin-top: 0px; border: 2px solid white;
+	 position:absolute;" onclick="changeSizeImage(this)">
+	 
+	 
+	 
+	 </div> 
+	
 
 </div>
 

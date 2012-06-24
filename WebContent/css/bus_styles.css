@@ -1937,3 +1937,51 @@ margin-left:300px;
    border-top-color: white;
    background:#EABE30;
    }
+   
+ .map_button
+ {
+ background: url("images/arrow_left.png") 50% 50% no-repeat transparent;
+cursor: pointer;
+display: block;
+float: right;
+height: 505px;
+width: 15px;
+ }
+ 
+ .map_button_selected 
+ {
+ background: url("images/arrow_right.png") 50% 50% no-repeat transparent;
+ }
+ 
+ .temp
+ {
+ width:90%; height:75%; 
+ position:absolute;margin-left:78px;
+background-image: linear-gradient(bottom, rgb(227,227,227) 27%, rgb(230,230,230) 65%);
+background-image: -o-linear-gradient(bottom, rgb(227,227,227) 27%, rgb(230,230,230) 65%);
+background-image: -moz-linear-gradient(bottom, rgb(227,227,227) 27%, rgb(230,230,230) 65%);
+background-image: -webkit-linear-gradient(bottom, rgb(227,227,227) 27%, rgb(230,230,230) 65%);
+background-image: -ms-linear-gradient(bottom, rgb(227,227,227) 27%, rgb(230,230,230) 65%);
+
+background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0.27, rgb(227,227,227)),
+	color-stop(0.65, rgb(230,230,230))
+);
+-moz-box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+	-webkit-box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+	box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+ }
+.right_col
+{
+float:right;
+display:block;
+height: 590px;
+overflow-x: hidden;
+overflow-y: auto;
+position: relative;
+width: 369px;	
+	
+}

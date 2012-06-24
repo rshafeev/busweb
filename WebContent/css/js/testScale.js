@@ -13,11 +13,11 @@ function zoomOut(targetBlock) {
 
 function zoomInX(targetBlock) {
 	var width=132;
-	new Effect.Scale(targetBlock, width, {duration: 3, scaleX: true, scaleY: false, scaleContent: false});
+	new Effect.Scale(targetBlock, width, {duration: 1, scaleX: true, scaleY: false, scaleContent: false});
 }
 
 function zoomOutX(targetBlock) {
-	new Effect.Scale(targetBlock, 75, {duration: 3, scaleX: true, scaleY: false, scaleContent: false});
+	new Effect.Scale(targetBlock, 75, {duration: 0, scaleX: true, scaleY: false, scaleContent: false});
 }
 
 function zoomInY(targetBlock) {
