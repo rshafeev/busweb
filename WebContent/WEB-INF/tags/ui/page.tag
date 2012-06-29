@@ -257,22 +257,26 @@ html {
 													</p>
 												</div>
 												<div class="mini_table_transp_temp" style="height: 5px;"></div>
-												<div class="mini_temp" style="height: 8px;"></div>
-												<input type="radio" name="labeled" value="1" id="labeled_1"
-													style="margin-left: 5px;"></input> <label for="labeled_1"
-													style="font-size: 12px;">Optimal</label>
-
-												<div class="mini_temp" style="height: 1px;"></div>
-												<input type="radio" name="labeled" value="2" id="labeled_2"
-													style="margin-left: 5px;"></input> <label for="labeled_2"
-													style="font-size: 12px;">Fast</label>
-
-												<div class="mini_temp" style="height: 1px;"></div>
-												<input type="radio" name="labeled" value="3" id="labeled_3"
-													style="margin-left: 5px;"></input> <label for="labeled_3"
-													id="labeled_3" style="font-size: 12px;">Cheep</label><br>
+												<div class="mini_table_transp_list"
+													style="width: 120px; height: 30px;">
+													<div class="mini_temp" style="height: 8px;"></div>
+													<p style="font-size: 12px; font-family:"Verdana", "Arial", "Tahoma";">
+														<input type="radio" name="labeled" value="1"
+															id="labeled_1" /><label for="labeled_1"
+															style="margin-left: 5 px;">Optimal</label>
+													</p>
+													<p style="font-size: 12px; font-family:"Verdana", "Arial", "Tahoma"; ">
+														<input type="radio" name="labeled" value="2"
+															id="labeled_2" /><label for="labeled_2"
+															style="margin-left: 5 px;">Fast</label>
+													</p>
+													<p style="font-size: 12px; font-family:"Verdana", "Arial", "Tahoma";">
+														<input type="radio" name="labeled" value="3"
+															id="labeled_3" /><label for="labeled_3"
+															style="margin-left: 5 px;">Cheep</label>
+													</p>
+												</div>
 											</div>
-										</div>
 									</td>
 									<td>
 										<button style="width: 120px; height: 40px; margin-left: 50px;"
