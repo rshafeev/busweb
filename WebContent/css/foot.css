@@ -1,0 +1,89 @@
+.temp {
+	width: 90%;
+	height: 76%;
+	position: absolute;
+	margin-left: 78px;
+	background-image: linear-gradient(bottom, rgb(227, 227, 227) 27%,
+		rgb(230, 230, 230) 65% );
+	background-image: -o-linear-gradient(bottom, rgb(227, 227, 227) 27%,
+		rgb(230, 230, 230) 65% );
+	background-image: -moz-linear-gradient(bottom, rgb(227, 227, 227) 27%,
+		rgb(230, 230, 230) 65% );
+	background-image: -webkit-linear-gradient(bottom, rgb(227, 227, 227) 27%,
+		rgb(230, 230, 230) 65% );
+	background-image: -ms-linear-gradient(bottom, rgb(227, 227, 227) 27%,
+		rgb(230, 230, 230) 65% );
+	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.27, rgb(227
+		, 227, 227) ), color-stop(0.65, rgb(230, 230, 230) ) );
+	-moz-box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+	-webkit-box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+	box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+/**********************************************************************************************************************/
+/****************************************стиль для нижней части страницы************************************************/
+.block_header {
+	border: medium none currentColor;
+	margin: 0px auto;
+	padding: 0px;
+	background-image: url("css/images/footer_fon.gif");
+	height: 50px;
+	-moz-box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+	-webkit-box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+	box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.footer,.header {
+	border: solid 1px rgb(226, 226, 226);
+}
+
+.footer {
+	background: url("images/footer_fon.gif") repeat-x top;
+	position: absolute;
+	bottom: 0;
+	height: 25px;
+	width: 90%;
+	margin-left: 75px;
+	-moz-box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+	-webkit-box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+	box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.footer p {
+	font: 12px/normal Arial, Helvetica, sans-serif;
+	color: rgb(190, 133, 18);
+	font-size-adjust: none;
+	font-stretch: normal;
+}
+
+.footer a {
+	font: 12px/normal Arial, Helvetica, sans-serif;
+	margin: 0px;
+	padding: 5px;
+	color: rgb(239, 239, 235);
+	text-decoration: underline;
+	font-size-adjust: none;
+	font-stretch: normal;
+}
+
+.footer img {
+	margin: 20px 5px;
+	padding: 0px;
+	float: left;
+}
+
+.footer p.leftt {
+	margin: 0px;
+	padding: 20px 0px 0px;
+	width: 50%;
+	text-align: right;
+	float: right;
+}
+
+.footer p.rightt {
+	margin: 0px;
+	padding: 10px 0px;
+	width: 50%;
+	text-align: right;
+	float: right;
+}
