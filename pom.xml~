@@ -7,6 +7,7 @@
 	<artifactId>busWeb</artifactId>
 	<version>0.0.1 </version>
 
+<<<<<<< HEAD
 
 	<repositories>
 		<!-- Premiumgis repository -->
@@ -71,6 +72,8 @@
 
 	</repositories>
 
+=======
+>>>>>>> release_test
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
@@ -90,12 +93,21 @@
 			<version>1.2</version>
 			<scope>compile</scope>
 		</dependency>
+<<<<<<< HEAD
 		 <dependency>
                         <groupId>org.apache.tomcat</groupId>
                         <artifactId>tomcat-jdbc</artifactId>
                         <version>7.0.27</version>
                         <scope>compile</scope>
                 </dependency>
+=======
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-jdbc</artifactId>
+			<version>1.7.0</version>
+			<scope>compile</scope>
+		</dependency>
+>>>>>>> release_test
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>

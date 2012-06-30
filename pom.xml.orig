@@ -28,14 +28,14 @@
 		</dependency>
 		<dependency>
 <<<<<<< HEAD
-                        <groupId>org.apache.tomcat</groupId>
-                        <artifactId>tomcat-jdbc</artifactId>
-                        <version>7.0.27</version>
-                        <scope>compile</scope>
-                </dependency>
-		<dependency>
 =======
->>>>>>> e58fca5a895fd0c8a42fd6aef1cf24b31e09e514
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-jdbc</artifactId>
+			<version>7.0.27</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+>>>>>>> release_test
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>1.6.4</version>
