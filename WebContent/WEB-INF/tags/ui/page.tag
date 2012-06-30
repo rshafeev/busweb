@@ -263,7 +263,7 @@ html {
 													<p style="font-size: 12px; font-family:"Verdana", "Arial", "Tahoma";">
 														<input type="radio" name="labeled" value="1"
 															id="labeled_1" /><label for="labeled_1"
-															style="margin-left: 5 px;">Optimal2</label>
+															style="margin-left: 5 px;">Optimal</label>
 													</p>
 													<p style="font-size: 12px; font-family:"Verdana", "Arial", "Tahoma"; ">
 														<input type="radio" name="labeled" value="2"
