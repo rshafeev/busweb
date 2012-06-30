@@ -1,8 +1,10 @@
 [Dolphin]
+AdditionalInfo=Details_Size,Details_Date,CustomizedDetails
 AdditionalInfoV2=Details_Size,Details_Date,CustomizedDetails
-Timestamp=2012,4,25,16,38,52
+Timestamp=2012,6,22,15,53,10
 Version=2
 ViewMode=1
 
 [Settings]
+HiddenFilesShown=true
 ShowDotFiles=true
