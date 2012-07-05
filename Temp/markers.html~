@@ -1,0 +1,98 @@
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<script src="marker.js"></script>
+<script type="text/javascript" src="js/jquery-ui/js/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=drawing"></script>
+<script type="text/javascript">
+  var map;
+  function confirmHost() /*Этой функцией я бы хотела определить какая выбрана сейчас картинка, т.е. если  host('http://www.eway.in.ua/images/from_ru.png') ,тогда TRUE если нет то FALSE*/
+  { 
+    if (host('http://www.eway.in.ua/images/from_ru.png')) {
+        return true;
+    } else {
+        return false;
+    }
+};
+
+
+var type= confirmHost();/*в эту переменную я хотела записать 0 или 1 для предыдущей функции*/
+function chooseType()/* а в это йфункции я бы хотела определить что именно нужно выводить при нажатиии на карту*/
+{
+if (type==true) 
+{
+image =  new google.maps.MarkerImage('http://www.eway.in.ua/images/to_ru.png');
+}
+else 
+{
+image =  new google.maps.MarkerImage('http://www.eway.in.ua/images/from_ru.png');
+}
+
+};
+function initialize() /*это станадртная функция для инициализации карты*/
+{
+  var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
+  var myOptions = {
+    zoom: 4,
+    center: myLatlng,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  }
+  map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+var drawingManager = new google.maps.drawing.DrawingManager/*тут задаются параметры для вывода маркеров*/
+({
+      drawingControl: true,
+      drawingControlOptions: {
+      position: google.maps.ControlPosition.TOP_CENTER,
+      drawingModes: [google.maps.drawing.OverlayType.MARKER]
+      },
+      drawingMode: google.maps.drawing.OverlayType.MARKER,
+      markerOptions: {
+      	  icon: image =  new google.maps.MarkerImage('http://www.eway.in.ua/images/from_ru.png') /*тут вид иконки, какой хочешь рисуночек, вот сюда надо как-то передать функцией нужную картинку, а как это сделать я не знаю :(*/
+      },
+      
+});
+drawingManager.setMap(map);
+
+google.maps.event.addListener(drawingManager, 'markercomplete', function(marker) {
+      console.log(marker.getPosition().toString())
+});
+
+google.maps.event.addListener(drawingManager, 'overlaycomplete', function(event) {
+      if (event.type == google.maps.drawing.OverlayType.MARKER) {
+      	  console.log('Установлен маркер')
+      }
+});
+  google.maps.event.addListener(map, 'click', function(event) {
+    placeMarker(event.latLng);moremaker(event.latLng);
+  });
+
+}
+
+</script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+ 
+        var lng = -40.344353;
+        var lat = 40.3443434;
+        var geocoder = new google.maps.Geocoder();
+        var latlng = new google.maps.LatLng(lat, lng);
+        geocoder.geocode({'latLng': latlng}, function(results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                        if (results[0]) {
+                                var place = results[0].formatted_address;
+                                return place;
+                        }
+                } else {
+                        return false;
+                }
+        });
+        
+});
+</script>
+</head>
+<body onload="initialize()">
+  <div id="map_canvas" style="width:600px; height:400px;"></div>
+</body>
+</html>
