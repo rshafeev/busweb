@@ -14,6 +14,7 @@
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script src="css/js/selectbox.js"></script>
+<script src="css/js/marker.js"></script>
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"
 	type="text/javascript"></script>
@@ -24,7 +25,7 @@
 <script type="text/javascript"
 	src="css/js/scriptaculous.js?load=effects"></script>
 <script type="text/javascript" src="css/js/testScale.js"></script>
-
+<script type="text/javascript" src="js/jquery-ui/js/jquery-1.6.2.min.js"></script>
 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -55,39 +56,29 @@
 
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 <script type="text/javascript"
-	src="http://maps.google.com/maps/api/js?sensor=false"></script>
+	src="http://maps.google.com/maps/api/js?sensor=false&libraries=drawing"></script>
 <script type="text/javascript"
-	src="https://maps.google.com/maps/api/js?sensor=false"></script>
+	src="https://maps.google.com/maps/api/js?sensor=false&libraries=drawing"></script>
 <script type="text/javascript">
-	var geocoder;
-	var map;
-	function initialize() {
-		geocoder = new google.maps.Geocoder();
-		var latlng = new google.maps.LatLng(-34.397, 150.644);
-		var myOptions = {
-			zoom : 8,
-			center : latlng,
-			mapTypeId : google.maps.MapTypeId.ROADMAP
-		}
-		map = new google.maps.Map(document.getElementById("map_canvas"),
-				myOptions);
-	}
-
-	function codeAddress() {
-		var address = document.getElementById("address").value;
-		geocoder.geocode({
-			'address' : address
-		}, function(results, status) {
-			if (status == google.maps.GeocoderStatus.OK) {
-				map.setCenter(results[0].geometry.location);
-			} else {
-				alert("Geocode was not successful for the following reason: "
-						+ status);
-			}
-		});
-	}
+$(document).ready(function() {
+ 
+        var lng = -40.344353;
+        var lat = 40.3443434;
+        var geocoder = new google.maps.Geocoder();
+        var latlng = new google.maps.LatLng(lat, lng);
+        geocoder.geocode({'latLng': latlng}, function(results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                        if (results[0]) {
+                                var place = results[0].formatted_address;
+                                return place;
+                        }
+                } else {
+                        return false;
+                }
+        });
+        
+});
 </script>
-
 <style>
 * {
 	margin: 0;
@@ -281,7 +272,8 @@ html {
 									<td>
 										<button style="width: 120px; height: 40px; margin-left: 50px;"
 											type="submit" class="button" id="zoomOutX"
-											onclick="zoomOutX('map_canvas'); var el = document.getElementById('test'); el.style.display = (el.style.display == 'block') ? 'none' : 'block';">Calculate</button>
+											onclick=" zoomOutX('map_canvas');
+ var el = document.getElementById('test'); el.style.display = (el.style.display == 'block') ? 'none' : 'block';">Calculate</button>
 									</td>
 								</tr>
 							</tbody>

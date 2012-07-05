@@ -22,9 +22,9 @@ function zoomOut(targetBlock) {
 }
 
 function zoomInX(targetBlock) {
-	var width = 132;
+	var width = 134;
 	new Effect.Scale(targetBlock, width, {
-		duration : 1,
+		duration : 0,
 		scaleX : true,
 		scaleY : false,
 		scaleContent : false
@@ -32,7 +32,7 @@ function zoomInX(targetBlock) {
 }
 
 function zoomOutX(targetBlock) {
-	new Effect.Scale(targetBlock, 75, {
+	new Effect.Scale(targetBlock, 74, {
 		duration : 0,
 		scaleX : true,
 		scaleY : false,
