@@ -1,13 +1,30 @@
 var marker_image_A;
 var marker_image_B;
+var marker_A;
+var marker_B;
 var curr_image;
 var geocoder;
 var map;
+var drawingManager;
+function setMarkerA(new_marker){
+     drawingManager.markerOptions = {icon:image=marker_image_B};
+     if(marker_A!=null)
+	marker_A.setMap(null);
+     marker_A = new_marker;
+     console.log('MarkerA was setup',marker_A.getPosition())
+  }
+function setMarkerB(new_marker){
+      drawingManager.markerOptions = {icon:image=marker_image_A};
+      if(marker_B!=null)
+	marker_B.setMap(null);
+      marker_B = new_marker;
+    console.log('MarkerB was setup',marker_B.getPosition())
+}
 
 function init()
 {
-	marker_image_A='http://www.eway.in.ua/images/from_ru.png';
-	marker_image_B='http://www.eway.in.ua/images/to_ru.png';
+	marker_image_A=new google.maps.MarkerImage('http://www.eway.in.ua/images/from_ru.png');
+	marker_image_B=new google.maps.MarkerImage('http://www.eway.in.ua/images/to_ru.png');
 	curr_image = marker_image_A;
 }
 
@@ -21,7 +38,7 @@ function initialize() {
 	};
 	map = new google.maps.Map(document.getElementById("map_canvas"),
 			myOptions);
-	var drawingManager = new google.maps.drawing.DrawingManager/*тут задаются параметры для вывода маркеров*/
+	drawingManager = new google.maps.drawing.DrawingManager/*тут задаются параметры для вывода маркеров*/
 	({
 	      drawingControl: true,
 	      drawingControlOptions: {
@@ -30,7 +47,7 @@ function initialize() {
 	      },
 	      drawingMode: google.maps.drawing.OverlayType.MARKER,
 	      markerOptions: {
-	      	  icon: image =  curr_image/*тут вид иконки, какой хочешь рисуночек, вот сюда надо как-то передать функцией нужную картинку, а как это сделать я не знаю :(*/
+	      	  icon: image =  new google.maps.MarkerImage('http://www.eway.in.ua/images/from_ru.png')/*тут вид иконки, какой хочешь рисуночек, вот сюда надо как-то передать функцией нужную картинку, а как это сделать я не знаю :(*/
 	      },
 	      
 	});
@@ -41,12 +58,16 @@ function initialize() {
 
 	google.maps.event.addListener(drawingManager, 'overlaycomplete', function(event) {
 	      if (event.type == google.maps.drawing.OverlayType.MARKER) {
-	      	 // console.log('Marker was setup')
-		  if(curr_image == marker_image_A){
-		    drawingManager.markerOptions = {icon:image=marker_image_B};
-		    drawingManager.setMap(map);
-		   // curr_image
+	      	    if(curr_image == marker_image_A){
+		      setMarkerA(event.overlay);
+		      curr_image = marker_image_B;
+ 		    }
+		    else
+		    if(curr_image == marker_image_B){
+		      setMarkerB(event.overlay);
+		      curr_image = marker_image_A;
 		  }
+		
 	      }
 	});
 	  google.maps.event.addListener(map, 'click', function(event) {
