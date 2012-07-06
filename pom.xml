@@ -141,6 +141,9 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<configuration>
 					<warSourceDirectory>WebContent</warSourceDirectory>
+					<packagingExcludes>
+					
+					</packagingExcludes>
 				</configuration>
 				<executions>
 					<execution>
@@ -153,16 +156,7 @@
 				</executions>
 			</plugin>
 
-			<plugin>
-				<groupId>org.apache.tomcat.maven</groupId>
-				<artifactId>tomcat7-maven-plugin</artifactId>
-				<configuration>
-					<url>http://localhost:8080/manager</url>
-					<server>apache-tomcat7</server>
-					<path>/busWeb.admin</path>
-					<warFile>${project.build.directory}/${project.build.finalName}.war</warFile>
-				</configuration>
-			</plugin>
+			
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -170,7 +164,7 @@
 				<executions>
 					<execution>
 						<id>copy-dependencies</id>
-						<phase>package</phase>
+						  <phase>process-resources</phase>
 						<goals>
 							<goal>copy-dependencies</goal>
 						</goals>
@@ -179,10 +173,8 @@
 							<overWriteReleases>false</overWriteReleases>
 							<overWriteSnapshots>false</overWriteSnapshots>
 							<overWriteIfNewer>true</overWriteIfNewer>
-							<excludeArtifactIds>javax.servlet-api,tomcat-jsp-api,tomcat-jsp-api,tomcat-el-api,jstl,
-								tomcat-servlet-api
-							</excludeArtifactIds>
-
+						  	<excludeArtifactIds>javax.servlet-api,
+						  	tomcat-jsp-api,tomcat-jsp-api,tomcat-el-api,jstl,tomcat-servlet-api,tomcat-jdbc</excludeArtifactIds>
 						</configuration>
 					</execution>
 				</executions>
