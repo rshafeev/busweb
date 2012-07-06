@@ -141,9 +141,7 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<configuration>
 					<warSourceDirectory>WebContent</warSourceDirectory>
-					<packagingExcludes>
-					
-					</packagingExcludes>
+					<packagingExcludes>META-INF/context.xml</packagingExcludes>
 				</configuration>
 				<executions>
 					<execution>
@@ -156,7 +154,7 @@
 				</executions>
 			</plugin>
 
-			
+
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -164,7 +162,7 @@
 				<executions>
 					<execution>
 						<id>copy-dependencies</id>
-						  <phase>process-resources</phase>
+						<phase>process-resources</phase>
 						<goals>
 							<goal>copy-dependencies</goal>
 						</goals>
@@ -173,8 +171,8 @@
 							<overWriteReleases>false</overWriteReleases>
 							<overWriteSnapshots>false</overWriteSnapshots>
 							<overWriteIfNewer>true</overWriteIfNewer>
-						  	<excludeArtifactIds>javax.servlet-api,
-						  	tomcat-jsp-api,tomcat-jsp-api,tomcat-el-api,jstl,tomcat-servlet-api,tomcat-jdbc</excludeArtifactIds>
+							<excludeArtifactIds>javax.servlet-api,
+								tomcat-jsp-api,tomcat-jsp-api,tomcat-el-api,jstl,tomcat-servlet-api,tomcat-jdbc</excludeArtifactIds>
 						</configuration>
 					</execution>
 				</executions>
