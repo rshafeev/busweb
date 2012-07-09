@@ -53,12 +53,41 @@
 		});
 	});
 </script>
-
+<script>
+  var flag = 0;
+  function changeImage() {
+    if (flag == 0) {
+    	zoomOutX('map_canvas');
+      document.img.src = 'css/images/arrow_right.png';
+      flag = 1;
+    }
+    else {
+    	zoomInX('map_canvas');
+      document.img.src = 'css/images/arrow_left.png';
+      flag = 0;
+    }
+  }
+</script>
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 <script type="text/javascript"
 	src="http://maps.google.com/maps/api/js?sensor=false&libraries=drawing"></script>
 <script type="text/javascript"
 	src="https://maps.google.com/maps/api/js?sensor=false&libraries=drawing"></script>
+<script>
+function codeAddress() {
+	var address = document.getElementById("address").value;
+	geocoder.geocode({
+		'address' : address
+	}, function(results, status) {
+		if (status == google.maps.GeocoderStatus.OK) {
+			map.setCenter(results[0].geometry.location);
+		} else {
+			alert("Geocode was not successful for the following reason: "
+					+ status);
+		}
+	});
+};
+</script>
 <script type="text/javascript">
 $(document).ready(function() {
  
@@ -271,8 +300,8 @@ html {
 									</td>
 									<td>
 										<button style="width: 120px; height: 40px; margin-left: 50px;"
-											type="submit" class="button" id="zoomOutX"
-											onclick=" zoomOutX('map_canvas');
+											type="submit" class="button"
+											onclick=" changeImage();
  var el = document.getElementById('test'); el.style.display = (el.style.display == 'block') ? 'none' : 'block';">Calculate</button>
 									</td>
 								</tr>

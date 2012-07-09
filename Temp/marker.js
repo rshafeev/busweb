@@ -23,8 +23,8 @@ function setMarkerB(new_marker){
 
 function init()
 {
-	marker_image_A=new google.maps.MarkerImage('http://www.eway.in.ua/images/from_ru.png');
-	marker_image_B=new google.maps.MarkerImage('http://www.eway.in.ua/images/to_ru.png');
+	marker_image_A=new google.maps.MarkerImage('from_ru.png');
+	marker_image_B=new google.maps.MarkerImage('to_ru.png');
 	curr_image = marker_image_A;
 }
 
@@ -47,7 +47,7 @@ function initialize() {
 	      },
 	      drawingMode: google.maps.drawing.OverlayType.MARKER,
 	      markerOptions: {
-	      	  icon: image =  new google.maps.MarkerImage('http://www.eway.in.ua/images/from_ru.png')/*тут вид иконки, какой хочешь рисуночек, вот сюда надо как-то передать функцией нужную картинку, а как это сделать я не знаю :(*/
+	      	  icon: image =  new google.maps.MarkerImage('from_ru.png')/*тут вид иконки, какой хочешь рисуночек, вот сюда надо как-то передать функцией нужную картинку, а как это сделать я не знаю :(*/
 	      },
 	      
 	});
@@ -72,22 +72,21 @@ function initialize() {
 	});
 	  google.maps.event.addListener(map, 'click', function(event) {
 	    	  console.log('clicked on the map')
+		  
 	    //placeMarker(event.latLng);moremaker(event.latLng);
 	  });
 	init();
-	/*function codeAddress() {
-	var address = document.getElementById("address").value;
-	geocoder.geocode({
-		'address' : address
-	}, function(results, status) {
-		if (status == google.maps.GeocoderStatus.OK) {
-			map.setCenter(results[0].geometry.location);
-		} else {
-			alert("Geocode was not successful for the following reason: "
-					+ status);
-		}
-	});
-};*/
+	
+	
+	google.maps.event.addListener(drawingManager, 'markercomplete', function(marker) {
+      console.log(marker.getPosition().toString())
+});
+
+google.maps.event.addListener(drawingManager, 'overlaycomplete', function(event) {
+      if (event.type == google.maps.drawing.OverlayType.MARKER) {
+      	  console.log('Установлен маркер')
+      }
+});
 
 }
 
