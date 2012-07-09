@@ -24,8 +24,8 @@
 				</div>	
 										<div class="arrow_div"
 					style="width: 10px; height: 500px; float: right;">
-<a href="#"><img style="margin-top: 250px;" onclick="changeImage();"
-						name='img' src='css/images/arrow_left.png' /></a>
+<img style="margin-top: 250px; cursor: pointer;" onclick="changeImage();"
+						name='img' src='css/images/arrow_left.png' />
 					
 					</div>	
 </div>
