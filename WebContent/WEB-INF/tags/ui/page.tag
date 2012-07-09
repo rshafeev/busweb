@@ -61,11 +61,26 @@
       document.img.src = 'css/images/arrow_right.png';
       flag = 1;
     }
-    else {
-    	zoomInX('map_canvas');
+   else {
+	   zoomInX('map_canvas');
       document.img.src = 'css/images/arrow_left.png';
       flag = 0;
     }
+  }
+</script>
+<script>
+  var flag = 0;
+  function changeCalc() {
+    if (flag == 0) {
+    	zoomOutX('map_canvas');
+      document.img.src = 'css/images/arrow_right.png';
+      flag = 1;
+    }
+  /*  else {
+    	
+      document.img.src = 'css/images/arrow_left.png';
+      flag = 1;
+    }*/
   }
 </script>
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
@@ -301,7 +316,7 @@ html {
 									<td>
 										<button style="width: 120px; height: 40px; margin-left: 50px;"
 											type="submit" class="button"
-											onclick=" changeImage();
+											onclick=" changeCalc();
  var el = document.getElementById('test'); el.style.display = (el.style.display == 'block') ? 'none' : 'block';">Calculate</button>
 									</td>
 								</tr>

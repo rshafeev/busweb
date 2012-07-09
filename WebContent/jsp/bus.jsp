@@ -18,10 +18,11 @@
 	<jsp:attribute name="content">	 	
 	<div id="main">	
 				<div class="right_col">
-	<div id="test" style="display: none">
+	<div id="test" style="display: none;float:left;">
 					<h2 style="color: black;">Появляется текст</h2>
+
 				</div>	
-					<div class="arrow_div"
+										<div class="arrow_div"
 					style="width: 10px; height: 500px; float: right;">
 <a href="#"><img style="margin-top: 250px;" onclick="changeImage();"
 						name='img' src='css/images/arrow_left.png' /></a>

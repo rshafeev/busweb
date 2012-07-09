@@ -23,8 +23,8 @@ function setMarkerB(new_marker){
 
 function init()
 {
-	marker_image_A=new google.maps.MarkerImage('http://www.eway.in.ua/images/from_ru.png');
-	marker_image_B=new google.maps.MarkerImage('http://www.eway.in.ua/images/to_ru.png');
+	marker_image_A=new google.maps.MarkerImage('from_ru.png');
+	marker_image_B=new google.maps.MarkerImage('to_ru.png');
 	curr_image = marker_image_A;
 }
 
@@ -37,7 +37,7 @@ function initialize() {
 		mapTypeId : google.maps.MapTypeId.ROADMAP
 	};
 	map = new google.maps.Map(document.getElementById("map_canvas"),
-			myOptions);
+			myOptions); 
 	drawingManager = new google.maps.drawing.DrawingManager
 	({
 	      drawingControl: false,
@@ -47,7 +47,7 @@ function initialize() {
 	      },
 	      drawingMode: google.maps.drawing.OverlayType.MARKER,
 	      markerOptions: {
-	      	  icon: image =  new google.maps.MarkerImage('http://www.eway.in.ua/images/from_ru.png')
+	      	  icon: image =  new google.maps.MarkerImage('from_ru.png')
 	      },
 	      
 	});
