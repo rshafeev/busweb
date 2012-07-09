@@ -4,7 +4,12 @@
     xsi:schemaLocation="java.sun.com/xml/ns/j2ee 
     java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"> 
     
-   
+   	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+		   WEB-INF/spring-servlet.xml
+        </param-value>
+	</context-param>
     <listener>
        <listener-class>com.pgis.bus.server.listeners.BasicServiceListener</listener-class>
     </listener>
