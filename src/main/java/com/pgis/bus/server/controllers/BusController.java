@@ -27,7 +27,6 @@ public class BusController implements Controller {
 			HttpServletResponse response) throws ServletException, IOException,
 			SQLException {
 		log.info("Open BusController...");
-
 		
 		Connection c = DBConnectionFactory.getConnection();
 

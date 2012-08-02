@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Панель</title>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+   $(".btn-slide").click(function(){ //если сделан клик
+      $("#panel").slideToggle("slow"); 
+      $(this).toggleClass("active"); return false; //меняем класс
+   });
+     
+});
+</script>
+<!--css стили-->
+<style type="text/css">
+#panel {
+    background: yellow;
+    height: 200px;
+    display: none;
+        width: 400px;
+        text-align: center;
+}
+.slide {
+    background: yellow;
+        width: 400px;
+        align: center;
+}
+.btn-slide {
+    background: yellow;
+    text-align: center;
+        align: center;
+    width: 144px;
+    height: 20px;
+    display: block;
+}
+.active {
+    background-position: right 12px;
+}
+</style>
+</head>
+<body>
+<div align = "center" id="panel">Текст панели</div><!--сама нанель-->
+<div align = "center" class="slide"><div align = "center" class="btn-slide">Клик</div></div><!--кнопка-->
+</body>
+</html>

@@ -1,14 +1,10 @@
-<%@ tag body-content="empty"%>
-<%@ attribute name="head" required="true" fragment="true"%>
-<%@ attribute name="content" required="true" fragment="true"%>
-<%@ attribute name="foot" required="true" fragment="true"%>
-
+ 
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="css/head.css">
-<link rel="stylesheet" type="text/css" href="css/body.css">
-<link rel="stylesheet" type="text/css" href="css/foot.css">
+<link rel="stylesheet" type="text/css" href="media/css/head.css">
+<link rel="stylesheet" type="text/css" href="media/css/body.css">
+<link rel="stylesheet" type="text/css" href="media/css/foot.css">
 
 
 
@@ -16,13 +12,13 @@
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script type="text/javascript"
 	src="http://maps.google.com/maps/api/js?sensor=false&libraries=drawing"></script>
-<script src="css/js/busWeb.js"></script>
+<script src="media/js/busWeb.js"></script>
 
-<script src="css/js/selectbox.js"></script>
-<script src="css/js/marker.js"></script>
+<script src="media/js/selectbox.js"></script>
+<script src="media/js/marker.js"></script>
 <!--  <script src="css/js/prototype.js"></script> 
 <script src="css/js/scriptaculous.js?load=effects"></script> -->
-<script src="css/js/testScale.js"></script>
+<script src="media/js/testScale.js"></script>
 
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 <script>
@@ -40,7 +36,6 @@ function codeAddress() {
 	});
 };
 </script>
-
 <style>
 * {
 	margin: 0;
@@ -49,16 +44,16 @@ function codeAddress() {
 
 html {
 	height: 100%;
-	/*overflow: hidden;*/
+	overflow: hidden;
 }
 </style>
 
 <script>
 function click_ot() {
-	document.images["img"].src = 'css/images/metro.png';
+	document.images["img"].src = 'media/images/metro.png';
 }
 function click_out() {
-		document.images["img"].src = 'css/images/metro_selected.png';
+		document.images["img"].src = 'media/images/metro_selected.png';
 	}
 </script>
 
@@ -70,7 +65,16 @@ function click_out() {
 		<div class="portal-headline">
 			<div class="header">
 				<div class="block_header">
-					<jsp:invoke fragment="head" />
+					<title>Bus</title>
+          <div class="menu">
+       	 <ul>
+          <li><a class="active" href="home_page.htm"><span>Home</span></a></li>
+          <li><a href="programms.htm"><span>Programms</span></a></li>
+          <li><a href="service.htm"><span>Service</span></a></li>
+          <li><a href="support.htm"><span>Support</span></a></li>
+          <li><a href="contact_us.htm"><span>Contact us</span></a></li>
+        </ul>       
+      </div>
 					<div class="logotip"></div>
 				</div>
 			</div>
@@ -241,14 +245,34 @@ function click_out() {
 				</div>
 			</div>
 		</div>
-	 	<div class="main_content">
-			<jsp:invoke fragment="content" />
-		</div> 
-	 <div class="footer">
+		<div class="temp">
+			<div id="main">	
 
-			<jsp:invoke fragment="foot" />
+
+	<div id="map_canvas"
+				style="width: 98%; height: 100%; margin-left: 10px; margin-top: 0px; border: 2px solid white; position: relative;"
+				>
+	 </div> 
+	
+	<div class="right_col" style="background-color: red;">
+		<div id="test" style="display: none; ">
+					<h2 style="color: black;">Появляется текст</h2>
+				</div>	
+					<div class="arrow_div"
+					style="width: 10px; height: 500px; float: right;">
+		<a href="#"><img style="margin-top: 250px;" onclick="changeImage();"
+						name='img' src='css/images/arrow_left.png' /></a>
+					
+		</div>	
+	</div>
+	
+</div>
 		</div>
-   
+		<div class="footer">
+
+			
+		</div>
+
 	</div>
 </body>
 </html>
