@@ -106,7 +106,7 @@
 												style="margin-top: 5px; margin-left: 3px; margin-right: 3px;">
 														<tr>
 															<a href="#"
-														onclick="var g = this.getElementsByTagName('img');if(g[0].src.indexOf('media/images/metro_selected.png') != -1) g[0].src='media/images/metro.png'; else g[0].src='media/images/metro_selected.png';">
+														onclick="change_image_metro(this);">
 																<span><img src="media/images/metro_selected.png"></img></span>
 															</a>
 														</tr>

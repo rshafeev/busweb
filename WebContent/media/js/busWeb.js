@@ -38,8 +38,8 @@ function btn_calculate_click() {
 	load_cities();
 }
 
-function change_image_metro() {
-	var g = this.getElementsByTagName('img');
+function change_image_metro(e) {
+	var g = e.getElementsByTagName('img');
 	if(g[0].src.indexOf('media/images/metro_selected.png') != -1) g[0].src='media/images/metro.png'; 
 	else g[0].src='media/images/metro_selected.png';
 };
