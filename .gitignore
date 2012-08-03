@@ -14,6 +14,6 @@ target*/
 build/
 bin/
 target/
-META-INF/context.xml
+WebContent/META-INF/context.xml
 >>>>>>> 96600d1929838e5e765d5e12f72d64af681041c8
 
