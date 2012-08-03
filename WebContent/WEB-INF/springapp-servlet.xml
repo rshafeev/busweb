@@ -30,7 +30,7 @@
 	</bean>
     
 	<!-- the application context definition for the springapp DispatcherServlet -->
-	<!-- <bean name="/hello.htm" class="com.pgis.bus.server.controllers.HelloController" /> -->
+	 <bean name="/hello.htm" class="com.pgis.bus.server.controllers.HelloController" /> 
 	<bean name="/bus.htm"   class="com.pgis.bus.server.controllers.BusController" />
 	<!--<bean name="/city/*"   class="com.pgis.bus.server.controllers.CityController" /> -->
 </beans>

@@ -19,27 +19,14 @@
 	-webkit-box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
 	box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
 }
-.main_content
-{
-	background: green;
-	font: 12px/12px Arial, sans-serif;
-	position: fixed !important;
-	/*position:absolute;*/
-	text-align: left;
-	white-space: nowrap;
-		width: 90%;
-		height:100%;
-	margin-left: 78px;
-	
-	
-}
+
 /**********************************************************************************************************************/
 /****************************************стиль для нижней части страницы************************************************/
 .block_header {
 	border: medium none currentColor;
 	margin: 0px auto;
 	padding: 0px;
-	background-image: url("css/images/footer_fon.gif");
+	/*background-image: url("images/footer_fon.gif");*/
 	height: 50px;
 	-moz-box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
 	-webkit-box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
