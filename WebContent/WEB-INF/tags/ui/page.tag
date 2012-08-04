@@ -13,21 +13,6 @@
 
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script>
-  var flag = 0;
-  function changeCalc() {
-    if (flag == 0) {
-    	zoomOutX('map_canvas');
-      document.img.src = 'css/images/arrow_right.png';
-      flag = 1;
-    }
-  /*  else {
-    	
-      document.img.src = 'css/images/arrow_left.png';
-      flag = 1;
-    }*/
-  }
-</script>
 <script type="text/javascript"
 	src="http://maps.google.com/maps/api/js?sensor=false&libraries=drawing"></script>
 <script src="media/js/busWeb.js"></script>
