@@ -3,6 +3,7 @@ package com.pgis.bus.server.controllers;
 import org.slf4j.Logger;
 
 import org.slf4j.LoggerFactory;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.Controller;
 import org.springframework.web.servlet.ModelAndView;
@@ -29,7 +30,13 @@ public class BusController implements Controller {
 		log.info("Open BusController...");
 		
 		Connection c = DBConnectionFactory.getConnection();
-
+		DBConnectionFactory.closeConnection(c);
+		// Получим объект с информацией о текущей локали
+		Locale locale = LocaleContextHolder.getLocale();
+		// Выведем в логгер текущий язык
+		log.debug("Current language:" + locale.getLanguage());
 		return new ModelAndView("jsp/bus.jsp");
 	}
+	
 }
+

@@ -12,6 +12,9 @@ Language : <a href="?lang=en_US">English</a>|<a href="?lang=rus_RU">Russian</a>|
 welcome.springmvc : <spring:message code="welcome.springmvc" text="default text" />
 </h3>
   
+  <h3>
+Hello : <spring:message code="welcome.helloworld" text="default text" />
+</h3>
  Current Locale : ${pageContext.response.locale} 
  
 </body>
