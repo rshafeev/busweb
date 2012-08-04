@@ -1,10 +1,36 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
-	<!-- the application context definition for the springapp DispatcherServlet -->
-	<bean name="/hello.htm" class="com.pgis.bus.server.controllers.HelloController" />
-	<bean name="/bus.htm"   class="com.pgis.bus.server.controllers.BusController" />
+    
+    <bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+		<property name="defaultLocale" value="ru" />
+	</bean>
+ 
+	<bean id="localeChangeInterceptor"
+		class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+		<property name="paramName" value="lang" />
+	</bean>
+ 
+	<bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping" >
+		<property name="interceptors">
+		   <list>
+			<ref bean="localeChangeInterceptor" />
+		   </list>
+		</property>
+	</bean>
 	
+	<!-- Register the welcome.properties ResourceBundleMessageSource -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basename" value="WEB-INF/classes/welcome" />
+		<property name="defaultEncoding" value="UTF-8"/>
+		 <property name="fileEncodings" value="UTF-8" />
+	</bean>
+    
+	<!-- the application context definition for the springapp DispatcherServlet -->
+	 <bean name="/hello.htm" class="com.pgis.bus.server.controllers.HelloController" /> 
+	<bean name="/bus.htm"   class="com.pgis.bus.server.controllers.BusController" />
+	<!--<bean name="/city/*"   class="com.pgis.bus.server.controllers.CityController" /> -->
 </beans>
