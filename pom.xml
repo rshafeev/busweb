@@ -11,7 +11,7 @@
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-jsp-api</artifactId>
-			<version>7.0.27</version>
+			<version>7.0.28</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -141,6 +141,7 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<configuration>
 					<warSourceDirectory>WebContent</warSourceDirectory>
+					<warName>busWeb</warName>
 					<packagingExcludes>META-INF/context.xml</packagingExcludes>
 				</configuration>
 				<executions>
