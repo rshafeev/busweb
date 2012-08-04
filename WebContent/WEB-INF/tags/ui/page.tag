@@ -21,13 +21,13 @@
 <script src="media/js/marker.js"></script>
 <script src="media/js/testScale.js"></script>
 
+
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 <style>
 * {
 	margin: 0;
 	padding: 0;
 }
-
 html {
 	height: 100%;
 	overflow: hidden;
