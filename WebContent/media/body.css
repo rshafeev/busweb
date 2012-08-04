@@ -63,7 +63,6 @@ body {
 }
 
 #content {
-	margin-right: 200px;
 	margin-left: 0px;
 	background: rgb(226, 226, 226);
 	height: 100%;
@@ -79,9 +78,22 @@ body {
 
 #extra {
 	float: left;
-	width: 200px;
-	margin-left: -200px;
-	background: #FF8539;
+	width: 24%;
+	margin-left: -24%;
+	background-image: linear-gradient(bottom, rgb(194,194,194) 35%, rgb(245,245,245) 68%);
+	background-image: -o-linear-gradient(bottom, rgb(194,194,194) 35%, rgb(245,245,245) 68%);
+	background-image: -moz-linear-gradient(bottom, rgb(194,194,194) 35%, rgb(245,245,245) 68%);
+	background-image: -webkit-linear-gradient(bottom, rgb(194,194,194) 35%, rgb(245,245,245) 68%);
+	background-image: -ms-linear-gradient(bottom, rgb(194,194,194) 35%, rgb(245,245,245) 68%);
+	
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0.35, rgb(194,194,194)),
+		color-stop(0.68, rgb(245,245,245))
+	);
+	box-shadow: 0 0 5px rgba(0,0,0,0.5);
 	height: 100%;
 }
 
@@ -99,16 +111,17 @@ body {
 	clear: left;
 	width: 100%
 }
-/*************************************************************************************************************************/
-/*стили правой колонки, в которой будет содержаться информация о найденных маршрутах**************************************/
-.right_col {
-	float: right;
-	display: block;
-	height: 590px;
-	overflow-x: auto;
-	overflow-y: auto;
-	position: relative;
-	width: 369px;
+#container
+{
+	height: 100%; 
+	width: 100%; 
+	position: absolute; 
+	overflow: hidden;
+	box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.506);
+}
+#arrow_div
+{
+	width: 3%; height: 100%; float: right; 
 }
 
 /************************************************************************************************************************/

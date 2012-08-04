@@ -21,7 +21,10 @@
 <script src="media/js/marker.js"></script>
 <script src="media/js/testScale.js"></script>
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> a1e80e420d8f25f9be449336cd089a1f07de285b
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 <style>
 * {

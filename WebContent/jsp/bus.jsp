@@ -18,16 +18,15 @@
 
 	<jsp:attribute name="head">
 				<div class="transparent">
-					<div class="block-round-content">
-						<table class="menu_table" style="margin-top: 5px;"
-					cellpadding="10" cellspacing="10">
+
+								<div class="block-round-content">
+						<table class="menu_table" cellpadding="10" cellspacing="10">
 							<tbody>
 								<tr>
 									<td style="width: 171px;">
 										<div class="mini_table_town">
 											<div class="mini_table_town_center">
-												<div class="mini_table-town_top"
-											style="margin-top: -3px; position: absolute; margin-left: 65px; height: 18px;">
+												<div class="mini_table-town_top">
 													<p style="font: normal normal 400 11px/21px Arial;">
 														<b>C I T Y :</b>
 													</p>
@@ -47,8 +46,7 @@
 									<td style="width: 215px;">
 										<div class="mini_table_route">
 											<div class="mini_table_route_center">
-												<div class="mini_table-route_top"
-											style="margin-top: -3px; position: absolute; margin-left: 50px; height: 18px;">
+												<div class="mini_table-route_top">
 													<p style="font: normal normal 400 11px/21px Arial;">
 														<b>T R A V E L </b> <b style="margin-left: 10px;">L IN E :</b>
 													</p>
@@ -57,23 +55,18 @@
 													<tbody>
 														<tr>
 															<td class="b-search__point-name">
-																<div class="A_search"
-															style="width: 15px; height: 15px; background-color: #96C93F; border-radius: 20px; margin-top: 10px;">
+																<div class="A_search">
 																	<p style="margin-left: 3px; font-size: 11px;">A</p>
-
-
 																</div>
 															</td>
 															<td class="b-search__point-input"><span
 														class="b-form-input__box"> <input
 															style="margin-bottom: 2px; margin-top: 15px; width: 200px;"></input>
-
 															</span></td>
 														</tr>
 														<tr class="b-search__point">
 															<td class="b-search__point-name">
-																<div class="B_search"
-															style="width: 15px; height: 15px; background-color: #2A98D5; border-radius: 20px;">
+																<div class="B_search">
 																	<p style="margin-left: 3px; font-size: 11px;">B</p>
 																</div>
 															</td>
@@ -100,32 +93,27 @@
 													</p>
 												</div>
 												<div class="mini_table_transp_temp" style="height: 20px;"></div>
-												<div class="mini_table_transp_list"
-											style="width: 150px; margin-left: 15px;">
+												<div class="mini_table_transp_list"style="width: 150px; margin-left: 15px;">
 													<table align="center"
 												style="margin-top: 5px; margin-left: 3px; margin-right: 3px;">
 														<tr>
-															<a href="#"
-														onclick="change_image_metro(this);">
+															<a href="#" onclick="change_image_metro(this);">
 																<span><img src="media/images/metro_selected.png"></img></span>
 															</a>
 														</tr>
 														<tr>
-															<a href="#"
-														onclick="var g = this.getElementsByTagName('img');if(g[0].src.indexOf('media/images/bus_selected.png') != -1) g[0].src='media/images/bus.png'; else g[0].src='media/images/bus_selected.png';">
+															<a href="#" onclick="change_image_bus(this)">
 																<img src="media/images/bus_selected.png" />
 															</a>
 														</tr>
 														<tr>
-															<a href="#"
-														onclick="var g = this.getElementsByTagName('img');if(g[0].src.indexOf('media/images/trol_selected.png') != -1) g[0].src='media/images/trol.png'; else g[0].src='media/images/trol_selected.png';">
+															<a href="#" onclick="change_image_troll(this)">
 																<img src="media/images/trol_selected.png" />
 															</a>
 														</tr>
 														<tr>
-															<a href="#"
-														onclick="var g = this.getElementsByTagName('img');if(g[0].src.indexOf('media/images/tram_selected.png') != -1) g[0].src='media/images/tram.png'; else g[0].src='media/images/tram_selected.png';">
-																<img src="media/images/tram_selected.png" />
+															<a href="#" onclick="change_image_tram(this)">
+																<img src="media/images/tram_selected.png"></img>
 															</a>
 														</tr>
 													</table>
@@ -180,29 +168,33 @@
 				</div>
 
     </jsp:attribute>
-
-
-
-
-
 	<jsp:attribute name="content">
 
-<div id="container"
-			style="height: 100%; width: 100%; position: absolute; overflow: hidden;">
+<div id="container">
 <div id="wrapper">
 <div id="content">
-<div id="map_canvas" style="width: 100%; height: 100%"></div>
+<div id="map_canvas" style="width: 99%; height: 100%; border: 2px solid white;"></div>
 </div>
 </div>
 <div id="navigation">
 </div>
-<div id="extra">
-<p>
-					<strong>3) More stuff here.</strong> very text make long column make filler fill make column column silly filler text silly column fill silly fill column text filler make text silly filler make filler very silly make text very very text make long filler very make column make silly column fill silly column long make silly filler column filler silly long long column fill silly column very </p>
+ <div id="extra">										
+ <div id="arrow_div">
+		<a href="#"><img style="margin-top: 250px;" onclick="changeImage();"
+						name='img' src='media/images/arrow_left.png' /></a>
+					
+		</div>	
+		<div id="test" style="display: none; width: 100%; height:100%; ">
+					<h2 style="color: black; margin:10 0 10 0;">Появляется текст</h2>
+					<h2 style="color: black; margin:10 0 10 0;">Появляется текст</h2>
+					<h2 style="color: black;margin:10 0 10 0;">Появляется текст</h2>
 
-</div>
+				</div>	
+</div>	
+
 
 </div> 
+
     </jsp:attribute>
 
 	<jsp:attribute name="foot">
