@@ -25,7 +25,7 @@
 							if (optionSelected.length)
 								selectText = optionSelected.text();
 
-							for (i = 0; i < option.length; i++) {
+							for (var i = 0; i < option.length; i++) {
 								var selected = '';
 								var disabled = ' class="disabled"';
 								if (option.eq(i).is(':selected'))
@@ -173,5 +173,5 @@
 
 						});
 
-	})
-})(jQuery)
+	});
+})(jQuery);
