@@ -1,17 +1,20 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib prefix="ui" tagdir="/WEB-INF/tags/ui"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <ui:page>
 	<jsp:attribute name="menu">
         <title>Bus</title>
           <div class="menu">
        	 <ul>
-          <li><a class="active" href="home_page.htm"><span>Home</span></a></li>
-          <li><a href="programms.htm"><span>Programms</span></a></li>
-          <li><a href="service.htm"><span>Service</span></a></li>
-          <li><a href="support.htm"><span>Support</span></a></li>
-          <li><a href="contact_us.htm"><span>Contact us</span></a></li>
-        </ul>       
+          <li><a class="active" href="home_page.htm"><span><spring:message code="welcome.home" text="default text" /></span></a></li>
+          <li><a href="programms.htm"><span><spring:message code="welcome.programms" text="default text" /></span></a></li>
+          <li><a href="service.htm"><span><spring:message code="welcome.servise" text="default text" /></span></a></li>
+          <li><a href="support.htm"><span><spring:message code="welcome.support" text="default text" /></span></a></li>
+          <li><a href="contact_us.htm"><span><spring:message code="welcome.contact_us" text="default text" /></span></a></li>
+ 
+        </ul>     
+        <a style="color:white; float:right; right:30px;" href="?lang=en_US">En</a> |<a style="color:white; float:right; " href="?lang=rus_RU">Ru</a> |<a style="color:white; float:right; " href="?lang=uk_UA">Ua</a>   
       </div>     
     </jsp:attribute>
 
@@ -28,15 +31,16 @@
 											<div class="mini_table_town_center">
 												<div class="mini_table-town_top">
 													<p style="font: normal normal 400 11px/21px Arial;">
-														<b>C I T Y :</b>
+														<b><spring:message code="welcome.city" text="default text" /> :</b>
+														
 													</p>
 												</div>
 												<form name="testform">
 													<select class="styled" name="websites" size="1"
 												id="address" onChange="codeAddress()">
-														<option selected value="Kharkov">Kharkov</option>
-														<option value="Kiev">Kiev</option>
-														<option value="Doneck">Doneck</option>
+														<option selected value="Kharkov"><spring:message code="welcome.Kharkov" text="default text" /></option>
+														<option value="Kiev"><spring:message code="welcome.Kiev" text="default text" /></option>
+														<option value="Doneck"><spring:message code="welcome.Doneck" text="default text" /></option>
 													</select>
 												</form>
 											</div>
@@ -48,7 +52,8 @@
 											<div class="mini_table_route_center">
 												<div class="mini_table-route_top">
 													<p style="font: normal normal 400 11px/21px Arial;">
-														<b>T R A V E L </b> <b style="margin-left: 10px;">L IN E :</b>
+														<!-- <b>T R A V E L </b> <b style="margin-left: 10px;">L IN E :</b> -->
+														<b> <spring:message code="welcome.travel_line" text="default text" /> : </b>
 													</p>
 												</div>
 												<table class="b-search__points">
@@ -89,7 +94,7 @@
 											style="margin-top: -3px; position: absolute; margin-left: 12px;">
 													<p
 												style="font: normal normal 400 11px/21px Arial; height: 18px;">
-														<b>T R A N S P O R T </b> <b style="margin-left: 10px;">T Y P E :</b>
+														<b><spring:message code="welcome.transp_type" text="default text" /> : </b> 
 													</p>
 												</div>
 												<div class="mini_table_transp_temp" style="height: 20px;"></div>
@@ -129,7 +134,7 @@
 												<div class="mini_table_marsh_top"
 											style="margin-top: -3px; position: absolute; margin-left: 662px; width: 80px; height: 18px;">
 													<p style="font: normal normal 400 11px/21px Arial;">
-														<b>O P T I O N S :</b>
+														<b><spring:message code="welcome.options" text="default text" />:</b>
 													</p>
 												</div>
 												<div class="mini_table_transp_temp" style="height: 5px;"></div>
@@ -139,17 +144,17 @@
 													<p style="font-size: 12px; font-family:"Verdana", "Arial", "Tahoma";">
 														<input type="radio" name="labeled" value="1"
 													id="labeled_1" /><label for="labeled_1"
-													style="margin-left: 5 px;">Optimal</label>
+													style="margin-left: 5 px;"><spring:message code="welcome.label_optimal" text="default text" /></label>
 													</p>
 													<p style="font-size: 12px; font-family:"Verdana", "Arial", "Tahoma"; ">
 														<input type="radio" name="labeled" value="2"
 													id="labeled_2" /><label for="labeled_2"
-													style="margin-left: 5 px;">Fast</label>
+													style="margin-left: 5 px;"><spring:message code="welcome.label_fast" text="default text" /></label>
 													</p>
 													<p style="font-size: 12px; font-family:"Verdana", "Arial", "Tahoma";">
 														<input type="radio" name="labeled" value="3"
 													id="labeled_3" /><label for="labeled_3"
-													style="margin-left: 5 px;">Cheep</label>
+													style="margin-left: 5 px;"><spring:message code="welcome.label_cheep" text="default text" /></label>
 													</p>
 												</div>
 											</div>
@@ -157,7 +162,7 @@
 							</td>
 									<td>
 										<button style="width: 120px; height: 40px; margin-left: 50px;"
-									type="submit" class="button" onclick="btn_calculate_click();">Calculate</button>
+									type="submit" class="button" onclick="btn_calculate_click();"><spring:message code="welcome.btn_calc" text="default text" /></button>
 									</td>
 								</tr>
 							</tbody>
