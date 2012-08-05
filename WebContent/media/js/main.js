@@ -1,5 +1,22 @@
-var flag = 0;
 
+var flag = 0;
+var busApp = null;
+function initialize(){
+  busApp = new BusApp();
+  busApp.main();
+}
+$(document).ready(function() {
+    function divresize(block, headerHeight, footerHeight) {
+        var windowHeight = $(window).height(); /*определяем высоту окна браузера*/
+        $(block).css('height', windowHeight - headerHeight - footerHeight); /*устанавливаем высоту блока(равно высоте окна за вычетом шапки и подвала)*/
+    }
+    
+    divresize('#container', 163, 3); /*вызываем функцию изменения размера блока*/
+    $(window).bind("resize", function(){ /*при изменении размера окна вызываем функцию*/
+        divresize('#container', 163, 3); 
+    });
+	});
+	
 function changeImage() {
 	if (flag == 0) {
 	      $("#map_canvas").width('75%')
@@ -14,31 +31,14 @@ function changeImage() {
 	}
 }
 
-function load_cities() {
-	var contextPath='busWeb';
-	var ajax_url = "cities/get_all.htm";
-
-	$.ajax({
-				type : "POST",
-				url : ajax_url,
-				data : "",
-				contentType : "application/json; charset=utf-8",
-				dataType : "json",
-				success : function(data) {
-					alert(data);
-				},
-				failure : function(errMsg) {
-					alert(errMsg);
-				}
-			});
-
-}
-
 function btn_calculate_click() {
 	changeImage();
 	var el = document.getElementById('test');
+	
 	el.style.display = (el.style.display == 'block') ? 'none' : 'block';
-	load_cities();
+	
+	var network = new Network();
+	network.request_calculate();
 }
 
 function change_image_metro(e) {
@@ -65,22 +65,11 @@ function change_image_tram(e) {
 	else g[0].src='media/images/tram_selected.png';
 };
 
-$(document).ready(function() {
-    function divresize(block, headerHeight, footerHeight) {
-        var windowHeight = $(window).height(); /*определяем высоту окна браузера*/
-        $(block).css('height', windowHeight - headerHeight - footerHeight); /*устанавливаем высоту блока(равно высоте окна за вычетом шапки и подвала)*/
-    }
-    
-    divresize('#container', 163, 3); /*вызываем функцию изменения размера блока*/
-    $(window).bind("resize", function(){ /*при изменении размера окна вызываем функцию*/
-        divresize('#container', 163, 3); 
-    });
-	});
-
-
 function click_ot() {
 	document.images["img"].src = 'media/images/metro.png';
 }
 function click_out() {
 		document.images["img"].src = 'media/images/metro_selected.png';
 	}
+
+	

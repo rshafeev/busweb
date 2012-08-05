@@ -16,15 +16,47 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Locale;
 
+import com.google.gson.Gson;
 import com.pgis.bus.data.*;
+import com.pgis.bus.data.impl.DataBaseService;
+import com.pgis.bus.data.orm.City;
+import com.pgis.bus.data.repositories.RepositoryException;
+import com.pgis.bus.server.models.CitiesModel;
+import com.pgis.bus.server.models.CityModel;
+import com.pgis.bus.server.models.MainPageModel;
 
 @Controller
 @RequestMapping(value="")
 public class IndexController{
 	private static final Logger log = LoggerFactory
 			.getLogger(IndexController.class);
+	
+	private CitiesModel getCitiesModel(){
+		try {
+			
+			// Получим объект с информацией о текущей локали
+			Locale locale = LocaleContextHolder.getLocale();
+
+			// Загрузим список всех городов из БД
+			IDataBaseService db = new DataBaseService();
+			ArrayList<City> cities = db.getAllCities();
+			
+			// Создадим модель CitiesModel на базе списка cities
+			CitiesModel model = new CitiesModel();
+			for(City city : cities){
+				model.addCity(new CityModel(city, locale));
+			}
+			
+			// Отправим модель в формате GSON клиенту
+			
+			return model;
+		} catch (RepositoryException e) {
+			return null;
+		}
+	}
 	
 	@RequestMapping(value="")
 	public ModelAndView main(){
@@ -33,12 +65,8 @@ public class IndexController{
 
 	@RequestMapping(value="/index.htm")
 	public ModelAndView index(){
-		log.debug("get_all.htm");
-		// Получим объект с информацией о текущей локали
-		Locale locale = LocaleContextHolder.getLocale();
-		// Выведем в логгер текущий язык
-		log.debug("Current language:" + locale.getLanguage());
-		
-		return new ModelAndView("index");
+		MainPageModel model = new MainPageModel();
+		model.citiesModel = getCitiesModel();
+		return new ModelAndView("index","model",model);
 	}
 }

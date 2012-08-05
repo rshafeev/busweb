@@ -35,10 +35,17 @@ public class CityModel {
 		this.location = location;
 	}
 	public CityModel(City city, Locale locale){
+		if(city.name.get(LanguageHelper.getDataBaseLanguage(locale))!=null){
+			this.name = city.name.get(LanguageHelper.getDataBaseLanguage(locale));
+		}
+		else
+			this.name = city.name.get("c_ru");
+		
 		this.id = city.id;
 		this.location = new Location();
 		this.location.lat = city.lat;
 		this.location.lon = city.lon;
-		this.name = city.name.get(LanguageHelper.getDataBaseLanguage(locale));
+		
+		
 	}
 }

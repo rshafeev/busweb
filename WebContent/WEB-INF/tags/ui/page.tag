@@ -1,6 +1,8 @@
 <%@ tag body-content="empty"%>
+
+<%@ attribute name="page_head" required="true" fragment="true"%>
+<%@ attribute name="navigation" required="true" fragment="true"%>
 <%@ attribute name="menu" required="true" fragment="true"%>
-<%@ attribute name="head" required="true" fragment="true"%>
 <%@ attribute name="content" required="true" fragment="true"%>
 <%@ attribute name="foot" required="true" fragment="true"%>
 
@@ -15,11 +17,14 @@
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script type="text/javascript"
 	src="http://maps.google.com/maps/api/js?sensor=false&libraries=drawing"></script>
-<script src="media/js/busWeb.js"></script>
-
+	
+<jsp:invoke fragment="page_head" />
+<script src="media/js/Network.js"></script>
+<script src="media/js/BusMap.js"></script>
+<script src="media/js/BusApp.js"></script>
+<script src="media/js/main.js"></script>
 <script src="media/js/selectbox.js"></script>
-<script src="media/js/marker.js"></script>
-<script src="media/js/testScale.js"></script>
+
 
 
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
@@ -33,6 +38,8 @@ html {
 	overflow: hidden;
 }
 </style>
+
+
 </head>
 
 <body onload="initialize()" onunload="GUnload()">
@@ -41,13 +48,13 @@ html {
 		
 			<div class="header">
 				<div class="block_header">
-					<jsp:invoke fragment="menu" />
+					<jsp:invoke fragment="navigation" />
 					<div class="logotip"></div>
 				</div>
 			</div>
 			
 			<div class="slider2">
-				<jsp:invoke fragment="head" />
+				<jsp:invoke fragment="menu" />
 			</div>
 		</div>
 		
