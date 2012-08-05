@@ -15,11 +15,12 @@ function changeImage() {
 }
 
 function load_cities() {
-	var ajax_url = "city/get_all";
+	var contextPath='busWeb';
+	var ajax_url = "cities/get_all.htm";
 
 	$.ajax({
 				type : "POST",
-				url : "city/get_all",
+				url : ajax_url,
 				data : "",
 				contentType : "application/json; charset=utf-8",
 				dataType : "json",

@@ -1,7 +1,10 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
-    http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+							http://www.springframework.org/schema/beans/spring-beans.xsd
+							http://www.springframework.org/schema/context
+							http://www.springframework.org/schema/context/spring-context.xsd">
     
     <bean id="localeResolver"
 		class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
@@ -13,13 +16,14 @@
 		<property name="paramName" value="lang" />
 	</bean>
  
-	<bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping" >
+	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" >
 		<property name="interceptors">
 		   <list>
 			<ref bean="localeChangeInterceptor" />
 		   </list>
 		</property>
 	</bean>
+	
 	
 	<!-- Register the welcome.properties ResourceBundleMessageSource -->
 	<bean id="messageSource"
@@ -30,7 +34,22 @@
 	</bean>
     
 	<!-- the application context definition for the springapp DispatcherServlet -->
-	 <bean name="/hello.htm" class="com.pgis.bus.server.controllers.HelloController" /> 
+	<!--
+	<bean name="/hello.htm" class="com.pgis.bus.server.controllers.HelloController" /> 
 	<bean name="/bus.htm"   class="com.pgis.bus.server.controllers.BusController" />
-	<!--<bean name="/city/*"   class="com.pgis.bus.server.controllers.CityController" /> -->
+	
+	
+	<bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping" />
+    <bean class="com.pgis.bus.server.controllers.CitiesController"/>
+    
+    -->
+    
+    <context:component-scan base-package="com.pgis.bus.server.controllers" />
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
+		
+		
+		
 </beans>
