@@ -3,6 +3,7 @@ package com.pgis.bus.server.controllers;
 import org.slf4j.Logger;
 
 import org.slf4j.LoggerFactory;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -21,9 +22,9 @@ import com.pgis.bus.data.*;
 
 @Controller
 @RequestMapping(value="")
-public class BusController{
+public class IndexController{
 	private static final Logger log = LoggerFactory
-			.getLogger(BusController.class);
+			.getLogger(IndexController.class);
 	
 	@RequestMapping(value="")
 	public ModelAndView main(){
@@ -32,6 +33,12 @@ public class BusController{
 
 	@RequestMapping(value="/index.htm")
 	public ModelAndView index(){
-		return new ModelAndView("/jsp/bus.jsp");
+		log.debug("get_all.htm");
+		// Получим объект с информацией о текущей локали
+		Locale locale = LocaleContextHolder.getLocale();
+		// Выведем в логгер текущий язык
+		log.debug("Current language:" + locale.getLanguage());
+		
+		return new ModelAndView("index");
 	}
 }

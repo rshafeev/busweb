@@ -1,30 +1,55 @@
 package com.pgis.bus.server.controllers;
 
+import java.util.ArrayList;
 import java.util.Locale;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.i18n.LocaleContextHolder;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-public class CitiesController extends MultiActionController {
+import com.google.gson.Gson;
+import com.pgis.bus.data.IDataBaseService;
+import com.pgis.bus.data.impl.DataBaseService;
+import com.pgis.bus.data.orm.City;
+import com.pgis.bus.data.repositories.RepositoryException;
+import com.pgis.bus.server.models.CitiesModel;
+import com.pgis.bus.server.models.CityModel;
+
+@Controller
+@RequestMapping(value = "cities/")
+public class CitiesController {
 	private static final Logger log = LoggerFactory
-			.getLogger(BusController.class);
+			.getLogger(IndexController.class);
 
-	public ModelAndView get_all(HttpServletRequest request,
-			HttpServletResponse response) {
-		log.debug("get_all");
-		// Получим объект с информацией о текущей локали
-		Locale locale = LocaleContextHolder.getLocale();
-		// Выведем в логгер текущий язык
-		log.debug("Current language:" + locale.getLanguage());
-		
-		return new ModelAndView("/jsp/hello.jsp");
+	@ResponseBody
+	@RequestMapping(value = "get_all.htm", method = RequestMethod.POST)
+	public String get_all() {
+
+		try {
+			log.debug("get_all.htm");
+			// Получим объект с информацией о текущей локали
+			Locale locale = LocaleContextHolder.getLocale();
+
+			// Загрузим список всех городов из БД
+			IDataBaseService db = new DataBaseService();
+			ArrayList<City> cities = db.getAllCities();
+			
+			// Создадим модель CitiesModel на базе списка cities
+			CitiesModel model = new CitiesModel();
+			for(City city : cities){
+				model.addCity(new CityModel(city, locale));
+			}
+			
+			// Отправим модель в формате GSON клиенту
+			return  (new Gson()).toJson(model);
+		} catch (RepositoryException e) {
+			return null;
+		}
+
 	}
-	
 
 }

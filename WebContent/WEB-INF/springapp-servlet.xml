@@ -2,11 +2,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
-							http://www.springframework.org/schema/beans/spring-beans.xsd
-							http://www.springframework.org/schema/context
-							http://www.springframework.org/schema/context/spring-context.xsd">
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd">
     
-    <bean id="localeResolver"
+	<bean id="localeResolver"
 		class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
 		<property name="defaultLocale" value="ru" />
 	</bean>
@@ -18,9 +18,9 @@
  
 	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" >
 		<property name="interceptors">
-		   <list>
-			<ref bean="localeChangeInterceptor" />
-		   </list>
+			<list>
+				<ref bean="localeChangeInterceptor" />
+			</list>
 		</property>
 	</bean>
 	
@@ -30,26 +30,25 @@
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="basename" value="WEB-INF/classes/welcome" />
 		<property name="defaultEncoding" value="UTF-8"/>
-		 <property name="fileEncodings" value="UTF-8" />
+		<property name="fileEncodings" value="UTF-8" />
 	</bean>
     
-	<!-- the application context definition for the springapp DispatcherServlet -->
-	<!--
-	<bean name="/hello.htm" class="com.pgis.bus.server.controllers.HelloController" /> 
-	<bean name="/bus.htm"   class="com.pgis.bus.server.controllers.BusController" />
-	
-	
-	<bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping" />
-    <bean class="com.pgis.bus.server.controllers.CitiesController"/>
-    
-    -->
-    
-    <context:component-scan base-package="com.pgis.bus.server.controllers" />
+  
+	<context:component-scan base-package="com.pgis.bus.server.controllers" />
 	<bean
 		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
 	<bean
 		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
 		
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
+		<property name="prefix">
+			<value>/WEB-INF/pages/</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>
 		
 		
 </beans>
