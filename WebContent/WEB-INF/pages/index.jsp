@@ -4,13 +4,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <ui:page>
-	<jsp:attribute name="page_head" >
+	<jsp:attribute name="page_head">
 	 	<script type="text/javascript">
-   			var citiesModel =  $.parseJSON('${model.getJsonCitiesModel()}');
-   			
- 		</script>
+				var citiesModel = $.parseJSON('${model.getJsonCitiesModel()}');
+			</script>
 	</jsp:attribute>
-	
+
 	<jsp:attribute name="navigation">
         <title>Bus</title>
           <div class="menu">
@@ -55,14 +54,14 @@
 													<select class="styled" name="websites" size="1"
 												id="address" onChange="codeAddress()">
 														<option selected value="Kharkov">
-													<spring:message code="welcome.Kharkov" text="default text" />
-												</option>
+															<spring:message code="welcome.Kharkov" text="default text" />
+														</option>
 														<option value="Kiev">
-													<spring:message code="welcome.Kiev" text="default text" />
-												</option>
+															<spring:message code="welcome.Kiev" text="default text" />
+														</option>
 														<option value="Doneck">
-													<spring:message code="welcome.Doneck" text="default text" />
-												</option>
+															<spring:message code="welcome.Doneck" text="default text" />
+														</option>
 													</select>
 												</form>
 											</div>
@@ -188,6 +187,7 @@
 												</div>
 											</div>
 									
+							
 							
 							</td>
 									<td>

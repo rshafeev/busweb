@@ -10,6 +10,7 @@ public class CityModel {
 	int id;
 	String name;
 	Location location;
+	
 	public int getId() {
 		return id;
 	}
