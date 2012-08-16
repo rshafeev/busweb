@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.pgis.bus.data.DBConnectionFactory;
+import com.pgis.bus.data.DBConnectionManager;
 import com.pgis.bus.data.IDataBaseService;
 import com.pgis.bus.data.impl.DataBaseService;
 import com.pgis.bus.data.orm.City;
@@ -45,17 +46,8 @@ public class BasicServiceListener implements ServletContextListener {
     	//dbc/busPoolDB
     	//DataSource source = initDataSource("jdbc/busPoolDB");
     	
-    	DBConnectionFactory.init("jdbc/busPoolDB");
+		DBConnectionFactory.init(new DBConnectionManager("jdbc/busPoolDB"));
     	log.debug("contextInitialized");
-    	IDataBaseService db = new DataBaseService ();
-    	try {
-			ArrayList<City> cities = db.getAllCities();
-			for(City city : cities){
-				log.debug("city: " + city.name.get("c_en"));
-			}
-		} catch (RepositoryException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    	
     }
 }

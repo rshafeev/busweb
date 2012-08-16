@@ -8,9 +8,11 @@ function BusApp(){
 		this.loadCitiesToComboBox();
     };
 	this.loadCitiesToComboBox = function(){
+		
+		alert(citiesModel.cities.length);
        /*
         * citiesModel - список городов
         * */	
-	}
+	};
 };
 	

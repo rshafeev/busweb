@@ -17,6 +17,8 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.Locale;
 
 import com.google.gson.Gson;
@@ -29,44 +31,49 @@ import com.pgis.bus.server.models.CityModel;
 import com.pgis.bus.server.models.MainPageModel;
 
 @Controller
-@RequestMapping(value="")
-public class IndexController{
+@RequestMapping(value = "")
+public class IndexController {
 	private static final Logger log = LoggerFactory
 			.getLogger(IndexController.class);
-	
-	private CitiesModel getCitiesModel(){
+
+	private CitiesModel getCitiesModel() {
 		try {
-			
+
 			// Получим объект с информацией о текущей локали
 			Locale locale = LocaleContextHolder.getLocale();
 
 			// Загрузим список всех городов из БД
 			IDataBaseService db = new DataBaseService();
-			ArrayList<City> cities = db.getAllCities();
-			
+
+			Collection<City> cities = db.getAllCities();
+
 			// Создадим модель CitiesModel на базе списка cities
 			CitiesModel model = new CitiesModel();
-			for(City city : cities){
+
+			ArrayList<CityModel> citiesModel = new ArrayList<CityModel>();
+			Iterator<City> i = cities.iterator();
+			while (i.hasNext()) {
+				City city = i.next();
 				model.addCity(new CityModel(city, locale));
 			}
-			
+
 			// Отправим модель в формате GSON клиенту
-			
+
 			return model;
 		} catch (RepositoryException e) {
 			return null;
 		}
 	}
-	
-	@RequestMapping(value="")
-	public ModelAndView main(){
+
+	@RequestMapping(value = "")
+	public ModelAndView main() {
 		return new ModelAndView("redirect:index.htm");
 	}
 
-	@RequestMapping(value="/index.htm")
-	public ModelAndView index(){
+	@RequestMapping(value = "/index.htm")
+	public ModelAndView index() {
 		MainPageModel model = new MainPageModel();
 		model.citiesModel = getCitiesModel();
-		return new ModelAndView("index","model",model);
+		return new ModelAndView("index", "model", model);
 	}
 }

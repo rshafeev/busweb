@@ -7,7 +7,8 @@
 	<jsp:attribute name="page_head">
 	 	<script type="text/javascript">
 				var citiesModel = $.parseJSON('${model.getJsonCitiesModel()}');
-			</script>
+				
+		</script>
 	</jsp:attribute>
 
 	<jsp:attribute name="navigation">
