@@ -7,7 +7,8 @@
 	<jsp:attribute name="page_head" >
 	 	<script type="text/javascript">
    			var citiesModel =  $.parseJSON('${model.getJsonCitiesModel()}');
-   			
+  
+
  		</script>
 	</jsp:attribute>
 	
@@ -27,11 +28,13 @@
 								code="welcome.contact_us" text="default text" /></span></a></li>
  
         </ul>     
-        <a style="color: white; float: right; right: 30px;"
-				href="?lang=en_US">En</a> |<a style="color: white; float: right;"
-				href="?lang=rus_RU">Ru</a> |<a style="color: white; float: right;"
-				href="?lang=uk_UA">Ua</a>   
-      </div>     
+  
+      </div> 
+      <div class="lang_panel">
+				<a href="?lang=rus_RU"><img src="media/images/ru.png" alt="Ru"></a> 
+				<a href="?lang=en_US"><img src="media/images/uk.gif" alt="En"></a> 
+				<a href="?lang=uk_UA"><img src="media/images/ua.png" alt="Ua"></a> 
+      </div>    
     </jsp:attribute>
 
 
@@ -51,20 +54,17 @@
 														
 													</p>
 												</div>
-												<form name="testform">
-													<select class="styled" name="websites" size="1"
-												id="address" onChange="codeAddress()">
-														<option selected value="Kharkov">
-													<spring:message code="welcome.Kharkov" text="default text" />
-												</option>
-														<option value="Kiev">
-													<spring:message code="welcome.Kiev" text="default text" />
-												</option>
-														<option value="Doneck">
-													<spring:message code="welcome.Doneck" text="default text" />
-												</option>
-													</select>
-												</form>
+	
+											 <form name="testform">
+
+ <select id="comb" name="websites" size="1" id="address" onChange="change_city()" >
+</select> 
+  <!-- <script>
+	   $('<option value="Kiev">Option </option>').appendTo(".styled");
+	  $('<option value="Kharkov">Option 2</option>').appendTo(".styled");
+	   $('<option value="Option 3">Option 3</option>').appendTo(".styled");
+	 </script>   -->
+												</form> 
 											</div>
 										</div>
 									</td>
@@ -192,7 +192,7 @@
 							</td>
 									<td>
 										<button style="width: 120px; height: 40px; margin-left: 50px;"
-									type="submit" class="button" onclick="btn_calculate_click();">
+									type="submit" class="button" onclick="btn_calculate_click(); ">
 									<spring:message code="welcome.btn_calc" text="default text" />
 								</button>
 									</td>
@@ -209,8 +209,7 @@
 <div id="container">
 <div id="wrapper">
 <div id="content">
-<div id="map_canvas"
-						style="width: 99%; height: 100%; border: 2px solid white;"></div>
+<div id="map_canvas" style="width: 99%; height: 100%; border: 2px solid white;"></div>
 </div>
 </div>
 <div id="navigation">
@@ -222,7 +221,7 @@
 						src='media/images/arrow_left.png' /></a>
 					
 		</div>	
-		<div id="test" style="display: none; width: 100%; height: 100%;">
+ 	<div id="test" style="display: none; width: 100%; height: 100%;">
 					<h2 style="color: black; margin: 10 0 10 0;">Появляется текст</h2>
 					<h2 style="color: black; margin: 10 0 10 0;">Появляется текст</h2>
 					<h2 style="color: black; margin: 10 0 10 0;">Появляется текст</h2>

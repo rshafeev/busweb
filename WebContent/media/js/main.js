@@ -18,27 +18,43 @@ $(document).ready(function() {
 	});
 	
 function changeImage() {
-	if (flag == 0) {
-	      $("#map_canvas").width('75%')
-          .css({cursor:"auto", backgroundColor:"rgb(226, 226, 226)"});
-		document.img.src = 'media/images/arrow_right.png';
-		flag = 1;
-	} else {
-	      $("#map_canvas").width('99%')
-          .css({cursor:"auto", backgroundColor:"rgb(226, 226, 226)"});
-		document.img.src = 'media/images/arrow_left.png';
-		flag = 0;
-	}
+if (flag == 0) {
+      $("#map_canvas").width('75%')
+      .css({cursor:"auto", backgroundColor:"rgb(226, 226, 226)"});
+	document.img.src = 'media/images/arrow_right.png';
+	flag = 1;
+} else {
+      $("#map_canvas").width('99%')
+      .css({cursor:"auto", backgroundColor:"rgb(226, 226, 226)"});
+	document.img.src = 'media/images/arrow_left.png';
+	flag = 0;
+}
+}
+
+function insert_text ()
+{
+	var el = document.getElementById('test');
+	el.style.display = (el.style.display == 'block') ? 'none' : 'block';
+}
+
+
+function changeImageCalc() {
+if (flag == 0) {
+	$("#map_canvas").width('75%')
+    .css({cursor:"auto", backgroundColor:"rgb(226, 226, 226)"});
+	document.img.src = 'media/images/arrow_right.png';
+	flag = 1;
+} else {
+	insert_text();
+	flag = 0;
+}
 }
 
 function btn_calculate_click() {
-	changeImage();
-	var el = document.getElementById('test');
-	
-	el.style.display = (el.style.display == 'block') ? 'none' : 'block';
-	
-	var network = new Network();
-	network.request_calculate();
+	changeImageCalc();
+	insert_text();
+var network = new Network();
+network.request_calculate();
 }
 
 function change_image_metro(e) {

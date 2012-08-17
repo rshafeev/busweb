@@ -13,18 +13,20 @@
 <link rel="stylesheet" type="text/css" href="media/body.css">
 <link rel="stylesheet" type="text/css" href="media/foot.css">
 
+
+
+
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script type="text/javascript"
 	src="http://maps.google.com/maps/api/js?sensor=false&libraries=drawing"></script>
-	
-<jsp:invoke fragment="page_head" />
+
+
+<script src="media/js/BusApp.js"></script>
+<script src="media/js/selectbox.js"></script>
+<script src="media/js/main.js"></script>
 <script src="media/js/Network.js"></script>
 <script src="media/js/BusMap.js"></script>
-<script src="media/js/BusApp.js"></script>
-<script src="media/js/main.js"></script>
-<script src="media/js/selectbox.js"></script>
-
 
 
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
@@ -38,14 +40,12 @@ html {
 	overflow: hidden;
 }
 </style>
-
-
 </head>
 
-<body onload="initialize()" onunload="GUnload()">
+<body onload="initialize()" >
 	<div class="main-wrap clearfix">
 		<div class="portal-headline">
-		
+		<jsp:invoke fragment="page_head" />
 			<div class="header">
 				<div class="block_header">
 					<jsp:invoke fragment="navigation" />
