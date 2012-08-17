@@ -24,7 +24,7 @@ import com.pgis.bus.server.models.ShortestWayModel;
 @RequestMapping(value = "ways/")
 public class WaysController {
 	private static final Logger log = LoggerFactory
-			.getLogger(IndexController.class);
+			.getLogger(WaysController.class);
 
 	@ResponseBody
 	@RequestMapping(value = "calculate.htm", method = RequestMethod.POST)
