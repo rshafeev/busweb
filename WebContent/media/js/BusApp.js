@@ -15,6 +15,10 @@ function BusApp(){
 			 
 		}
 		
+		alert(citiesModel.cities.length);
+       /*
+        * citiesModel - список городов
+        * */	
 	};
 };
 

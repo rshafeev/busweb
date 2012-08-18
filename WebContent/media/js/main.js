@@ -1,6 +1,7 @@
 
 var flag = 0;
 var busApp = null;
+
 function initialize(){
   busApp = new BusApp();
   busApp.main();
