@@ -70,6 +70,12 @@ function BusApp() {
 	this.on_resize_window = function(block, headerHeight, footerHeight) {
 		var windowHeight = $(window).height();
 		$(block).css('height', windowHeight - headerHeight - footerHeight);
+		var map = getApp().getGoogleMap();
+		if (map != null) {
+			//qx.html.Element.flush();
+			google.maps.event.trigger(map.getMapObj(), 'resize');
+		}
+
 	};
 
 };

@@ -6,7 +6,7 @@
 function Network() {
 
 	this.request_calculate = function() {
-		var ajax_url = "ways/calculate.htm";
+		var ajax_url = "ways/calculate.json";
 
 		$.ajax({
 					type : "POST",
@@ -15,10 +15,12 @@ function Network() {
 					contentType : "application/json; charset=utf-8",
 					dataType : "json",
 					success : function(data) {
-						alert(data);
+						console.log(data);
+						
 					},
 					failure : function(errMsg) {
-						alert(errMsg);
+						console.log(errMsg);
+					
 					}
 				});
 

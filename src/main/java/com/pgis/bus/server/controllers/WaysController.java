@@ -27,9 +27,9 @@ public class WaysController {
 			.getLogger(WaysController.class);
 
 	@ResponseBody
-	@RequestMapping(value = "calculate.htm", method = RequestMethod.POST)
+	@RequestMapping(value = "calculate.json", method = RequestMethod.POST)
 	public String calculate() {
-		log.debug("calculate.htm");
+		log.debug("calculate.json");
 		ShortestWayModel model = new ShortestWayModel();
 		// Отправим модель в формате GSON клиенту
 		return (new Gson()).toJson(model);

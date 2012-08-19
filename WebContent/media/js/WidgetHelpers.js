@@ -1,8 +1,6 @@
-
-
-function setEditText(edit_box_id, text) {
-	$(edit_box_id).val(text);
-};
+/**
+ * Additional static(global) functions
+ */
 
 function getShortAddress(address) {
 	var addressParts = address.split(",");
