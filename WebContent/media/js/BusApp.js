@@ -44,7 +44,6 @@ function BusApp() {
 			}
 		}
 
-		// selected="selected"
 	};
 
 	this.getCodeAddress = function(lat, lon, respone_call_func) {
