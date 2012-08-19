@@ -5,7 +5,7 @@
 function on_btn_calculate_click() {
 	if (getApp().rightPanelVisible == false)
 		on_right_panel_show();
-	
+
 	var network = new Network();
 	network.request_calculate();
 }
@@ -28,10 +28,14 @@ function on_change_selectbox_city() {
 	}
 	var googleMap = getApp().getGoogleMap();
 	googleMap.clearMap();
+	googleMap.getMapObj().setOptions({
+				draggableCursor : 'crosshair',
+				minZoom : city.scale
+			});
 	googleMap.setCenter(city.scale, city.location.lat, city.location.lon);
+
 	$('#editboxA').val('');
 	$('#editboxB').val('');
-
 }
 
 function on_btn_metro_click(e) {

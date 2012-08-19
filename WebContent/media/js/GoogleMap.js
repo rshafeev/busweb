@@ -14,7 +14,8 @@ function GoogleMap() {
 		this.map = new google.maps.Map(document.getElementById("map_canvas"),
 				myOptions);
 		this.map.setOptions({
-					draggableCursor : 'crosshair'
+					draggableCursor : 'crosshair',
+					minZoom : defaultCity.scale
 				});
 
 		this.markers = new Markers(this);

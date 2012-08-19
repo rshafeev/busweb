@@ -197,8 +197,7 @@
 									<spring:message code="welcome.btn_calc" text="default text" />
 								</button>
       
-     <button value="Reverse Geocode" onclick="codeLatLng()">reverse</button>
-     <button onclick="wright_text_to(); wright_text_from() ">Text</button>
+    
 									</td>
 								</tr>
 							</tbody>
