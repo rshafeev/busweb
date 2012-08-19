@@ -7,6 +7,8 @@ function BusMap() {
 	this.curr_image = null;
 	this.geocoder = null;
 	this.map = null;
+	this.infowindow = new google.maps.InfoWindow();
+    this.marker=null;
 	this.drawingManager = null;
 	this.setMarkerA = function(new_marker) {
 		this.drawingManager.markerOptions = {

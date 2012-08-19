@@ -21,12 +21,12 @@
 <script type="text/javascript"
 	src="http://maps.google.com/maps/api/js?sensor=false&libraries=drawing"></script>
 
-
+<script src="media/js/BusMap.js"></script>
 <script src="media/js/BusApp.js"></script>
 <script src="media/js/selectbox.js"></script>
 <script src="media/js/main.js"></script>
 <script src="media/js/Network.js"></script>
-<script src="media/js/BusMap.js"></script>
+
 
 
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />

@@ -6,8 +6,16 @@
 <ui:page>
 	<jsp:attribute name="page_head">
 	 	<script type="text/javascript">
+<<<<<<< HEAD
+   			var citiesModel =  $.parseJSON('${model.getJsonCitiesModel()}');
+  
+
+ 		</script>
+=======
 				var citiesModel = $.parseJSON('${model.getJsonCitiesModel()}');
+				
 		</script>
+>>>>>>> 412f9071a070541c63cde164af8af42b07139736
 	</jsp:attribute>
 
 	<jsp:attribute name="navigation">
@@ -52,10 +60,11 @@
 														
 													</p>
 												</div>
+<<<<<<< HEAD
 	
 											 <form name="testform">
 
- <select class="styled" name="websites" size="1" id="address" onChange="change_city()" >
+ <select id="comb" name="websites" size="1" id="address" onChange="change_city()" >
 </select> 
   <!-- <script>
 	   $('<option value="Kiev">Option </option>').appendTo(".styled");
@@ -63,6 +72,22 @@
 	   $('<option value="Option 3">Option 3</option>').appendTo(".styled");
 	 </script>   -->
 												</form> 
+=======
+												<form name="testform">
+													<select class="styled" name="websites" size="1"
+												id="address" onChange="codeAddress()">
+														<option selected value="Kharkov">
+															<spring:message code="welcome.Kharkov" text="default text" />
+														</option>
+														<option value="Kiev">
+															<spring:message code="welcome.Kiev" text="default text" />
+														</option>
+														<option value="Doneck">
+															<spring:message code="welcome.Doneck" text="default text" />
+														</option>
+													</select>
+												</form>
+>>>>>>> 412f9071a070541c63cde164af8af42b07139736
 											</div>
 										</div>
 									</td>
@@ -86,8 +111,8 @@
 																</div>
 															</td>
 															<td class="b-search__point-input"><span
-														class="b-form-input__box"> 
-							<input class="a-form-input__input" style="margin-bottom: 2px; margin-top: 15px; width: 200px;"></input>
+														class="b-form-input__box"> <input
+															style="margin-bottom: 2px; margin-top: 15px; width: 200px;"></input>
 															</span></td>
 														</tr>
 														<tr class="b-search__point">
@@ -97,8 +122,9 @@
 																</div>
 															</td>
 															<td class="b-search__point-input"><span
-														class="b-form-input__box"> 
-							<input class="b-form-input__input" id="uniq162" autocomplete="off"
+														class="b-form-input__box"> <input
+															class="b-form-input__input" id="uniq162"
+															autocomplete="off"
 															style="margin-bottom: 5px; width: 200px;"></input></span></td>
 														</tr>
 													</tbody>
@@ -193,9 +219,6 @@
 									type="submit" class="button" onclick="btn_calculate_click(); ">
 									<spring:message code="welcome.btn_calc" text="default text" />
 								</button>
-      
-     <button value="Reverse Geocode" onclick="codeLatLng()">reverse</button>
-     <button onclick="wright_text_to(); wright_text_from() ">Text</button>
 									</td>
 								</tr>
 							</tbody>
