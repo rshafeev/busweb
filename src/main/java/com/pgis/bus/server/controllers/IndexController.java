@@ -26,7 +26,7 @@ import com.pgis.bus.data.*;
 import com.pgis.bus.data.impl.DataBaseService;
 import com.pgis.bus.data.orm.City;
 import com.pgis.bus.data.repositories.RepositoryException;
-import com.pgis.bus.server.models.CitiesModel;
+import com.pgis.bus.server.models.BasicModel;
 import com.pgis.bus.server.models.CityModel;
 import com.pgis.bus.server.models.MainPageModel;
 
@@ -36,7 +36,7 @@ public class IndexController {
 	private static final Logger log = LoggerFactory
 			.getLogger(IndexController.class);
 
-	private CitiesModel getCitiesModel() {
+	private BasicModel prepareBasicModel() {
 		try {
 
 			// Получим объект с информацией о текущей локали
@@ -48,7 +48,7 @@ public class IndexController {
 			Collection<City> cities = db.getAllCities();
 
 			// Создадим модель CitiesModel на базе списка cities
-			CitiesModel model = new CitiesModel();
+			BasicModel model = new BasicModel();
 
 			ArrayList<CityModel> citiesModel = new ArrayList<CityModel>();
 			Iterator<City> i = cities.iterator();
@@ -73,7 +73,7 @@ public class IndexController {
 	@RequestMapping(value = "/index.htm")
 	public ModelAndView index() {
 		MainPageModel model = new MainPageModel();
-		model.citiesModel = getCitiesModel();
+		model.setBasicModel(prepareBasicModel());
 		return new ModelAndView("index", "model", model);
 	}
 }

@@ -6,7 +6,7 @@
 <ui:page>
 	<jsp:attribute name="page_head">
 	 	<script type="text/javascript">
-				var citiesModel = $.parseJSON('${model.getJsonCitiesModel()}');
+				var basicModel = $.parseJSON('${model.getJsonBasicModel()}');
 			</script>
 	</jsp:attribute>
 
@@ -55,13 +55,12 @@
 	
 											 <form name="testform">
 
- <select class="styled" name="websites" size="1" id="address" onChange="change_city()" >
-</select> 
-  <!-- <script>
-	   $('<option value="Kiev">Option </option>').appendTo(".styled");
-	  $('<option value="Kharkov">Option 2</option>').appendTo(".styled");
-	   $('<option value="Option 3">Option 3</option>').appendTo(".styled");
-	 </script>   -->
+ 													<select id="comb"
+ 															class="styled" 
+ 														    name="websites" 
+ 															size="1" 
+															onChange="on_change_selectbox_city()">
+													</select> 
 												</form> 
 											</div>
 										</div>
@@ -87,7 +86,8 @@
 															</td>
 															<td class="b-search__point-input"><span
 														class="b-form-input__box"> 
-							<input class="a-form-input__input" style="margin-bottom: 2px; margin-top: 15px; width: 200px;"></input>
+							<input class="a-form-input__input"
+															style="margin-bottom: 2px; margin-top: 15px; width: 200px;"></input>
 															</span></td>
 														</tr>
 														<tr class="b-search__point">
@@ -98,8 +98,10 @@
 															</td>
 															<td class="b-search__point-input"><span
 														class="b-form-input__box"> 
-							<input class="b-form-input__input" id="uniq162" autocomplete="off"
-															style="margin-bottom: 5px; width: 200px;"></input></span></td>
+							<input class="b-form-input__input" id="uniq162"
+															autocomplete="off"
+															style="margin-bottom: 5px; width: 200px;"></input>
+													</span></td>
 														</tr>
 													</tbody>
 												</table>
@@ -187,6 +189,8 @@
 									
 							
 							
+							
+							
 							</td>
 									<td>
 										<button style="width: 120px; height: 40px; margin-left: 50px;"
@@ -210,7 +214,8 @@
 <div id="container">
 <div id="wrapper">
 <div id="content">
-<div id="map_canvas" style="width: 99%; height: 100%; border: 2px solid white;"></div>
+<div id="map_canvas"
+						style="width: 99%; height: 100%; border: 2px solid white;"></div>
 </div>
 </div>
 <div id="navigation">

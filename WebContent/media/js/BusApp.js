@@ -1,78 +1,64 @@
 
- 
-function BusApp(){
+/*
+ * use(GoogleMap.js)
+ *
+ */
 
+function BusApp() {
+
+	this.googleMap = null;
+	
+	this.main = function() {
+		console.log("busApp : main()");
+		this.on_resize_window('#container', 163, 3);
+		var T = this;
+		$(window).bind("resize", function(e) {
+					T.on_resize_window('#container', 163, 3);
+				});
+		this.googleMap = new GoogleMap();
+		this.googleMap.init();
 		
-	this.map  = new BusMap(); 
-	this.main = function(){
-		this.map.init();
 		this.loadCitiesToComboBox();
-    };
-	this.loadCitiesToComboBox = function(){
-		for ( var i=0; i< citiesModel.cities.length; i++)
-		{ 
-			 $('<option  value='+citiesModel.cities[i].id+'>'+citiesModel.cities[i].name + '</option>').appendTo(".styled");
-			 
+	};
+	this.getDataModel = function() {
+		return basicModel;
+	};
+
+	this.loadCitiesToComboBox = function() {
+		console.log("busApp: loadCitiesToComboBox()");
+		console.log(this.getDataModel().cities.length);
+		for (var i = 0; i < this.getDataModel().cities.length; i++) {
+			$('<option  value=' + this.getDataModel().cities[i].id + '>'
+					+ this.getDataModel().cities[i].name + '</option>')
+					.appendTo("#comb");
 		}
 	};
+
+	this.getCodeAddress = function(lat, lon, respone_call_func) {
+		var lat = 50.031549;
+		var lng = 36.206557;
+		var latlng = new google.maps.LatLng(lat, lng);
+		var geocoder = new google.maps.Geocoder();
+		geocoder.geocode({
+					'latLng' : latlng
+				}, function(results, status) {
+					if (status == google.maps.GeocoderStatus.OK) {
+						if (results[1]) {
+							console.log(results[0].formatted_address);
+							respone_call_func(results[0].formatted_address);
+						} else {
+							console.log('No results found');
+							respone_call_func(null);
+						}
+					} else {
+						respone_call_func(null);
+						console.log('Geocoder failed due to: ' + status);
+					}
+				});
+	};
+
+	this.on_resize_window = function(block, headerHeight, footerHeight) {
+		var windowHeight = $(window).height();
+		$(block).css('height', windowHeight - headerHeight - footerHeight);
+	};
 };
-
-function change_city(){
-	var nameFromCombo =$(".styled").val();
-	var city = null;
-		for (var i=0; i< citiesModel.cities.length; i++){
-			
-			if (citiesModel.cities[i].id==nameFromCombo){
-				city = citiesModel.cities[i];
-				break;
-			}
-		}
-		var latlon = new google.maps.LatLng (city.location.lat, city.location.lon);
-		var myOptions = {
-		    zoom:city.scale,
-		    center: latlon,
-		    mapTypeId: google.maps.MapTypeId.ROADMAP
-		};
-
-		map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-		
-};
-
-var geocoder;
-var map;
-var infowindow = new google.maps.InfoWindow()
-
-function codeLatLng() {
-	var lat = 50.031549;
-	var lng = 36.206557;
-  var latlng = new google.maps.LatLng(lat, lng);
-  geocoder.geocode({'latLng': latlng}, function(results, status) {
-    if (status == google.maps.GeocoderStatus.OK) {
-      if (results[1]) {
-        /*map.setZoom(city.scale);
-        marker = new google.maps.Marker({
-            position: latlng,
-            map: map
-        });
-        infowindow.setContent(results[1].formatted_address);
-        infowindow.open(map, marker);*/
-    	  alert(results[0].formatted_address);
-    	 /* alert(Status.code);*/
-      } else {
-        alert('No results found');
-      }
-    } else {
-      alert('Geocoder failed due to: ' + status);
-    }
-  });
-};
-
-function wright_text_to ()
-{
-	$('.a-form-input__input').val($('.a-form-input__input').val() + 'insert address A');
-	}
-
-function wright_text_from ()
-{
-	$('.b-form-input__input').val($('.b-form-input__input').val() + 'insert address B');
-	}

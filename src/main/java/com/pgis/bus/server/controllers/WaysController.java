@@ -16,7 +16,7 @@ import com.pgis.bus.data.IDataBaseService;
 import com.pgis.bus.data.impl.DataBaseService;
 import com.pgis.bus.data.orm.City;
 import com.pgis.bus.data.repositories.RepositoryException;
-import com.pgis.bus.server.models.CitiesModel;
+import com.pgis.bus.server.models.BasicModel;
 import com.pgis.bus.server.models.CityModel;
 import com.pgis.bus.server.models.ShortestWayModel;
 

@@ -2,11 +2,11 @@ package com.pgis.bus.server.models;
 
 import java.util.ArrayList;
 
-public class CitiesModel {
+public class BasicModel {
 
 	ArrayList<CityModel> cities;
 
-	public CitiesModel(){
+	public BasicModel(){
 		cities=new ArrayList<CityModel>();
 	}
 	public void addCity(CityModel city) {

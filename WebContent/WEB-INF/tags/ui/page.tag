@@ -21,11 +21,13 @@
 <script type="text/javascript"
 	src="http://maps.google.com/maps/api/js?sensor=false&libraries=drawing"></script>
 
-<script src="media/js/selectbox.js"></script>
+<jsp:invoke fragment="page_head" />
+
 <script src="media/js/Network.js"></script>
 <script src="media/js/map/Markers.js"></script>
-<script src="media/js/BusMap.js"></script>
+<script src="media/js/GoogleMap.js"></script>
 <script src="media/js/BusApp.js"></script>
+<script src="media/js/selectbox.js"></script>
 <script src="media/js/main.js"></script>
 
 
@@ -35,6 +37,7 @@
 	margin: 0;
 	padding: 0;
 }
+
 html {
 	height: 100%;
 	overflow: hidden;
@@ -42,22 +45,22 @@ html {
 </style>
 </head>
 
-<body onload="initialize()" >
+<body onload="initialize()">
 	<div class="main-wrap clearfix">
 		<div class="portal-headline">
-		<jsp:invoke fragment="page_head" />
+
 			<div class="header">
 				<div class="block_header">
 					<jsp:invoke fragment="navigation" />
 					<div class="logotip"></div>
 				</div>
 			</div>
-			
+
 			<div class="slider2">
 				<jsp:invoke fragment="menu" />
 			</div>
 		</div>
-		
+
 		<div class="main_content">
 			<jsp:invoke fragment="content" />
 		</div>
@@ -65,7 +68,7 @@ html {
 		<div class="footer">
 			<jsp:invoke fragment="foot" />
 		</div>
-		
+
 	</div>
 </body>
 </html>
