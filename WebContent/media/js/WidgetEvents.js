@@ -83,6 +83,12 @@ function on_right_panel_show() {
 					backgroundColor : "rgb(226, 226, 226)"
 				});
 		document.img.src = 'media/images/arrow_left.png';
+
+		var map = getApp().getGoogleMap();
+		if (map != null) {
+			google.maps.event.trigger(map.getMapObj(), 'resize');
+		}
+
 		getApp().rightPanelVisible = false;
 	}
 }
