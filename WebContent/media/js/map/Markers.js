@@ -1,13 +1,11 @@
-
-	var T = this;
+function Markers(busMap) {
+	this.busMap = busMap;
 	this.marker_image_A = null;
 	this.marker_image_B = null;
 	this.marker_A = null;
 	this.marker_B = null;
 	this.curr_image = null;
 	this.geocoder = null;
-	this.map = null;
-	this.drawingManager = null;
 	this.setMarkerA = function(new_marker) {
 		this.drawingManager.markerOptions = {
 			icon : image = this.marker_image_B
@@ -33,7 +31,7 @@
 		this.curr_image = this.marker_image_A;
 	};
 
-	function init () {
+	this.init = function() {
 		geocoder = new google.maps.Geocoder();
 		var latlng = new google.maps.LatLng(50, 36);
 		var myOptions = {
@@ -82,7 +80,7 @@
 		this.markers_init();
 	};
 
-	function codeAddress () {
+	this.codeAddress = function() {
 		var address = document.getElementById("address").value;
 		geocoder.geocode({
 					'address' : address
@@ -96,5 +94,5 @@
 				});
 	};
 
-
+};
 
