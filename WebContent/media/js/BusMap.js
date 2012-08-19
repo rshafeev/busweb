@@ -1,6 +1,8 @@
 function BusMap() {
 	this.markers = null;
 	this.map = null;
+	this.infowindow = new google.maps.InfoWindow();
+    this.marker=null;
 	
 	this.init = function() {
 		geocoder = new google.maps.Geocoder();

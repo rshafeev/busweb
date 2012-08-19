@@ -55,13 +55,7 @@
 	
 											 <form name="testform">
 
- <select id="comb" name="websites" size="1" id="address" onChange="change_city()" >
-															<spring:message code="welcome.Kharkov" text="default text" />
-														</option>
-															<spring:message code="welcome.Kiev" text="default text" />
-														</option>
-															<spring:message code="welcome.Doneck" text="default text" />
-														</option>
+ <select class="styled" name="websites" size="1" id="address" onChange="change_city()" >
 </select> 
   <!-- <script>
 	   $('<option value="Kiev">Option </option>').appendTo(".styled");
@@ -92,8 +86,8 @@
 																</div>
 															</td>
 															<td class="b-search__point-input"><span
-														class="b-form-input__box"> <input
-															style="margin-bottom: 2px; margin-top: 15px; width: 200px;"></input>
+														class="b-form-input__box"> 
+							<input class="a-form-input__input" style="margin-bottom: 2px; margin-top: 15px; width: 200px;"></input>
 															</span></td>
 														</tr>
 														<tr class="b-search__point">
@@ -103,9 +97,8 @@
 																</div>
 															</td>
 															<td class="b-search__point-input"><span
-														class="b-form-input__box"> <input
-															class="b-form-input__input" id="uniq162"
-															autocomplete="off"
+														class="b-form-input__box"> 
+							<input class="b-form-input__input" id="uniq162" autocomplete="off"
 															style="margin-bottom: 5px; width: 200px;"></input></span></td>
 														</tr>
 													</tbody>
@@ -200,6 +193,9 @@
 									type="submit" class="button" onclick="btn_calculate_click(); ">
 									<spring:message code="welcome.btn_calc" text="default text" />
 								</button>
+      
+     <button value="Reverse Geocode" onclick="codeLatLng()">reverse</button>
+     <button onclick="wright_text_to(); wright_text_from() ">Text</button>
 									</td>
 								</tr>
 							</tbody>
