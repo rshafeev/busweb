@@ -55,11 +55,9 @@
 	
 											 <form name="testform">
 
- 													<select id="comb"
- 															class="styled" 
- 														    name="websites" 
- 															size="1" 
-															onChange="on_change_selectbox_city()">
+ 													<select id="selectbox_city" class="selectbox"
+												name="websites" size="1"
+												onChange="on_change_selectbox_city()">
 													</select> 
 												</form> 
 											</div>
@@ -86,7 +84,7 @@
 															</td>
 															<td class="b-search__point-input"><span
 														class="b-form-input__box"> 
-							<input class="a-form-input__input"
+							<input id="editboxA" class="a-form-input__input"
 															style="margin-bottom: 2px; margin-top: 15px; width: 200px;"></input>
 															</span></td>
 														</tr>
@@ -98,7 +96,7 @@
 															</td>
 															<td class="b-search__point-input"><span
 														class="b-form-input__box"> 
-							<input class="b-form-input__input" id="uniq162"
+							<input id="editboxB" class="b-form-input__input" id="uniq162"
 															autocomplete="off"
 															style="margin-bottom: 5px; width: 200px;"></input>
 													</span></td>
@@ -126,22 +124,22 @@
 													<table align="center"
 												style="margin-top: 5px; margin-left: 3px; margin-right: 3px;">
 														<tr>
-															<a href="#" onclick="change_image_metro(this);">
+															<a href="#" onclick="on_btn_metro_click(this);">
 																<span><img src="media/images/metro_selected.png"></img></span>
 															</a>
 														</tr>
 														<tr>
-															<a href="#" onclick="change_image_bus(this)">
+															<a href="#" onclick="on_btn_bus_click(this)">
 																<img src="media/images/bus_selected.png" />
 															</a>
 														</tr>
 														<tr>
-															<a href="#" onclick="change_image_troll(this)">
+															<a href="#" onclick="on_btn_troll_click(this)">
 																<img src="media/images/trol_selected.png" />
 															</a>
 														</tr>
 														<tr>
-															<a href="#" onclick="change_image_tram(this)">
+															<a href="#" onclick="on_btn_tram_click(this)">
 																<img src="media/images/tram_selected.png"></img>
 															</a>
 														</tr>
@@ -191,10 +189,11 @@
 							
 							
 							
+							
 							</td>
 									<td>
 										<button style="width: 120px; height: 40px; margin-left: 50px;"
-									type="submit" class="button" onclick="btn_calculate_click(); ">
+									type="submit" class="button" onclick="on_btn_calculate_click(); ">
 									<spring:message code="welcome.btn_calc" text="default text" />
 								</button>
       
@@ -223,7 +222,7 @@
  <div id="extra">										
  <div id="arrow_div">
 		<a href="#"><img style="margin-top: 250px;"
-						onclick="changeImage();" name='img'
+						onclick="on_right_panel_show();" name='img'
 						src='media/images/arrow_left.png' /></a>
 					
 		</div>	

@@ -1,29 +1,39 @@
 function GoogleMap() {
 	this.markers = null;
 	this.map = null;
-	this.infowindow = new google.maps.InfoWindow();
-	this.marker = null;
 
 	this.init = function() {
-		var latlng = new google.maps.LatLng(50, 36);
+		var defaultCity = getApp().getDataModel().defaultCity;
+		var latlng = new google.maps.LatLng(defaultCity.location.lat,
+				defaultCity.location.lon);
 		var myOptions = {
-			zoom : 8,
+			zoom : defaultCity.scale,
 			center : latlng,
 			mapTypeId : google.maps.MapTypeId.ROADMAP
 		};
 		this.map = new google.maps.Map(document.getElementById("map_canvas"),
 				myOptions);
-
-		google.maps.event.addListener(this.map, 'click', function(event) {
-					console.log('clicked on the map');
+		this.map.setOptions({
+					draggableCursor : 'crosshair'
 				});
 
 		this.markers = new Markers(this);
+		this.markers.initialize();
+
 	};
 
 	this.setCenter = function(scale, lat, lon) {
-		this.map.center(new google.maps.LatLng(lat, lon));
-
+		if (this.map != null) {
+			this.map.setCenter(new google.maps.LatLng(lat, lon));
+			this.map.setZoom(scale);
+		}
 	};
 
+	this.getMapObj = function() {
+		return this.map;
+	};
+
+	this.clearMap = function() {
+		this.markers.deleteMarkers();
+	};
 };

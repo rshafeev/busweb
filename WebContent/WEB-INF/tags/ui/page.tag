@@ -23,11 +23,13 @@
 
 <jsp:invoke fragment="page_head" />
 
+<script src="media/js/selectbox.js"></script>
+<script src="media/js/WidgetHelpers.js"></script>
+<script src="media/js/WidgetEvents.js"></script>
 <script src="media/js/Network.js"></script>
 <script src="media/js/map/Markers.js"></script>
 <script src="media/js/GoogleMap.js"></script>
 <script src="media/js/BusApp.js"></script>
-<script src="media/js/selectbox.js"></script>
 <script src="media/js/main.js"></script>
 
 

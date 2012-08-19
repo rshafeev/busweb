@@ -1,98 +1,104 @@
 function Markers(busMap) {
+	var T = this;
 	this.busMap = busMap;
-	this.marker_image_A = null;
-	this.marker_image_B = null;
 	this.marker_A = null;
 	this.marker_B = null;
-	this.curr_image = null;
-	this.geocoder = null;
-	this.setMarkerA = function(new_marker) {
-		this.drawingManager.markerOptions = {
-			icon : image = this.marker_image_B
-		};
-		if (this.marker_A != null)
+	this.marker_image_A = null, this.marker_image_B = null,
+
+	/**
+	 * Methods
+	 */
+
+	this.setMarkerA = function(lat, lon) {
+		var pos = new google.maps.LatLng(lat, lon);
+		if (this.marker_A == null) {
+			this.marker_A = new google.maps.Marker({
+						map : this.busMap.getMapObj()
+					});
+			this.marker_A.setDraggable(true);
+			this.marker_A.setOptions({
+						icon : this.marker_image_A
+					});
+			google.maps.event.addListener(this.marker_A, 'dragend',
+					T.on_change_markerA);
+		}
+		this.marker_A.setPosition(pos);
+
+		this.on_change_markerA({
+					latLng : pos
+				});
+
+	};
+
+	this.setMarkerB = function(lat, lon) {
+		var pos = new google.maps.LatLng(lat, lon);
+		if (this.marker_B == null) {
+			this.marker_B = new google.maps.Marker({
+						map : this.busMap.getMapObj()
+					});
+			this.marker_B.setDraggable(true);
+			this.marker_B.setOptions({
+						icon : this.marker_image_B
+					});
+			google.maps.event.addListener(this.marker_B, 'dragend',
+					T.on_change_markerB);
+		}
+		this.marker_B.setPosition(pos);
+		this.on_change_markerB({
+					latLng : pos
+				});
+	};
+
+	this.initialize = function() {
+		var map = this.busMap.getMapObj();
+		this.marker_image_A = new google.maps.MarkerImage('media/images/from_ru.png');
+		this.marker_image_B = new google.maps.MarkerImage('media/images/to_ru.png');
+
+		google.maps.event.addListener(map, 'click', function(e) {
+					console.log('clicked on the map');
+					var lat = e.latLng.lat();
+					var lon = e.latLng.lng();
+
+					if (T.marker_A == null)
+						T.setMarkerA(lat, lon);
+					else if (T.marker_B == null)
+						T.setMarkerB(lat, lon);
+				});
+	};
+
+	/**
+	 * Events
+	 */
+
+	this.on_change_markerA = function(e) {
+		getApp().getCodeAddress(e.latLng.lat(), e.latLng.lng(), function(text) {
+					if (text == null)
+						return null;
+					console.log(text);
+					$('#editboxA').val(text);
+
+				});
+
+	};
+	this.on_change_markerB = function(e) {
+		getApp().getCodeAddress(e.latLng.lat(), e.latLng.lng(), function(text) {
+					if (text == null)
+						return null;
+					console.log(text);
+					$('#editboxB').val(text);
+				});
+
+	};
+
+	this.deleteMarkers = function(e) {
+		if (this.marker_A != null) {
 			this.marker_A.setMap(null);
-		this.marker_A = new_marker;
-		console.log('MarkerA was setup', this.marker_A.getPosition());
-	};
-	this.setMarkerB = function(new_marker) {
-		this.drawingManager.markerOptions = {
-			icon : image = this.marker_image_A
-		};
-		if (this.marker_B != null)
+			this.marker_A = null;
+		}
+		if (this.marker_B != null) {
 			this.marker_B.setMap(null);
-		this.marker_B = new_marker;
-		console.log('MarkerB was setup', this.marker_B.getPosition());
+			this.marker_B = null;
+		}
+
 	};
-
-	this.markers_init = function() {
-		this.marker_image_A = new google.maps.MarkerImage('http://www.eway.in.ua/images/from_ru.png');
-		this.marker_image_B = new google.maps.MarkerImage('http://www.eway.in.ua/images/to_ru.png');
-		this.curr_image = this.marker_image_A;
-	};
-
-	this.init = function() {
-		geocoder = new google.maps.Geocoder();
-		var latlng = new google.maps.LatLng(50, 36);
-		var myOptions = {
-			zoom : 8,
-			center : latlng,
-			mapTypeId : google.maps.MapTypeId.ROADMAP
-		};
-		this.map = new google.maps.Map(document.getElementById("map_canvas"),
-				myOptions);
-		this.drawingManager = new google.maps.drawing.DrawingManager({
-			drawingControl : false,
-			drawingControlOptions : {
-				position : google.maps.ControlPosition.TOP_RIGHT,
-				drawingModes : [google.maps.drawing.OverlayType.MARKER]
-			},
-			drawingMode : google.maps.drawing.OverlayType.MARKER,
-			markerOptions : {
-				icon : image = new google.maps.MarkerImage('http://www.eway.in.ua/images/from_ru.png')
-			}
-
-		});
-		this.drawingManager.setMap(this.map);
-		google.maps.event.addListener(this.drawingManager, 'markercomplete',
-				function(marker) {
-					// console.log(marker.getPosition().toString())
-				});
-
-		google.maps.event.addListener(this.drawingManager, 'overlaycomplete',
-				function(event) {
-					if (event.type == google.maps.drawing.OverlayType.MARKER) {
-						if (T.curr_image == T.marker_image_A) {
-							T.setMarkerA(event.overlay);
-							T.curr_image = T.marker_image_B;
-						} else if (T.curr_image == T.marker_image_B) {
-							T.setMarkerB(event.overlay);
-							T.curr_image = T.marker_image_A;
-						}
-
-					}
-				});
-
-		google.maps.event.addListener(this.map, 'click', function(event) {
-			console.log('clicked on the map');
-				// placeMarker(event.latLng);moremaker(event.latLng);
-			});
-		this.markers_init();
-	};
-
-	this.codeAddress = function() {
-		var address = document.getElementById("address").value;
-		geocoder.geocode({
-					'address' : address
-				}, function(results, status) {
-					if (status == google.maps.GeocoderStatus.OK) {
-						map.setCenter(results[0].geometry.location);
-					} else {
-						alert("Geocode was not successful for the following reason: "
-								+ status);
-					}
-				});
-	};
-
 };
-

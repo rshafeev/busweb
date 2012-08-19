@@ -52,11 +52,18 @@ public class IndexController {
 
 			ArrayList<CityModel> citiesModel = new ArrayList<CityModel>();
 			Iterator<City> i = cities.iterator();
+			int default_city_id = -1;
 			while (i.hasNext()) {
 				City city = i.next();
+				if (default_city_id == -1) {
+					default_city_id = city.id;
+				}
 				model.addCity(new CityModel(city, locale));
 			}
+			if (default_city_id > 0) {
+				model.setDefaultCity(model.getCity(default_city_id));
 
+			}
 			// Отправим модель в формате GSON клиенту
 
 			return model;
