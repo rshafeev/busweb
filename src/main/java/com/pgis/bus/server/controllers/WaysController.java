@@ -16,7 +16,7 @@ import com.pgis.bus.data.IDataBaseService;
 import com.pgis.bus.data.impl.DataBaseService;
 import com.pgis.bus.data.orm.City;
 import com.pgis.bus.data.repositories.RepositoryException;
-import com.pgis.bus.server.models.CitiesModel;
+import com.pgis.bus.server.models.BasicModel;
 import com.pgis.bus.server.models.CityModel;
 import com.pgis.bus.server.models.ShortestWayModel;
 
@@ -27,9 +27,9 @@ public class WaysController {
 			.getLogger(WaysController.class);
 
 	@ResponseBody
-	@RequestMapping(value = "calculate.htm", method = RequestMethod.POST)
+	@RequestMapping(value = "calculate.json", method = RequestMethod.POST)
 	public String calculate() {
-		log.debug("calculate.htm");
+		log.debug("calculate.json");
 		ShortestWayModel model = new ShortestWayModel();
 		// Отправим модель в формате GSON клиенту
 		return (new Gson()).toJson(model);

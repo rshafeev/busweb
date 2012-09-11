@@ -9,6 +9,7 @@
 *.jar
 *.*~
 *.class
+*.orig
 .directory
 bin*/
 target*/
