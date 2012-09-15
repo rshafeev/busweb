@@ -13,7 +13,7 @@
 	<jsp:attribute name="navigation">
         <title>Bus</title>
           <div class="menu">
-       	 <ul>
+       	<ul>
           <li><a class="active" href="home_page.htm"><span><spring:message
 								code="welcome.home" text="default text" /></span></a></li>
           <li><a href="programms.htm"><span><spring:message
@@ -24,13 +24,15 @@
 								code="welcome.support" text="default text" /></span></a></li>
           <li><a href="contact_us.htm"><span><spring:message
 								code="welcome.contact_us" text="default text" /></span></a></li>
+								
+
  
         </ul>     
   
       </div> 
       <div class="lang_panel">
 				<a href="?lang=rus_RU"><img src="media/images/ru.png" alt="Ru"></a> 
-				<a href="?lang=en_US"><img src="media/images/uk.gif" alt="En"></a> 
+				<a href="?lang=en_US"><img src="media/images/uk.png" alt="En"></a> 
 				<a href="?lang=uk_UA"><img src="media/images/ua.png" alt="Ua"></a> 
       </div>    
     </jsp:attribute>
@@ -64,7 +66,7 @@
 										</div>
 									</td>
 
-									<td style="width: 215px;">
+									<td style="width: 250px;">
 										<div class="mini_table_route">
 											<div class="mini_table_route_center">
 												<div class="mini_table-route_top">
@@ -78,19 +80,19 @@
 													<tbody>
 														<tr>
 															<td class="b-search__point-name">
-																<div class="A_search">
+																<div class="A_search" style="margin-left: 3px;">
 																	<p style="margin-left: 3px; font-size: 11px;">A</p>
 																</div>
 															</td>
 															<td class="b-search__point-input"><span
 														class="b-form-input__box"> 
 							<input id="editboxA" class="a-form-input__input"
-															style="margin-bottom: 2px; margin-top: 15px; width: 200px;"></input>
+															style="margin-bottom: 2px; margin-top: 15px; margin-left: 5px; width: 200px;"></input>
 															</span></td>
 														</tr>
 														<tr class="b-search__point">
 															<td class="b-search__point-name">
-																<div class="B_search">
+																<div class="B_search" style="margin-left: 3px;">
 																	<p style="margin-left: 3px; font-size: 11px;">B</p>
 																</div>
 															</td>
@@ -98,7 +100,7 @@
 														class="b-form-input__box"> 
 							<input id="editboxB" class="b-form-input__input" id="uniq162"
 															autocomplete="off"
-															style="margin-bottom: 5px; width: 200px;"></input>
+															style="margin-bottom: 5px; margin-left: 5px; width: 200px;"></input>
 													</span></td>
 														</tr>
 													</tbody>
@@ -151,8 +153,8 @@
 									</td>
 
 									<td style="width: 170px;">
-										<div class="mini_table_marsh">
-											<div class="mini_table_marsh_center">
+								
+											<!--  <div class="mini_table_marsh_center">
 												<div class="mini_table_marsh_top"
 											style="margin-top: -3px; position: absolute; margin-left: 662px; width: 80px; height: 18px;">
 													<p style="font: normal normal 400 11px/21px Arial;">
@@ -183,17 +185,62 @@
 														code="welcome.label_cheep" text="default text" /></label>
 													</p>
 												</div>
-											</div>
+											</div>-->
 									
+							<div class="mini_table_transp_new" >
 							
-							
-							
+						 	<div class="selectTabs_second">
+			<ul class="lineTabs" >
+				<li><a class="active" href="#">1</a></li>
+				<li><a href="#">2</a></li>
+			
+			</ul> 
+			 <div class="content">
+				<div class="tab1">
+																		<p style="font-size: 12px; font-family:"Verdana", "Arial", "Tahoma";">
+														<input type="radio" name="labeled" value="1"
+													id="labeled_1" /><label for="labeled_1"
+													style="margin-left: 5 px;"><spring:message
+														code="welcome.label_optimal" text="default text" /></label>
+													</p>
+																										<p style="font-size: 12px; font-family:"Verdana", "Arial", "Tahoma"; ">
+														<input type="radio" name="labeled" value="2"
+													id="labeled_2" /><label for="labeled_2"
+													style="margin-left: 5 px;"><spring:message
+														code="welcome.label_fast" text="default text" /></label>
+													</p>
+													<p style="font-size: 12px; font-family:"Verdana", "Arial", "Tahoma";">
+														<input type="radio" name="labeled" value="3"
+													id="labeled_3" /><label for="labeled_3"
+													style="margin-left: 5 px;"><spring:message
+														code="welcome.label_cheep" text="default text" /></label>
+													</p>
+									</div>
+				<div class="tab2">
+<p style="font-size: 12px; font-family:"Verdana", "Arial", "Tahoma"; ">
+														<input type="radio" name="labeled" value="4"
+													id="labeled_4" /><label for="labeled_4"
+													style="margin-left: 5 px;">Cтуденческий</label>
+													</p>
+													<p style="font-size: 12px; font-family:"Verdana", "Arial", "Tahoma";">
+														<input type="radio" name="labeled" value="5"
+													id="labeled_5" /><label for="labeled_5"
+													style="margin-left: 5 px;">Льготный</label>
+													</p>
+				</div>
+
+			</div>
+		</div>
+			
+					
 							
 							
 							</td>
+
 									<td>
-										<button style="width: 120px; height: 40px; margin-left: 50px;"
-									type="submit" class="button" onclick="on_btn_calculate_click(); ">
+										<button style="width: auto; height: 40px; margin-left: 50px;"
+									type="submit" class="button"
+									onclick="on_btn_calculate_click(); ">
 									<spring:message code="welcome.btn_calc" text="default text" />
 								</button>
       
@@ -213,7 +260,7 @@
 <div id="wrapper">
 <div id="content">
 <div id="map_canvas"
-						style="width: 99%; height: 100%; border: 2px solid white;"></div>
+						style="width: 98%; height: 100%; border: 2px solid white;"></div>
 </div>
 </div>
 <div id="navigation">

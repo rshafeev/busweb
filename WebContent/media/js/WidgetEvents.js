@@ -78,7 +78,7 @@ function on_right_panel_show() {
 		document.img.src = 'media/images/arrow_right.png';
 		getApp().rightPanelVisible = true;
 	} else {
-		$("#map_canvas").width('99%').css({
+		$("#map_canvas").width('98%').css({
 					cursor : "auto",
 					backgroundColor : "rgb(226, 226, 226)"
 				});
