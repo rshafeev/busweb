@@ -175,7 +175,7 @@
 Какой ищем маршрут?
 </h3>
 												
-  <table cellpadding="2" cellspacing="0" class="menu_options_table">
+  <table cellpadding="2" cellspacing="0" class="menu_options_table" >
     <tbody>
       <tr>
         <td>
@@ -212,35 +212,35 @@
 									</div>
 				<div class="tab2" >
 										
-  <table cellpadding="2" cellspacing="0" class="menu_options_table">
-    <tbody>
+  <table cellpadding="2" cellspacing="0" class="menu_options_table" >
+    <tbody >
       <tr>
               <td>
-          <input type="radio" name="proezd" id="no_lgot" value="no_lgotv" checked="checked">
+          <input type="radio" name="proezd" id="no_lgot" style="margin-top:10px;" value="no_lgotv" checked="checked">
         </td>
         <td class="padding_right">
-          <label for="no_lgot" id="lgot_label" title="">отсутствует</label>
+          <label for="no_lgot" id="lgot_label"  style="margin-top:10px;"title="">отсутствует</label>
         </td>
         <td>
-           <input type="checkbox" id="tram">
+           <input type="checkbox" style="margin-top:10px;" id="tram">
         </td>
-        <td class="padding_right">
-          <label for="tram" id="tram_label" title="">на трамвай</label>
+        <td class="padding_right" >
+          <label for="tram" id="tram_label" style="margin-top:10px;" title="">на трамвай</label>
         </td>
 
       </tr>
       <tr>
               <td>
-          <input type="radio" name="proezd" id="lgot" value="lgot">
+          <input type="radio" name="proezd" style="margin-top:2px;" id="lgot" value="lgot">
         </td>
         <td>
-          <label for="lgot" id="lgot_label"style="margin-left: 5px; cursor: pointer;"title="">льготый</label>
+          <label for="lgot" id="lgot_label"style="margin-left: 5px; cursor: pointer; margin-top:2px;"title="">льготый</label>
         </td>
                 <td>
-          <input type="checkbox" id="troll">
+          <input type="checkbox" style="margin-top:3px;" id="troll">
         </td>
         <td>
-          <label for="troll" id="troll_label" style="margin-left: 5px; cursor: pointer;" title="">на троллейбус</label>
+          <label for="troll" id="troll_label" style="margin-left: 5px; cursor: pointer; margin-top:3px;" title="">на троллейбус</label>
         </td>
 
       </tr>
