@@ -73,7 +73,6 @@ $(document).ready(function(){
 			<div class="header">
 				<div class="block_header">
 					<jsp:invoke fragment="navigation" />
-					<div class="logotip">	</div>
 				</div>
 			</div>
 

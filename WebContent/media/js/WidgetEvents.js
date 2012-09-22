@@ -69,6 +69,14 @@ function on_btn_tram_click(e) {
 	else
 		g[0].src = 'media/images/tram_selected.png';
 };
+
+function on_btn_auto_click(e) {
+	var g = e.getElementsByTagName('img');
+	if (g[0].src.indexOf('media/images/auto.png') != -1)
+		g[0].src = 'media/images/auto_selected.png';
+	else
+		g[0].src = 'media/images/auto.png';
+};
 function on_right_panel_show() {
 	if (getApp().rightPanelVisible == false) {
 		$("#map_canvas").width('75%').css({

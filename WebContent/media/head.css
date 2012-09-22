@@ -329,7 +329,7 @@ a {
 	filter: progid:DXImageTransform.Microsoft.gradient(       startColorstr='#ffffff',
 		endColorstr='#e5e5e5', GradientType=0 ); /* IE6-9 */
 	height: 75px;
-	width: 172px;
+	width: 222px;
 	border-top-left-radius: 5px;
 	border-bottom-left-radius: 5px;
 	border-top-right-radius: 5px;
@@ -351,7 +351,7 @@ a {
 	border-bottom: 2px solid white;
 	border-right: 2px solid white;
 	border-left: 2px solid white;
-	width: 170px;
+	width: 220px;
 	height: 75px;
 	border-bottom-left-radius: 5px;
 	border-top-left-radius: 5px;
