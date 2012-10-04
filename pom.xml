@@ -179,11 +179,7 @@
 							<overWriteReleases>false</overWriteReleases>
 							<overWriteSnapshots>false</overWriteSnapshots>
 							<overWriteIfNewer>true</overWriteIfNewer>
-<<<<<<< HEAD
 							<excludeArtifactIds>javax.servlet-api,postgis-jdbc,postgresql,
-=======
-							<excludeArtifactIds>javax.servlet-api,postgresql,postgis-jdbc,
->>>>>>> 848ab0d129cb46a24969f8c0491a031b45052c07
 								tomcat-jsp-api,tomcat-jsp-api,tomcat-el-api,jstl,tomcat-servlet-api,tomcat-jdbc</excludeArtifactIds>
 						</configuration>
 					</execution>
