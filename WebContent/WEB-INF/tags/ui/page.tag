@@ -9,11 +9,22 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="media/head.css">
+<script type="text/javascript">
+var agent = navigator.userAgent.toLowerCase();
+if (agent.indexOf("firefox") != -1) 
+    document.write('<link rel="stylesheet" href="style_ff.css" type="text/css">');
+else if (agent.indexOf('msie') != -1) 
+    document.write('<link rel="stylesheet" href="media/styles_ie.css" type="text/css">');
+else if(agent.indexOf('opera') != -1)
+    document.write('<link rel="stylesheet" href="media/styles_op.css" type="text/css">');
+else
+    document.write('<link rel="stylesheet" href="media/styles.css" type="text/css">');
+</script>
+<!-- <link rel="stylesheet" type="text/css" href="media/head.css">
 <link rel="stylesheet" type="text/css" href="media/body.css">
 <link rel="stylesheet" type="text/css" href="media/foot.css">
 <link rel="stylesheet" type="text/css" href="media/new_tab.css">
-
+ -->
 
 
 
@@ -43,7 +54,7 @@
 
 html {
 	height: 100%;
-	overflow: hidden;
+	overflow-y: hidden;
 }
 </style>
 <script type="text/javascript">
@@ -68,6 +79,7 @@ $(document).ready(function(){
 
 <body onload="initialize()">
 	<div class="main-wrap clearfix">
+		<div class="page_layout">
 		<div class="portal-headline">
 
 			<div class="header">
@@ -88,7 +100,7 @@ $(document).ready(function(){
 		<div class="footer">
 			<jsp:invoke fragment="foot" />
 		</div>
-
+</div>
 	</div>
 </body>
 </html>
