@@ -5,8 +5,8 @@
 
 function Network() {
 
-	this.request_calculate = function() {
-		var ajax_url = "ways/calculate.json";
+	this.request_find_ways = function() {
+		var ajax_url = "ways/find.json";
 
 		$.ajax({
 					type : "POST",

@@ -230,7 +230,7 @@
 					<h2 style="color: black; margin: 10 0 10 0;">Появляется текст</h2>
 					<h2 style="color: black; margin: 10 0 10 0;">Появляется текст</h2>
 
-				</div>	
+	</div>	
 </div>	
 
 

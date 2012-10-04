@@ -5,9 +5,8 @@
 function on_btn_calculate_click() {
 	if (getApp().rightPanelVisible == false)
 		on_right_panel_show();
-
-	var network = new Network();
-	network.request_calculate();
+	$('#ways_panel').html("<div class='loader_div'><div class='loader_text'>Загрузка...</div></div>");
+	$('#ways_panel').load("ways/find.json",{});
 }
 
 function on_change_selectbox_city() {
