@@ -1,0 +1,205 @@
+* {
+margin:0;
+padding:0;
+list-style:none;
+text-decoration:none;
+}
+
+
+
+html, body{
+font:12px normal Arial, Verdana, "san-serif";
+}
+.selectTabs_first, .selectTabs_second {
+	height:87px;
+	width: 420px;
+overflow:hidden;
+}
+.content p {
+padding-top:5px;
+padding-left: 4px;
+color:#666;
+}
+.content div{
+display:none;
+}
+.content .tab1 {
+display:block;
+}
+
+
+/*variant 2*/
+.selectTabs_second .lineTabs a {
+border:1px solid #eee;
+}
+.selectTabs_second .lineTabs a {
+/*border-bottom-color:#cc0000;*/
+}
+
+.selectTabs_second .lineTabs li {
+display:inline-block;
+width:85px;
+height:10px;
+margin:7px 0px 0px 0;
+padding:0 0 0 0;
+   margin:4px;
+   text-align: center;
+}
+
+.selectTabs_second ul {
+	list-style: none;
+	margin-left:15px;
+	margin:0;
+    padding:0;
+}
+.selectTabs_second .lineTabs {
+margin-left:15px;
+width:400px;
+
+}
+.selectTabs_second .lineTabs a {
+margin:0 0 -1px -5px;
+*margin:0 0 -1px -1px;
+padding:0 10px;
+height:10px;
+line-height:10px;
+display:block;
+font-size:10px;
+color:#000;
+-moz-border-radius:5px 5px 2px 2px;
+-webkit-border-radius:5px 5px 2px 2px;
+border-radius:5px 5px 2px 2px;
+border-top: 1px solid white;
+border-left:2px solid white;
+border-right:2px solid white;
+}
+.selectTabs_second .lineTabs a.active {
+position:relative;
+color:#cc0000;
+border-color:white;
+background: rgb(255, 255, 255); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%,
+		rgba(229, 229, 229, 1) 100% ); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255,
+		255, 255, 1) ), color-stop(100%, rgba(229, 229, 229, 1) ) );
+	/* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%,
+		rgba(229, 229, 229, 1) 100% ); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%,
+		rgba(229, 229, 229, 1) 100% ); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%,
+		rgba(229, 229, 229, 1) 100% ); /* IE10+ */
+	background: linear-gradient(top, rgba(255, 255, 255, 1) 0%,
+		rgba(229, 229, 229, 1) 100% ); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient(       startColorstr='#ffffff',
+		endColorstr='#e5e5e5', GradientType=0 ); /* IE6-9 */
+border-top: 1px solid white;
+border-left:2px solid white;
+border-right:2px solid white;
+}
+
+.selectTabs_second .content {
+background: rgb(255, 255, 255); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%,
+		rgba(229, 229, 229, 1) 100% ); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255,
+		255, 255, 1) ), color-stop(100%, rgba(229, 229, 229, 1) ) );
+	/* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%,
+		rgba(229, 229, 229, 1) 100% ); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%,
+		rgba(229, 229, 229, 1) 100% ); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%,
+		rgba(229, 229, 229, 1) 100% ); /* IE10+ */
+	background: linear-gradient(top, rgba(255, 255, 255, 1) 0%,
+		rgba(229, 229, 229, 1) 100% ); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient(       startColorstr='#ffffff',
+		endColorstr='#e5e5e5', GradientType=0 ); /* IE6-9 */
+border-bottom: 2px solid white;
+	border-right: 2px solid white;
+	border-left: 2px solid white;
+	width: 310px;
+	height: 65px;
+	border-bottom-left-radius: 5px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 15px;
+	border-bottom-right-radius: 15px;
+	margin-top:-2px;
+}
+
+
+/*************************/
+.menu_options_table tr td
+{
+	margin: 0;
+	right:5px;
+	padding: 0;
+	height: 18px;
+	text-align: left;
+}
+
+.menu_options_table tr td label
+{
+	font-size: 11px;
+	line-height: 15px;
+	float: left;
+}
+
+.menu_options_table tr td input
+{
+	margin: 0 10px;
+	padding: 0;
+	float: left;
+}
+
+
+/************************************************************TAB2***************************************************/
+.menu_options_table_new tr td
+{
+	margin: 0;
+	right:5px;
+	padding: 0;
+	height: 18px;
+	text-align: left;
+
+   
+}
+
+.menu_options_table_new tr td label
+{
+	font-size: 11px;
+	line-height: 15px;
+	float: left;
+}
+
+.menu_options_table_new tr td input
+{
+margin: 0 10px;
+	padding: 0;
+	float: left;
+}
+
+.menu_options_table_new tr td select
+{
+	margin: 0px 0px;
+	padding: 0;
+	float: left;
+}
+.line { 
+    border-right: 2px solid #ccc; /* Параметры линии */ 
+ margin-right: 127px; /* Отступ слева */
+    padding-right: 5px; /* Расстояние от линии до текста */ 
+   }
+/******************************************************************************************/
+.menu_options_table tr td.padding_right
+{
+	padding: 0 0 0 5px;
+	cursor: pointer;
+}
+
+.menu_options_table_new tr td.padding_right_new
+{
+	padding: 0 0 0 5px;
+	cursor: pointer;
+}
+/******************************************************************************************/
