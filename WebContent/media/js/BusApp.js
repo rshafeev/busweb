@@ -21,6 +21,70 @@ function BusApp() {
 
 		this.loadCitiesToComboBox();
 	};
+
+	this.createFindWaysOptionsModel = function() {
+		var city = this.getCurrentCity();
+		if (city == null)
+			return null;
+		var markerA = this.googleMap.getMarkers().getMarkerA();
+		var markerB = this.googleMap.getMarkers().getMarkerB();
+		if (markerA == null || markerB == null) {
+			alert('Пожалуйста, задайте начальную и конечную точку');
+			return null;
+		}
+		var alg_type = 'c_cost';
+		console.log(city);
+		var opts = {
+			city_id : city.id,
+			p1 : {
+				x : markerA.getPosition().lat(),
+				y : markerA.getPosition().lng()
+			},
+			p2 : {
+				x : markerB.getPosition().lat(),
+				y : markerB.getPosition().lng()
+			},
+			day_id : 'c_Sunday',
+			time_start_hours : 10,
+			time_start_minutes : 0,
+			alg_strategy : alg_type,
+			usage_routeTypes : [{
+						discount : 1.0,
+						route_type_id : "c_route_station_input"
+					}, {
+						discount : 1.0,
+						route_type_id : "c_route_transition"
+					}, {
+						discount : 0.5,
+						route_type_id : "c_route_metro"
+					}, {
+						discount : 1.0,
+						route_type_id : "c_route_bus"
+					}, {
+						discount : 1.0,
+						route_type_id : "c_route_trolley"
+					}]
+
+		};
+		return opts;
+
+	};
+
+	this.getCurrentCity = function() {
+		var nameFromCombo = $("#selectbox_city").val();
+		var cities = this.getDataModel().cities;
+		var city = null;
+
+		for (var i = 0; i < cities.length; i++) {
+
+			if (cities[i].id == nameFromCombo) {
+				city = cities[i];
+				break;
+			}
+		}
+		return city;
+	};
+
 	this.getDataModel = function() {
 		return basicModel;
 	};
@@ -65,7 +129,11 @@ function BusApp() {
 					}
 				});
 	};
-
+	this.loadWay = function(routeParts_arr) {
+		for (var i = 0; i < routeParts_arr.length; i++) {
+			console.log(routeParts_arr[i]);
+		}
+	};
 	this.on_resize_window = function(block, headerHeight, footerHeight) {
 		var windowHeight = $(window).height();
 		$(block).css('height', windowHeight - headerHeight - footerHeight);

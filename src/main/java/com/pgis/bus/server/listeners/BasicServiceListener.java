@@ -1,24 +1,13 @@
 package com.pgis.bus.server.listeners;
 
-import java.util.ArrayList;
-
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
-import org.apache.tomcat.jdbc.pool.DataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.pgis.bus.data.DBConnectionFactory;
 import com.pgis.bus.data.DBConnectionManager;
-import com.pgis.bus.data.IDataBaseService;
-import com.pgis.bus.data.impl.DataBaseService;
-import com.pgis.bus.data.orm.City;
-import com.pgis.bus.data.repositories.RepositoryException;
 
 /**
  * навешивает логику на момент создания/удаления сервлета

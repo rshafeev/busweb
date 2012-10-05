@@ -5,23 +5,22 @@
 function on_btn_calculate_click() {
 	if (getApp().rightPanelVisible == false)
 		on_right_panel_show();
-	$('#ways_panel').html("<div class='loader_div'><div class='loader_text'>Загрузка...</div></div>");
-	$('#ways_panel').load("ways/find.json",{});
+	var el = document.getElementById('ways_panel');
+	var findWaysOptions = getApp().createFindWaysOptionsModel();
+	if (findWaysOptions == null)
+		return;
+	el.style.display = 'block';
+
+	$('#ways_panel')
+			.html("<div class='loader_div'><div class='loader_text'>Загрузка...</div></div>");
+	$('#ways_panel').load("ways/find.json", {
+				data : JSON.stringify(findWaysOptions)
+			});
 }
 
 function on_change_selectbox_city() {
 	console.log("on_change_selectbox_city()");
-	var nameFromCombo = $("#selectbox_city").val();
-	var cities = getApp().getDataModel().cities;
-	var city = null;
-
-	for (var i = 0; i < cities.length; i++) {
-
-		if (cities[i].id == nameFromCombo) {
-			city = cities[i];
-			break;
-		}
-	}
+	var city = getApp().getCurrentCity();
 	if (city == null) {
 		return;
 	}
@@ -32,7 +31,6 @@ function on_change_selectbox_city() {
 				minZoom : city.scale
 			});
 	googleMap.setCenter(city.scale, city.location.lat, city.location.lon);
-
 	$('#editboxA').val('');
 	$('#editboxB').val('');
 }

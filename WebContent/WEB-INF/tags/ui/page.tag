@@ -9,16 +9,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Cache-control" content="no-cache">
 <script type="text/javascript">
-var agent = navigator.userAgent.toLowerCase();
-if (agent.indexOf("firefox") != -1) 
-    document.write('<link rel="stylesheet" href="style_ff.css" type="text/css">');
-else if (agent.indexOf('msie') != -1) 
-    document.write('<link rel="stylesheet" href="media/styles_ie.css" type="text/css">');
-else if(agent.indexOf('opera') != -1)
-    document.write('<link rel="stylesheet" href="media/styles_op.css" type="text/css">');
-else
-    document.write('<link rel="stylesheet" href="media/styles.css" type="text/css">');
+	var agent = navigator.userAgent.toLowerCase();
+	if (agent.indexOf("firefox") != -1)
+		document.write('<link rel="stylesheet" href="style_ff.css" type="text/css">');
+	else if (agent.indexOf('msie') != -1)
+		document.write('<link rel="stylesheet" href="media/styles_ie.css" type="text/css">');
+	else if (agent.indexOf('opera') != -1)
+		document.write('<link rel="stylesheet" href="media/styles_op.css" type="text/css">');
+	else
+		document.write('<link rel="stylesheet" href="media/styles.css" type="text/css">');
 </script>
 <!-- <link rel="stylesheet" type="text/css" href="media/head.css">
 <link rel="stylesheet" type="text/css" href="media/body.css">
@@ -27,10 +28,9 @@ else
  -->
 
 
-
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script type="text/javascript"
+<script 
 	src="http://maps.google.com/maps/api/js?sensor=false&libraries=drawing"></script>
 
 <jsp:invoke fragment="page_head" />
@@ -38,7 +38,6 @@ else
 <script src="media/js/selectbox.js"></script>
 <script src="media/js/WidgetHelpers.js"></script>
 <script src="media/js/WidgetEvents.js"></script>
-<script src="media/js/Network.js"></script>
 <script src="media/js/map/Markers.js"></script>
 <script src="media/js/GoogleMap.js"></script>
 <script src="media/js/BusApp.js"></script>
@@ -58,49 +57,49 @@ html {
 }
 </style>
 <script type="text/javascript">
-$(document).ready(function(){
-	$("div.selectTabs_first, div.selectTabs_second").each(function () {
-		var tmp = $(this);
-		console.log($(tmp).find(" .lineTabs li"));
-		$(tmp).find(".lineTabs li").each(function (i) {
-			$(tmp).find(".lineTabs li:eq("+i+") a").click(function(){
-				var tab_id=i+1;
-				$(tmp).find(".lineTabs li a").removeClass("active");
-				$(this).addClass("active");
-				$(tmp).find(".content div").stop(false,false).hide();
-				$(tmp).find(".tab"+tab_id).stop(false,false).show();
-				return false;
+	$(document).ready(function() {
+		$("div.selectTabs_first, div.selectTabs_second").each(function() {
+			var tmp = $(this);
+			console.log($(tmp).find(" .lineTabs li"));
+			$(tmp).find(".lineTabs li").each(function(i) {
+				$(tmp).find(".lineTabs li:eq(" + i + ") a").click(function() {
+					var tab_id = i + 1;
+					$(tmp).find(".lineTabs li a").removeClass("active");
+					$(this).addClass("active");
+					$(tmp).find(".content div").stop(false, false).hide();
+					$(tmp).find(".tab" + tab_id).stop(false, false).show();
+					return false;
+				});
 			});
 		});
 	});
-});
 </script>
 </head>
 
 <body onload="initialize()">
 	<div class="main-wrap clearfix">
 		<div class="page_layout">
-		<div class="portal-headline">
+			<div class="portal-headline">
 
-			<div class="header">
-				<div class="block_header">
-					<jsp:invoke fragment="navigation" />
+				<div class="header">
+					<div class="block_header">
+						<jsp:invoke fragment="navigation" />
+					</div>
+				</div>
+
+				<div class="slider2">
+					<jsp:invoke fragment="menu" />
 				</div>
 			</div>
 
-			<div class="slider2">
-				<jsp:invoke fragment="menu" />
+			<div class="main_content">
+				<jsp:invoke fragment="content" />
+			</div>
+
+			<div class="footer">
+				<jsp:invoke fragment="foot" />
 			</div>
 		</div>
-
-		<div class="main_content">
-			<jsp:invoke fragment="content" />
-		</div>
-
-		<div class="footer">
-			<jsp:invoke fragment="foot" />
-		</div>
-</div>
 	</div>
 </body>
 </html>

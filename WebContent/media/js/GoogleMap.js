@@ -22,7 +22,9 @@ function GoogleMap() {
 		this.markers.initialize();
 
 	};
-
+    this.getMarkers = function(){
+       return this.markers;
+    };
 	this.setCenter = function(scale, lat, lon) {
 		if (this.map != null) {
 			this.map.setCenter(new google.maps.LatLng(lat, lon));

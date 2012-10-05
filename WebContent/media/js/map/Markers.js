@@ -8,7 +8,12 @@ function Markers(busMap) {
 	/**
 	 * Methods
 	 */
-
+	this.getMarkerA = function() {
+		return this.marker_A;
+	}
+	this.getMarkerB = function() {
+		return this.marker_B;
+	}
 	this.setMarkerA = function(lat, lon) {
 		var pos = new google.maps.LatLng(lat, lon);
 		if (this.marker_A == null) {
@@ -101,4 +106,5 @@ function Markers(busMap) {
 		}
 
 	};
+
 };
