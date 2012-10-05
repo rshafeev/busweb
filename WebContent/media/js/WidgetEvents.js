@@ -40,42 +40,42 @@ function on_change_selectbox_city() {
 
 function on_btn_metro_click(e) {
 	var g = e.getElementsByTagName('img');
-	if (g[0].src.indexOf('media/images/metro_selected.png') != -1)
-		g[0].src = 'media/images/metro.png';
+	if (g[0].src.indexOf('media/css/images/metro_selected.png') != -1)
+		g[0].src = 'media/css/images/metro.png';
 	else
-		g[0].src = 'media/images/metro_selected.png';
+		g[0].src = 'media/css/images/metro_selected.png';
 };
 
 function on_btn_bus_click(e) {
 	var g = e.getElementsByTagName('img');
-	if (g[0].src.indexOf('media/images/bus_selected.png') != -1)
-		g[0].src = 'media/images/bus.png';
+	if (g[0].src.indexOf('media/css/images/bus_selected.png') != -1)
+		g[0].src = 'media/css/images/bus.png';
 	else
-		g[0].src = 'media/images/bus_selected.png';
+		g[0].src = 'media/css/images/bus_selected.png';
 };
 
 function on_btn_troll_click(e) {
 	var g = e.getElementsByTagName('img');
-	if (g[0].src.indexOf('media/images/trol_selected.png') != -1)
-		g[0].src = 'media/images/trol.png';
+	if (g[0].src.indexOf('media/css/images/trol_selected.png') != -1)
+		g[0].src = 'media/css/images/trol.png';
 	else
-		g[0].src = 'media/images/trol_selected.png';
+		g[0].src = 'media/css/images/trol_selected.png';
 };
 
 function on_btn_tram_click(e) {
 	var g = e.getElementsByTagName('img');
-	if (g[0].src.indexOf('media/images/tram_selected.png') != -1)
-		g[0].src = 'media/images/tram.png';
+	if (g[0].src.indexOf('media/css/images/tram_selected.png') != -1)
+		g[0].src = 'media/css/images/tram.png';
 	else
-		g[0].src = 'media/images/tram_selected.png';
+		g[0].src = 'media/css/images/tram_selected.png';
 };
 
 function on_btn_auto_click(e) {
 	var g = e.getElementsByTagName('img');
-	if (g[0].src.indexOf('media/images/auto.png') != -1)
-		g[0].src = 'media/images/auto_selected.png';
+	if (g[0].src.indexOf('media/css/images/auto.png') != -1)
+		g[0].src = 'media/css/images/auto_selected.png';
 	else
-		g[0].src = 'media/images/auto.png';
+		g[0].src = 'media/css/images/auto.png';
 };
 function on_right_panel_show() {
 	if (getApp().rightPanelVisible == false) {
@@ -83,14 +83,14 @@ function on_right_panel_show() {
 					cursor : "auto",
 					backgroundColor : "rgb(226, 226, 226)"
 				});
-		document.img.src = 'media/images/arrow_right.png';
+		document.img.src = 'media/css/images/arrow_right.png';
 		getApp().rightPanelVisible = true;
 	} else {
 		$("#map_canvas").width('98%').css({
 					cursor : "auto",
 					backgroundColor : "rgb(226, 226, 226)"
 				});
-		document.img.src = 'media/images/arrow_left.png';
+		document.img.src = 'media/css/images/arrow_left.png';
 
 		var map = getApp().getGoogleMap();
 		if (map != null) {
@@ -100,3 +100,7 @@ function on_right_panel_show() {
 		getApp().rightPanelVisible = false;
 	}
 }
+
+
+
+

@@ -61,7 +61,7 @@ function BusApp() {
 						}
 					} else {
 						respone_call_func(null);
-						console.log('Geocoder failed due to: ' + status);
+						//console.log('Geocoder failed due to: ' + status);
 					}
 				});
 	};
