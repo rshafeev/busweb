@@ -143,4 +143,4 @@ function selectbox_initialize() {
 		});
 	})(jQuery);
 
-}
+};

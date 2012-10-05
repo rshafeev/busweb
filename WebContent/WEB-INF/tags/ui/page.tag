@@ -6,34 +6,31 @@
 <%@ attribute name="content" required="true" fragment="true"%>
 <%@ attribute name="foot" required="true" fragment="true"%>
 
+<meta http-equiv="Cache-control" content="no-cache">
+var agent = navigator.userAgent.toLowerCase();
+if (agent.indexOf("firefox") != -1) 
+    document.write('<link rel="stylesheet" href="style_ff.css" type="text/css">');
+else if (agent.indexOf('msie') != -1) 
+    document.write('<link rel="stylesheet" href="media/styles_ie.css" type="text/css">');
+else if(agent.indexOf('opera') != -1)
+    document.write('<link rel="stylesheet" href="media/styles_op.css" type="text/css">');
+else
+    document.write('<link rel="stylesheet" href="media/styles.css" type="text/css">');
+
+
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Cache-control" content="no-cache">
-<script type="text/javascript">
-	var agent = navigator.userAgent.toLowerCase();
-	if (agent.indexOf("firefox") != -1)
-		document.write('<link rel="stylesheet" href="style_ff.css" type="text/css">');
-	else if (agent.indexOf('msie') != -1)
-		document.write('<link rel="stylesheet" href="media/styles_ie.css" type="text/css">');
-	else if (agent.indexOf('opera') != -1)
-		document.write('<link rel="stylesheet" href="media/styles_op.css" type="text/css">');
-	else
-		document.write('<link rel="stylesheet" href="media/styles.css" type="text/css">');
-</script>
-<!-- <link rel="stylesheet" type="text/css" href="media/head.css">
-<link rel="stylesheet" type="text/css" href="media/body.css">
-<link rel="stylesheet" type="text/css" href="media/foot.css">
-<link rel="stylesheet" type="text/css" href="media/new_tab.css">
- -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf8" />
 
-
+<script type="text/javascript" src="media/js/jquery-1.8.0.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 <script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script 
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> 
+<script type="text/javascript"
 	src="http://maps.google.com/maps/api/js?sensor=false&libraries=drawing"></script>
+	<jsp:invoke fragment="page_head" />
+	
 
-<jsp:invoke fragment="page_head" />
 
 <script src="media/js/selectbox.js"></script>
 <script src="media/js/WidgetHelpers.js"></script>
@@ -43,19 +40,18 @@
 <script src="media/js/BusApp.js"></script>
 <script src="media/js/main.js"></script>
 
-
-<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 <style>
 * {
 	margin: 0;
 	padding: 0;
 }
-
-html {
-	height: 100%;
-	overflow-y: hidden;
+html , body
+{
+height:100%;
+overflow-y: hidden;
 }
 </style>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("div.selectTabs_first, div.selectTabs_second").each(function() {
@@ -74,12 +70,50 @@ html {
 		});
 	});
 </script>
+
+<script type="text/javascript">
+var agent = navigator.userAgent.toLowerCase();
+var b = $.browser, v = parseFloat(b.version); 
+var c = $.browser, ver = parseFloat(c.version); 
+oldBrowser = ( b.mozilla && v < "10" ); 
+oldMSIEBrowser8 = ( c.msie && ver == "8" ); 
+oldMSIEBrowser6 = ( c.msie && ver == "6" ); 
+oldMSIEBrowser7 = ( c.msie && ver == "7" ); 
+var vers = $.browser.version;
+if( $.browser.opera && vers <=10.0  ){
+	document.write('<link rel="stylesheet" href="media/css/busWeb_op.css" type="text/css">');
+	}
+else if ( oldMSIEBrowser8 ) 
+{
+document.write('<link rel="stylesheet" href="media/css/busWeb_ie8.css" type="text/css">');
+}
+else if ( oldMSIEBrowser6 ) 
+{
+document.write('<link rel="stylesheet" href="media/css/busWeb_ie6.css" type="text/css">');
+}
+else if ( oldMSIEBrowser7 ) 
+{
+document.write('<link rel="stylesheet" href="media/css/busWeb_ie7.css" type="text/css">');
+}
+else if ( oldBrowser ) 
+	{
+	document.write('<link rel="stylesheet" href="media/css/busWeb_ff.css" type="text/css">');
+	}
+else 
+{document.write('<link rel="stylesheet" href="media/css/busWeb.css" type="text/css">');}
+</script>
+<script>
+function show_text() {
+	var el = document.getElementById('test'); 
+	el.style.display = (el.style.display == 'block') ? 'none' : 'block';
+	}
+</script>
 </head>
 
 <body onload="initialize()">
 	<div id="ajax_js"></div>
 	<div class="main-wrap clearfix">
-		<div class="page_layout">
+		 <div class="page_layout">
 			<div class="portal-headline">
 
 				<div class="header">
@@ -92,7 +126,7 @@ html {
 					<jsp:invoke fragment="menu" />
 				</div>
 			</div>
-
+ 
 			<div class="main_content">
 				<jsp:invoke fragment="content" />
 			</div>

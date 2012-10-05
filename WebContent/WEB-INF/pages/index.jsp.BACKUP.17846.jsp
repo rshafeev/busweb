@@ -265,9 +265,15 @@
    <jsp:directive.include  file="widgets/time_panel.jsp"/>
 </div>
 
+<<<<<<< HEAD
 </div>
 </div> 
+									 <td>
+=======
+			</div>
+		</div> 
 									  <td>
+>>>>>>> 49b65f52924401c8c14bfb37b0bc1213687903de
 										<button style="width: auto; height: 40px; margin-left: 50px;"
 									type="submit" class="button"
 									onclick="on_btn_calculate_click(); show_text(); ">

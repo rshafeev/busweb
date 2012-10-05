@@ -178,7 +178,7 @@
 Какой ищем маршрут?
 </h3>
 												
-  <table cellpadding="2" cellspacing="0" class="menu_options_table">
+  <table cellpadding="2" cellspacing="0" class="menu_options_table" >
     <tbody>
       <tr>
         <td>
@@ -215,35 +215,35 @@
 									</div>
 				<div class="tab2" >
 										
-  <table cellpadding="2" cellspacing="0" class="menu_options_table">
-    <tbody>
+  <table cellpadding="2" cellspacing="0" class="menu_options_table" >
+    <tbody >
       <tr>
               <td>
-          <input type="radio" name="proezd" id="no_lgot" value="no_lgotv" checked="checked">
+          <input type="radio" name="proezd" id="no_lgot" style="margin-top:10px;" value="no_lgotv" checked="checked">
         </td>
         <td class="padding_right">
-          <label for="no_lgot" id="lgot_label" title="">отсутствует</label>
+          <label for="no_lgot" id="lgot_label"  style="margin-top:10px;"title="">отсутствует</label>
         </td>
         <td>
-           <input type="checkbox" id="tram">
+           <input type="checkbox" style="margin-top:10px;" id="tram">
         </td>
-        <td class="padding_right">
-          <label for="tram" id="tram_label" title="">на трамвай</label>
+        <td class="padding_right" >
+          <label for="tram" id="tram_label" style="margin-top:10px;" title="">на трамвай</label>
         </td>
 
       </tr>
       <tr>
               <td>
-          <input type="radio" name="proezd" id="lgot" value="lgot">
+          <input type="radio" name="proezd" style="margin-top:2px;" id="lgot" value="lgot">
         </td>
         <td>
-          <label for="lgot" id="lgot_label"style="margin-left: 5px; cursor: pointer;"title="">льготый</label>
+          <label for="lgot" id="lgot_label"style="margin-left: 5px; cursor: pointer; margin-top:2px;"title="">льготый</label>
         </td>
                 <td>
-          <input type="checkbox" id="troll">
+          <input type="checkbox" style="margin-top:3px;" id="troll">
         </td>
         <td>
-          <label for="troll" id="troll_label" style="margin-left: 5px; cursor: pointer;" title="">на троллейбус</label>
+          <label for="troll" id="troll_label" style="margin-left: 5px; cursor: pointer; margin-top:3px;" title="">на троллейбус</label>
         </td>
 
       </tr>
@@ -258,15 +258,67 @@
 
       </tr>
     </tbody>
-  </table>		
-  						
-</div>
-<div class="tab3">
-   <jsp:directive.include  file="widgets/time_panel.jsp"/>
-</div>
+  </table>								
+				</div>
+				<div class="tab3">
+				<p style="font-size: 11px; display:inline;color: black;">Время выезда. </p>
+				<p style="font-size: 10px; margin-left: 45px;display:inline;color: black;">час:</p><select style="width:40px; display:inline;margin-left: 10px;margin-top: 10px;">
+  <option>01</option>
+  <option>02</option>
+  <option>03</option>
+  <option>04</option>
+  <option>05</option>
+    <option>06</option>
+  <option>07</option>
+  <option>08</option>
+  <option>09</option>
+  <option>10</option>
+    <option>11</option>
+  <option>12</option>
+  <option>13</option>
+  <option>14</option>
+  <option>15</option>
+    <option>16</option>
+  <option>17</option>
+  <option>18</option>
+  <option>19</option>
+  <option>20</option>
+    <option>21</option>
+  <option>22</option>
+  <option>23</option>
+  <option>24</option>
+</select> 
+<p style="font-size: 10px;color: black; margin-left: 0px;display:inline;">мин:</p>
+    <select style="width:40px; display:inline; ">
+  <option>00</option>
+  <option>05</option>
+  <option>10</option>
+  <option>15</option>
+  <option>20</option>
+  <option>25</option>
+    <option>30</option>
+  <option>35</option>
+  <option>40</option>
+  <option>45</option>
+  <option>50</option>
+    <option>55</option>
 
-</div>
-</div> 
+
+</select>
+		<p style="font-size: 11px;display:inline; color: black;">День недели: </p>		
+		<select name=day_s size=1 style="width:104px; margin-top:7px; display:inline;margin-left: 55px;font-size: 11px;" >
+<option value=1 selected>Понедельник</option>
+<option value=2>Вторник</option>
+<option value=3 >Среда</option>
+<option value=4>Четверг</option>
+<option value=5>Пятница</option>
+<option value=6>Суббота</option>
+<option value=7>Воскресенье</option>
+</select>
+				</div>
+
+			</div>
+		</div> 
 									  <td>
 										<button style="width: auto; height: 40px; margin-left: 50px;"
 									type="submit" class="button"
@@ -298,7 +350,7 @@
 						src='media/css/images/arrow_left.png' /></a>
 					
 		</div>	
- 	<div id="ways_panel" style="display: none; width: 100%; height: 100%;">
+ 	<div id="test" style="display: none; width: 100%; height: 100%;">
 					<h2 style="color: black; margin: 10 0 10 0;">Появляется текст</h2>
 					<h2 style="color: black; margin: 10 0 10 0;">Появляется текст</h2>
 					<h2 style="color: black; margin: 10 0 10 0;">Появляется текст</h2>

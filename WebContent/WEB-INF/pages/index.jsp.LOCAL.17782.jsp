@@ -12,8 +12,7 @@
 
 	<jsp:attribute name="navigation">
         <title>Bus</title>
-        <div class="menu">
-
+          <div class="menu">
        	<ul>
           <li><a class="active" href="home_page.htm"><span><spring:message
 								code="welcome.home" text="default text" /></span></a></li>
@@ -25,30 +24,27 @@
 								code="welcome.support" text="default text" /></span></a></li>
           <li><a href="contact_us.htm"><span><spring:message
 								code="welcome.contact_us" text="default text" /></span></a></li>
-							
-
+								
 
  
         </ul>     
-
-      </div>   
-  <div class="lang_panel">
-				<a href="?lang=rus_RU"><img src="media/css/images/ru.png"  alt="Ru"></a> 
-				<a href="?lang=en_US"><img src="media/css/images/uk.png"  alt="En"></a> 
-				<a href="?lang=uk_UA"><img src="media/css/images/ua.png"  alt="Ua"></a>
-      </div>   
+  
+      </div> 
+      <div class="lang_panel">
+				<a href="?lang=rus_RU"><img src="media/images/ru.png" alt="Ru"></a> 
+				<a href="?lang=en_US"><img src="media/images/uk.png" alt="En"></a> 
+				<a href="?lang=uk_UA"><img src="media/images/ua.png" alt="Ua"></a> 
+      </div>    
     </jsp:attribute>
 
 
 	<jsp:attribute name="menu">
-		   <div class="transparent">
-		  
-									<div class="block-round-content">
+				<div class="transparent">
+								<div class="block-round-content">
 						<table class="menu_table" cellpadding="10" cellspacing="10">
 							<tbody>
 								<tr>
-								
-								 <td style="width: 171px;">
+									<td style="width: 171px;">
 										<div class="mini_table_town">
 											<div class="mini_table_town_center">
 												<div class="mini_table-town_top">
@@ -70,7 +66,7 @@
 										</div>
 									</td>
 
-								 	<td style="width: 250px;">
+									<td style="width: 250px;">
 										<div class="mini_table_route">
 											<div class="mini_table_route_center">
 												<div class="mini_table-route_top">
@@ -112,7 +108,7 @@
 										</div>
 									</td>
 
-								 	<td style="width: 145px;">
+									<td style="width: 145px;">
 										<div class="mini_table_transp">
 											<div class="mini_table_transp_center">
 												<div class="mini_table-transp_top">
@@ -125,34 +121,35 @@
 												</div>
 												<div class="mini_table_transp_temp" style="height: 20px;"></div>
 												<div class="mini_table_transp_list"
-											style="width: 190px; margin-left: 15px;"><a href="#" onclick="on_btn_metro_click(this);">
-																<img src="media/css/images/metro_selected.png"></img>
+											style="width: 190px; margin-left: 15px;">
+													<table align="center"
+												style="margin-top: 5px; margin-left: 3px; margin-right: 3px;">
+														<tr>
+															<a href="#" onclick="on_btn_metro_click(this);">
+																<span><img src="media/images/metro_selected.png"></img></span>
 															</a>
-												
-												
+														</tr>
+														<tr>
 															<a href="#" onclick="on_btn_bus_click(this)">
-															<img src="media/css/images/bus_selected.png" />
+																<img src="media/images/bus_selected.png" />
 															</a>
-													
+														</tr>
 
-														
+														<tr>
 															<a href="#" onclick="on_btn_troll_click(this)">
-																<span><img src="media/css/images/trol_selected.png" /></span>
+																<img src="media/images/trol_selected.png" />
 															</a>
-														
-														
+														</tr>
+														<tr>
 															<a href="#" onclick="on_btn_tram_click(this)">
-																<span><img src="media/css/images/tram_selected.png"></img></span>
+																<img src="media/images/tram_selected.png"></img>
 															</a>
-																<a href="#" onclick="on_btn_auto_click(this)">
-																<span><img style="margin-left:8px;" src="media/css/images/auto.png"></img></span>
+														</tr>
+															<tr>																											<tr>
+															<a href="#" onclick="on_btn_auto_click(this)">
+																<img style="margin-left:12px;" src="media/images/auto.png"></img>
 															</a>
-													<table 
-												style="margin-top: 5px; margin-left: 3px; margin-right: 3px; ">
-													
-															
-																																					<tr>
-													
+														</tr>
 													</table>
 												</div>
 											</div>
@@ -160,7 +157,7 @@
 
 									</td>
 
-								 	<td style="width: 250px;">
+									<td style="width: 250px;">
 								
 
 									
@@ -174,7 +171,7 @@
 			</ul> 
 			 <div class="content">
 				<div class="tab1">
-<h3 style="text-align: center;font-size: 12px;padding-bottom: 3px;padding-top: 3px; ">
+<h3 style="text-align: center;font-size: 12px;padding-bottom: 3px;padding-top: 3px; font-family:"Verdana", "Arial", "Tahoma"; ">
 Какой ищем маршрут?
 </h3>
 												
@@ -267,26 +264,30 @@
 
 </div>
 </div> 
-									  <td>
+									 <td>
 										<button style="width: auto; height: 40px; margin-left: 50px;"
 									type="submit" class="button"
-									onclick="on_btn_calculate_click(); show_text(); ">
+									onclick="on_btn_calculate_click(); ">
 									<spring:message code="welcome.btn_calc" text="default text" />
 								</button>
-									</td>   
+      
+    
+									</td>
 								</tr>
 							</tbody>
 						</table>				
 					</div>
-
+					<span class="r4"></span><span class="r3"></span><span class="r2"></span><span
+				class="r1"></span>
 				</div>
     </jsp:attribute>
 	<jsp:attribute name="content">
- 
- <div id="container">
+
+<div id="container">
 <div id="wrapper">
 <div id="content">
-<div id="map_canvas" style="width: 98%; height: 100%; border: 2px solid white;"></div>
+<div id="map_canvas"
+						style="width: 98%; height: 100%; border: 2px solid white;"></div>
 </div>
 </div>
 <div id="navigation">
@@ -295,7 +296,7 @@
  <div id="arrow_div">
 		<a href="#"><img style="margin-top: 250px;"
 						onclick="on_right_panel_show();" name='img'
-						src='media/css/images/arrow_left.png' /></a>
+						src='media/images/arrow_left.png' /></a>
 					
 		</div>	
  	<div id="ways_panel" style="display: none; width: 100%; height: 100%;">
@@ -305,10 +306,10 @@
 
 	</div>	
 </div>	
- 
 
-</div>   
-  
+
+</div> 
+
     </jsp:attribute>
 
 	<jsp:attribute name="foot">
