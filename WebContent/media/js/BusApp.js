@@ -1,6 +1,6 @@
 
 /*
- * use(GoogleMap.js)
+ * #use(GoogleMap.js)
  * 
  */
 
@@ -71,7 +71,6 @@ function BusApp() {
 		$(block).css('height', windowHeight - headerHeight - footerHeight);
 		var map = getApp().getGoogleMap();
 		if (map != null) {
-			//qx.html.Element.flush();
 			google.maps.event.trigger(map.getMapObj(), 'resize');
 		}
 
