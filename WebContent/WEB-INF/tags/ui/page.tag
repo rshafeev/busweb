@@ -77,6 +77,7 @@ html {
 </head>
 
 <body onload="initialize()">
+	<div id="ajax_js"></div>
 	<div class="main-wrap clearfix">
 		<div class="page_layout">
 			<div class="portal-headline">

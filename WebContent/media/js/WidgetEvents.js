@@ -1,7 +1,36 @@
 /*
  * WidgetEvents.js : event functions of the widgets
  */
+function on_selectWay(way_ind, routeParts_arr) {
+	getApp().getAppData().setCurrentWay(way_ind);
+	var markerA = getApp().getGoogleMap().getMarkers().getMarkerA();
+	var markerB = getApp().getGoogleMap().getMarkers().getMarkerB();
 
+	var routeParts = [];
+	for (var i = 0; i < routeParts_arr.length; i++) {
+		routeParts.push({
+					directRouteID : routeParts_arr[i][0],
+					indexStart : routeParts_arr[i][1],
+					indexFinish : routeParts_arr[i][2]
+				});
+	}
+	var options = {
+		routeParts : routeParts,
+		pointA : {
+			x : markerA.getPosition().lat(),
+			y : markerA.getPosition().lng()
+		},
+		pointB : {
+			x : markerB.getPosition().lat(),
+			y : markerB.getPosition().lng()
+		}
+	};
+	console.log(options);
+	$('#ajax_js').load("ways/load_way.json", {
+				data : JSON.stringify(options)
+			});
+
+};
 function on_btn_calculate_click() {
 	if (getApp().rightPanelVisible == false)
 		on_right_panel_show();
@@ -30,6 +59,7 @@ function on_change_selectbox_city() {
 				draggableCursor : 'crosshair',
 				minZoom : city.scale
 			});
+	console.log(city);
 	googleMap.setCenter(city.scale, city.location.lat, city.location.lon);
 	$('#editboxA').val('');
 	$('#editboxB').val('');

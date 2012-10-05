@@ -1,5 +1,7 @@
 function GoogleMap() {
 	this.markers = null;
+	this.wayLines = null;
+	this.stationMarkers = [];
 	this.map = null;
 
 	this.init = function() {
@@ -22,9 +24,9 @@ function GoogleMap() {
 		this.markers.initialize();
 
 	};
-    this.getMarkers = function(){
-       return this.markers;
-    };
+	this.getMarkers = function() {
+		return this.markers;
+	};
 	this.setCenter = function(scale, lat, lon) {
 		if (this.map != null) {
 			this.map.setCenter(new google.maps.LatLng(lat, lon));
@@ -38,5 +40,30 @@ function GoogleMap() {
 
 	this.clearMap = function() {
 		this.markers.deleteMarkers();
+	};
+
+	this.deleteAllStations = function() {
+		for (var i = 0; i < this.stationMarkers.length; i++) {
+			 this.stationMarkers[i].setMap(null);
+		}
+		this.stationMarkers = [];
+	};
+
+	this.addStationMarker = function(direct_route_id,name,lat, lon) {
+		var stationMarker = new google.maps.Marker({
+					map : this.map
+				});
+		var pos = new google.maps.LatLng(lat, lon);
+		stationMarker.setPosition(pos);
+		this.stationMarkers.push(stationMarker);
+		
+		/*
+		 * stationMarker.setOptions({ icon : this.marker_image_B });
+		 */
+
+	};
+	
+	this.addPolyline = function(direct_route_id,name,points){
+		
 	};
 };

@@ -5,11 +5,10 @@
  */
 
 function BusApp() {
-
+	this.busAppData = null;
 	this.googleMap = null;
 	this.rightPanelVisible = false;
-
-	this.main = function() {
+  	this.main = function() {
 		console.log("busApp : main()");
 		this.on_resize_window('#container', 163, 3);
 		var T = this;
@@ -20,6 +19,8 @@ function BusApp() {
 		this.googleMap.init();
 
 		this.loadCitiesToComboBox();
+		this.busAppData = new BusAppData();
+		
 	};
 
 	this.createFindWaysOptionsModel = function() {
@@ -74,7 +75,7 @@ function BusApp() {
 		var nameFromCombo = $("#selectbox_city").val();
 		var cities = this.getDataModel().cities;
 		var city = null;
-
+		console.log(cities);
 		for (var i = 0; i < cities.length; i++) {
 
 			if (cities[i].id == nameFromCombo) {
@@ -90,6 +91,9 @@ function BusApp() {
 	};
 	this.getGoogleMap = function() {
 		return this.googleMap;
+	};
+	this.getAppData = function() {
+		return this.busAppData;
 	};
 	this.loadCitiesToComboBox = function() {
 		console.log("busApp: loadCitiesToComboBox()");
@@ -129,11 +133,7 @@ function BusApp() {
 					}
 				});
 	};
-	this.loadWay = function(routeParts_arr) {
-		for (var i = 0; i < routeParts_arr.length; i++) {
-			console.log(routeParts_arr[i]);
-		}
-	};
+
 	this.on_resize_window = function(block, headerHeight, footerHeight) {
 		var windowHeight = $(window).height();
 		$(block).css('height', windowHeight - headerHeight - footerHeight);

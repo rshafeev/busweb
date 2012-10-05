@@ -3,33 +3,25 @@
 	        com.pgis.bus.data.models.route.*,
 	        java.util.ArrayList,
 	        com.google.gson.*"%>
-<%@ taglib prefix="ui" tagdir="/WEB-INF/tags/ui"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-
-<script type="text/javascript">
-	
-</script>
+<%
+	WaysModel model = (WaysModel) request.getAttribute("model");
+%>
 
 <div>
 	<%
-		WaysModel model = (WaysModel) request.getAttribute("model");
 		int i = 0;
-		for (WayModel wayModel : model.getWays()) {
-			String jsonWay = (new Gson()).toJson(wayModel
-					.createRoutePartArr());
+			for (WayModel wayModel : model.getWays()) {
 	%>
 	<div>
 
-		<p id="way_ref_<%=i%>" onclick="busApp().loadWay($.parseJSON(<%=jsonWay%>))">
+		<a id="way_ref_<%=i%>"
+			onclick="on_selectWay(<%=i%>,<%=wayModel.createRoutePartArrStr()%>)">
 			Way[<%=i%>]
-		</p>
+		</a>
 		<%
 			ArrayList<RouteModel> routes = wayModel.getRoutes();
 				for (int j = 0; j < routes.size(); j++) {
 					RouteModel routeModel = routes.get(j);
-					// $.parseJSON('${model.getJsonBasicModel()}')
 		%>
 		<%
 			if (routeModel instanceof InputRouteModel) {
@@ -59,6 +51,14 @@
 
 						TransportRouteModel r = (TransportRouteModel) routeModel;
 		%>
+		<script type="text/javascript">
+		getApp().getAppData().addRouteToWay(
+		        <%=i%>,
+		        <%=Integer.toString(r.getDirectRouteID())%>,
+				<%=r.getRouteType()%>,
+				<%=r.getRouteName()%>);
+		</script>
+		
 		<div>
 			<p>
 				Маршрут :
@@ -109,7 +109,7 @@
 			<p>
 				Пересадка :
 				<%=prevRoute.getRouteName()%>
-				==>
+				==--
 				<%=nextRoute.getRouteName()%>
 			</p>
 			<p>
@@ -149,7 +149,7 @@
 			</p>
 			<p>
 				Расстояние(пешком):
-				<%=(new Double(r.getDistance())).intValue() %>
+				<%=(new Double(r.getDistance())).intValue()%>
 				м.
 			</p>
 		</div>
@@ -158,11 +158,20 @@
 		%>
 		<p>=======</p>
 		<%
-				}
+			}
 		%>
 	</div>
 	<%
 		i++;
-		}
+			}
 	%>
 </div>
+
+
+<script type="text/javascript">
+<%WayModel wayModel = null;
+if(model.getWays().isEmpty()==false){
+    wayModel = model.getWays().iterator().next();%>
+	on_selectWay(0,<%=wayModel.createRoutePartArrStr()%>);
+<%}%>
+</script>
