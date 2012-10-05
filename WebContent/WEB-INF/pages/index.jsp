@@ -270,7 +270,7 @@
 									  <td>
 										<button style="width: auto; height: 40px; margin-left: 50px;"
 									type="submit" class="button"
-									onclick="on_btn_calculate_click(); show_text(); ">
+									onclick="on_btn_calculate_click();">
 									<spring:message code="welcome.btn_calc" text="default text" />
 								</button>
 									</td>   

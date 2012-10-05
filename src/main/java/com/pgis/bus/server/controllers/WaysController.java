@@ -53,6 +53,7 @@ public class WaysController {
 						routeData);
 				geoWayModel.addRouteGeoDataModel(routeModel);
 			}
+			
 			modelView.addObject("model", geoWayModel);
 		} catch (Exception e) {
 			e.printStackTrace();

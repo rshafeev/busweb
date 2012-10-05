@@ -7,25 +7,13 @@
 <%@ attribute name="foot" required="true" fragment="true"%>
 
 <meta http-equiv="Cache-control" content="no-cache">
-var agent = navigator.userAgent.toLowerCase();
-if (agent.indexOf("firefox") != -1) 
-    document.write('<link rel="stylesheet" href="style_ff.css" type="text/css">');
-else if (agent.indexOf('msie') != -1) 
-    document.write('<link rel="stylesheet" href="media/styles_ie.css" type="text/css">');
-else if(agent.indexOf('opera') != -1)
-    document.write('<link rel="stylesheet" href="media/styles_op.css" type="text/css">');
-else
-    document.write('<link rel="stylesheet" href="media/styles.css" type="text/css">');
-
 
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf8" />
 
-<script type="text/javascript" src="media/js/jquery-1.8.0.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 <script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> 
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script> 
 <script type="text/javascript"
 	src="http://maps.google.com/maps/api/js?sensor=false&libraries=drawing"></script>
 	<jsp:invoke fragment="page_head" />
@@ -37,6 +25,7 @@ else
 <script src="media/js/WidgetEvents.js"></script>
 <script src="media/js/map/Markers.js"></script>
 <script src="media/js/GoogleMap.js"></script>
+<script src="media/js/BusAppData.js"></script>
 <script src="media/js/BusApp.js"></script>
 <script src="media/js/main.js"></script>
 
@@ -102,12 +91,7 @@ else if ( oldBrowser )
 else 
 {document.write('<link rel="stylesheet" href="media/css/busWeb.css" type="text/css">');}
 </script>
-<script>
-function show_text() {
-	var el = document.getElementById('test'); 
-	el.style.display = (el.style.display == 'block') ? 'none' : 'block';
-	}
-</script>
+
 </head>
 
 <body onload="initialize()">

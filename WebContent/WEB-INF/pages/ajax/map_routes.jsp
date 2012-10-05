@@ -8,21 +8,29 @@
 <%
 	WayGeoDataModel model = (WayGeoDataModel) request.getAttribute("model");
 
-int i = 0;
+
 %>
 <script type="text/javascript">
 function loadWay(){
 var googleMap = getApp().getGoogleMap();
 googleMap.deleteAllStations();
+googleMap.deleteAllPolilines();
 
 <%for(RouteGeoDataModel route : model.getRoutes()){
+	int i = 0;
     		for(RouteGeoData data : route.getRouteData()){%>
 	googleMap.addStationMarker(
 			<%=route.getRoutePart().getDirectRouteID()%>,
 			'<%=data.getStationName()%>',
 			<%=data.getStationLocation().x%>,
 			<%=data.getStationLocation().y%>);
-	googleMap.addPolyline();
+	<%if(i>0){%>
+		googleMap.addPolyline(
+				<%=route.getRoutePart().getDirectRouteID()%>,
+				<%=data.getStringGeom()%>);
+	
+	<%}
+	i++;%>
 <%}}%>
 
 	

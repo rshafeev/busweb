@@ -2,6 +2,7 @@ function GoogleMap() {
 	this.markers = null;
 	this.wayLines = null;
 	this.stationMarkers = [];
+	this.polylines = [];
 	this.map = null;
 
 	this.init = function() {
@@ -55,6 +56,7 @@ function GoogleMap() {
 				});
 		var pos = new google.maps.LatLng(lat, lon);
 		stationMarker.setPosition(pos);
+		stationMarker.set("route_id",direct_route_id);
 		this.stationMarkers.push(stationMarker);
 		
 		/*
@@ -63,7 +65,24 @@ function GoogleMap() {
 
 	};
 	
-	this.addPolyline = function(direct_route_id,name,points){
+	this.addPolyline = function(direct_route_id,points){
+		var path = new google.maps.MVCArray();
+		for(var i=0;i < points.length;i++){
+			path.push(new google.maps.LatLng(points[i][0], points[i][1]));
+		}
+		var line = new google.maps.Polyline({
+		map : this.map,
+		path : path
 		
+		});
+		line.set("route_id",direct_route_id);
+		this.polylines.push(line);
+	};
+	
+	this.deleteAllPolilines = function() {
+		for (var i = 0; i < this.polylines.length; i++) {
+			 this.polylines[i].setMap(null);
+		}
+		this.polylines = [];
 	};
 };

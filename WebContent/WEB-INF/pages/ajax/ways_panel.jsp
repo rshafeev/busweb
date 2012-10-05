@@ -6,7 +6,9 @@
 <%
 	WaysModel model = (WaysModel) request.getAttribute("model");
 %>
-
+<script type="text/javascript">
+getApp().getAppData().clearWaysData();
+</script>
 <div>
 	<%
 		int i = 0;
@@ -54,9 +56,9 @@
 		<script type="text/javascript">
 		getApp().getAppData().addRouteToWay(
 		        <%=i%>,
-		        <%=Integer.toString(r.getDirectRouteID())%>,
-				<%=r.getRouteType()%>,
-				<%=r.getRouteName()%>);
+		        "<%=Integer.toString(r.getDirectRouteID())%>",
+				"<%=r.getRouteType()%>",
+				"<%=r.getRouteName()%>");
 		</script>
 		
 		<div>
@@ -172,6 +174,5 @@
 <%WayModel wayModel = null;
 if(model.getWays().isEmpty()==false){
     wayModel = model.getWays().iterator().next();%>
-	on_selectWay(0,<%=wayModel.createRoutePartArrStr()%>);
-<%}%>
+	on_selectWay(0,<%=wayModel.createRoutePartArrStr()%>);<%}%>
 </script>
