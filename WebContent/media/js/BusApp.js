@@ -8,8 +8,9 @@ function BusApp() {
 	this.busAppData = null;
 	this.googleMap = null;
 	this.rightPanelVisible = false;
-  	this.main = function() {
-		console.log("busApp : main()");
+	this.main = function() {
+		//console.log("busApp : main()");
+
 		this.on_resize_window('#container', 163, 3);
 		var T = this;
 		$(window).bind("resize", function(e) {
@@ -20,7 +21,7 @@ function BusApp() {
 
 		this.loadCitiesToComboBox();
 		this.busAppData = new BusAppData();
-		
+
 	};
 
 	this.createFindWaysOptionsModel = function() {
@@ -34,7 +35,7 @@ function BusApp() {
 			return null;
 		}
 		var alg_type = 'c_cost';
-		console.log(city);
+		//console.log(city);
 		var opts = {
 			city_id : city.id,
 			p1 : {
@@ -75,7 +76,7 @@ function BusApp() {
 		var nameFromCombo = $("#selectbox_city").val();
 		var cities = this.getDataModel().cities;
 		var city = null;
-		console.log(cities);
+		//console.log(cities);
 		for (var i = 0; i < cities.length; i++) {
 
 			if (cities[i].id == nameFromCombo) {
@@ -96,8 +97,8 @@ function BusApp() {
 		return this.busAppData;
 	};
 	this.loadCitiesToComboBox = function() {
-		console.log("busApp: loadCitiesToComboBox()");
-		console.log(this.getDataModel().cities.length);
+		//console.log("busApp: loadCitiesToComboBox()");
+		//console.log(this.getDataModel().cities.length);
 		var defaultCity = getApp().getDataModel().defaultCity;
 		for (var i = 0; i < this.getDataModel().cities.length; i++) {
 			if (defaultCity.id == this.getDataModel().cities[i].id) {
@@ -124,7 +125,7 @@ function BusApp() {
 						if (results[1]) {
 							respone_call_func(getShortAddress(results[0].formatted_address));
 						} else {
-							console.log('No results found');
+							//console.log('No results found');
 							respone_call_func(null);
 						}
 					} else {
@@ -135,10 +136,12 @@ function BusApp() {
 	};
 
 	this.on_resize_window = function(block, headerHeight, footerHeight) {
-		var windowHeight = $(window).height();
-		$(block).css('height', windowHeight - headerHeight - footerHeight);
+		$(block).css('height',
+				getWindowSize().height - headerHeight - footerHeight);
+
 		var map = getApp().getGoogleMap();
 		if (map != null) {
+
 			google.maps.event.trigger(map.getMapObj(), 'resize');
 		}
 

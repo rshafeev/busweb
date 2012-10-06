@@ -17,8 +17,7 @@
 <script type="text/javascript"
 	src="http://maps.google.com/maps/api/js?sensor=false&libraries=drawing"></script>
 	<jsp:invoke fragment="page_head" />
-	
-
+<script src="media/js/jquery.json-2.3.js"></script>	
 
 <script src="media/js/selectbox.js"></script>
 <script src="media/js/WidgetHelpers.js"></script>
@@ -45,7 +44,7 @@ overflow-y: hidden;
 	$(document).ready(function() {
 		$("div.selectTabs_first, div.selectTabs_second").each(function() {
 			var tmp = $(this);
-			console.log($(tmp).find(" .lineTabs li"));
+			//console.log($(tmp).find(" .lineTabs li"));
 			$(tmp).find(".lineTabs li").each(function(i) {
 				$(tmp).find(".lineTabs li:eq(" + i + ") a").click(function() {
 					var tab_id = i + 1;

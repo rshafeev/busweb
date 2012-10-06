@@ -36,5 +36,5 @@ googleMap.deleteAllPolilines();
 	
 }
 loadWay();
-console.log("way was loaded");
+//console.log("way was loaded");
 </script>

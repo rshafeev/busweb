@@ -12,7 +12,7 @@ function BusAppData() {
 	this.addRouteToWay = function(way_id, direct_route_id, route_type,
 			route_name) {
 		var count  = this.waysData.length;
-		console.log("way_id" + way_id);
+		//console.log("way_id" + way_id);
 		if (count - 1 < way_id) {
 			for (var i = 0; i <= (way_id - count); i++) {
 				this.waysData.push([]);

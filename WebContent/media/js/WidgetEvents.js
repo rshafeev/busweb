@@ -25,9 +25,9 @@ function on_selectWay(way_ind, routeParts_arr) {
 			y : markerB.getPosition().lng()
 		}
 	};
-	console.log(options);
+	//console.log(options);
 	$('#ajax_js').load("ways/load_way.json", {
-				data : JSON.stringify(options)
+				data : $.toJSON(options)
 			});
 
 };
@@ -39,16 +39,16 @@ function on_btn_calculate_click() {
 	if (findWaysOptions == null)
 		return;
 	el.style.display = 'block';
-
 	$('#ways_panel')
 			.html("<div class='loader_div'><div class='loader_text'>Загрузка...</div></div>");
 	$('#ways_panel').load("ways/find.json", {
-				data : JSON.stringify(findWaysOptions)
+				data : $.toJSON(findWaysOptions)
 			});
+	
 }
 
 function on_change_selectbox_city() {
-	console.log("on_change_selectbox_city()");
+	//console.log("on_change_selectbox_city()");
 	var city = getApp().getCurrentCity();
 	if (city == null) {
 		return;
@@ -59,7 +59,7 @@ function on_change_selectbox_city() {
 				draggableCursor : 'crosshair',
 				minZoom : city.scale
 			});
-	console.log(city);
+	//console.log(city);
 	googleMap.setCenter(city.scale, city.location.lat, city.location.lon);
 	$('#editboxA').val('');
 	$('#editboxB').val('');
@@ -127,7 +127,3 @@ function on_right_panel_show() {
 		getApp().rightPanelVisible = false;
 	}
 }
-
-
-
-
