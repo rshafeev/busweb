@@ -266,7 +266,9 @@
 </div>
 
 </div>
+</div>
 </div> 
+
 									  <td>
 										<button style="width: auto; height: 40px; margin-left: 50px;"
 									type="submit" class="button"
@@ -299,10 +301,7 @@
 					
 		</div>	
  	<div id="ways_panel" style="display: none; width: 100%; height: 100%;">
-					<h2 style="color: black; margin: 10 0 10 0;">Появляется текст</h2>
-					<h2 style="color: black; margin: 10 0 10 0;">Появляется текст</h2>
-					<h2 style="color: black; margin: 10 0 10 0;">Появляется текст</h2>
-
+				
 	</div>	
 </div>	
  

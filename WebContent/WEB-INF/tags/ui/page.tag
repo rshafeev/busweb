@@ -6,11 +6,11 @@
 <%@ attribute name="content" required="true" fragment="true"%>
 <%@ attribute name="foot" required="true" fragment="true"%>
 
-<meta http-equiv="Cache-control" content="no-cache">
 
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf8" />
+<meta http-equiv="Cache-control" content="no-cache">
 
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script> 
@@ -89,7 +89,10 @@ else if ( oldBrowser )
 	document.write('<link rel="stylesheet" href="media/css/busWeb_ff.css" type="text/css">');
 	}
 else 
-{document.write('<link rel="stylesheet" href="media/css/busWeb.css" type="text/css">');}
+{
+	document.write('<link rel="stylesheet" href="media/css/busWeb.css" type="text/css">');
+
+}
 </script>
 
 </head>
