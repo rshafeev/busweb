@@ -9,21 +9,35 @@
 <script type="text/javascript">
 getApp().getAppData().clearWaysData();
 </script>
-<div>
+<div id="routes_info">
+<div id="head_ways"></div>
+<div id="ways" >
 	<%
 		int i = 0;
 		for (WayModel wayModel : model.getWays()) {
 	%>
-	<%if(i==0){ %>
-	<div class="rrrr">
-	<%}else{ %>
-	<div class="uuuu">
-	<%} %>
+
+	
+	<div id="result_numb">
+		<div id="rout_numb">
+<div id="numb">
 			<a id="way_ref_<%=i%>"
 				onclick="on_selectWay(<%=i%>,<%=wayModel.createRoutePartArrStr()%>)">
-				Way[<%=i%>]
+				<%=i%>
 				
 			</a>
+			</div>
+			</div>
+			<div id="rout_info">				
+			<p>Стоимость : <%=wayModel.getCost()%></p>
+			<p>В пути : <%=wayModel.getTime()%> мин. </p>
+			</div>
+			
+				<%if(i==0){ %>
+	<div class="routes-res-text">
+	<%}else{ %>
+	<div class="res_text">
+	<%} %>
 			<%
 				ArrayList<RouteModel> routes = wayModel.getRoutes();
 					for (int j = 0; j < routes.size(); j++) {
@@ -40,7 +54,7 @@ getApp().getAppData().clearWaysData();
 			<div>
 				<p>
 					Пешком до станции
-					<%=nextRoute.getStationStart()%></p>
+					<b><%=nextRoute.getStationStart()%></b></p>
 				<p>
 					Время(пешком):
 					<%=r.getMoveTime().getMinutes()%>
@@ -66,11 +80,8 @@ getApp().getAppData().clearWaysData();
 				"<%=r.getRouteName()%>");
 		</script>
 
-			<div>
-				<p>
-					Маршрут :
-					<%=r.getRouteName()%>
-				</p>
+			<div>	
+			<span class="result_transp"><img src="media/css/images/<%=r.getRouteType()%>.png"/>   <%=r.getRouteName()%></span>
 				<p>
 					Стоимость :
 					<%=r.getCost()%>
@@ -93,10 +104,10 @@ getApp().getAppData().clearWaysData();
 				</p>
 				<p>
 					Садиться:
-					<%=r.getStationStart()%></p>
+					<b><%=r.getStationStart()%></b></p>
 				<p>
 					Выходить:
-					<%=r.getStationFinish()%></p>
+					<b><%=r.getStationFinish()%></b></p>
 
 			</div>
 
@@ -114,17 +125,20 @@ getApp().getAppData().clearWaysData();
 			%>
 			<div>
 				<p>
-					Пересадка :
-					<%=prevRoute.getRouteName()%>
-					==--
+					Пересадка :</p>
+					
+					<span class="result_transp"><img src="media/css/images/<%=prevRoute.getRouteType()%>.png"/>  <%=prevRoute.getRouteName()%></span>
+					<span class="result_transp_img"><img  src="media/css/images/arrow_refresh.png"/></span>
+					<span class="result_transp"><img src="media/css/images/<%=nextRoute.getRouteType()%>.png"/>
 					<%=nextRoute.getRouteName()%>
-				</p>
+					</span>
+					
 				<p>
 					С остановки:
-					<%=prevRoute.getStationFinish()%></p>
+					<b><%=prevRoute.getStationFinish()%></b></p>
 				<p>
 					На остановку:
-					<%=nextRoute.getStationStart()%></p>
+					<b><%=nextRoute.getStationStart()%></b></p>
 				<p>
 					Время(пешком):
 					<%=r.getMoveTime().getMinutes()%>
@@ -148,7 +162,7 @@ getApp().getAppData().clearWaysData();
 			<div>
 				<p>
 					Пешком от станции
-					<%=prevRoute.getStationFinish()%></p>
+					<b><%=prevRoute.getStationFinish()%></b></p>
 				<p>
 					Время(пешком):
 					<%=r.getMoveTime().getMinutes()%>
@@ -163,7 +177,7 @@ getApp().getAppData().clearWaysData();
 			<%
 				}
 			%>
-			<p>=======</p>
+			<div id="line_res"></div>
 			<%
 				}
 			%>
@@ -173,8 +187,11 @@ getApp().getAppData().clearWaysData();
 			}
 		%>
 	</div>
+	</div>
+<div id="foot-ways"></div>
+</div>
 
-
+</div>
 	<script type="text/javascript">
 <%WayModel wayModel = null;
 			if (model.getWays().isEmpty() == false) {
