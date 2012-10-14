@@ -106,7 +106,7 @@ function on_btn_auto_click(e) {
 };
 function on_right_panel_show() {
 	if (getApp().rightPanelVisible == false) {
-		$("#map_canvas").width('75%').css({
+		$("#map_canvas").width('73%').css({
 					cursor : "auto",
 					backgroundColor : "rgb(226, 226, 226)"
 				});

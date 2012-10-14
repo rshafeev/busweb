@@ -882,8 +882,8 @@ body {
 
 #extra {
 	float: left;
-	width: 24%;
-	margin-left: -24%;
+	width: 27%;
+	margin-left: -27%;
 	background-image: linear-gradient(bottom, rgb(194, 194, 194) 35%,
 		rgb(245, 245, 245) 68% );
 	background-image: -o-linear-gradient(bottom, rgb(194, 194, 194) 35%,
@@ -923,10 +923,10 @@ body {
 		/*height:5%;*/
 }
 
-#result_numb
+#result_numb/<%=i%>
 {
 	height:70px;
-	width:300px;
+	width:340px;
 background-image: linear-gradient(bottom, rgb(28,168,255) 30%, rgb(95,205,245) 65%, rgb(120,209,250) 83%);
 background-image: -o-linear-gradient(bottom, rgb(28,168,255) 30%, rgb(95,205,245) 65%, rgb(120,209,250) 83%);
 background-image: -moz-linear-gradient(bottom, rgb(28,168,255) 30%, rgb(95,205,245) 65%, rgb(120,209,250) 83%);
@@ -945,29 +945,31 @@ border-radius: 5px;
 margin-left:2px;
 margin-top:2px;
 margin-bottom:10px;
+cursor:pointer;
 }
 #rout_numb
 {
 	height: 35px;
-	width:300px;
+	width:340px;
 
 
 }
 #rout_info
 {
 	height:35px;
-	width:290px;
+	width:330px;
 	margin-top:5px;
 	margin-left:10px;
 }
 
-.res_text
+#res_text
 {
-	width: 280px; margin-left:10px;
+	width: 330px; margin-left:10px;
+
 
 }
 
-.res_text p
+#res_text p
 {
 		line-height: 1.5;
 }
@@ -1003,11 +1005,11 @@ background-image: -webkit-gradient(
 	font-size: 24px;
 	font-weight: 900;
 }
-.routes-res-text
+#routes-res-text
 {
-	width: 280px; margin-left:10px;
+	width: 330px; margin-left:10px;
 }
-.routes-res-text
+#routes-res-text
 {
 	line-height: 1.5;
 }
@@ -1015,8 +1017,8 @@ background-image: -webkit-gradient(
 #line_res
 {
 	border-bottom: 4px dotted #148ab8;
-	width:280px;
-	 margin-left:5px;*/
+	width:320px;
+	 margin-left:5px;
 	 height: 4px;
 margin-bottom:5px;
 margin-top:5px;

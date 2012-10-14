@@ -32,3 +32,19 @@ function getWindowSize() {
 		width : myWidth
 	};
 }
+
+/*function showRouteInfo(result_numb_id){
+	var id = "#" + result_numb_id;
+	/*$('#routes-res-text').hide();
+	$("#res_text").hide(1500);
+	$(id).click(function(){
+	      $("#res_text").hide(1500);},
+	      function(){$("#res_text").show(1500);
+	         });
+	}*/
+/*
+function showRouteInfo(result_numb_id) {
+	var id = "#" + result_numb_id;
+	$("#routes-res-text").hide();
+		$("#res_text").toggle();
+	}*/

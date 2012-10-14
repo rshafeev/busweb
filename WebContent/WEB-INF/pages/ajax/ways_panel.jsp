@@ -18,7 +18,21 @@ getApp().getAppData().clearWaysData();
 	%>
 
 	
-	<div id="result_numb">
+	<div id="result_numb_<%=i%>" onclick="showRouteInfo('result_numb_<%=i%>')" style="	height:70px;
+	width:340px;
+background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0.3, rgb(28,168,255)),
+	color-stop(0.65, rgb(95,205,245)),
+	color-stop(0.83, rgb(120,209,250))
+);
+border-radius: 5px;
+margin-left:2px;
+margin-top:2px;
+margin-bottom:10px;
+cursor:pointer;">
 		<div id="rout_numb">
 <div id="numb">
 			<a id="way_ref_<%=i%>"
@@ -32,11 +46,11 @@ getApp().getAppData().clearWaysData();
 			<p>Стоимость : <%=wayModel.getCost()%></p>
 			<p>В пути : <%=wayModel.getTime()%> мин. </p>
 			</div>
-			
+				</div>
 				<%if(i==0){ %>
-	<div class="routes-res-text">
+	<div id="res_text">
 	<%}else{ %>
-	<div class="res_text">
+	<div id="res_text">
 	<%} %>
 			<%
 				ArrayList<RouteModel> routes = wayModel.getRoutes();
@@ -187,7 +201,7 @@ getApp().getAppData().clearWaysData();
 			}
 		%>
 	</div>
-	</div>
+
 <div id="foot-ways"></div>
 </div>
 

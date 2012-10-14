@@ -36,13 +36,16 @@
 				<a href="?lang=rus_RU"><img src="media/css/images/ru.png"  alt="Ru"></a> 
 				<a href="?lang=en_US"><img src="media/css/images/uk.png"  alt="En"></a> 
 				<a href="?lang=uk_UA"><img src="media/css/images/ua.png"  alt="Ua"></a>
-      </div>   
+      </div>  
+ 
+
     </jsp:attribute>
 
 
 	<jsp:attribute name="menu">
 		   <div class="transparent">
-		  
+
+
 									<div class="block-round-content">
 						<table class="menu_table" cellpadding="10" cellspacing="10">
 							<tbody>
