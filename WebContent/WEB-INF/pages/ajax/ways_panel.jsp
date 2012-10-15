@@ -54,7 +54,7 @@ getApp().getAppData().clearWaysData();
 			</div>
 			<%
 				} else if (routeModel instanceof TransportRouteModel) {
-
+	
 							TransportRouteModel r = (TransportRouteModel) routeModel;
 							
 			%>
