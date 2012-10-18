@@ -29,7 +29,34 @@ function on_selectWay(way_ind, routeParts_arr) {
 	$('#ajax_js').load("ways/load_way.json", {
 				data : $.toJSON(options)
 			});
-
+	
+	for (var i=0; i<getApp().getAppData().getWaysCount(); i++)
+		{
+		/**/
+	/*	if (i==0)
+			{
+			var name_sh = "#" + "res_text_0";
+			$(name_sh).show();
+			}
+		else
+			{
+			var name_hid = "#" + "res_text_1";
+			$(name_hid).hide();
+			}
+		
+		}*/
+		var name = "#" + "res_text_"+ i;
+		if (i==way_ind)
+			{
+			$(name).show();
+			}
+		else
+			{
+			$(name).hide();
+			}
+		}
+			
+		
 };
 function on_btn_calculate_click() {
 	if (getApp().rightPanelVisible == false)
@@ -106,7 +133,7 @@ function on_btn_auto_click(e) {
 };
 function on_right_panel_show() {
 	if (getApp().rightPanelVisible == false) {
-		$("#map_canvas").width('73%').css({
+		$("#map_canvas").width('68%').css({
 					cursor : "auto",
 					backgroundColor : "rgb(226, 226, 226)"
 				});

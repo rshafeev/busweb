@@ -42,9 +42,14 @@ function getWindowSize() {
 	      function(){$("#res_text").show(1500);
 	         });
 	}*/
+
 /*
-function showRouteInfo(result_numb_id) {
+function showRouteInfo(result_numb_id, res_text_id) {
 	var id = "#" + result_numb_id;
-	$("#routes-res-text").hide();
-		$("#res_text").toggle();
+	var rt = "#" + res_text_id;
+	if (result_numb_1)
+		{
+		$("#res_text_0").toggle();
+		}
+		
 	}*/

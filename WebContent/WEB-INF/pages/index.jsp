@@ -272,8 +272,8 @@
 </div>
 </div> 
 
-									  <td>
-										<button style="width: auto; height: 40px; margin-left: 50px;"
+									  <td style="width:180px;">
+										<button style="width: 100px; height: 40px;line-height:10px; margin-left: 50px;text-align:center;"
 									type="submit" class="button"
 									onclick="on_btn_calculate_click();">
 									<spring:message code="welcome.btn_calc" text="default text" />

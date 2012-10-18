@@ -5,7 +5,7 @@ html {
 }
 .page_layout {
 	position: relative;
-	width: 1427px;
+	width: 1260px;
 	height: 100%;
 display: inline-block;
 	margin: 0;
@@ -46,7 +46,8 @@ a {
 }
 
 .menu_table {
-	margin-top: 5px;
+	margin-top: 1px;
+	width:auto;
 }
 
 .mini_table-town_top {
@@ -188,7 +189,7 @@ a {
 .block-round-content {
 	background-color: rgba(240, 220, 203, 0.1); /
 	padding: 0px;
-	margin-top: -20px;
+	margin-top: -18px;
 }
 
 .mini_table_town {
@@ -882,8 +883,8 @@ body {
 
 #extra {
 	float: left;
-	width: 27%;
-	margin-left: -27%;
+	width: 31%;
+	margin-left: -31%;
 	background-image: linear-gradient(bottom, rgb(194, 194, 194) 35%,
 		rgb(245, 245, 245) 68% );
 	background-image: -o-linear-gradient(bottom, rgb(194, 194, 194) 35%,
@@ -923,10 +924,10 @@ body {
 		/*height:5%;*/
 }
 
-#result_numb/<%=i%>
+#result_numb
 {
 	height:70px;
-	width:340px;
+	width:350px;
 background-image: linear-gradient(bottom, rgb(28,168,255) 30%, rgb(95,205,245) 65%, rgb(120,209,250) 83%);
 background-image: -o-linear-gradient(bottom, rgb(28,168,255) 30%, rgb(95,205,245) 65%, rgb(120,209,250) 83%);
 background-image: -moz-linear-gradient(bottom, rgb(28,168,255) 30%, rgb(95,205,245) 65%, rgb(120,209,250) 83%);
@@ -950,22 +951,21 @@ cursor:pointer;
 #rout_numb
 {
 	height: 35px;
-	width:340px;
+	width:300px;
 
 
 }
 #rout_info
 {
 	height:35px;
-	width:330px;
+	width:290px;
 	margin-top:5px;
 	margin-left:10px;
 }
 
 #res_text
 {
-	width: 330px; margin-left:10px;
-
+	width: 322px; margin-left:10px;
 
 }
 
@@ -1005,11 +1005,11 @@ background-image: -webkit-gradient(
 	font-size: 24px;
 	font-weight: 900;
 }
-#routes-res-text
+.routes-res-text
 {
-	width: 330px; margin-left:10px;
+	width: 280px; margin-left:10px;
 }
-#routes-res-text
+.routes-res-text
 {
 	line-height: 1.5;
 }
@@ -1017,8 +1017,8 @@ background-image: -webkit-gradient(
 #line_res
 {
 	border-bottom: 4px dotted #148ab8;
-	width:320px;
-	 margin-left:5px;
+	width:323px;
+	 margin-left:5px;*/
 	 height: 4px;
 margin-bottom:5px;
 margin-top:5px;

@@ -18,21 +18,7 @@ getApp().getAppData().clearWaysData();
 	%>
 
 	
-	<div id="result_numb_<%=i%>" onclick="showRouteInfo('result_numb_<%=i%>')" style="	height:70px;
-	width:340px;
-background-image: -webkit-gradient(
-	linear,
-	left bottom,
-	left top,
-	color-stop(0.3, rgb(28,168,255)),
-	color-stop(0.65, rgb(95,205,245)),
-	color-stop(0.83, rgb(120,209,250))
-);
-border-radius: 5px;
-margin-left:2px;
-margin-top:2px;
-margin-bottom:10px;
-cursor:pointer;">
+	<div id="result_numb" onclick="on_selectWay(<%=i%>,<%=wayModel.createRoutePartArrStr()%>)">
 		<div id="rout_numb">
 <div id="numb">
 			<a id="way_ref_<%=i%>"
@@ -47,11 +33,8 @@ cursor:pointer;">
 			<p>В пути : <%=wayModel.getTime()%> мин. </p>
 			</div>
 				</div>
-				<%if(i==0){ %>
-	<div id="res_text">
-	<%}else{ %>
-	<div id="res_text">
-	<%} %>
+	<div id="res_text_<%=i%>" style="width: 322px; margin-left:10px;">
+
 			<%
 				ArrayList<RouteModel> routes = wayModel.getRoutes();
 					for (int j = 0; j < routes.size(); j++) {
