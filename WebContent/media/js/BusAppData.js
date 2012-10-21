@@ -25,7 +25,7 @@ function BusAppData() {
 				});*/
 	};
 	
-	this.getwaysCount = function(){
+	this.getWaysCount = function(){
 		return this.waysData.length;
 	};
 };

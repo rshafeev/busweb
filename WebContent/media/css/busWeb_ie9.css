@@ -1,16 +1,31 @@
-html {
-	height: 100%;
-	font-family: Verdana, Arial, Tahoma;
-	overflow-y: hidden;
-	text-align: center;
+* {
+  margin: 0;
+  padding: 0;
 }
 
+html, body {
+	height: 100%;
+overflow:  hidden;
+	text-align: center;
+		font-family: Verdana, Arial, Tahoma;
+}
 .page_layout {
 	position: relative;
 	width: 1260px;
 	height: 100%;
 	display: inline-block;
 	margin: 0;
+}
+
+img {border:none;}
+
+
+
+
+
+.mini_table_transp_list img
+{
+	display:inline;
 }
 
 /**********************************************HEAD.CSS***********************************************************************/
@@ -57,7 +72,7 @@ a {
 	background: url("images/green.png");
 	height: 16px;
 	width: 16px;
-	margin-top: 23px;
+	/*margin-top: 23px;*/
 }
 
 .Bpoint {
@@ -80,6 +95,7 @@ a {
 	margin-left: 5px;
 	width: 200px;
 }
+
 .mini_table-town_top {
 	margin-top: 0px;
 	position: absolute;
@@ -92,11 +108,6 @@ a {
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
-.mini_table_town .mini_table_town_center .mini_table-town_top p
-{
-	font: normal normal 400 11px/21px Arial;
-}
-
 .mini_table-route_top {
 	margin-top: 0px;
 	position: absolute;
@@ -107,6 +118,11 @@ a {
 	background: rgb(226, 226, 226);
 	border-radius: 8px;
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.mini_table_town .mini_table_town_center .mini_table-town_top p
+{
+	font: normal normal 400 11px/21px Arial;
 }
 
 .logotip {
@@ -158,11 +174,11 @@ a {
 	width: 80px;
 	height: 18px;
 }
-
+/*
 .mini_table_transp_temp {
 	height: 5px;
 }
-
+*/
 .mini_table_transp_list {
 	width: 120px;
 	height: 30px;
@@ -183,7 +199,7 @@ a {
 }
 
 .transparent,.header,.slider2,.mini_table_town {
-	border: solid 1px rgb(250, 250, 250);
+	/*border: solid 1px rgb(250, 250, 250);*/
 }
 
 .transparent {
@@ -211,6 +227,8 @@ a {
 		endColorstr='#fefefe', GradientType=0 );
 	border: solid 10px rgb(226, 226, 226);
 	height: 77px;
+	/*margin-top: 5px;
+	margin-bottom: -20px;*/
 	-moz-box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
 	-webkit-box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
 	box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
@@ -219,8 +237,7 @@ a {
 .block-round-content {
 	background-color: rgba(240, 220, 203, 0.1); /
 	padding: 0px;
-	margin-top: -18px;
-	width: 100%;
+	margin-top: -20px;
 }
 
 .mini_table_town {
@@ -237,7 +254,7 @@ a {
 		rgba(229, 229, 229, 1) 100% ); /* IE10+ */
 	background: linear-gradient(top, rgba(255, 255, 255, 1) 0%,
 		rgba(229, 229, 229, 1) 100% ); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient(          startColorstr='#ffffff',
+	filter: progid:DXImageTransform.Microsoft.gradient(         startColorstr='#ffffff',
 		endColorstr='#e5e5e5', GradientType=0 ); /* IE6-9 */
 	border-top-left-radius: 15px;
 	border-bottom-left-radius: 15px;
@@ -259,6 +276,7 @@ a {
 	border-top-left-radius: 15px;
 	border-top-right-radius: 5px;
 	border-bottom-right-radius: 5px;
+	/*margin-top:9px;*/
 }
 
 .mini_table_town_top {
@@ -306,7 +324,7 @@ a {
 		rgba(229, 229, 229, 1) 100% ); /* IE10+ */
 	background: linear-gradient(top, rgba(255, 255, 255, 1) 0%,
 		rgba(229, 229, 229, 1) 100% ); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient(          startColorstr='#ffffff',
+	filter: progid:DXImageTransform.Microsoft.gradient(         startColorstr='#ffffff',
 		endColorstr='#e5e5e5', GradientType=0 ); /* IE6-9 */
 	border-top-left-radius: 5px;
 	border-bottom-left-radius: 5px;
@@ -375,7 +393,7 @@ a {
 		rgba(229, 229, 229, 1) 100% ); /* IE10+ */
 	background: linear-gradient(top, rgba(255, 255, 255, 1) 0%,
 		rgba(229, 229, 229, 1) 100% ); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient(          startColorstr='#ffffff',
+	filter: progid:DXImageTransform.Microsoft.gradient(         startColorstr='#ffffff',
 		endColorstr='#e5e5e5', GradientType=0 ); /* IE6-9 */
 	height: 75px;
 	width: 222px;
@@ -477,7 +495,7 @@ input {
 		rgba(229, 229, 229, 1) 100% ); /* IE10+ */
 	background: linear-gradient(top, rgba(255, 255, 255, 1) 0%,
 		rgba(229, 229, 229, 1) 100% ); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient(          startColorstr='#ffffff',
+	filter: progid:DXImageTransform.Microsoft.gradient(         startColorstr='#ffffff',
 		endColorstr='#e5e5e5', GradientType=0 ); /* IE6-9 */
 	width: 172px;
 	height: 65px;
@@ -712,7 +730,7 @@ input {
 	background: linear-gradient(top, rgba(209, 209, 209, 1) 51%,
 		rgba(254, 254, 254, 1) 100%, rgba(226, 226, 226, 1) 0%,
 		rgba(219, 219, 219, 1) 50% ); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient(          startColorstr='#e2e2e2',
+	filter: progid:DXImageTransform.Microsoft.gradient(         startColorstr='#e2e2e2',
 		endColorstr='#fefefe', GradientType=0 ); /* IE6-9 */
 	margin: 0px auto;
 	padding: 0px;
@@ -729,7 +747,7 @@ input {
 }
 
 .selectbox .select {
-	width: 100px;
+	width: 150px;
 	height: 30px;
 	padding: 0 45px 0 10px;
 	font: 14px/30px Arial, Tahoma, sans-serif;
@@ -780,21 +798,23 @@ input {
 
 .selectbox .trigger .arrow {
 	position: absolute;
-	top: 14px;
-	right: 12px;
-	border-left: 5px solid transparent;
+/*	top: 14px;
+	right: 12px;*/
+	/*border-left: 5px solid transparent;
 	border-right: 5px solid transparent;
-	border-top: 5px solid #000;
-	width: 0;
-	height: 0;
+	border-top: 5px solid #000;*/
+	background: url("images/arrow_down.png");
+
+	width: 32px;
+	height: 32px;
 	overflow: hidden;
-	opacity: 0.3;
-	filter: alpha(opacity = 30);
+	/*opacity: 0.3;
+	filter: alpha(opacity =               30);*/
 }
 
 .selectbox:hover .arrow {
 	opacity: 1;
-	filter: alpha(opacity = 100);
+	filter: alpha(opacity =               100);
 }
 
 .selectbox ul.dropdown {
@@ -833,6 +853,7 @@ input {
 
 /*************************************************************BODY.CSS*********************************************************************/
 body {
+	position: relative;
 	background: rgb(226, 226, 226);
 	background: -moz-linear-gradient(top, rgba(226, 226, 226, 1) 0%,
 		rgba(219, 219, 219, 1) 50%, rgba(209, 209, 209, 1) 51%,
@@ -856,7 +877,6 @@ body {
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e2e2e2',
 		endColorstr='#fefefe', GradientType=0 );
 	height: 100%;
-	font-family: Verdana, Arial, Tahoma;
 }
 
 /************************************************************************************************************************/
@@ -897,6 +917,7 @@ body {
 	white-space: nowrap;
 	width: 100%;
 	height: 100%;
+	padding-bottom: 50px;
 }
 
 #wrapper {
@@ -909,6 +930,7 @@ body {
 	margin-left: 0px;
 	background: rgb(226, 226, 226);
 	height: 100%;
+	width:100%;
 }
 
 #navigation {
@@ -938,6 +960,7 @@ body {
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 	height: 100%;
 }
+
 #extra #arrow_div img
 {
 	margin-top: 250px;
@@ -1104,6 +1127,22 @@ body {
 	margin-left: 2px;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #footer p {
 	margin: 0;
 	padding: 5px 10px
@@ -1131,7 +1170,7 @@ body {
 	width: 3%;
 	height: 100%;
 	float: right;
-	margin-right: 12px;
+	margin-right: 2px;
 }
 
 /************************************************************************************************************************/
@@ -1186,7 +1225,7 @@ body {
 }
 
 .footer,.header {
-	border: solid 1px rgb(226, 226, 226);
+	/*border: solid 1px rgb(226, 226, 226);*/
 }
 
 .footer {
@@ -1247,14 +1286,10 @@ body {
 	text-decoration: none;
 }
 
-html,body {
-	font: 12px normal Arial, Verdana, "san-serif";
-}
-
 .selectTabs_first,.selectTabs_second {
 	height: 87px;
 	width: 330px;
-	overflow: hidden;
+	/*overflow: hidden;*/
 }
 
 .content p {
@@ -1275,11 +1310,6 @@ html,body {
 .selectTabs_second .lineTabs a {
 	border: 1px solid #eee;
 }
-
-.selectTabs_second .lineTabs a { /*border-bottom-color:#cc0000;*/
-	
-}
-
 .selectTabs_second .lineTabs li {
 	display: inline-block;
 	width: 85px;
@@ -1288,6 +1318,7 @@ html,body {
 	padding: 0 0 0 0;
 	margin: 4px;
 	text-align: center;
+	display: inline;
 }
 
 .selectTabs_second ul {
@@ -1300,11 +1331,13 @@ html,body {
 .selectTabs_second .lineTabs {
 	margin-left: 15px;
 	width: 320px;
+	margin-top:10px;
 }
 
 .selectTabs_second .lineTabs a {
 	margin: 0 0 -1px -5px;
 	*margin: 0 0 -1px -1px;
+		position: relative;
 	padding: 0 10px;
 	height: 10px;
 	line-height: 10px;
@@ -1323,22 +1356,26 @@ html,body {
 	position: relative;
 	color: #cc0000;
 	border-color: white;
-	background: rgb(255, 255, 255); /* Old browsers */
+	background: red;
+	height: 10px;
+	text-align:center;
+	line-height: 10px;
+	background: rgb(255, 255, 255); 
 	background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%,
-		rgba(229, 229, 229, 1) 100% ); /* FF3.6+ */
+		rgba(229, 229, 229, 1) 100% ); 
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255,
 		255, 255, 1) ), color-stop(100%, rgba(229, 229, 229, 1) ) );
-	/* Chrome,Safari4+ */
+
 	background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%,
-		rgba(229, 229, 229, 1) 100% ); /* Chrome10+,Safari5.1+ */
+		rgba(229, 229, 229, 1) 100% ); 
 	background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%,
-		rgba(229, 229, 229, 1) 100% ); /* Opera 11.10+ */
+		rgba(229, 229, 229, 1) 100% ); 
 	background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%,
-		rgba(229, 229, 229, 1) 100% ); /* IE10+ */
+		rgba(229, 229, 229, 1) 100% ); 
 	background: linear-gradient(top, rgba(255, 255, 255, 1) 0%,
-		rgba(229, 229, 229, 1) 100% ); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient(         startColorstr='#ffffff',
-		endColorstr='#e5e5e5', GradientType=0 ); /* IE6-9 */
+		rgba(229, 229, 229, 1) 100% ); 
+	filter: progid:DXImageTransform.Microsoft.gradient(        startColorstr='#ffffff',
+		endColorstr='#e5e5e5', GradientType=0 ); 
 	border-top: 1px solid white;
 	border-left: 2px solid white;
 	border-right: 2px solid white;
@@ -1359,18 +1396,18 @@ html,body {
 		rgba(229, 229, 229, 1) 100% ); /* IE10+ */
 	background: linear-gradient(top, rgba(255, 255, 255, 1) 0%,
 		rgba(229, 229, 229, 1) 100% ); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient(         startColorstr='#ffffff',
+	filter: progid:DXImageTransform.Microsoft.gradient(        startColorstr='#ffffff',
 		endColorstr='#e5e5e5', GradientType=0 ); /* IE6-9 */
 	border-bottom: 2px solid white;
 	border-right: 2px solid white;
 	border-left: 2px solid white;
-	width: 320px;
+	width: 310px;
 	height: 65px;
 	border-bottom-left-radius: 5px;
 	border-top-left-radius: 5px;
 	border-top-right-radius: 15px;
 	border-bottom-right-radius: 15px;
-	margin-top: -2px;
+	margin-top: -4px;
 }
 
 /*************************/
@@ -1421,11 +1458,6 @@ html,body {
 	float: left;
 }
 
-.line {
-	border-right: 2px solid #ccc; 
-	margin-right: 127px; 
-	padding-right: 5px; 
-}
 /******************************************************************************************/
 .menu_options_table tr td.padding_right {
 	padding: 0 0 0 5px;
