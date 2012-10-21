@@ -29,7 +29,7 @@ function on_selectWay(way_ind, routeParts_arr) {
 	$('#ajax_js').load("ways/load_way.json", {
 				data : $.toJSON(options)
 			});
-
+   
 };
 function on_btn_calculate_click() {
 	if (getApp().rightPanelVisible == false)

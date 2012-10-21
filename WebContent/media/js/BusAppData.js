@@ -24,4 +24,8 @@ function BusAppData() {
 					route_name : route_name
 				});*/
 	};
+	
+	this.getwaysCount = function(){
+		return this.waysData.length;
+	};
 };
