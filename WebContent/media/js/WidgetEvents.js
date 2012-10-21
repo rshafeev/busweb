@@ -67,7 +67,7 @@ function on_btn_calculate_click() {
 		return;
 	el.style.display = 'block';
 	$('#ways_panel')
-			.html("<div class='loader_div'><div class='loader_text'><img src='media/css/images/319.gif' height:'32' width:'40'/></div></div>");
+			.html("<div class='loader_div'><div class='loader_text'><img src='media/css/images/load.gif'/></div></div>");
 	$('#ways_panel').load("ways/find.json", {
 				data : $.toJSON(findWaysOptions)
 			});

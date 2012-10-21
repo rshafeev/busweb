@@ -64,6 +64,7 @@ var agent = navigator.userAgent.toLowerCase();
 var b = $.browser, v = parseFloat(b.version); 
 var c = $.browser, ver = parseFloat(c.version); 
 oldBrowser = ( b.mozilla && v < "10" ); 
+oldMSIEBrowser9 = ( c.msie && ver == "9" ); 
 oldMSIEBrowser8 = ( c.msie && ver == "8" ); 
 oldMSIEBrowser6 = ( c.msie && ver == "6" ); 
 oldMSIEBrowser7 = ( c.msie && ver == "7" ); 
@@ -71,6 +72,10 @@ var vers = $.browser.version;
 if( $.browser.opera && vers <=10.0  ){
 	document.write('<link rel="stylesheet" href="media/css/busWeb_op.css" type="text/css">');
 	}
+else if ( oldMSIEBrowser9 ) 
+{
+document.write('<link rel="stylesheet" href="media/css/busWeb_ie9.css" type="text/css">');
+}
 else if ( oldMSIEBrowser8 ) 
 {
 document.write('<link rel="stylesheet" href="media/css/busWeb_ie8.css" type="text/css">');

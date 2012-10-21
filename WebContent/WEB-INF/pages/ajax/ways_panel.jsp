@@ -27,6 +27,10 @@ getApp().getAppData().clearWaysData();
 				
 			</a>
 			</div>
+			<div id="im_title">
+			
+		<!-- 	<img src="media/css/images/.png"/> -->
+			</div>
 			</div>
 			<div id="rout_info">				
 			<p>Стоимость : <%=wayModel.getCost()%></p>
