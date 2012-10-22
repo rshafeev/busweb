@@ -12,9 +12,14 @@
 
 	<jsp:attribute name="navigation">
         <title>Bus</title>
-        <div class="menu">
-
-       	<ul>
+      <div class="menu-temp">
+<ul class="nav">
+<li class="active"><a href="#"> Главная</a></li>
+<li class="link"><a href="#"> Поддержка</a></li>
+<li class="link"><a href="#"> Разработчикам</a></li>
+</ul>
+</div>
+       	<!-- <ul>
           <li><a class="active" href="home_page.htm"><span><spring:message
 								code="welcome.home" text="default text" /></span></a></li>
           <li><a href="programms.htm"><span><spring:message
@@ -25,17 +30,17 @@
 								code="welcome.support" text="default text" /></span></a></li>
           <li><a href="contact_us.htm"><span><spring:message
 								code="welcome.contact_us" text="default text" /></span></a></li>
-        </ul>     
+        </ul>  -->    
 
-      </div>   
-  <div class="lang_panel">
-				<a href="?lang=rus_RU"><img src="media/css/images/ru.png"
+  
+  <!-- <div class="lang_panel">
+			<!-- 	<a href="?lang=rus_RU"><img src="media/css/images/ru.png"
 				alt="Ru"></a> 
 				<a href="?lang=en_US"><img src="media/css/images/uk.png"
 				alt="En"></a> 
 				<a href="?lang=uk_UA"><img src="media/css/images/ua.png"
-				alt="Ua"></a>
-      </div>  
+				alt="Ua"></a> 
+      </div>   -->
     </jsp:attribute>
 
 	<jsp:attribute name="menu">
