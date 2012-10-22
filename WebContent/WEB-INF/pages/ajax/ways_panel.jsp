@@ -32,7 +32,7 @@ getApp().getAppData().clearWaysData();
 		<!-- 	<img src="media/css/images/.png"/> -->
 			</div>
 			</div>
-			<div id="rout_info">				
+			<div>				
 			<p>Стоимость : <%=wayModel.getCost()%></p>
 			<p>В пути : <%=wayModel.getTime()%> мин. </p>
 			</div>
@@ -192,7 +192,7 @@ getApp().getAppData().clearWaysData();
 <div id="foot-ways"></div>
 </div>
 
-</div>
+
 	<script type="text/javascript">
 <%WayModel wayModel = null;
 			if (model.getWays().isEmpty() == false) {
