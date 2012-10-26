@@ -140,7 +140,7 @@ function on_right_panel_show() {
 		document.img.src = 'media/css/images/arrow_right.png';
 		getApp().rightPanelVisible = true;
 	} else {
-		$("#map_canvas").width('98%').css({
+		$("#map_canvas").width('98.5%').css({
 					cursor : "auto",
 					backgroundColor : "rgb(226, 226, 226)"
 				});

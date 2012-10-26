@@ -7,11 +7,26 @@
 	WaysModel model = (WaysModel) request.getAttribute("model");
 %>
 <script type="text/javascript">
+$(document).ready(function(){
+	$('#scrollbar1').tinyscrollbar();	
+});
+</script>
+<script type="text/javascript">
 getApp().getAppData().clearWaysData();
 </script>
+
+
+	<div id="scrollbar1">
+		<div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+		<div class="viewport">
+			 <div class="overview" onmousedown="return false" >
+
+
+
 <div id="routes_info">
 <div id="head_ways"></div>
 <div id="ways" >
+
 	<%
 		int i = 0;
 		for (WayModel wayModel : model.getWays()) {
@@ -27,10 +42,7 @@ getApp().getAppData().clearWaysData();
 				
 			</a>
 			</div>
-			<div id="im_title">
-			
-		<!-- 	<img src="media/css/images/.png"/> -->
-			</div>
+
 			</div>
 			<div>				
 			<p>Стоимость : <%=wayModel.getCost()%></p>
@@ -124,7 +136,7 @@ getApp().getAppData().clearWaysData();
 									&& routes.get(j + 1) instanceof TransportRouteModel)
 								nextRoute = (TransportRouteModel) routes.get(j + 1);
 			%>
-			<div>
+			<div style="height:auto;">
 				<p>
 					Пересадка :</p>
 					
@@ -160,7 +172,7 @@ getApp().getAppData().clearWaysData();
 									&& routes.get(j - 1) instanceof TransportRouteModel)
 								prevRoute = (TransportRouteModel) routes.get(j - 1);
 			%>
-			<div>
+			<div style="height:auto;">
 				<p>
 					Пешком от станции
 					<b><%=prevRoute.getStationFinish()%></b></p>
@@ -188,9 +200,17 @@ getApp().getAppData().clearWaysData();
 			}
 		%>
 	</div>
-
+	
 <div id="foot-ways"></div>
+</div>  
+
+
+
 </div>
+ 
+			</div>
+		</div>
+
 
 
 	<script type="text/javascript">

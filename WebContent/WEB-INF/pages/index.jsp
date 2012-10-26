@@ -12,6 +12,7 @@
 
 	<jsp:attribute name="navigation">
         <title>Bus</title>
+        <div class="logo_menu">LOGOTIP</div>
       <div class="menu-temp">
 <ul class="nav">
 <li class="active"><a href="#"> Главная</a></li>
@@ -19,6 +20,7 @@
 <li class="link"><a href="#"> Разработчикам</a></li>
 </ul>
 </div>
+<div class="icons_menu">ICONS</div>
        	<!-- <ul>
           <li><a class="active" href="home_page.htm"><span><spring:message
 								code="welcome.home" text="default text" /></span></a></li>
