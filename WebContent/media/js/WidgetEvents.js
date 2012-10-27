@@ -7,12 +7,12 @@ function on_selectWay(way_ind, routeParts_arr) {
 	var markerB = getApp().getGoogleMap().getMarkers().getMarkerB();
 
 	var routeParts = [];
-	for (var i = 0; i < routeParts_arr.length; i++) {
+	for ( var i = 0; i < routeParts_arr.length; i++) {
 		routeParts.push({
-					directRouteID : routeParts_arr[i][0],
-					indexStart : routeParts_arr[i][1],
-					indexFinish : routeParts_arr[i][2]
-				});
+			directRouteID : routeParts_arr[i][0],
+			indexStart : routeParts_arr[i][1],
+			indexFinish : routeParts_arr[i][2]
+		});
 	}
 	var options = {
 		routeParts : routeParts,
@@ -27,36 +27,20 @@ function on_selectWay(way_ind, routeParts_arr) {
 	};
 	//console.log(options);
 	$('#ajax_js').load("ways/load_way.json", {
-				data : $.toJSON(options)
-			});
-	
-	for (var i=0; i<getApp().getAppData().getWaysCount(); i++)
-		{
-		/**/
-	/*	if (i==0)
-			{
-			var name_sh = "#" + "res_text_0";
-			$(name_sh).show();
-			}
-		else
-			{
-			var name_hid = "#" + "res_text_1";
-			$(name_hid).hide();
-			}
-		
-		}*/
-		var name = "#" + "res_text_"+ i;
-		if (i==way_ind)
-			{
+		data : $.toJSON(options)
+	});
+
+	for ( var i = 0; i < getApp().getAppData().getWaysCount(); i++) {
+		var name = "#" + "res_text_" + i;
+		if (i == way_ind) {
 			$(name).show();
-			}
-		else
-			{
+		} else {
 			$(name).hide();
-			}
 		}
-			
-		
+	}
+	
+	$('#scrollbar1').tinyscrollbar_update();
+
 };
 function on_btn_calculate_click() {
 	if (getApp().rightPanelVisible == false)
@@ -66,12 +50,11 @@ function on_btn_calculate_click() {
 	if (findWaysOptions == null)
 		return;
 	el.style.display = 'block';
-	$('#ways_panel')
-			.html("<div class='loader_div'><div class='loader_text'><img src='media/css/images/load.gif'/></div></div>");
+	$('#ways_panel').html("<div class='loader_div'><div class='loader_text'><img src='media/css/images/load.gif'/></div></div>");
 	$('#ways_panel').load("ways/find.json", {
-				data : $.toJSON(findWaysOptions)
-			});
-	}
+		data : $.toJSON(findWaysOptions)
+	});
+}
 
 function on_change_selectbox_city() {
 	//console.log("on_change_selectbox_city()");
@@ -82,9 +65,9 @@ function on_change_selectbox_city() {
 	var googleMap = getApp().getGoogleMap();
 	googleMap.clearMap();
 	googleMap.getMapObj().setOptions({
-				draggableCursor : 'crosshair',
-				minZoom : city.scale
-			});
+		draggableCursor : 'crosshair',
+		minZoom : city.scale
+	});
 	//console.log(city);
 	googleMap.setCenter(city.scale, city.location.lat, city.location.lon);
 	$('#editboxA').val('');
@@ -133,16 +116,16 @@ function on_btn_auto_click(e) {
 function on_right_panel_show() {
 	if (getApp().rightPanelVisible == false) {
 		$("#map_canvas").width('68%').css({
-					cursor : "auto",
-					backgroundColor : "rgb(226, 226, 226)"
-				});
+			cursor : "auto",
+			backgroundColor : "rgb(226, 226, 226)"
+		});
 		document.img.src = 'media/css/images/arrow_right.png';
 		getApp().rightPanelVisible = true;
 	} else {
 		$("#map_canvas").width('98.5%').css({
-					cursor : "auto",
-					backgroundColor : "rgb(226, 226, 226)"
-				});
+			cursor : "auto",
+			backgroundColor : "rgb(226, 226, 226)"
+		});
 		document.img.src = 'media/css/images/arrow_left.png';
 
 		var map = getApp().getGoogleMap();

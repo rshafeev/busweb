@@ -14,93 +14,85 @@ $(document).ready(function(){
 <script type="text/javascript">
 getApp().getAppData().clearWaysData();
 </script>
-
-
-	<div id="scrollbar1">
-		<div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
-		<div class="viewport">
-			 <div class="overview" onmousedown="return false" >
-
-
-
-	<div id="head_ways"></div>
-	<div id="ways">
-<div id="routes_info">
-<div id="head_ways"></div>
-<div id="ways" >
-
-		<%
-			int i = 0;
-				for (WayModel wayModel : model.getWays()) {
-		%>
-
-
-		<div id="result_numb"
-			onclick="on_selectWay(<%=i%>,<%=wayModel.createRoutePartArrStr()%>)">
-			<div id="rout_numb">
-				<div id="numb">
-					<a id="way_ref_<%=i%>"
-						onclick="on_selectWay(<%=i%>,<%=wayModel.createRoutePartArrStr()%>)"><%=i%></a>
-	
-	<div id="result_numb" onclick="on_selectWay(<%=i%>,<%=wayModel.createRoutePartArrStr()%>)">
-		<div id="rout_numb">
-<div id="numb">
-			<a id="way_ref_<%=i%>"
-				onclick="on_selectWay(<%=i%>,<%=wayModel.createRoutePartArrStr()%>)">
-				<%=i%>
-				
-			</a>
+		<div id="scrollbar1">
+			<div class="scrollbar">
+				<div class="track">
+					<div class="thumb">
+						<div class="end"></div>
+					</div>
+				</div>
 			</div>
+  <div class="viewport">
+	<div class="overview" onmousedown="return false">  
+		<div id="routes_info">
+			<div id="head_ways"></div>
+			<div id="ways">
 
-				<div id="im_title"></div>
-			</div>
-			<div>				
-				<p>
-					Стоимость :
-					<%=wayModel.getCost()%></p>
-				<p>
-					В пути :
-					<%=wayModel.getTime()%>
-					мин.
-				</p>
-			</div>
-		</div>
-		<div id="res_text_<%=i%>" style="width: 322px; margin-left: 10px;">
+				<%
+					int i = 0;
+						for (WayModel wayModel : model.getWays()) {
+				%>
 
-			<%
-				ArrayList<RouteModel> routes = wayModel.getRoutes();
-						for (int j = 0; j < routes.size(); j++) {
-							RouteModel routeModel = routes.get(j);
-			%>
-			<%
-				if (routeModel instanceof InputRouteModel) {
-								InputRouteModel r = (InputRouteModel) routeModel;
-								TransportRouteModel nextRoute = null;
-								if (j < routes.size() - 1
-										&& routes.get(j + 1) instanceof TransportRouteModel)
-									nextRoute = (TransportRouteModel) routes.get(j + 1);
-			%>
-			<div>
-				<p>
-					Пешком до станции <b><%=nextRoute.getStationStart()%></b>
-				</p>
-				<p>
-					Время(пешком):
-					<%=r.getMoveTime().getMinutes()%>
-					минут
-				</p>
-				<p>
-					Расстояние(пешком):
-					<%=(new Double(r.getDistance())).intValue()%>
-					м.
-				</p>
-			</div>
-			<%
-				} else if (routeModel instanceof TransportRouteModel) {
-				
-								TransportRouteModel r = (TransportRouteModel) routeModel;
-			%>
-			<script type="text/javascript">
+
+				<div id="result_numb"
+					onclick="on_selectWay(<%=i%>,<%=wayModel.createRoutePartArrStr()%>)">
+					<div id="rout_numb">
+						<div id="numb">
+							<a id="way_ref_<%=i%>"
+								onclick="on_selectWay(<%=i%>,<%=wayModel.createRoutePartArrStr()%>)">
+								<%=i%>
+
+							</a>
+						</div>
+
+					</div>
+					<div>
+						<p>
+							Стоимость :
+							<%=wayModel.getCost()%></p>
+						<p>
+							В пути :
+							<%=wayModel.getTime()%>
+							мин.
+						</p>
+					</div>
+				</div>
+				<div id="res_text_<%=i%>" style="width: 322px; margin-left: 10px; display:none;">
+
+					<%
+						ArrayList<RouteModel> routes = wayModel.getRoutes();
+								for (int j = 0; j < routes.size(); j++) {
+									RouteModel routeModel = routes.get(j);
+					%>
+					<%
+						if (routeModel instanceof InputRouteModel) {
+										InputRouteModel r = (InputRouteModel) routeModel;
+										TransportRouteModel nextRoute = null;
+										if (j < routes.size() - 1
+												&& routes.get(j + 1) instanceof TransportRouteModel)
+											nextRoute = (TransportRouteModel) routes.get(j + 1);
+					%>
+					<div>
+						<p>
+							Пешком до станции <b><%=nextRoute.getStationStart()%></b>
+						</p>
+						<p>
+							Время(пешком):
+							<%=r.getMoveTime().getMinutes()%>
+							минут
+						</p>
+						<p>
+							Расстояние(пешком):
+							<%=(new Double(r.getDistance())).intValue()%>
+							м.
+						</p>
+					</div>
+					<%
+						} else if (routeModel instanceof TransportRouteModel) {
+
+										TransportRouteModel r = (TransportRouteModel) routeModel;
+					%>
+					<script type="text/javascript">
 		getApp().getAppData().addRouteToWay(
 		        <%=i%>,
 		        "<%=Integer.toString(r.getDirectRouteID())%>",
@@ -108,126 +100,126 @@ getApp().getAppData().clearWaysData();
 				"<%=r.getRouteName()%>");
 		</script>
 
-			<div>
-				<span class="result_transp"><img
-					src="media/css/images/<%=r.getRouteType()%>.png" /> <%=r.getRouteName()%></span>
-				<p>
-					Стоимость :
-					<%=r.getCost()%>
-				</p>
-				<p>
-					Интервал движения:
-					<%=r.getInterval().getMinutes()%>
-					минут
-				</p>
-				<p>
-					Время в пути :
-					<%=r.getMoveTime().getMinutes()%>
-					минут
-				</p>
-				<p>
-					Расстояние:
-					<%=(new Double(r.getDistance() / 100.0))
+					<div>
+						<span class="result_transp"><img
+							src="media/css/images/<%=r.getRouteType()%>.png" /> <%=r.getRouteName()%></span>
+						<p>
+							Стоимость :
+							<%=r.getCost()%>
+						</p>
+						<p>
+							Интервал движения:
+							<%=r.getInterval().getMinutes()%>
+							минут
+						</p>
+						<p>
+							Время в пути :
+							<%=r.getMoveTime().getMinutes()%>
+							минут
+						</p>
+						<p>
+							Расстояние:
+							<%=(new Double(r.getDistance() / 100.0))
 								.intValue() / 10.0%>
-					км.
-				</p>
-				<p>
-					Садиться: <b><%=r.getStationStart()%></b>
-				</p>
-				<p>
-					Выходить: <b><%=r.getStationFinish()%></b>
-				</p>
+							км.
+						</p>
+						<p>
+							Садиться: <b><%=r.getStationStart()%></b>
+						</p>
+						<p>
+							Выходить: <b><%=r.getStationFinish()%></b>
+						</p>
 
-			</div>
+					</div>
 
-			<%
-				} else if (routeModel instanceof TransitionRouteModel) {
-								TransitionRouteModel r = (TransitionRouteModel) routeModel;
-								TransportRouteModel prevRoute = null;
-								if (j > 0
-										&& routes.get(j - 1) instanceof TransportRouteModel)
-									prevRoute = (TransportRouteModel) routes.get(j - 1);
-								TransportRouteModel nextRoute = null;
-								if (j < routes.size() - 1
-										&& routes.get(j + 1) instanceof TransportRouteModel)
-									nextRoute = (TransportRouteModel) routes.get(j + 1);
-			%>
-			<div style="height:auto;">
-				<p>Пересадка :</p>
+					<%
+						} else if (routeModel instanceof TransitionRouteModel) {
+									TransitionRouteModel r = (TransitionRouteModel) routeModel;
+									TransportRouteModel prevRoute = null;
+									if (j > 0
+											&& routes.get(j - 1) instanceof TransportRouteModel)
+										prevRoute = (TransportRouteModel) routes.get(j - 1);
+									TransportRouteModel nextRoute = null;
+									if (j < routes.size() - 1
+											&& routes.get(j + 1) instanceof TransportRouteModel)
+										nextRoute = (TransportRouteModel) routes.get(j + 1);
+					%>
+					<div style="height: auto;">
+						<p>Пересадка :</p>
 
-				<span class="result_transp"><img
-					src="media/css/images/<%=prevRoute.getRouteType()%>.png" /> <%=prevRoute.getRouteName()%></span>
-				<span class="result_transp_img"><img
-					src="media/css/images/arrow_refresh.png" /></span> <span
-					class="result_transp"><img
-					src="media/css/images/<%=nextRoute.getRouteType()%>.png" /> <%=nextRoute.getRouteName()%>
-				</span>
+						<span class="result_transp"><img
+							src="media/css/images/<%=prevRoute.getRouteType()%>.png" /> <%=prevRoute.getRouteName()%></span>
+						<span class="result_transp_img"><img
+							src="media/css/images/arrow_refresh.png" /></span> <span
+							class="result_transp"><img
+							src="media/css/images/<%=nextRoute.getRouteType()%>.png" /> <%=nextRoute.getRouteName()%>
+						</span>
 
-				<p>
-					С остановки: <b><%=prevRoute.getStationFinish()%></b>
-				</p>
-				<p>
-					На остановку: <b><%=nextRoute.getStationStart()%></b>
-				</p>
-				<p>
-					Время(пешком):
-					<%=r.getMoveTime().getMinutes()%>
-					минут
-				</p>
-				<p>
-					Расстояние(пешком):
-					<%=(new Double(r.getDistance() / 100.0))
+						<p>
+							С остановки: <b><%=prevRoute.getStationFinish()%></b>
+						</p>
+						<p>
+							На остановку: <b><%=nextRoute.getStationStart()%></b>
+						</p>
+						<p>
+							Время(пешком):
+							<%=r.getMoveTime().getMinutes()%>
+							минут
+						</p>
+						<p>
+							Расстояние(пешком):
+							<%=(new Double(r.getDistance() / 100.0))
 								.intValue() / 10.0%>
-					км.
-				</p>
+							км.
+						</p>
+					</div>
+					<%
+						} else if (routeModel instanceof OutputRouteModel) {
+									OutputRouteModel r = (OutputRouteModel) routeModel;
+									TransportRouteModel prevRoute = null;
+									if (j > 0
+											&& routes.get(j - 1) instanceof TransportRouteModel)
+										prevRoute = (TransportRouteModel) routes.get(j - 1);
+					%>
+					<div style="height: auto;">
+						<p>
+							Пешком от станции <b><%=prevRoute.getStationFinish()%></b>
+						</p>
+						<p>
+							Время(пешком):
+							<%=r.getMoveTime().getMinutes()%>
+							минут
+						</p>
+						<p>
+							Расстояние(пешком):
+							<%=(new Double(r.getDistance())).intValue()%>
+							м.
+						</p>
+					</div>
+					<%
+						}
+					%>
+					<div id="line_res"></div>
+					<%
+						}
+					%>
+				</div>
+				<%
+					i++;
+					}
+				%>
 			</div>
-			<%
-				} else if (routeModel instanceof OutputRouteModel) {
-								OutputRouteModel r = (OutputRouteModel) routeModel;
-								TransportRouteModel prevRoute = null;
-								if (j > 0
-										&& routes.get(j - 1) instanceof TransportRouteModel)
-									prevRoute = (TransportRouteModel) routes.get(j - 1);
-			%>
-			<div style="height:auto;">
-				<p>
-					Пешком от станции <b><%=prevRoute.getStationFinish()%></b>
-				</p>
-				<p>
-					Время(пешком):
-					<%=r.getMoveTime().getMinutes()%>
-					минут
-				</p>
-				<p>
-					Расстояние(пешком):
-					<%=(new Double(r.getDistance())).intValue()%>
-					м.
-				</p>
-			</div>
-			<%
-				}
-			%>
-			<div id="line_res"></div>
-			<%
-				}
-			%>
+
+			<div id="foot-ways"></div>
 		</div>
-		<%
-			i++;
-			}
-		%>
-	</div>
-	
-	<div id="foot-ways"></div>
-</div>  
 
 
+
+ 	</div>
 
 </div>
+ </div>
  
-			</div>
-		</div>
-
 
 
 <script type="text/javascript">
@@ -236,3 +228,4 @@ getApp().getAppData().clearWaysData();
 				wayModel = model.getWays().iterator().next();%>
 	on_selectWay(0,<%=wayModel.createRoutePartArrStr()%>);<%}%>
 </script>
+
