@@ -115,7 +115,7 @@ margin-left:102px;
 
 	text-align: left;
 	white-space: nowrap;
-	z-index: 4;
+	z-index: 1003;
 	width: 100%;
 }
 /************************************************************************************************************************/
@@ -1033,7 +1033,7 @@ body {
 		, 194, 194) ), color-stop(0.68, rgb(245, 245, 245) ) );
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 	height: 100%;
-	/*overflow: auto;*/
+	overflow: hidden;
 }
 #extra #arrow_div img
 {
@@ -1042,15 +1042,12 @@ body {
 
 #ways_panel
 {
-	/*display: none;*/ 
+	display: none; 
 	width: 375px;
 	height: 100%;
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-	z-index: 1;
-
 	
 }
-
 
 .mini_table_route .mini_table_route_center .mini_table-route_top p
 {
@@ -1062,15 +1059,13 @@ body {
 	font: normal normal 400 11px/21px Arial; height: 18px;
 }
 #ways {
-	/*overflow: auto;*/
+	/*overflow: hidden;*/
 	height: 100%;
 }
 
 #routes_info {
-	/*overflow: hidden;*/
+	overflow: hidden;
 	height: 100%;
-	z-index: 1;
-	position:absolute;
 	
 }
 
@@ -1229,7 +1224,7 @@ body {
 	height: 100%;
 	width: 100%;
 	position: relative;
-	/*overflow: hidden;*/
+	overflow: hidden;
 	box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.506);
 	z-index: 1;
 }
@@ -1551,7 +1546,7 @@ html,body {
 /* Tiny Scrollbar */
 #scrollbar1 { width: 375px;   }
 #scrollbar1 .viewport { width: 365px; height: 100%;position: relative;  }
-#scrollbar1 .overview { list-style: none; position: absolute; left: 0; top: 0; padding: 0; margin: 0; z-index: 1;}
+#scrollbar1 .overview { list-style: none; position: absolute; left: 0; top: 0; padding: 0; margin: 0;}
 #scrollbar1 .scrollbar{  position: relative; 	cursor: pointer; background-position: 0 0; float:right; width: 10px;  }
 #scrollbar1 .track {
 	width: 3px;
