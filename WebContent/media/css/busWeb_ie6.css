@@ -1005,7 +1005,7 @@ body {
 
 #result_numb {
 	height: 70px;
-	width: 350px;
+	/*width: 350px;*/
 	background-image: linear-gradient(bottom, rgb(28, 168, 255) 30%,
 		rgb(95, 205, 245) 65%, rgb(120, 209, 250) 83% );
 	background-image: -o-linear-gradient(bottom, rgb(28, 168, 255) 30%,

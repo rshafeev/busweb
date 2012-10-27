@@ -27,6 +27,7 @@
 <script src="media/js/BusAppData.js"></script>
 <script src="media/js/BusApp.js"></script>
 <script src="media/js/main.js"></script>
+<script src="media/js/jquery.tinyscrollbar.min.js"></script>
 
 <style>
 * {
