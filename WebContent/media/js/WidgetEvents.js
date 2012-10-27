@@ -32,19 +32,7 @@ function on_selectWay(way_ind, routeParts_arr) {
 	
 	for (var i=0; i<getApp().getAppData().getWaysCount(); i++)
 		{
-		/**/
-	/*	if (i==0)
-			{
-			var name_sh = "#" + "res_text_0";
-			$(name_sh).show();
-			}
-		else
-			{
-			var name_hid = "#" + "res_text_1";
-			$(name_hid).hide();
-			}
-		
-		}*/
+	
 		var name = "#" + "res_text_"+ i;
 		if (i==way_ind)
 			{
@@ -55,7 +43,7 @@ function on_selectWay(way_ind, routeParts_arr) {
 			$(name).hide();
 			}
 		}
-			
+	$('#scrollbar1').tinyscrollbar_update();	
 		
 };
 function on_btn_calculate_click() {
@@ -66,9 +54,10 @@ function on_btn_calculate_click() {
 	if (findWaysOptions == null)
 		return;
 	el.style.display = 'block';
-	$('#ways_panel')
-			.html("<div class='loader_div'><div class='loader_text'><img src='media/css/images/load.gif'/></div></div>");
-	$('#ways_panel').load("ways/find.json", {
+	$('#panel_data')
+			.html("<div class='loader_text'><img src='media/css/images/load.gif'/></div>");
+	$('#scrollbar1').tinyscrollbar_update();	
+	$('#panel_data').load("ways/find.json", {
 				data : $.toJSON(findWaysOptions)
 			});
 	

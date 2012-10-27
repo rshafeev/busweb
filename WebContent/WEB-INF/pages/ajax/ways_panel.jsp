@@ -6,20 +6,12 @@
 <%
 	WaysModel model = (WaysModel) request.getAttribute("model");
 %>
-<script type="text/javascript">
-$(document).ready(function(){
-	$('#scrollbar1').tinyscrollbar();	
-});
-</script>
+
 <script type="text/javascript">
 getApp().getAppData().clearWaysData();
 </script>
 
 
-	<div id="scrollbar1">
-		<div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
-		<div class="viewport">
-			 <div class="overview" onmousedown="return false" >
 
 
 
@@ -204,12 +196,6 @@ getApp().getAppData().clearWaysData();
 <div id="foot-ways"></div>
 </div>  
 
-
-
-</div>
- 
-			</div>
-		</div>
 
 
 

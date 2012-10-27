@@ -10,7 +10,7 @@ function BusApp() {
 	this.rightPanelVisible = false;
 	this.main = function() {
 		//console.log("busApp : main()");
-
+		$('#scrollbar1').tinyscrollbar();	
 		this.on_resize_window('#container', 146, 3);
 		var T = this;
 		$(window).bind("resize", function(e) {
@@ -144,6 +144,8 @@ function BusApp() {
 
 			google.maps.event.trigger(map.getMapObj(), 'resize');
 		}
+		
+		$('#scrollbar1').tinyscrollbar_update();	
 
 	};
 
