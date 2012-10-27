@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <div class="mini_table_town">
 	<div class="mini_table_town_center">
 		<div class="mini_table-town_top">

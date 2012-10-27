@@ -5,7 +5,7 @@
 	<tbody>
 		<tr>
 			<td>
-				<input type="radio" name="way_options" id="optimal" value="optimal" checked="checked" border="0"/>
+				<input type="radio" name="way_options" id="optimal" value="optimal" checked="checked" />
 			</td>
 			<td class="padding_right">
 				<label for="optimal" id="optimal_tip_label" title="">оптимальный</label>

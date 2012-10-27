@@ -71,8 +71,7 @@ function on_btn_calculate_click() {
 	$('#ways_panel').load("ways/find.json", {
 				data : $.toJSON(findWaysOptions)
 			});
-	
-}
+	}
 
 function on_change_selectbox_city() {
 	//console.log("on_change_selectbox_city()");
