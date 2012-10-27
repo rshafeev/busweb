@@ -900,6 +900,7 @@ input {
 	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 	font: 14px/18px Arial, Tahoma, sans-serif;
 	margin-top: 10px;
+	z-index: 10;
 }
 
 .selectbox li {
@@ -974,7 +975,7 @@ body {
 	width: 98.7%; 
 	height: 100%; 
 	border: 2px solid white;
-		z-index: 3;
+	z-index: 5;
 }
 
 /****************************************************************************************************************************/
@@ -1230,7 +1231,7 @@ body {
 	position: relative;
 	/*overflow: hidden;*/
 	box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.506);
-	/*z-index: 1000;*/
+	z-index: 1;
 }
 
 #arrow_div {
@@ -1549,7 +1550,7 @@ html,body {
 
 /* Tiny Scrollbar */
 #scrollbar1 { width: 375px;   }
-#scrollbar1 .viewport { width: 365px; height: 100%;position: relative;  z-index:1;}
+#scrollbar1 .viewport { width: 365px; height: 100%;position: relative;  }
 #scrollbar1 .overview { list-style: none; position: absolute; left: 0; top: 0; padding: 0; margin: 0; z-index: 1;}
 #scrollbar1 .scrollbar{  position: relative; 	cursor: pointer; background-position: 0 0; float:right; width: 10px;  }
 #scrollbar1 .track {
@@ -1592,6 +1593,10 @@ border: solid 1px #A3A3A3;
 	padding:2px;
 }
 
+.empty
+{
+	height:10px;
+}
 
 /*
 #scrollbar1 { width: 367px; }

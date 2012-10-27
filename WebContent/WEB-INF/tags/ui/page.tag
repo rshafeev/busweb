@@ -16,7 +16,10 @@
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script> 
 <script type="text/javascript"
 	src="http://maps.google.com/maps/api/js?sensor=false&libraries=drawing"></script>
-	<jsp:invoke fragment="page_head" />
+
+<script src="media/js/jquery.tinyscrollbar.min.js"></script>
+
+<jsp:invoke fragment="page_head" />
 <script src="media/js/jquery.json-2.3.js"></script>	
 
 <script src="media/js/selectbox.js"></script>
@@ -27,7 +30,6 @@
 <script src="media/js/BusAppData.js"></script>
 <script src="media/js/BusApp.js"></script>
 <script src="media/js/main.js"></script>
-<script src="media/js/jquery.tinyscrollbar.min.js"></script>
 
 <style>
 * {
