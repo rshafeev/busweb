@@ -34,7 +34,6 @@ getApp().getAppData().clearWaysData();
 					<a id="way_ref_<%=i%>"
 						onclick="on_selectWay(<%=i%>,<%=wayModel.createRoutePartArrStr()%>)">
 						<%=i%>
-
 					</a>
 				</div>
 
@@ -52,7 +51,7 @@ getApp().getAppData().clearWaysData();
 		</div>
 
 		<div id="res_text_<%=i%>" style="width: 322px; margin-left: 10px;">
-				<div id="print">
+			<!-- 	<div id="print">
 	<a href="#"><img src="media/css/images/print.png" title="Print" alt="" ></a> 
 	
 		</div>
@@ -60,7 +59,7 @@ getApp().getAppData().clearWaysData();
 		<a href="#"><img src="media/css/images/chain.png" title="Clipboard" alt="" ></a> 
 		</div>
 		
-
+ -->
 			<%
 				ArrayList<RouteModel> routes = wayModel.getRoutes();
 						for (int j = 0; j < routes.size(); j++) {

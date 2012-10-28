@@ -155,7 +155,8 @@ a {
 	height: 18px;
 	width: 100px;
 	text-align: center;
-	background: rgb(226, 226, 226);
+	/*background: rgb(226, 226, 226);*/
+	background: white;
 	border-radius: 8px;
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
@@ -171,7 +172,8 @@ a {
 	height: 18px;
 	width: 100px;
 	text-align: center;
-	background: rgb(226, 226, 226);
+	/*background: rgb(226, 226, 226);*/
+	background: white;
 	border-radius: 8px;
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
@@ -191,7 +193,8 @@ a {
 	height: 18px;
 	width: 150px;
 	text-align: center;
-	background: rgb(226, 226, 226);
+	/*background: rgb(226, 226, 226);*/
+	background:white;
 	border-radius: 8px;
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
@@ -1382,6 +1385,7 @@ body { /*background: rgb(226, 226, 226);
 	margin-top: 23px;
 	margin-left: 15px;
 	position:absolute;
+
 }
 
 .content .tab2 {
@@ -1423,6 +1427,9 @@ body { /*background: rgb(226, 226, 226);
 .selectTabs_second .lineTabs a {
 	color: black;
 	font-size: 11;
+		width: 100%;
+height: 100%;
+display: block ;
 }
 
 .selectTabs_second .content .lineTabs li.first {
@@ -1430,9 +1437,10 @@ body { /*background: rgb(226, 226, 226);
 	width: 85px;
 	height: 18px;
 	text-align: center;
-	background: #E2E2E2;
+	background: white;
 	border-radius: 8px 0 0px 8px;
-	box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+	box-shadow: 0 0 7px rgba(0, 0, 0, 0.5);
+		cursor: pointer;
 }
 
 .selectTabs_second .content .lineTabs li.second {
@@ -1440,7 +1448,7 @@ body { /*background: rgb(226, 226, 226);
 	width: 85px;
 	height: 18px;
 	text-align: center;
-	background: #E2E2E2;
+	background: white;
 	border-radius: 0px;
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
@@ -1450,7 +1458,8 @@ body { /*background: rgb(226, 226, 226);
 	width: 85px;
 	height: 18px;
 	text-align: center;
-	background: #E2E2E2;
+	/*background: #E2E2E2;*/
+	background: white;
 	border-radius: 0px 8px 8px 0px;
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
@@ -1460,6 +1469,11 @@ body { /*background: rgb(226, 226, 226);
 	color: #cc0000;
 	font-weight: bold;
 	font-size: 11;
+	width: 100%;
+height: 100%;
+display: block ;
+/*line-height: 11;*/
+	
 }
 
 .selectTabs_second .content {
