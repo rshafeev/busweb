@@ -51,15 +51,18 @@ getApp().getAppData().clearWaysData();
 		</div>
 
 		<div id="res_text_<%=i%>" style="width: 322px; margin-left: 10px;">
-			<!-- 	<div id="print">
+<div id="print">
 	<a href="#"><img src="media/css/images/print.png" title="Print" alt="" ></a> 
 	
 		</div>
 		<div id="clipboard">
 		<a href="#"><img src="media/css/images/chain.png" title="Clipboard" alt="" ></a> 
 		</div>
-		
- -->
+	
+		</div>
+		<div id="clipboard">
+		<a href="#"><img src="media/css/images/chain.png" title="Clipboard" alt="" ></a> 
+		</div>
 			<%
 				ArrayList<RouteModel> routes = wayModel.getRoutes();
 						for (int j = 0; j < routes.size(); j++) {
@@ -92,6 +95,9 @@ getApp().getAppData().clearWaysData();
 				} else if (routeModel instanceof TransportRouteModel) {
 				
 								TransportRouteModel r = (TransportRouteModel) routeModel;
+	
+							TransportRouteModel r = (TransportRouteModel) routeModel;
+							
 			%>
 			<script type="text/javascript">
 		getApp().getAppData().addRouteToWay(
@@ -156,6 +162,16 @@ getApp().getAppData().clearWaysData();
 					src="media/css/images/<%=nextRoute.getRouteType()%>.png" /> <%=nextRoute.getRouteName()%>
 				</span>
 
+			<div style="height:auto;">
+				<p>
+					Пересадка :</p>
+					
+					<span class="result_transp"><img src="media/css/images/<%=prevRoute.getRouteType()%>.png"/>  <%=prevRoute.getRouteName()%></span>
+					<span class="result_transp_img"><img  src="media/css/images/arrow_refresh.png"/></span>
+					<span class="result_transp"><img src="media/css/images/<%=nextRoute.getRouteType()%>.png"/>
+					<%=nextRoute.getRouteName()%>
+					</span>
+					
 				<p>
 					С остановки: <b><%=prevRoute.getStationFinish()%></b>
 				</p>
