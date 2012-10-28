@@ -72,8 +72,8 @@
 												<li class="second"><a href="#">Время</a></li>
 												<li class="third"><a href="#">Проездной</a></li>
 				
-											</ul>   
-											 <div class="tab1">
+											</ul> 
+											<div class="tab1">
 												<jsp:directive.include file="widgets/settings_panel.jsp" />
 											</div>
 											<div class="tab2">
@@ -82,7 +82,7 @@
 											<div class="tab3">								
   												<jsp:directive.include file="widgets/ticket_type.jsp" />
 											</div>
- 
+
 										</div>
 									</div>
 								</div> 

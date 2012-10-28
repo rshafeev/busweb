@@ -7,6 +7,8 @@
 
 <%
 	WayGeoDataModel model = (WayGeoDataModel) request.getAttribute("model");
+
+
 %>
 <script type="text/javascript">
 function loadWay(){
@@ -19,23 +21,20 @@ googleMap.deleteAllPolilines();
     		for(RouteGeoData data : route.getRouteData()){%>
 	googleMap.addStationMarker(
 			<%=route.getRoutePart().getDirectRouteID()%>,
-			'<%=data.getStationName()%>
-	',
-<%=data.getStationLocation().x%>
-	,
-<%=data.getStationLocation().y%>
-	);
-<%if(i>0){%>
-	googleMap.addPolyline(
-<%=route.getRoutePart().getDirectRouteID()%>
-	,
-<%=data.getStringGeom()%>
-	);
-<%}
-	i++;%>
+			'<%=data.getStationName()%>',
+			<%=data.getStationLocation().x%>,
+			<%=data.getStationLocation().y%>);
+	<%if(i>0){%>
+		googleMap.addPolyline(
+				<%=route.getRoutePart().getDirectRouteID()%>,
+				<%=data.getStringGeom()%>);
 	
+	<%}
+	i++;%>
 <%}}%>
-	}
-	loadWay();
-	//console.log("way was loaded");
+
+	
+}
+loadWay();
+//console.log("way was loaded");
 </script>
