@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 
 <p style="font-size: 11px; display: inline; color: black;">Время выезда.</p>
-<p style="font-size: 10px; margin-left: 45px; display: inline; color: black;">час:</p>
+<p style="font-size: 10px; margin-left: 25px; display: inline; color: black;">час:</p>
 <select style="width: 40px; display: inline; margin-left: 10px; margin-top: 10px;">
 	<option>01</option>
 	<option>02</option>
@@ -45,7 +45,7 @@
 </select>
 <br>
 <p style="font-size: 11px; color: black; display: inline;">День недели:</p>
-<select name=day_s size=1 style="width: 104px; margin-top: 7px; display: inline; margin-left: 55px; font-size: 11px;">
+<select name=day_s size=1 style="width: 104px; margin-top: 7px; display: inline; margin-left: 32px; font-size: 11px;">
 	<option value=1 selected>Понедельник</option>
 	<option value=2>Вторник</option>
 	<option value=3>Среда</option>

@@ -20,7 +20,16 @@
 <li class="link"><a href="#"> Разработчикам</a></li>
 </ul>
 </div>
-<div class="icons_menu">ICONS</div>
+<div class="icons_menu">
+<div class="lang_panel">
+				<a href="?lang=rus_RU"><img src="media/css/images/ru.png"
+				alt="Ru"></a> 
+				<a href="?lang=en_US"><img src="media/css/images/uk.png"
+				alt="En"></a> 
+				<a href="?lang=uk_UA"><img src="media/css/images/ua.png"
+				alt="Ua"></a> 
+      </div>
+</div>
        	<!-- <ul>
           <li><a class="active" href="home_page.htm"><span><spring:message
 								code="welcome.home" text="default text" /></span></a></li>
@@ -63,14 +72,16 @@
 								<td style="width: 330px;">
 									<div class="mini_table_transp_new">
 										<div class="selectTabs_second">
-											<ul class="lineTabs">
-												<li><a class="active" href="#">Настройки</a></li>
-												<li><a href="#">Время</a></li>
-												<li><a href="#">Проездной</a></li>
-				
-											</ul> 
+
 										 <div class="content">
-											<div class="tab1">
+										 	<ul class="lineTabs">
+												<li class="first"><a class="active" href="#">Маршрут</a></li>
+												<li class="second"><a href="#">Время</a></li>
+												<li class="third"><a href="#">Проездной</a></li>
+				
+											</ul>   
+									
+											 <div class="tab1">
 												<jsp:directive.include file="widgets/settings_panel.jsp" />
 											</div>
 											<div class="tab2">
@@ -79,7 +90,7 @@
 											<div class="tab3">								
   												<jsp:directive.include file="widgets/ticket_type.jsp" />
 											</div>
-
+ 
 										</div>
 									</div>
 								</div> 

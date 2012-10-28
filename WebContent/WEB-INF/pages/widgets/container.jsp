@@ -21,17 +21,20 @@
 							<div class="end"></div>
 						</div>
 					</div>
+					
 				</div>
 				<div class="viewport">
 					<div class="overview" onmousedown="return false">
 						<div id="panel_data"></div>
+					
 					</div>
 
 				</div>
+			
 			</div>
 	<div class="empty"></div>
 		</div>
-
+		
 	</div>
 
 </div>
