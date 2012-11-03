@@ -41,15 +41,93 @@ a {
 	text-decoration: none;
 	display: inline;
 }
+
+.nav ul {
+	display: inline-block;
+	height: 35px;
+	position: relative;
+	list-style:none;
+}
+
+.active {
+	background: #E2E2E2;
+	list-style: none;
+}
+
+.menu-temp .nav .active a {
+	color: #597D84;
+	list-style: none;
+}
+
+.menu-temp .nav a {
+	color: white;
+	padding-bottom: 10px;
+	position: relative;
+	padding: 4px 7px 0;
+	font-size: .93em;
+	font-weight: bold;
+	list-style: none;
+}
+
+.menu-temp .nav a:hover { /*padding-top:-10px;*/
+	
+}
+
+.nav>li {
+	float: left;
+	height: 24px;
+	margin-right: 1px;
+	list-style-type: none;
+	display: inline;
+	border-top: 1px solid white;
+	border-right: 1px solid white;
+	border-left: 1px solid white;
+	vertical-align: middle;
+	line-height: 22px;
+	border-radius: 4px 4px 0px 0px;
+	list-style: none;
+	width:auto;
+}
+
+.nav>li:hover {
+	margin-top: -3px;
+	cursor: pointer;
+	height: 27px;
+	background: rgba(255, 255, 255, 0.4);
+	list-style: none;
+}
+
+.menu-temp { /*padding-top:10px;*/
+	width: 300px;
+	height: 25px;
+	margin-left: 102px;
+	vertical-align: bottom;
+	line-height: 35px;
+	float: left;
+		background: red;
+		list-style: none;
+}
+
+.logo_menu {
+	float: left;
+	height: 25px;
+	width: 100px;
+}
+
+.icons_menu {
+	float: right;
+	width: 100px;
+	height: 25px;
+}
+
 /************************************************************************************************************************/
 /**********************head max/min styles******************************************************************************/
 .portal-headline {
-	background: url("images/simple_bg.jpg");
 	font: 12px/12px Arial, sans-serif;
 	padding-top: 6px;
-	/*position: absolute;*/
 	text-align: left;
 	white-space: nowrap;
+	z-index: 1003;
 	width: 100%;
 }
 
@@ -865,7 +943,7 @@ input {
 
 /*************************************************************BODY.CSS*********************************************************************/
 body {
-	position: relative;
+	/*position: relative;
 	background: rgb(226, 226, 226);
 	background: -moz-linear-gradient(top, rgba(226, 226, 226, 1) 0%,
 		rgba(219, 219, 219, 1) 50%, rgba(209, 209, 209, 1) 51%,
@@ -888,7 +966,10 @@ body {
 		rgba(254, 254, 254, 1) 100% );
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e2e2e2',
 		endColorstr='#fefefe', GradientType=0 );
+	height: 100%;*/
+	background: url("images/main-back.jpg");
 	height: 100%;
+	font-family: Verdana, Arial, Tahoma;
 }
 
 /************************************************************************************************************************/

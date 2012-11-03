@@ -23,11 +23,11 @@
 <div class="icons_menu">
 <div class="lang_panel">
 				<a href="?lang=rus_RU"><img src="media/css/images/ru.png"
-				alt="Ru"></a> 
+					alt="Ru"></a> 
 				<a href="?lang=en_US"><img src="media/css/images/uk.png"
-				alt="En"></a> 
+					alt="En"></a> 
 				<a href="?lang=uk_UA"><img src="media/css/images/ua.png"
-				alt="Ua"></a> 
+					alt="Ua"></a> 
       </div>
 </div>
        	<!-- <ul>
@@ -44,14 +44,7 @@
         </ul>  -->    
 
   
-  <!-- <div class="lang_panel">
-			<!-- 	<a href="?lang=rus_RU"><img src="media/css/images/ru.png"
-				alt="Ru"></a> 
-				<a href="?lang=en_US"><img src="media/css/images/uk.png"
-				alt="En"></a> 
-				<a href="?lang=uk_UA"><img src="media/css/images/ua.png"
-				alt="Ua"></a> 
-      </div>   -->
+  <!--    -->
     </jsp:attribute>
 
 	<jsp:attribute name="menu">
@@ -74,14 +67,13 @@
 										<div class="selectTabs_second">
 
 										 <div class="content">
-										 	<ul class="lineTabs">
+										 											<ul class="lineTabs">
 												<li class="first"><a class="active" href="#">Маршрут</a></li>
 												<li class="second"><a href="#">Время</a></li>
 												<li class="third"><a href="#">Проездной</a></li>
 				
-											</ul>   
-									
-											 <div class="tab1">
+											</ul> 
+											<div class="tab1">
 												<jsp:directive.include file="widgets/settings_panel.jsp" />
 											</div>
 											<div class="tab2">
@@ -90,13 +82,14 @@
 											<div class="tab3">								
   												<jsp:directive.include file="widgets/ticket_type.jsp" />
 											</div>
- 
+
 										</div>
 									</div>
 								</div> 
 							</td>
 						 <td style="width: 180px;">
-								<button type="submit" class="button" onclick="on_btn_calculate_click();">
+								<button type="submit" class="button"
+									onclick="on_btn_calculate_click();">
 									<spring:message code="welcome.btn_calc" text="default text" />
 								</button>
 						</td>   
