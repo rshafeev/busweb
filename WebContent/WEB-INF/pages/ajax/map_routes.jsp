@@ -19,8 +19,7 @@ googleMap.deleteAllPolilines();
     		for(RouteGeoData data : route.getRouteData()){%>
 	googleMap.addStationMarker(
 			<%=route.getRoutePart().getDirectRouteID()%>,
-			'<%=data.getStationName()%>
-	',
+			'<%=data.getStationName()%>',
 <%=data.getStationLocation().x%>
 	,
 <%=data.getStationLocation().y%>
