@@ -9,9 +9,9 @@
 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf8" />
+ <meta http-equiv="Content-Type" content="text/html; charset=utf8" />
 <meta http-equiv="Cache-control" content="no-cache">
-
+<meta charset="utf-8">
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script> 
 <script type="text/javascript"
