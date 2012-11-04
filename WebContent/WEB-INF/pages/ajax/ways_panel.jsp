@@ -26,7 +26,17 @@ getApp().getAppData().clearWaysData();
 
 	
 	<div id="result_numb" onclick="on_selectWay(<%=i%>,<%=wayModel.createRoutePartArrStr()%>)">
+		<% ArrayList<String> routesType = wayModel.getRoutesType(); 
+		for (int k=0; k<routesType.size();k++ )
+		{
+		%>	
+		 <img src="media/css/images/<%=routesType.get(k)%>.png"/>
+		<%if(k < routesType.size() -1){ %>
+			<img src="media/css/images/plus.png"/>
+		<%} %>
+		<%}%>
 		<div id="rout_numb">
+		
 <div id="numb">
 			<a id="way_ref_<%=i%>"
 				onclick="on_selectWay(<%=i%>,<%=wayModel.createRoutePartArrStr()%>)">
