@@ -14,7 +14,6 @@ getApp().getAppData().clearWaysData();
 
 
 
-
 <div id="routes_info">
 <div id="head_ways"></div>
 <div id="ways" >
@@ -25,7 +24,17 @@ getApp().getAppData().clearWaysData();
 	%>
 
 	
-	<div id="result_numb" onclick="on_selectWay(<%=i%>,<%=wayModel.createRoutePartArrStr()%>)">
+	<div id="result_numb"  onclick="on_selectWay(<%=i%>,<%=wayModel.createRoutePartArrStr()%>)">
+		<div id="rout_numb">
+		
+<div id="numb">
+			<a id="way_ref_<%=i%>"
+				onclick="on_selectWay(<%=i%>,<%=wayModel.createRoutePartArrStr()%>)">
+				<%=i+1%>
+				
+			</a>
+			</div>
+			<div id="icons_menu">
 		<% ArrayList<String> routesType = wayModel.getRoutesType(); 
 		for (int k=0; k<routesType.size();k++ )
 		{
@@ -35,18 +44,9 @@ getApp().getAppData().clearWaysData();
 			<img src="media/css/images/plus.png"/>
 		<%} %>
 		<%}%>
-		<div id="rout_numb">
-		
-<div id="numb">
-			<a id="way_ref_<%=i%>"
-				onclick="on_selectWay(<%=i%>,<%=wayModel.createRoutePartArrStr()%>)">
-				<%=i%>
-				
-			</a>
+		</div>
 			</div>
-
-			</div>
-			<div>				
+			<div id="cost_info">				
 			<p>Стоимость : <%=wayModel.getCost()%></p>
 			<p>В пути : <%=wayModel.getTime()%> мин. </p>
 			</div>
@@ -72,7 +72,7 @@ getApp().getAppData().clearWaysData();
 									&& routes.get(j + 1) instanceof TransportRouteModel)
 								nextRoute = (TransportRouteModel) routes.get(j + 1);
 			%>
-			<div>
+			<div style="line-height:15px;">
 				<p>
 					Пешком до станции
 					<b><%=nextRoute.getStationStart()%></b></p>
@@ -101,7 +101,7 @@ getApp().getAppData().clearWaysData();
 				"<%=r.getRouteName()%>");
 		</script>
 
-			<div>	
+			<div style="line-height:15px;">	
 			<span class="result_transp"><img src="media/css/images/<%=r.getRouteType()%>.png"/>   <%=r.getRouteName()%></span>
 				<p>
 					Стоимость :
@@ -144,7 +144,7 @@ getApp().getAppData().clearWaysData();
 									&& routes.get(j + 1) instanceof TransportRouteModel)
 								nextRoute = (TransportRouteModel) routes.get(j + 1);
 			%>
-			<div style="height:auto;">
+			<div style="height:auto; line-height:15px;">
 				<p>
 					Пересадка :</p>
 					
@@ -180,7 +180,7 @@ getApp().getAppData().clearWaysData();
 									&& routes.get(j - 1) instanceof TransportRouteModel)
 								prevRoute = (TransportRouteModel) routes.get(j - 1);
 			%>
-			<div style="height:auto;">
+			<div style="height:auto; line-height:15px; ">
 				<p>
 					Пешком от станции
 					<b><%=prevRoute.getStationFinish()%></b></p>

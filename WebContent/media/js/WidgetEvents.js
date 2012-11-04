@@ -29,18 +29,19 @@ function on_selectWay(way_ind, routeParts_arr) {
 	$('#ajax_js').load("ways/load_way.json", {
 				data : $.toJSON(options)
 			});
-	
+
 	for (var i=0; i<getApp().getAppData().getWaysCount(); i++)
 		{
-	
 		var name = "#" + "res_text_"+ i;
 		if (i==way_ind)
-			{
+			{		
 			$(name).show();
+			
 			}
 		else
-			{
+			{		
 			$(name).hide();
+			/*$('#result_numb').css('background', 'blue');*/
 			}
 		}
 	$('#scrollbar1').tinyscrollbar_update();	

@@ -12,12 +12,12 @@
 
 	<jsp:attribute name="navigation">
         <title>Bus</title>
-        <div class="logo_menu">LOGOTIP</div>
+        <div class="logo_menu"><a href="#"><img src="media/css/images/log.png"/></a></div>
       <div class="menu-temp">
 <ul class="nav">
 <li class="active"><a href="#"> Главная</a></li>
-<li class="link"><a href="#"> Поддержка</a></li>
-<li class="link"><a href="#"> Разработчикам</a></li>
+<li class="link"><a href="#"> Помощь</a></li>
+<li class="link"><a href="#"> О проекте</a></li>
 </ul>
 </div>
 <div class="icons_menu">
@@ -69,7 +69,7 @@
 										 <div class="content">
 										 											<ul class="lineTabs">
 												<li class="first"><a class="active" href="#">Маршрут</a></li>
-												<li class="second"><a href="#">Время</a></li>
+												<li class="second"><a href="#">Выезд</a></li>
 												<li class="third"><a href="#">Проездной</a></li>
 				
 											</ul> 

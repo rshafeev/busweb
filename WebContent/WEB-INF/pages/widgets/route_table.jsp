@@ -7,24 +7,37 @@
 				<b> <spring:message code="welcome.travel_line" text="default text" /></b>
 			</p>
 		</div>
+		
 		<table>
 			<tbody>
 				<tr>
+				
 					<td>
 						<div class="Apoint"></div>
+						
 					</td>
 					<td>
+					
 						<span><input id="editboxA" class="a_input_form"></input>
 						</span>
 					</td>
 				</tr>
+				
 				<tr>
-					<td>
-						<div class="Bpoint"></div>
+										<td style="width:16px;">
+					<div class="refresh"></div>
 					</td>
+					 <td style="width:16px;">
+						<div class="Bpoint"></div>
+					
+					</td>
+
 					<td>
 						<span> <input id="editboxB" class="b_input_form" id="uniq162" autocomplete="off"></input>
 						</span>
+					</td> 
+						<td>
+						<div class="cross" onClick="alert('Delete');"></div>
 					</td>
 				</tr>
 			</tbody>
