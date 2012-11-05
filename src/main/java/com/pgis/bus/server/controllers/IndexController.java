@@ -73,4 +73,10 @@ public class IndexController {
 		model.setBasicModel(prepareBasicModel());
 		return new ModelAndView("index", "model", model);
 	}
+	
+	@RequestMapping(value = "/help.htm")
+	public ModelAndView help() {
+	return new ModelAndView("help");
+	}
+	
 }

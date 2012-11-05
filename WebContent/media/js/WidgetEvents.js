@@ -30,18 +30,22 @@ function on_selectWay(way_ind, routeParts_arr) {
 				data : $.toJSON(options)
 			});
 
+
 	for (var i=0; i<getApp().getAppData().getWaysCount(); i++)
 		{
 		var name = "#" + "res_text_"+ i;
+		var head = "#"+"result_numb_" + i;
 		if (i==way_ind)
 			{		
+			$(head).css('background', 'blue');
 			$(name).show();
 			
 			}
 		else
 			{		
+			
 			$(name).hide();
-			/*$('#result_numb').css('background', 'blue');*/
+			$(head).css('background', 'rgb(28, 168, 255)');
 			}
 		}
 	$('#scrollbar1').tinyscrollbar_update();	

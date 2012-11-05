@@ -12,7 +12,9 @@
 
 	<jsp:attribute name="navigation">
         <title>Bus</title>
-        <div class="logo_menu"><a href="#"><img src="media/css/images/log.png"/></a></div>
+        <div class="logo_menu">
+			<a href="#"><img src="media/css/images/log.png" /></a>
+		</div>
       <div class="menu-temp">
 <ul class="nav">
 <li class="active"><a href="#"> Главная</a></li>

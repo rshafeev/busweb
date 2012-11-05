@@ -24,7 +24,14 @@ getApp().getAppData().clearWaysData();
 	%>
 
 	
-	<div id="result_numb"  onclick="on_selectWay(<%=i%>,<%=wayModel.createRoutePartArrStr()%>)">
+	<div id="result_numb_<%=i%>" style="height: 70px;
+	width: 350px;
+	border-radius: 5px;
+	margin-left: 6px;
+	margin-top: 5px;
+	margin-bottom: 10px;
+	cursor: pointer;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);" onclick="on_selectWay(<%=i%>,<%=wayModel.createRoutePartArrStr()%>)">
 		<div id="rout_numb">
 		
 <div id="numb">
