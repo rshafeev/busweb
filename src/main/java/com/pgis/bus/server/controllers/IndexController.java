@@ -79,4 +79,9 @@ public class IndexController {
 	return new ModelAndView("help");
 	}
 	
+	@RequestMapping(value = "/aboutpr.htm")
+	public ModelAndView aboutpr() {
+	return new ModelAndView("aboutpr");
+	}
+	
 }

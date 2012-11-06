@@ -22,17 +22,17 @@ a {
 	display: inline;
 }
 
-.nav ul {
+.menu-temp ul.nav {
 	display: inline-block;
 	height: 35px;
 	position: relative;
 }
 
-.active {
+.menu-temp ul.nav li.active {
 	background: #E2E2E2;
 }
 
-.menu-temp .nav .active a {
+.menu-temp ul.nav li.active a {
 	color: #597D84;
 }
 
@@ -49,7 +49,7 @@ a {
 	
 }
 
-.nav>li {
+.menu-temp ul.nav li {
 	float: left;
 	height: 24px;
 	margin-right: 1px;
@@ -1724,21 +1724,31 @@ display: block ;
 	padding: 2px;
 }
 
+/************************************HELP.JSP*********************************************************/
+#help_cont
+{
+	width:100%;
+	height:95%;
+	position: relative;
+	box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.506);
+	z-index: 1;
+	border-bottom: 1px solid white;
+	border-radius: 10px 10px 5px 5px;
+	background: rgb(226,226,226);
+}
 
-/*
-#scrollbar1 { width: 367px; }
-#scrollbar1 .viewport { width: 345px; height: 490px;  position: relative; }
-#scrollbar1 .overview { list-style: none; position: absolute; left: 0; top: 0; padding: 0; margin: 0; }
-#scrollbar1 .scrollbar{ background: transparent url(images/bg-scrollbar-track-y.png) no-repeat 0 0; position: relative; background-position: 0 0; float: right; width: 15px; }
-#scrollbar1 .track { width: 3px;
-border-radius: 4px;
-border: solid 1px #DDD;
-background: #EEE;
-background: -webkit-linear-gradient(left,#EEE,white);
-background: -moz-linear-gradient(left,#EEE,white);
-background: -o-linear-gradient(left,#EEE,white);   position: relative; padding: 0 1px; }
-#scrollbar1 .thumb { background: transparent url(images/bg-scrollbar-thumb-y.png) no-repeat 50% 100%; height: 20px; width: 25px; cursor: pointer; overflow: hidden; position: absolute; top: 0; left: -5px; }
-#scrollbar1 .thumb .end { background: transparent url(images/bg-scrollbar-thumb-y.png) no-repeat 50% 0; overflow: hidden; height: 5px; width: 25px; }
-#scrollbar1 .disable { display: none; }
-#scrollbar1 .noSelect { user-select: none; -o-user-select: none; -moz-user-select: none; -khtml-user-select: none; -webkit-user-select: none; }
-*/ 
+
+
+
+/************************************ABOUTPR.JSP*********************************************************/
+#about_cont
+{
+	width:100%;
+	height:95%;
+	position: relative;
+	box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.506);
+	z-index: 1;
+	border-bottom: 1px solid white;
+	border-radius: 10px 10px 5px 5px;
+	background: rgb(226,226,226);
+}

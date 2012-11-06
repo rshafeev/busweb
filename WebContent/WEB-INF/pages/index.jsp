@@ -17,9 +17,9 @@
 		</div>
       <div class="menu-temp">
 <ul class="nav">
-<li class="active"><a href="#"> Главная</a></li>
-<li class="link"><a href="#"> Помощь</a></li>
-<li class="link"><a href="#"> О проекте</a></li>
+<li class="active"><a href="index.htm"> Главная</a></li>
+<li><a href="help.htm"> Помощь</a></li>
+<li><a href="aboutpr.htm"> О проекте</a></li>
 </ul>
 </div>
 <div class="icons_menu">
