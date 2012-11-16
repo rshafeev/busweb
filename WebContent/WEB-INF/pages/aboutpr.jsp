@@ -19,7 +19,7 @@
 <ul class="nav">
 <li class="active"><a href="#"> Главная</a></li>
 <li class="link"><a href="help.htm"> Помощь</a></li>
-<li class="link"><a href="#"> О проекте</a></li>
+<li class="link"><a href="aboutpr.htm"> О проекте</a></li>
 </ul>
 </div>
 <div class="icons_menu">
