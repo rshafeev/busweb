@@ -11,11 +11,25 @@
 			src="http://maps.google.com/maps/api/js?sensor=false&libraries=drawing"></script>
 	
 	<script type="text/javascript">
-	    includeCSSFile("media/css/busWeb","busWeb",[]);
+		includeCSSFile("media/css/busWeb", "busWeb", []);
 		var basicModel = $.parseJSON('${model.getJsonCitiesModel()}');
 		$(document).ready(function() {
+			$("div.selectTabs_first, div.selectTabs_second").each(function() {
+				var tmp = $(this);
+				//console.log($(tmp).find(" .lineTabs li"));
+				$(tmp).find(".lineTabs li").each(function(i) {
+					$(tmp).find(".lineTabs li:eq(" + i + ") a").click(function() {
+						var tab_id = i + 1;
+						$(tmp).find(".lineTabs li a").removeClass("active");
+						$(this).addClass("active");
+						$(tmp).find(".content div").stop(false, false).hide();
+						$(tmp).find(".tab" + tab_id).stop(false, false).show();
+						return false;
+					});
+				});
+			});
+			
 			initialize();
-		
 		});
 	</script>
 	<script src="media/js/selectbox.js"></script>

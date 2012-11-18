@@ -68,11 +68,7 @@
 
 .scrollbar_body .thumb .end {
 	cursor: pointer;
-	/*background: transparent url(../images/bg-scrollbar-thumb-y.png) no-repeat
-		50% 0;
-	overflow: hidden;
-	height: 5px;
-	width: 25px;*/
+	
 }
 
 .scrollbar_body .disable {

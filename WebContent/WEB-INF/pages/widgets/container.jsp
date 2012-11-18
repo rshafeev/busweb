@@ -9,7 +9,7 @@
 	<div id="navigation"></div>
 	<div id="extra">
 		<div id="arrow_div" onmousedown="return false" onclick="on_right_panel_show();">
-			<a href="#"><img onclick="on_right_panel_show();" name='img'
+			<a href="#" ><img  name='img'
 				src='media/css/images/arrow_left.png' /></a>
 		</div>
 

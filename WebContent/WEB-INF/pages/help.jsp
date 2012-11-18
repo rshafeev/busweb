@@ -55,31 +55,7 @@
    </jsp:attribute>
 
 	<jsp:attribute name="right_column">
-     	<div class="contacts_info">
-				<h3>
-				Контакты:
-				</h3>
-				<img src="media/css/images/adres.png" />
-				<h6>
-				ул. Сумская, 17
-				</h6>
-			<br>
-				<img src="media/css/images/telef.png" />
-				<h6>
-				+38(057)712-32-45
-				</h6>
-			<br>
-				<img src="media/css/images/email.png" />
-				<h6>
-				<a href="#">support@premiumgis.com</a>
-				</h6>
-			<br>
-				<img src="media/css/images/site.png" />
-				<h6>
-				<a href="#">www.premiumgis.com</a>
-				</h6>
-			<br>
-			</div>
+     	<p> Text </p>
    </jsp:attribute>
 
 </ui:columns>
