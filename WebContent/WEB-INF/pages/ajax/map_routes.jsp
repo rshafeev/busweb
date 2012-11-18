@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"
 	import="com.pgis.bus.data.models.*,
 	        com.pgis.bus.data.models.route.*,
-	        com.pgis.bus.server.models.*,
+	        com.pgis.bus.server.models.data.*,
 	        java.util.ArrayList,
 	        com.google.gson.*"%>
 

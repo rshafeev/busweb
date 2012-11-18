@@ -1,7 +1,9 @@
-package com.pgis.bus.server.models;
+package com.pgis.bus.server.models.data;
 
 import java.util.ArrayList;
 import java.util.Collection;
+
+import com.pgis.bus.server.models.request.LoadWayOptions;
 
 public class WayGeoDataModel {
 	Collection<RouteGeoDataModel> routes;

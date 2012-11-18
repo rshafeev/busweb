@@ -1,4 +1,4 @@
-package com.pgis.bus.server.models;
+package com.pgis.bus.server.models.data;
 
 import com.pgis.bus.data.models.RoutePart;
 

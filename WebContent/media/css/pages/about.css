@@ -1,0 +1,31 @@
+.contacts_info {
+	vertical-align: top;
+	height: 100%;
+	width: 100%;
+}
+
+.about_cont_info h3 {
+	font-size: 20px;
+	line-height: 22px;
+	color: green;
+	text-align: center;
+	margin-top: 10px;
+}
+
+.contacts_info h6 {
+	font-family: Verdana, Arial, Tahoma;
+	font-size: 13px;
+	font-weight: normal;
+	color: black;
+	line-height: 32px;
+	color: black;
+	margin-top: 20px;
+	display: inline;
+	vertical-align: middle;
+	position: relative;
+}
+
+.contacts_info img {
+	margin-left: 10px;
+	display: inline;
+}

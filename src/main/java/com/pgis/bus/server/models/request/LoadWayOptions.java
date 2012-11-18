@@ -1,6 +1,7 @@
-package com.pgis.bus.server.models;
+package com.pgis.bus.server.models.request;
 
 import com.pgis.bus.data.models.RoutePart;
+import com.pgis.bus.server.models.data.LocationModel;
 
 public class LoadWayOptions {
 	private RoutePart[] routeParts;

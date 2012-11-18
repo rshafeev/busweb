@@ -3,10 +3,14 @@ package com.pgis.bus.server.controllers;
 import org.slf4j.Logger;
 
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Locale;
@@ -15,9 +19,12 @@ import com.pgis.bus.data.*;
 import com.pgis.bus.data.impl.DataBaseService;
 import com.pgis.bus.data.orm.City;
 import com.pgis.bus.data.repositories.RepositoryException;
-import com.pgis.bus.server.models.BasicModel;
-import com.pgis.bus.server.models.CityModel;
-import com.pgis.bus.server.models.MainPageModel;
+import com.pgis.bus.server.models.LinkModel;
+import com.pgis.bus.server.models.NavigationModel;
+import com.pgis.bus.server.models.data.CitiesModel;
+import com.pgis.bus.server.models.data.CityModel;
+import com.pgis.bus.server.models.page.ArticlesPageModel;
+import com.pgis.bus.server.models.page.MainPageModel;
 
 @Controller
 @RequestMapping(value = "")
@@ -25,7 +32,10 @@ public class IndexController {
 	private static final Logger log = LoggerFactory
 			.getLogger(IndexController.class);
 
-	private BasicModel prepareBasicModel() {
+	@Autowired
+	private MessageSource messageSource;
+
+	private CitiesModel prepareCitiesModel() {
 		try {
 
 			// Получим объект с информацией о текущей локали
@@ -37,9 +47,8 @@ public class IndexController {
 			Collection<City> cities = db.getAllCities();
 
 			// Создадим модель CitiesModel на базе списка cities
-			BasicModel model = new BasicModel();
+			CitiesModel model = new CitiesModel();
 
-			
 			Iterator<City> i = cities.iterator();
 			int default_city_id = -1;
 			while (i.hasNext()) {
@@ -57,7 +66,7 @@ public class IndexController {
 
 			return model;
 		} catch (RepositoryException e) {
-			log.debug("Error:",e);
+			log.debug("Error:", e);
 			return null;
 		}
 	}
@@ -69,19 +78,31 @@ public class IndexController {
 
 	@RequestMapping(value = "/index.htm")
 	public ModelAndView index() {
-		MainPageModel model = new MainPageModel();
-		model.setBasicModel(prepareBasicModel());
-		return new ModelAndView("index", "model", model);
+
+		Locale locale = LocaleContextHolder.getLocale();
+		NavigationModel navModel = new NavigationModel(messageSource, locale,
+				NavigationModel.pages_enum.c_Home);
+		MainPageModel model = new MainPageModel(navModel);
+		model.setCitiesModel(prepareCitiesModel());
+		return new ModelAndView("main", "model", model);
 	}
-	
+
 	@RequestMapping(value = "/help.htm")
 	public ModelAndView help() {
-	return new ModelAndView("help");
+		Locale locale = LocaleContextHolder.getLocale();
+		NavigationModel navModel = new NavigationModel(messageSource, locale,
+				NavigationModel.pages_enum.c_Help);
+		ArticlesPageModel model = new ArticlesPageModel(navModel);
+		return new ModelAndView("help", "model", model);
 	}
-	
-	@RequestMapping(value = "/aboutpr.htm")
+
+	@RequestMapping(value = "/about.htm")
 	public ModelAndView aboutpr() {
-	return new ModelAndView("aboutpr");
+		Locale locale = LocaleContextHolder.getLocale();
+		NavigationModel navModel = new NavigationModel(messageSource, locale,
+				NavigationModel.pages_enum.c_About);
+		ArticlesPageModel model = new ArticlesPageModel(navModel);
+		return new ModelAndView("about", "model", model);
 	}
-	
+
 }

@@ -10,11 +10,11 @@ function BusApp() {
 	this.rightPanelVisible = false;
 	this.main = function() {
 		//console.log("busApp : main()");
-		$('#scrollbar1').tinyscrollbar();	
-		this.on_resize_window('#container', 146, 3);
+		$('#panel_scrollbar').tinyscrollbar();	
+		this.on_resize_window('#map_container', 146, 0);
 		var T = this;
 		$(window).bind("resize", function(e) {
-					T.on_resize_window('#container', 146, 3);
+					T.on_resize_window('#map_container', 146, 0);
 				});
 		this.googleMap = new GoogleMap();
 		this.googleMap.init();
@@ -145,7 +145,7 @@ function BusApp() {
 			google.maps.event.trigger(map.getMapObj(), 'resize');
 		}
 		
-		$('#scrollbar1').tinyscrollbar_update();	
+		$('#panel_scrollbar').tinyscrollbar_update();	
 
 	};
 

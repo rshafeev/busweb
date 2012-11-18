@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
-<div id="container">
+<div id="map_container"> 
 	<div id="wrapper">
 		<div id="content">
 			<div id="map_canvas"></div>
@@ -14,7 +14,7 @@
 		</div>
 
 		<div id="ways_panel">
-			<div id="scrollbar1">
+			<div id="panel_scrollbar" class="scrollbar_body">
 			 <div class="scrollbar">
 					<div class="track">
 						<div class="thumb">

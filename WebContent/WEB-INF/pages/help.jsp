@@ -3,41 +3,84 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<ui:helps>
+<ui:columns>
 	<jsp:attribute name="page_head">
-	 	<script type="text/javascript">
-				var basicModel = $.parseJSON('${model.getJsonBasicModel()}');
-			</script>
+	<title>Help</title>
+		<script type="text/javascript">
+			includeCSSFile("media/css/pages", "help", []);
+		</script>
 	</jsp:attribute>
+	<jsp:attribute name="left_column">
+   
+			<div class="text_info">
+				<h3>Полезные функции сервиса "CityWays"</h3>
+				<h6>У нашего сервиса есть ряд полезных функций, которыми мы,
+					создатели сервиса, пользуемся каждый день. Но по какой-то причине
+					Вы, наши пользователи, их почти не используете. Возможно потому,
+					что просто не знаете об их существовании :)</h6>
+				<h6>В этой статье мы постараемся исправить эту досадную ошибку
+					и подробно расскажем о каждой из таких функций.</h6>
+				<h4>Выбор города</h4>
+				<h6>
+					<img src="#" height="150px" width="200px" style="float: right;" />
+					Логика сервиса устроена таким образом, что для задания координат
+					точек ОТ(ДО) используется левый клик мыши. После того, как точки
+					заданы, актуализировать расположение ОТ(ДО) можно, лишь перетянув
+					соответствующий маркер. Либо использовать контекстное меню карты,
+					которое отображается при правом клике.
+				</h6>
+				<h6>При выборе ОТ(ДО) из контекстного меню соответствующая
+					точка гарантировано установится в место клика, независимо от любых
+					других условий. Что довольно удобно.</h6>
+				<h4>Выбор точек "ОТ" и "ДО"</h4>
+				<h6>
+					<img src="#" height="150px" width="200px" style="float: right;" />
+					Логика сервиса устроена таким образом, что для задания координат
+					точек ОТ(ДО) используется левый клик мыши. После того, как точки
+					заданы, актуализировать расположение ОТ(ДО) можно, лишь перетянув
+					соответствующий маркер. Либо использовать контекстное меню карты,
+					которое отображается при правом клике.
+				</h6>
+				<h4>Выбор точек "ОТ" и "ДО"</h4>
+				<h6>
+					<img src="#" height="150px" width="200px" style="float: right;" />
+					Логика сервиса устроена таким образом, что для задания координат
+					точек ОТ(ДО) используется левый клик мыши. После того, как точки
+					заданы, актуализировать расположение ОТ(ДО) можно, лишь перетянув
+					соответствующий маркер. Либо использовать контекстное меню карты,
+					которое отображается при правом клике.
+				</h6>
+			</div>
+	
+   </jsp:attribute>
 
-	<jsp:attribute name="navigation">
-        <title>Bus</title>
-        <div class="logo_menu">
-			<a href="#"><img src="media/css/images/log.png" /></a>
-		</div>
-      <div class="menu-temp">
-<ul class="nav">
-<li class="active"><a href="#"> Главная</a></li>
-<li class="link"><a href="help.htm"> Помощь</a></li>
-<li class="link"><a href="#"> О проекте</a></li>
-</ul>
-</div>
-<div class="icons_menu">
-<div class="lang_panel">
-				<a href="?lang=rus_RU"><img src="media/css/images/ru.png"
-					alt="Ru"></a> 
-				<a href="?lang=en_US"><img src="media/css/images/uk.png"
-					alt="En"></a> 
-				<a href="?lang=uk_UA"><img src="media/css/images/ua.png"
-					alt="Ua"></a> 
-      </div>
-</div>
-    </jsp:attribute>
+	<jsp:attribute name="right_column">
+     	<div class="contacts_info">
+				<h3>
+				Контакты:
+				</h3>
+				<img src="media/css/images/adres.png" />
+				<h6>
+				ул. Сумская, 17
+				</h6>
+			<br>
+				<img src="media/css/images/telef.png" />
+				<h6>
+				+38(057)712-32-45
+				</h6>
+			<br>
+				<img src="media/css/images/email.png" />
+				<h6>
+				<a href="#">support@premiumgis.com</a>
+				</h6>
+			<br>
+				<img src="media/css/images/site.png" />
+				<h6>
+				<a href="#">www.premiumgis.com</a>
+				</h6>
+			<br>
+			</div>
+   </jsp:attribute>
 
-	<jsp:attribute name="content">
-   		<jsp:directive.include file="widgets/help_container.jsp" />
-    </jsp:attribute>
+</ui:columns>
 
-	<jsp:attribute name="foot">
-    </jsp:attribute>
-</ui:helps>

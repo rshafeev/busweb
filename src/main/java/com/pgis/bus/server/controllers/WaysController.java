@@ -20,11 +20,11 @@ import com.pgis.bus.data.models.RoutePart;
 
 import com.pgis.bus.data.models.WaysModel;
 import com.pgis.bus.data.orm.WayElem;
-import com.pgis.bus.data.repositories.RepositoryException;
 import com.pgis.bus.server.helpers.LanguageHelper;
-import com.pgis.bus.server.models.LoadWayOptions;
-import com.pgis.bus.server.models.RouteGeoDataModel;
-import com.pgis.bus.server.models.WayGeoDataModel;
+import com.pgis.bus.server.models.data.RouteGeoDataModel;
+import com.pgis.bus.server.models.data.WayGeoDataModel;
+import com.pgis.bus.server.models.request.LoadWayOptions;
+
 
 @Controller
 @RequestMapping(value = "ways/")

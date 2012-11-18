@@ -1,15 +1,19 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
-<div id="scrollbar1">
-	<div class="scrollbar">
-		<div class="track">
-			<div class="thumb">
-				<div class="end"></div>
-			</div>
-		</div>
-	</div>
-	<div class="viewport">
-		<div class="overview">
-			<div class="about_text_info">
+<%@ taglib prefix="ui" tagdir="/WEB-INF/tags/ui"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<ui:columns>
+	<jsp:attribute name="page_head">
+	<title>About</title>
+		<script type="text/javascript">
+			includeCSSFile("media/css/pages", "about", []);
+			
+		</script>
+	</jsp:attribute>
+	<jsp:attribute name="left_column">
+   
+			<div class="text_info">
 				<h3>О проекте "CityWays"</h3>
 				<h6>CityWays - это интернет-сервис, который помогает ответить
 					на такие часто задаваемые вопросы как доехать? и как добраться? из
@@ -43,6 +47,36 @@
 					идеальной, но гарантирует существенно облегчить ежедневные
 					трудности городских поездок.</h6>
 			</div>
-		</div>
-	</div>
-</div>
+	
+   </jsp:attribute>
+
+	<jsp:attribute name="right_column">
+     	<div class="contacts_info">
+				<h3>
+				Контакты:
+				</h3>
+				<img src="media/css/images/adres.png" />
+				<h6>
+				ул. Сумская, 17
+				</h6>
+			<br>
+				<img src="media/css/images/telef.png" />
+				<h6>
+				+38(057)712-32-45
+				</h6>
+			<br>
+				<img src="media/css/images/email.png" />
+				<h6>
+				<a href="#">support@premiumgis.com</a>
+				</h6>
+			<br>
+				<img src="media/css/images/site.png" />
+				<h6>
+				<a href="#">www.premiumgis.com</a>
+				</h6>
+			<br>
+			</div>
+   </jsp:attribute>
+
+</ui:columns>
+

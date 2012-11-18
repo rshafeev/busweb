@@ -147,14 +147,14 @@ a {
 }
 
 .Apoint {
-	background: url("images/green.png");
+	background: url("../images/green.png");
 	height: 16px;
 	width: 16px;
 	/*margin-top: 23px;*/
 }
 
 .Bpoint {
-	background: url("images/blue.png");
+	background: url("../images/blue.png");
 	height: 16px;
 	width: 16px;
 	margin-top: -4px;
@@ -751,7 +751,7 @@ input {
 }
 
 .menu ul li a:hover {
-	/*background: url("images/r_menu.png") no-repeat right;*/
+	/*background: url("../images/r_menu.png") no-repeat right;*/
 	background: #DADADA;
 	border-radius: 7px;
 	border: 1px solid white;
@@ -759,7 +759,7 @@ input {
 }
 
 .menu ul li a:hover span {
-	/*background: url("images/l_menu.png") no-repeat left;*/
+	/*background: url("../images/l_menu.png") no-repeat left;*/
 	background: #DADADA;
 	border-radius: 7px;
 	border: 1px solid white;
@@ -767,7 +767,7 @@ input {
 }
 
 .menu ul li a.active {
-	/*background: url("images/r_menu.png") no-repeat right;*/
+	/*background: url("../images/r_menu.png") no-repeat right;*/
 	background: #DADADA;
 	border-radius: 7px;
 	border: 1px solid white;
@@ -775,7 +775,7 @@ input {
 }
 
 .menu ul li a.active span {
-	/*background: url("images/l_menu.png") no-repeat left;*/
+	/*background: url("../images/l_menu.png") no-repeat left;*/
 	background: #DADADA;
 	border-radius: 7px;
 	border: 1px solid white;
@@ -785,7 +785,7 @@ input {
 /***********************************************************************************************************************/
 /**************************************фон панели*************************************************************************/
 .slider {
-	background: url("images/slider_fon.gif") repeat-x top;
+	background: url("../images/slider_fon.gif") repeat-x top;
 	margin: 0px auto;
 	padding: 0px;
 	height: 390px;
@@ -884,7 +884,7 @@ input {
 
 .selectbox .trigger .arrow {
 	position: absolute;
-	background: url("images/arrow_down.png");
+	background: url("../images/arrow_down.png");
 	width: 32px;
 	height: 32px;
 	overflow: hidden;
@@ -952,7 +952,7 @@ body {
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e2e2e2',
 		endColorstr='#fefefe', GradientType=0 );
 	height: 100%;*/
-	background: url("images/main-back.jpg");
+	background: url("../images/main-back.jpg");
 	height: 100%;
 	font-family: Verdana, Arial, Tahoma;
 }
@@ -1226,7 +1226,7 @@ body {
 /************************************************************************************************************************/
 /*стили кнопок "стрелки" для выдвиг. карты*******************************************************************************/
 .map_button {
-	background: url("images/arrow_left.png") 50% 50% no-repeat transparent;
+	background: url("../images/arrow_left.png") 50% 50% no-repeat transparent;
 	cursor: pointer;
 	display: block;
 	float: right;
@@ -1235,7 +1235,7 @@ body {
 }
 
 .map_button_selected {
-	background: url("images/arrow_right.png") 50% 50% no-repeat transparent;
+	background: url("../images/arrow_right.png") 50% 50% no-repeat transparent;
 }
 
 /*********************************************FOOT.CSS***********************************************************************/
@@ -1267,7 +1267,7 @@ body {
 	border: medium none currentColor;
 	margin: 0px auto;
 	padding: 0px;
-	/*background-image: url("images/footer_fon.gif");*/
+	/*background-image: url("../images/footer_fon.gif");*/
 	height: 25px;
 	-moz-box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
 	-webkit-box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
@@ -1279,7 +1279,7 @@ body {
 }
 
 .footer {
-	background: url("images/footer_fon.png") repeat-x top;
+	background: url("../images/footer_fon.png") repeat-x top;
 	position: absolute;
 	bottom: 0;
 	height: 5px;
@@ -1608,7 +1608,7 @@ display: block ;
 
 #scrollbar1 .thumb .end {
 	cursor: pointer;
-	/*background: transparent url(images/bg-scrollbar-thumb-y.png) no-repeat
+	/*background: transparent url(../images/bg-scrollbar-thumb-y.png) no-repeat
 		50% 0;
 	overflow: hidden;
 	height: 5px;

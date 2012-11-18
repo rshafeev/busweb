@@ -48,7 +48,7 @@ function on_selectWay(way_ind, routeParts_arr) {
 			$(head).css('background', 'rgb(28, 168, 255)');
 			}
 		}
-	$('#scrollbar1').tinyscrollbar_update();	
+	$('#panel_scrollbar').tinyscrollbar_update();	
 		
 };
 function on_btn_calculate_click() {
@@ -61,7 +61,7 @@ function on_btn_calculate_click() {
 	el.style.display = 'block';
 	$('#panel_data')
 			.html("<div class='loader_text'><img src='media/css/images/load.gif'/></div>");
-	$('#scrollbar1').tinyscrollbar_update();	
+	$('#panel_scrollbar').tinyscrollbar_update();	
 	$('#panel_data').load("ways/find.json", {
 				data : $.toJSON(findWaysOptions)
 			});
