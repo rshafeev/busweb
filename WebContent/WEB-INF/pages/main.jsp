@@ -63,11 +63,10 @@
 										<div class="selectTabs_second">
 
 										 <div class="content">
-										 											<ul class="lineTabs">
+										 	<ul class="lineTabs">
 												<li class="first"><a class="active" href="#">Маршрут</a></li>
 												<li class="second"><a href="#">Выезд</a></li>
-												<li class="third"><a href="#">Проездной</a></li>
-				
+												<li class="third"><a href="#">Проездной</a></li>				
 											</ul> 
 											<div class="tab1">
 												<jsp:directive.include file="widgets/settings_panel.jsp" />

@@ -35,14 +35,13 @@
 }
 
 .scrollbar_body .viewport {
-	width: 870px;
-	height: 98%;
-	position: relative;
+	width: 68%;
+	height: 95%;
 	overflow: hidden;
+	position: absolute;
 }
 
 .scrollbar_body .overview {
-	width: 90%;
 	list-style: none;
 	position: absolute;
 	left: 0;

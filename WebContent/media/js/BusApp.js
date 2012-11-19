@@ -11,10 +11,10 @@ function BusApp() {
 	this.main = function() {
 		//console.log("busApp : main()");
 		$('#panel_scrollbar').tinyscrollbar();	
-		this.on_resize_window('#map_container', 146, 0);
+		this.on_resize_window('#map_container', 134, 0);
 		var T = this;
 		$(window).bind("resize", function(e) {
-					T.on_resize_window('#map_container', 146, 0);
+					T.on_resize_window('#map_container', 134, 0);
 				});
 		this.googleMap = new GoogleMap();
 		this.googleMap.init();

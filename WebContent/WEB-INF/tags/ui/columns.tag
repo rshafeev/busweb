@@ -26,28 +26,25 @@
 	
 	<div class="columns_content">
 	<div class="columns_content_left">
-	  <div id="left_column_scrollbar" class="scrollbar_body">
-			<div class="scrollbar">
+	   <div id="left_column_scrollbar" class="scrollbar_body">
+			 <div class="scrollbar">
 				<div class="track">
 					<div class="thumb">
 						<div class="end"></div>
 					</div>
 				</div>
 			</div>
-			 <div class="viewport">
-				<div class="overview">
+			  <div class="viewport"> 
+				 <div class="overview">  
 		 			<jsp:invoke fragment="left_column" />
-		 		</div>
-		 	</div>
+		 		 </div> 
+			</div>  
 	   </div>
-	</div>
+	</div> 
 	<div class="columns_content_right">
 		<jsp:invoke fragment="right_column" />
 	</div>
-	</div>
-	
-	   
-	   
+	</div>   
 	</jsp:attribute>
 	<jsp:attribute name="foot">
 	</jsp:attribute>

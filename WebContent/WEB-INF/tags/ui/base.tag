@@ -13,32 +13,20 @@
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 <script src="media/js/jquery.tinyscrollbar.min.js"></script>
-<script src="media/js/jquery.json-2.3.js"></script>
-		
+<script src="media/js/jquery.json-2.3.js"></script>		
 <script src="media/js/WidgetHelpers.js"></script>
-
-
-
-<style>
-
-</style>
-
 <script type="text/javascript">
-	includeCSSFile("media/css/basic","basic",["op","ff","ie6","ie7","ie8","ie9"]);
+	includeCSSFile("media/css/basic","basic",[]);
 	function updateContainerSize() {
 		$("#container").css('height', getWindowSize().height - 35);
-
 	};
 	$(document).ready(function() {
 		$(window).bind("resize", function(e) {
 			updateContainerSize();
 		});
 		updateContainerSize();
-
 	});
 </script>
-
-
 <jsp:invoke fragment="page_head" />
 </head>
 
@@ -47,10 +35,8 @@
 	<div class="main-wrap clearfix">
 		<div class="page_layout">
 			<div class="portal-headline">
-
 				<div class="header">
 					<div class="block_header">
-
 						<div class="logo_menu">
 							<a href="#"><img src="media/css/images/log.png" /></a>
 						</div>
@@ -69,9 +55,7 @@
 											</li>
 										</c:otherwise>
 									</c:choose>
-
 								</c:forEach>
-
 							</ul>
 						</div>
 						<div class="icons_menu">
@@ -85,10 +69,8 @@
 						</div>
 					</div>
 				</div>
-
 			</div>
-
-
+			
 			<div class="main_content">
 				<div id="container">
 					<jsp:invoke fragment="content" />
