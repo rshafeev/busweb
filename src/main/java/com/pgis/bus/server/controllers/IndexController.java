@@ -104,5 +104,14 @@ public class IndexController {
 		ArticlesPageModel model = new ArticlesPageModel(navModel);
 		return new ModelAndView("about", "model", model);
 	}
+	
+	@RequestMapping(value = "/routes.htm")
+	public ModelAndView routes() {
+		Locale locale = LocaleContextHolder.getLocale();
+		NavigationModel navModel = new NavigationModel(messageSource, locale,
+				NavigationModel.pages_enum.c_Routes);
+		ArticlesPageModel model = new ArticlesPageModel(navModel);
+		return new ModelAndView("routes", "model", model);
+	}
 
 }

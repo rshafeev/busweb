@@ -31,6 +31,7 @@ getApp().getAppData().clearWaysData();
 	margin-top: 5px;
 	margin-bottom: 10px;
 	cursor: pointer;
+	padding-top:5px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);" onclick="on_selectWay(<%=i%>,<%=wayModel.createRoutePartArrStr()%>)">
 		<div id="rout_numb">
 		
@@ -41,6 +42,7 @@ getApp().getAppData().clearWaysData();
 				
 			</a>
 			</div>
+			
 			<div id="icons_menu">
 		<% ArrayList<String> routesType = wayModel.getRoutesType(); 
 		for (int k=0; k<routesType.size();k++ )
@@ -60,11 +62,11 @@ getApp().getAppData().clearWaysData();
 				</div>
 	<div id="res_text_<%=i%>" style="width: 322px; margin-left:10px;">
 <div id="print">
-	<a href="#"><img src="media/css/images/print.png" title="Print" alt="" ></a> 
+	<a href="#"><img src="media/css/images/print.png"  title="Print" ></a> 
 	
 		</div>
 		<div id="clipboard">
-		<a href="#"><img src="media/css/images/chain.png" title="Clipboard" alt="" ></a> 
+		<a href="#"><img src="media/css/images/chain.png"  title="Clipboard" ></a> 
 		</div>
 			<%
 				ArrayList<RouteModel> routes = wayModel.getRoutes();

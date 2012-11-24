@@ -7,7 +7,7 @@ import org.springframework.context.MessageSource;
 
 public class NavigationModel {
 	public enum pages_enum {
-		c_Home(1), c_Help(2), c_About(3);
+		c_Home(1), c_Routes(2), c_Help(3), c_About(4);
 		int value;
 
 		pages_enum(int value) {
@@ -55,6 +55,13 @@ public class NavigationModel {
 		aboutLink.setUrl("about.htm");
 		aboutLink.setCode(pages_enum.c_About.getValue());
 		links.add(aboutLink);
+		
+		LinkModel routesLink = new LinkModel();
+		routesLink.setLabel(messageSource.getMessage("welcome.routes", null,
+				currentLocale));
+		routesLink.setUrl("routes.htm");
+		routesLink.setCode(pages_enum.c_Routes.getValue());
+		links.add(routesLink);
 
 		for (LinkModel link : links) {
 			if (link.getCode() == selectedPageCode.getValue()) {

@@ -53,62 +53,11 @@
 		
 
 	</jsp:attribute>
-
+	
 	<jsp:attribute name="content">
-	<div class="slider2">
-	 <div class="transparent">
-				<div class="block-round-content">
-					<table class="menu_table">
-						<tbody>
-							<tr>
-								<td style="width: 171px;">
-								
-  									<jsp:directive.include file="widgets/city_table.jsp" />
-								</td>
-								<td style="width: 250px;">
-  									<jsp:directive.include file="widgets/route_table.jsp" />
-								</td>
-								<td style="width: 145px;">	
-  									<jsp:directive.include file="widgets/transp_table.jsp" />
-								</td>
-								<td style="width: 330px;">
-									<div class="mini_table_transp_new">
-										<div class="selectTabs_second">
-
-										 <div class="content">
-										 	<ul class="lineTabs">
-										 		<li class="first"><a class="active" href="#">Маршрут</a></li>
-												<li class="second"><a href="#">Выезд</a></li>
-												<li class="third"><a href="#">Проездной</a></li>				
-											</ul> 
-											<div class="tab1">
-												<jsp:directive.include file="widgets/settings_panel.jsp" />
-											</div>
-											<div class="tab2">
-  		 										<jsp:directive.include file="widgets/time_panel.jsp" />				
-											</div>
-											<div class="tab3">								
-  												<jsp:directive.include file="widgets/ticket_type.jsp" />
-											</div>
-
-										</div>
-									</div>
-								</div> 
-							</td>
-						 <td style="width: 180px;">
-								<button type="submit" class="button"
-										onclick="on_btn_calculate_click();">
-									<spring:message code="welcome.btn_calc" text="default text" />
-								</button>
-						</td>   
-					</tr>
-				</tbody>
-			</table>				
-		</div>
-	</div>
-	</div>
-		<jsp:directive.include file="widgets/container.jsp" />
+			<jsp:directive.include file="widgets/routes_cont.jsp" />
 	</jsp:attribute>
-	<jsp:attribute name="foot">
+		<jsp:attribute name="foot">
 	</jsp:attribute>
 </ui:base>
+	

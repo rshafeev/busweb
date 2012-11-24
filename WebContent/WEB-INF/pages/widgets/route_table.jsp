@@ -13,12 +13,12 @@
 				<tr>
 				
 					<td>
-						<div class="Apoint"></div>
+						<div id="Apoint" class="demo-tip-darkgray" title="Начало движения"></div>
 						
 					</td>
 					<td>
 					
-						<span><input id="editboxA" class="a_input_form"></input>
+						<span><input  id="a_input_form" class="demo-tip-darkgray" title="Начало движения" />
 						</span>
 					</td>
 				</tr>
@@ -28,16 +28,16 @@
 					<div class="refresh"></div>
 					</td>
 					 <td style="width:16px;">
-						<div class="Bpoint"></div>
+						<div id="Bpoint" class="demo-tip-darkgray" title="Конец движения"></div>
 					
 					</td>
 
 					<td>
-						<span> <input id="editboxB" class="b_input_form" id="uniq162" autocomplete="off"></input>
+						<span> <input  id="b_input_form" class="demo-tip-darkgray" title="Конец движения"></input>
 						</span>
 					</td> 
 						<td>
-						<div class="cross" onClick="alert('Delete');"></div>
+						<div id="cross" class="demo-tip-darkgray" title="Очистить карту"></div>
 					</td>
 				</tr>
 			</tbody>

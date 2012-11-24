@@ -37,7 +37,7 @@ function on_selectWay(way_ind, routeParts_arr) {
 		var head = "#"+"result_numb_" + i;
 		if (i==way_ind)
 			{		
-			$(head).css('background', 'blue');
+			$(head).css('background', '#98CED8');		
 			$(name).show();
 			
 			}
@@ -45,7 +45,7 @@ function on_selectWay(way_ind, routeParts_arr) {
 			{		
 			
 			$(name).hide();
-			$(head).css('background', 'rgb(28, 168, 255)');
+			$(head).css('background', '#00c3d1');
 			}
 		}
 	$('#panel_scrollbar').tinyscrollbar_update();	
