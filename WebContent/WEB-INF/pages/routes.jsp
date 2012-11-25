@@ -8,7 +8,8 @@
 <script type="text/javascript">
 		includeCSSFile("media/css/pages", "routes", []);
 		</script>
-	<script src="media/js/RoutesSchems.js"></script>
+	<script src="media/js/routes/RSchems.js"></script>
+	<script src="media/js/routes/routes.js"></script>
 	</jsp:attribute>
 
 	<jsp:attribute name="content">

@@ -12,8 +12,8 @@
 <meta http-equiv="Cache-control" content="no-cache">
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-<script src="media/js/jquery.tinyscrollbar.min.js"></script>
-<script src="media/js/jquery.json-2.3.js"></script>
+<script src="media/js/libs/jquery.tinyscrollbar.min.js"></script>
+<script src="media/js/libs/jquery.json-2.3.js"></script>
 <script src="media/js/WidgetHelpers.js"></script>
 <script type="text/javascript">
 	includeCSSFile("media/css/basic", "basic", []);

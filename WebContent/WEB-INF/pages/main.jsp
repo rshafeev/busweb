@@ -6,7 +6,7 @@
 <ui:base>
 	<jsp:attribute name="page_head">
 	
-	<script src="media/js/jquery.tinyscrollbar.min.js"></script>
+	<script src="media/js/libs/jquery.tinyscrollbar.min.js"></script>
 	<script type="text/javascript"
 			src="http://maps.google.com/maps/api/js?sensor=false&libraries=drawing"></script>
 	
@@ -32,14 +32,15 @@
 			initialize();
 		});
 	</script>
-	<script src="media/js/selectbox.js"></script>
+	<script src="media/js/libs/selectbox.js"></script>
+	<script src="media/js/libs/jquery.poshytip.js"></script>
 	<script src="media/js/main/WidgetEvents.js"></script>
 	<script src="media/js/main/map/Markers.js"></script>
 	<script src="media/js/main/GoogleMap.js"></script>
 	<script src="media/js/main/BusAppData.js"></script>
 	<script src="media/js/main/BusApp.js"></script>
 	<script src="media/js/main/main.js"></script>
-<script  src="media/js/jquery.poshytip.js"></script>
+
 	<script type="text/javascript">
 		$(function(){
 			$('.demo-tip-darkgray').poshytip({
