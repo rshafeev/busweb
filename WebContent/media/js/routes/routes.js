@@ -4,6 +4,7 @@ var rschems = null;
 function initialize() {		
 	rschems = new RSchems();
 	rschems.main();
+	on_right_panel_show();
 };
 
 function getRSchems() {
@@ -30,11 +31,11 @@ function on_right_panel_show ()
 				});
 		document.img.src = 'media/css/images/arrow_left.png';
 		getRSchems().rightPanelVisible = false;
-		/*
+		
 		var map = getRSchems().getMap();
 		if (map != null) {
 			google.maps.event.trigger(map, 'resize');
-		}*/
+		}
 	
 		
 	}
