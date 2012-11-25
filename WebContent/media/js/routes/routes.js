@@ -1,12 +1,13 @@
-var RSchems = null;
+
+var rschems = null;
 
 function initialize() {		
-	RSchems = new RSchems();
-	RSchems.main();
+	rschems = new RSchems();
+	rschems.main();
 };
 
 function getRSchems() {
-	return RSchems;
+	return rschems;
 };
 
 /**
@@ -15,27 +16,27 @@ function getRSchems() {
 
 function on_right_panel_show ()
 {
-	/*this.rightPanelVisible = false;*/
-	if (this.rightPanelVisible == false) {
+	if (getRSchems().rightPanelVisible == false) {
 		$("#map_canvas").width('68%').css({
 					cursor : "auto",
 					backgroundColor : "rgb(226, 226, 226)"
 				});
 		document.img.src = 'media/css/images/arrow_right.png';
-		this.rightPanelVisible = true;
+		getRSchems().rightPanelVisible = true;
 	} else {
 		$("#map_canvas").width('98.5%').css({
 					cursor : "auto",
 					backgroundColor : "rgb(226, 226, 226)"
 				});
 		document.img.src = 'media/css/images/arrow_left.png';
-/*
-		var map = getApp().getGoogleMap();
+		getRSchems().rightPanelVisible = false;
+		/*
+		var map = getRSchems().getMap();
 		if (map != null) {
-			google.maps.event.trigger(map.getMapObj(), 'resize');
+			google.maps.event.trigger(map, 'resize');
 		}*/
 	
-		this.rightPanelVisible = false;
+		
 	}
 }
 
