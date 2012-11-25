@@ -1,21 +1,16 @@
-
 function RSchems() {
 	this.rightPanelVisible = false;
 	this.map = null;
-	this.googleMap = null;
 	
-	this.getMap = function(){
+	this.getMap = function() {
 		return this.map;
 	};
-	this.getGoogleMap = function() {
-		return this.googleMap;
-	};
+	
 	this.main = function() {
 		var T = this;
 		$(window).bind("resize", function(e) {
-		T.on_resize_window('#map_container', 134, 0);
-		});
-		this.googleMap = new RSchems();
+					T.on_resize_window('#map_container', 134, 0);
+				});
 		var latlng = new google.maps.LatLng(-34.397, 150.644);
 		var myOptions = {
 			zoom : 5,
@@ -29,21 +24,20 @@ function RSchems() {
 					minZoom : 4
 				});
 
-		/*this.markers = new Markers(this);
-		this.markers.initialize();*/
+		/*
+		 * this.markers = new Markers(this); this.markers.initialize();
+		 */
 	};
 
-	
 	this.on_resize_window = function(block, headerHeight, footerHeight) {
 		$(block).css('height',
 				getWindowSize().height - headerHeight - footerHeight);
-		var map = getRSchems().getGoogleMap();
-		if (map != null) {
+		if (this.map != null) {
 
-			google.maps.event.trigger(map.getMap(), 'resize');
+			google.maps.event.trigger(this.map, 'resize');
 		}
-		
-		/*$('#panel_scrollbar').tinyscrollbar_update();	*/
+
+		/* $('#panel_scrollbar').tinyscrollbar_update(); */
 
 	};
 }
