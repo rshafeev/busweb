@@ -71,66 +71,60 @@
 						</div>
 
 						<div class="icons_menu">
-							
 							<div class="fb_panel">
-								<div id="fb-root"></div>
-								<script>
-									(function(d, s, id) {
-										var js, fjs = d.getElementsByTagName(s)[0];
-										if (d.getElementById(id))
-											return;
-										js = d.createElement(s);
-										js.id = id;
-										js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-										fjs.parentNode.insertBefore(js, fjs);
-									}(document, 'script', 'facebook-jssdk'));
-								</script>
-								 
-								<div class="fb-like" data-href="http://ways.in.ua"
-									data-send="false" data-layout="button_count" data-width="90"
-									data-show-faces="true" data-font="arial"></div> 
+								<!-- <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<div class="fb-like" data-href="http://ways.in.ua" data-send="false" data-layout="button_count" data-width="90" data-show-faces="true" data-font="arial"></div>	 -->
 							</div>
 							<div class="lang_panel">
 
-								<!-- 				<div id="vk_like"></div>
+								<div class="lang_panel">
+
+									<!-- 				<div id="vk_like"></div>
 <script type="text/javascript">
 VK.Widgets.Like("vk_like", {type: "full"});
 </script> -->
-								<div class="g-plusone" data-size="medium"
-									data-annotation="inline" data-width="120"></div>
-								<script type="text/javascript">
-									(function() {
-										var po = document.createElement('script');
-										po.type = 'text/javascript';
-										po.async = true;
-										po.src = 'https://apis.google.com/js/plusone.js';
-										var s = document.getElementsByTagName('script')[0];
-										s.parentNode.insertBefore(po, s);
-									})();
-								</script>
+									<div class="g-plusone" data-size="medium"
+										data-annotation="inline" data-width="120"></div>
+									<script type="text/javascript">
+										(function() {
+											var po = document.createElement('script');
+											po.type = 'text/javascript';
+											po.async = true;
+											po.src = 'https://apis.google.com/js/plusone.js';
+											var s = document.getElementsByTagName('script')[0];
+											s.parentNode.insertBefore(po, s);
+										})();
+									</script>
 
 
-								<a href="?lang=rus_RU"><img src="media/css/images/ru.png"
-									alt="Ru"></a> <a href="?lang=en_US"><img
-									src="media/css/images/uk.png" alt="En"></a> <a
-									href="?lang=uk_UA"><img src="media/css/images/ua.png"
-									alt="Ua"></a>
+									<a href="?lang=rus_RU"><img src="media/css/images/ru.png"
+										alt="Ru"></a> <a href="?lang=en_US"><img
+										src="media/css/images/uk.png" alt="En"></a> <a
+										href="?lang=uk_UA"><img src="media/css/images/ua.png"
+										alt="Ua"></a>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
 
-			<div class="main_content">
-				<div id="container">
-					<jsp:invoke fragment="content" />
+				<div class="main_content">
+					<div id="container">
+						<jsp:invoke fragment="content" />
+					</div>
+				</div>
+
+				<div class="footer">
+					<jsp:invoke fragment="foot" />
 				</div>
 			</div>
-
-			<div class="footer">
-				<jsp:invoke fragment="foot" />
-			</div>
 		</div>
-	</div>
 </body>
 </html>

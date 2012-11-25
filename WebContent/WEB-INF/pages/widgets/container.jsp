@@ -13,7 +13,7 @@
 				src='media/css/images/arrow_left.png' /></a>
 		</div>
 
-		<div id="ways_panel">
+<div id="ways_panel">
 			<div id="panel_scrollbar" class="scrollbar_body">
 			 <div class="scrollbar">
 					<div class="track">
