@@ -5,6 +5,9 @@
 
 <ui:base>
 	<jsp:attribute name="page_head">	
+	<script type="text/javascript"
+			src="http://maps.google.com/maps/api/js?sensor=false&libraries=drawing"></script>
+	<script src="media/js/main/GoogleMap.js"></script>
 	<script src="media/js/routes/RSchems.js"></script>
 	<script src="media/js/routes/routes.js"></script>	
 	<script type="text/javascript">

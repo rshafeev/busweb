@@ -7,15 +7,17 @@
 	z-index: 1;
 	border-bottom: 1px solid white;
 	border-radius: 10px 10px 5px 5px;
-	/*background: rgb(226, 226, 226);*/
-	background: red;
+	background: rgb(226, 226, 226);
+	/*background: red;*/
 }
 
 #routes_wrapper {
 	float: left;
 	width: 100%;
 	height: 100%;
-	background: green;
+	background: rgb(226, 226, 226);
+	border-radius: 0 4px 4px 0;
+	/*background: green;*/
 }
 
 #map_canvas {
@@ -31,8 +33,7 @@
 	float: left;
 	width: 31%;
 	margin-left: -31%;
-	
-	/*background-image: linear-gradient(bottom, rgb(194, 194, 194) 35%,
+background-image: linear-gradient(bottom, rgb(194, 194, 194) 35%,
 		rgb(245, 245, 245) 68% );
 	background-image: -o-linear-gradient(bottom, rgb(194, 194, 194) 35%,
 		rgb(245, 245, 245) 68% );
@@ -43,8 +44,7 @@
 	background-image: -ms-linear-gradient(bottom, rgb(194, 194, 194) 35%,
 		rgb(245, 245, 245) 68% );
 	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.35, rgb(194
-		, 194, 194) ), color-stop(0.68, rgb(245, 245, 245) ) );*/
-		background: yellow;
+		, 194, 194) ), color-stop(0.68, rgb(245, 245, 245) ) );
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 	height: 100%;
 	overflow: hidden;
@@ -60,13 +60,12 @@
 
 #routes_extra #routes_arrow_div img {
 	margin-top: 250px;
-	background: orange;
 }
 
 #routes_panel {
-	display: none;
+	/*display: none;*/
 	width: 375px;
 	height: 100%;
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-	background: olive;
+	/*background: olive;*/
 }
