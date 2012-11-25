@@ -68,7 +68,7 @@
 												
 						<div class="icons_menu">
 <div class="fb_panel">
-<div id="fb-root"></div>
+<!-- <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
@@ -76,7 +76,7 @@
   js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-<div class="fb-like" data-href="http://ways.in.ua" data-send="false" data-layout="button_count" data-width="90" data-show-faces="true" data-font="arial"></div>					
+<div class="fb-like" data-href="http://ways.in.ua" data-send="false" data-layout="button_count" data-width="90" data-show-faces="true" data-font="arial"></div>	 -->				
 							</div>
 							<div class="lang_panel" >
 							
