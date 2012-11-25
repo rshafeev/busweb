@@ -7,6 +7,10 @@
 	<jsp:attribute name="page_head">		
 <script type="text/javascript">
 		includeCSSFile("media/css/pages", "routes", []);
+		$(document).ready(function() {
+			initialize();	
+		}
+		
 		</script>
 	<script src="media/js/routes/RSchems.js"></script>
 	<script src="media/js/routes/routes.js"></script>

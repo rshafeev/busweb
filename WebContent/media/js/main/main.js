@@ -9,7 +9,6 @@ var busApp = null;
  * Global functions
  */
 function initialize() {
-	
 	busApp = new BusApp();
 	busApp.main();
 	selectbox_initialize();

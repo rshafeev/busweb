@@ -1,8 +1,13 @@
+var RSchems = null;
 
+function initialize() {		
+	RSchems = new RSchems();
+	RSchems.main();
+};
 
-
-
-
+function getRSchems() {
+	return RSchems;
+};
 
 /**
  * Events
@@ -33,3 +38,4 @@ function on_right_panel_show ()
 		this.rightPanelVisible = false;
 	}
 }
+
