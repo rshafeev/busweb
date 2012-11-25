@@ -8,13 +8,7 @@
 <script type="text/javascript">
 		includeCSSFile("media/css/pages", "routes", []);
 		</script>
-	<script src="media/js/selectbox.js"></script>
-	<script src="media/js/WidgetEvents.js"></script>
-	<script src="media/js/map/Markers.js"></script>
-	<script src="media/js/GoogleMap.js"></script>
-	<script src="media/js/BusAppData.js"></script>
-	<script src="media/js/BusApp.js"></script>
-	<script src="media/js/main.js"></script>
+	<script src="media/js/RoutesSchems.js"></script>
 	</jsp:attribute>
 
 	<jsp:attribute name="content">
