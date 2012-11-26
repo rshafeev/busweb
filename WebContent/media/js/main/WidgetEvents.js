@@ -125,6 +125,8 @@ function on_btn_auto_click(e) {
 	else
 		g[0].src = 'media/css/images/auto.png';
 };
+
+
 function on_right_panel_show() {
 	
 	if (getApp().rightPanelVisible == false) {

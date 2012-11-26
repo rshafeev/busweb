@@ -40,4 +40,20 @@ function RSchems() {
 		/* $('#panel_scrollbar').tinyscrollbar_update(); */
 
 	};
+	
+
+	/*this.getCurrentCity = function() {
+		var nameFromCombo = $("#selectbox_city").val();
+		var cities = this.getDataModel().cities;
+		var city = null;
+		//console.log(cities);
+		for (var i = 0; i < cities.length; i++) {
+
+			if (cities[i].id == nameFromCombo) {
+				city = cities[i];
+				break;
+			}
+		}
+		return city;
+	};*/
 }

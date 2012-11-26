@@ -4,6 +4,7 @@ var rschems = null;
 function initialize() {		
 	rschems = new RSchems();
 	rschems.main();
+	selectbox_initialize();
 	on_right_panel_show();
 };
 
@@ -36,8 +37,36 @@ function on_right_panel_show ()
 		if (map != null) {
 			google.maps.event.trigger(map, 'resize');
 		}
-	
 		
 	}
 }
 
+
+
+function on_change_selectbox_city() {
+	//console.log("on_change_selectbox_city()");
+	/*var city = getApp().getCurrentCity();
+	if (city == null) {
+		return;
+	}
+	var googleMap = getApp().getGoogleMap();
+	googleMap.clearMap();
+	googleMap.getMapObj().setOptions({
+				draggableCursor : 'crosshair',
+				minZoom : city.scale
+			});*/
+	//console.log(city);
+	//googleMap.setCenter(city.scale, city.location.lat, city.location.lon);
+	$('#editboxA').val('A');
+	$('#editboxB').val('B');
+}
+
+function on_btn_arrow_click(e) {
+	var g = e.getElementsByTagName('img');
+	if (g[0].src.indexOf('media/css/images/arrow_down.png') != -1)
+		alert("yes");
+		//g[0].src = 'media/css/images/arrow_up.png';
+	else
+		alert("no");
+	//	g[0].src = 'media/css/images/arrow_down.png';
+}

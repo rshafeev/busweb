@@ -7,6 +7,7 @@
 	<jsp:attribute name="page_head">	
 	<script type="text/javascript"
 			src="http://maps.google.com/maps/api/js?sensor=false&libraries=drawing"></script>
+			<script src="media/js/libs/selectbox.js"></script>
 	<script src="media/js/main/GoogleMap.js"></script>
 	<script src="media/js/routes/RSchems.js"></script>
 	<script src="media/js/routes/routes.js"></script>	
@@ -16,7 +17,23 @@
 			initialize();	
 		});
 	</script>
-	
+	<script type="text/javascript">
+$(document).ready(function(){                                                  
+    $('.view-source .hide').hide();
+    $('.view-source .link_name').toggle(
+      function(){
+        $(this).siblings('.hide').stop(false, true).slideDown(500);
+       // $(this).css('background', 'url(media/css/images/arrow_down.png)');
+        $(this).document.img.src = 'media/css/images/arrow_down.png';
+      },
+     function(){
+        $(this).siblings('.hide').stop(false, true).slideUp(500);
+        //$(this).css('background', 'url(media/css/images/arrow_up.png)');
+        $(this).document.img.src = 'media/css/images/arrow_up.png';
+     }
+   );
+});
+</script>
 	</jsp:attribute>
 
 	<jsp:attribute name="content">
@@ -32,9 +49,49 @@
 			
 			</div> 
 			<div id="routes_panel"> 
-			
-			Info 
-			
+			<div class="select_box" style="width:100px; height:30px;background: red;margin-left:5px; ">
+					<form name="testform">
+			<select id="selectbox_city" class="selectbox" name="websites"
+				size="1" onChange="on_change_selectbox_city()">
+			</select>
+		</form>
+		</div>
+			<div id="containerv">
+	<div id="contentv">
+	<div class="view-source">
+<div class="link_name"><p>Metro</p></div>
+<div class="hide nocookies">
+				<p class="mytext">	
+		Text1				
+				</p>
+			</div>
+	</div>	
+	<div class="view-source">
+<div class="link_name"><p>Tramvaj</p></div>
+<div class="hide nocookies">
+				<p class="mytext">	
+		Text1				
+				</p>
+			</div>
+	</div>	
+		<div class="view-source">
+<div class="link_name"><p>Bus</p></div>
+<div class="hide nocookies">
+				<p class="mytext">	
+		Text1				
+				</p>
+			</div>
+	</div>	
+		<div class="view-source">
+<div class="link_name"><p>Troll</p></div>
+<div class="hide nocookies">
+				<p class="mytext">	
+		Text1				
+				</p>
+			</div>
+	</div>		
+	</div>	
+	</div>
 			</div>
 		</div>
 	
