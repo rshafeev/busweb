@@ -64,9 +64,9 @@ function on_change_selectbox_city() {
 function on_btn_arrow_click(e) {
 	var g = e.getElementsByTagName('img');
 	if (g[0].src.indexOf('media/css/images/arrow_down.png') != -1)
-		alert("yes");
-		//g[0].src = 'media/css/images/arrow_up.png';
+		//alert("gfhf");
+		g[0].src = 'media/css/images/arrow_up.png';
 	else
-		alert("no");
-	//	g[0].src = 'media/css/images/arrow_down.png';
+		//alert("no");
+		g[0].src = 'media/css/images/arrow_down.png';
 }
