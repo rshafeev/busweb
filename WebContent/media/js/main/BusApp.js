@@ -5,11 +5,14 @@
  */
 
 function BusApp() {
+	this.data = null;
 	this.busAppData = null;
 	this.googleMap = null;
 	this.rightPanelVisible = false;
-	this.main = function() {
-		//console.log("busApp : main()");
+	this.main = function(data) {
+		this.data = data;
+		this.busAppData = new BusAppData();
+		
 		$('#panel_scrollbar').tinyscrollbar();	
 		this.on_resize_window('#map_container', 134, 0);
 		var T = this;
@@ -17,11 +20,12 @@ function BusApp() {
 					T.on_resize_window('#map_container', 134, 0);
 				});
 		this.googleMap = new GoogleMap();
-		this.googleMap.init();
-
-		this.loadCitiesToComboBox();
-		this.busAppData = new BusAppData();
-
+		
+		
+		this.googleMap.init(data.currentCity);
+		
+		//this.loadCitiesToComboBox();
+	
 	};
 
 	this.createFindWaysOptionsModel = function() {
@@ -71,34 +75,21 @@ function BusApp() {
 		return opts;
 
 	};
-
+	this.getContextPath = function(){
+		return this.data.contextPath;
+	};
 	this.getCurrentCity = function() {
-		var nameFromCombo = $("#selectbox_city").val();
-		var cities = this.getDataModel().cities;
-		var city = null;
-		//console.log(cities);
-		for (var i = 0; i < cities.length; i++) {
-
-			if (cities[i].id == nameFromCombo) {
-				city = cities[i];
-				break;
-			}
-		}
-		return city;
+		return this.data.currentCity;
 	};
 
-	this.getDataModel = function() {
-		return basicModel;
-	};
-	this.getGoogleMap = function() {
-		return this.googleMap;
-	};
 	this.getAppData = function() {
 		return this.busAppData;
 	};
+	
+	this.getGoogleMap = function() {
+		return this.googleMap;
+	};
 	this.loadCitiesToComboBox = function() {
-		//console.log("busApp: loadCitiesToComboBox()");
-		//console.log(this.getDataModel().cities.length);
 		var defaultCity = getApp().getDataModel().defaultCity;
 		for (var i = 0; i < this.getDataModel().cities.length; i++) {
 			if (defaultCity.id == this.getDataModel().cities[i].id) {

@@ -1,5 +1,7 @@
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+<beans 
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -56,6 +58,28 @@
 			<value>.jsp</value>
 		</property>
 	</bean>
-		
-		
+
+	
+	<!-- Definition for spellChecker bean -->
+	
+   
+	<!--
+	<bean id="appProperties" class="com.pgis.bus.server.AppProperties" destroy-method="lose">
+		<property name="DefaultCity" value="kharkiv"/>
+	</bean>
+		<bean id="foo" class="com.pgis.bus.server.AppProperties">
+			<property name="DefaultCity">
+				<util:constant static-field="kharkiv"/>
+
+			</property>
+		</bean>
+		<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>/WEB-INF/config/config.properties</value>
+				<value>file:${baseDataFolder}/jaccise.conf</value>
+			</list>
+		</property>
+</bean>
+			-->
 </beans>

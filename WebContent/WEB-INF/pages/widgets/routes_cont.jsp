@@ -10,7 +10,7 @@
 	<div id="extra">
 		<div id="arrow_div" onmousedown="return false" onclick="on_right_panel_show();">
 			<a href="#" ><img  name='img'
-				src='media/css/images/arrow_left.png' /></a>
+				src='${myContext}/media/css/images/arrow_left.png' /></a>
 		</div>
 
 		<div id="ways_panel">

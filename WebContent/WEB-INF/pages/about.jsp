@@ -3,11 +3,13 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<c:set var="myContext" value="${pageContext.request.contextPath}" />
+
 <ui:columns>
 	<jsp:attribute name="page_head">
 	<title>About</title>
 		<script type="text/javascript">
-			includeCSSFile("media/css/pages", "about", []);
+			includeCSSFile("${myContext}/media/css/pages", "about", []);
 			
 		</script>
 	</jsp:attribute>
@@ -57,22 +59,22 @@
 				<h3>
 				Контакты:
 				</h3>
-				<img src="media/css/images/adres.png" />
+				<img src="${myContext}/media/css/images/adres.png" />
 				<h6>
 				ул. Сумская, 17
 				</h6>
 			<br>
-				<img src="media/css/images/telef.png" />
+				<img src="${myContext}/media/css/images/telef.png" />
 				<h6>
 				+38(057)712-32-45
 				</h6>
 			<br>
-				<img src="media/css/images/email.png" />
+				<img src="${myContext}/media/css/images/email.png" />
 				<h6>
 				<a href="#">support@premiumgis.com</a>
 				</h6>
 			<br>
-				<img src="media/css/images/site.png" />
+				<img src="${myContext}/media/css/images/site.png" />
 				<h6>
 				<a href="#">www.premiumgis.com</a>
 				</h6>

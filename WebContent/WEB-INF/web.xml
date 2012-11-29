@@ -13,24 +13,54 @@
 	<listener>
 		<listener-class>com.pgis.bus.server.listeners.BasicServiceListener</listener-class>
 	</listener>
-    
+ 
+	<servlet>
+		<servlet-name>jsp</servlet-name>
+		<servlet-class>org.apache.jasper.servlet.JspServlet</servlet-class>
+	</servlet>
+		
 	<servlet> 
 		<servlet-name>springapp</servlet-name> 
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class> 
 		<load-on-startup>1</load-on-startup> 
 	</servlet> 
-	<servlet-mapping> 
-		<servlet-name>springapp</servlet-name>
-		<url-pattern>*.htm</url-pattern> 
-		<url-pattern>*.json</url-pattern> 
-	</servlet-mapping> 
-	  
+
+	<error-page>
+		<error-code>404</error-code>
+		<location>/error</location>
+	</error-page>
+	
 	<welcome-file-list> 
 		<welcome-file> 
-            index.htm
+            /
 		</welcome-file> 
 	</welcome-file-list> 
-    
+ 
+	<servlet-mapping>  
+		<servlet-name>default</servlet-name>  
+		<url-pattern>/media/*</url-pattern>
+	</servlet-mapping>  
+	
+	<servlet-mapping>
+		<servlet-name>jsp</servlet-name>
+		<url-pattern>/WEB-INF/pages/*</url-pattern>
+	</servlet-mapping>
+	   
+	<servlet-mapping> 
+		<servlet-name>springapp</servlet-name>
+		<url-pattern>/</url-pattern>
+		<url-pattern>/error</url-pattern>
+		<url-pattern>/home</url-pattern>
+		<url-pattern>/home/**</url-pattern>
+		<url-pattern>/routes</url-pattern>
+		<url-pattern>/routes/**</url-pattern>
+		<url-pattern>/about</url-pattern>
+		<url-pattern>/about/**</url-pattern>
+		<url-pattern>/help</url-pattern>
+		<url-pattern>/help/**</url-pattern>
+		
+	</servlet-mapping> 
+	
 
  
 </web-app>

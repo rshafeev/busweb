@@ -5,12 +5,11 @@ function GoogleMap() {
 	this.polylines = [];
 	this.map = null;
 
-	this.init = function() {
-		var defaultCity = getApp().getDataModel().defaultCity;
-		var latlng = new google.maps.LatLng(defaultCity.location.lat,
-				defaultCity.location.lon);
+	this.init = function(currentCity) {
+		var latlng = new google.maps.LatLng(currentCity.location.lat,
+				currentCity.location.lon);
 		var myOptions = {
-			zoom : defaultCity.scale,
+			zoom : currentCity.scale,
 			center : latlng,
 			mapTypeId : google.maps.MapTypeId.ROADMAP
 		};
@@ -18,7 +17,7 @@ function GoogleMap() {
 				myOptions);
 		this.map.setOptions({
 					draggableCursor : 'crosshair',
-					minZoom : defaultCity.scale
+					minZoom : currentCity.scale
 				});
 
 		this.markers = new Markers(this);

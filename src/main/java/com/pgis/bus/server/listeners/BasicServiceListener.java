@@ -1,5 +1,9 @@
 package com.pgis.bus.server.listeners;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
@@ -8,6 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import com.pgis.bus.data.DBConnectionFactory;
 import com.pgis.bus.data.DBConnectionManager;
+import com.pgis.bus.server.AppProperties;
 
 /**
  * навешивает логику на момент создания/удаления сервлета
@@ -29,14 +34,14 @@ public class BasicServiceListener implements ServletContextListener {
 		DBConnectionFactory.free();
 	}
 
+
 	@Override
-    public void contextInitialized(ServletContextEvent sce)
-    {
-    	//dbc/busPoolDB
-    	//DataSource source = initDataSource("jdbc/busPoolDB");
-    	
+	public void contextInitialized(ServletContextEvent event) {
+		ServletContext context = event.getServletContext();
+		AppProperties.DefaultCity = context.getInitParameter("defaultCity");
+
 		DBConnectionFactory.init(new DBConnectionManager("jdbc/busPoolDB"));
-    	log.debug("contextInitialized");
-    	
-    }
+		log.debug("contextInitialized");
+
+	}
 }

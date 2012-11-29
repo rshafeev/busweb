@@ -3,6 +3,9 @@
 	        com.pgis.bus.data.models.route.*,
 	        java.util.ArrayList,
 	        com.google.gson.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="myContext" value="${pageContext.request.contextPath}" />
+	        
 <%
 	WaysModel model = (WaysModel) request.getAttribute("model");
 %>
@@ -48,9 +51,9 @@ getApp().getAppData().clearWaysData();
 		for (int k=0; k<routesType.size();k++ )
 		{
 		%>	
-		 <img src="media/css/images/<%=routesType.get(k)%>.png"/>
+		 <img src="${myContext}/media/css/images/<%=routesType.get(k)%>.png"/>
 		<%if(k < routesType.size() -1){ %>
-			<img src="media/css/images/plus.png"/>
+			<img src="${myContext}/media/css/images/plus.png"/>
 		<%} %>
 		<%}%>
 		</div>
@@ -62,11 +65,11 @@ getApp().getAppData().clearWaysData();
 				</div>
 	<div id="res_text_<%=i%>" style="width: 322px; margin-left:10px;">
 <div id="print">
-	<a href="#"><img src="media/css/images/print.png"  title="Print" ></a> 
+	<a href="#"><img src="${myContext}/media/css/images/print.png"  title="Print" ></a> 
 	
 		</div>
 		<div id="clipboard">
-		<a href="#"><img src="media/css/images/chain.png"  title="Clipboard" ></a> 
+		<a href="#"><img src="${myContext}/media/css/images/chain.png"  title="Clipboard" ></a> 
 		</div>
 			<%
 				ArrayList<RouteModel> routes = wayModel.getRoutes();
@@ -111,7 +114,7 @@ getApp().getAppData().clearWaysData();
 		</script>
 
 			<div style="line-height:15px;">	
-			<span class="result_transp"><img src="media/css/images/<%=r.getRouteType()%>.png"/>   <%=r.getRouteName()%></span>
+			<span class="result_transp"><img src="${myContext}/media/css/images/<%=r.getRouteType()%>.png"/>   <%=r.getRouteName()%></span>
 				<p>
 					Стоимость :
 					<%=r.getCost()%>
@@ -157,9 +160,9 @@ getApp().getAppData().clearWaysData();
 				<p>
 					Пересадка :</p>
 					
-					<span class="result_transp"><img src="media/css/images/<%=prevRoute.getRouteType()%>.png"/>  <%=prevRoute.getRouteName()%></span>
-					<span class="result_transp_img"><img  src="media/css/images/arrow_refresh.png"/></span>
-					<span class="result_transp"><img src="media/css/images/<%=nextRoute.getRouteType()%>.png"/>
+					<span class="result_transp"><img src="${myContext}/media/css/images/<%=prevRoute.getRouteType()%>.png"/>  <%=prevRoute.getRouteName()%></span>
+					<span class="result_transp_img"><img  src="${myContext}/media/css/images/arrow_refresh.png"/></span>
+					<span class="result_transp"><img src="${myContext}/media/css/images/<%=nextRoute.getRouteType()%>.png"/>
 					<%=nextRoute.getRouteName()%>
 					</span>
 					

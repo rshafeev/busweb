@@ -2,16 +2,17 @@
 <%@ taglib prefix="ui" tagdir="/WEB-INF/tags/ui"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="myContext" value="${pageContext.request.contextPath}" />
 
 <ui:base>
 	<jsp:attribute name="page_head">	
+
 	<script type="text/javascript"
 			src="http://maps.google.com/maps/api/js?sensor=false&libraries=drawing"></script>
-	<script src="media/js/main/GoogleMap.js"></script>
-	<script src="media/js/routes/RSchems.js"></script>
-	<script src="media/js/routes/routes.js"></script>	
+	<script src="${myContext}/media/js/routes/RSchems.js"></script>
+	<script src="${myContext}/media/js/routes/routes.js"></script>	
 	<script type="text/javascript">
-		includeCSSFile("media/css/pages", "routes", []);
+		includeCSSFile("${myContext}/media/css/pages", "routes", []);
 		$(document).ready(function() {
 			initialize();	
 		});
@@ -27,8 +28,8 @@
 		<div id="routes_extra">
 			 <div id="routes_arrow_div" onmousedown="return false"
 					onclick="on_right_panel_show();">
-			<a href="#"><img name='img'
-						src='media/css/images/arrow_left.png' /></a>
+			<a href="#"><img name='img' 
+						src='${myContext}/media/css/images/arrow_left.png' /></a>
 			
 			</div> 
 			<div id="routes_panel"> 
