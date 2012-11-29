@@ -58,12 +58,15 @@
 									items="${model.getNavigationModel().getLinks()}">
 									<c:choose>
 										<c:when test="${link.isSelected()}">
-											<li class="active"><a
-												href="${myContext}/${link.getUrl()}">${link.getLabel()}</a>
+											<li class="active"
+												onclick="document.location.href='${myContext}/${link.getUrl()}'">
+												<a>${link.getLabel()}</a>
 											</li>
 										</c:when>
 										<c:otherwise>
-											<li><a href="${myContext}/${link.getUrl()}">${link.getLabel()}</a>
+											<li
+												onclick="document.location.href='${myContext}/${link.getUrl()}'">
+												<a>${link.getLabel()}</a>
 											</li>
 										</c:otherwise>
 									</c:choose>
@@ -105,11 +108,12 @@ VK.Widgets.Like("vk_like", {type: "full"});
 									</script>
 
 
-									<a href="?lang=rus_RU"><img src="${myContext}/media/css/images/ru.png"
-										alt="Ru"></a> <a href="?lang=en_US"><img
+									<a href="?lang=rus_RU"><img
+										src="${myContext}/media/css/images/ru.png" alt="Ru"></a> <a
+										href="?lang=en_US"><img
 										src="${myContext}/media/css/images/uk.png" alt="En"></a> <a
-										href="?lang=uk_UA"><img src="${myContext}/media/css/images/ua.png"
-										alt="Ua"></a>
+										href="?lang=uk_UA"><img
+										src="${myContext}/media/css/images/ua.png" alt="Ua"></a>
 								</div>
 							</div>
 						</div>

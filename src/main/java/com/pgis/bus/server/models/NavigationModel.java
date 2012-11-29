@@ -33,7 +33,7 @@ public class NavigationModel {
 			MessageSource messageSource, Locale currentLocale,
 			pages_enum selectedPageCode) {
 		ArrayList<LinkModel> links = new ArrayList<LinkModel>();
-
+		/* Для добавления новой вкладки, добавить новый LinkModel */
 		LinkModel homeLink = new LinkModel();
 		homeLink.setLabel(messageSource.getMessage("welcome.home", null,
 				currentLocale));
@@ -41,7 +41,14 @@ public class NavigationModel {
 		homeLink.setCode(pages_enum.c_Home.getValue());
 		links.add(homeLink);
 
-		/* Для добавления новой вкладки, добавить новый LinkModel */
+		LinkModel routesLink = new LinkModel();
+		routesLink.setLabel(messageSource.getMessage("welcome.routes", null,
+				currentLocale));
+		routesLink.setUrl("routes");
+		routesLink.setCode(pages_enum.c_Routes.getValue());
+		links.add(routesLink);
+		
+		
 		LinkModel programmsLink = new LinkModel();
 		programmsLink.setLabel(messageSource.getMessage("welcome.help", null,
 				currentLocale));
@@ -56,12 +63,7 @@ public class NavigationModel {
 		aboutLink.setCode(pages_enum.c_About.getValue());
 		links.add(aboutLink);
 
-		LinkModel routesLink = new LinkModel();
-		routesLink.setLabel(messageSource.getMessage("welcome.routes", null,
-				currentLocale));
-		routesLink.setUrl("routes");
-		routesLink.setCode(pages_enum.c_Routes.getValue());
-		links.add(routesLink);
+
 
 		for (LinkModel link : links) {
 			if (selectedPageCode != null
