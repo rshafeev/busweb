@@ -41,7 +41,8 @@ public class RoutesController {
 	private MessageSource messageSource;
 
 	@RequestMapping(value = "")
-	public ModelAndView routes(@CookieValue("city_key") String city_key) {
+	public ModelAndView routes(
+			@CookieValue(value = "city_key", defaultValue = "") String city_key) {
 		log.debug("city_key(CookieValue): " + city_key);
 		if (city_key == null || city_key.length() == 0)
 			city_key = AppProperties.DefaultCity;

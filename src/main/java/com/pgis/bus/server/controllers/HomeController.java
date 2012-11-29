@@ -73,9 +73,11 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = { "", "/", "home" })
-	public ModelAndView home(@CookieValue("city_key") String city_key) {
+	public ModelAndView home(
+			@CookieValue(value = "city_key", defaultValue = "") String city_key) {
+		
 		log.debug("city_key(CookieValue): " + city_key);
-		if (city_key == null || city_key.length() == 0)
+		if (city_key == null || city_key.toString().length() == 0)
 			city_key = AppProperties.DefaultCity;
 		return new ModelAndView("redirect:/home/" + city_key);
 	}
