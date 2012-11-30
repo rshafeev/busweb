@@ -7,11 +7,21 @@ import com.pgis.bus.data.orm.StringValue;
 import com.pgis.bus.server.helpers.LanguageHelper;
 
 public class CityModel {
-	int id;
-	String name;
-	LocationModel location;
-	public int scale;
+	private int id;
+	private String name;
+	private String key;
 
+	private LocationModel location;
+	private int scale;
+
+	public String getKey() {
+		return key;
+	}
+
+	public void setKey(String key) {
+		this.key = key;
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -57,6 +67,7 @@ public class CityModel {
 		this.location.setLat(city.lat);
 		this.location.setLon(city.lon);
 		this.scale = city.scale;
+		this.key = city.key;
 
 	}
 
@@ -67,4 +78,5 @@ public class CityModel {
 	public void setScale(int scale) {
 		this.scale = scale;
 	}
+	
 }

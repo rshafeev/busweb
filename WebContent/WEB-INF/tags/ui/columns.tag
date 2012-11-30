@@ -7,10 +7,12 @@
 <%@ attribute name="left_column" required="true" fragment="true"%>
 <%@ attribute name="right_column" required="true" fragment="true"%>
 
+<c:set var="myContext" value="${pageContext.request.contextPath}" />
+
 <ui:base>
 	<jsp:attribute name="page_head">
 	<script type="text/javascript">
-		includeCSSFile("media/css/columns", "columns", []);
+		includeCSSFile("${myContext}/media/css/columns", "columns", []);
 		$(document).ready(function() {
 			$('#left_column_scrollbar').tinyscrollbar();
 			$('#left_column_scrollbar').tinyscrollbar_update();

@@ -3,16 +3,22 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<c:set var="myContext" value="${pageContext.request.contextPath}" />
+
 <ui:base>
 	<jsp:attribute name="page_head">
 	
-	<script src="media/js/libs/jquery.tinyscrollbar.min.js"></script>
+	<script src="${myContext}/media/js/libs/jquery.tinyscrollbar.min.js"></script>
 	<script type="text/javascript"
 			src="http://maps.google.com/maps/api/js?sensor=false&libraries=drawing"></script>
 	
 	<script type="text/javascript">
-		includeCSSFile("media/css/busWeb", "busWeb", []);
-		var basicModel = $.parseJSON('${model.getJsonCitiesModel()}');
+		includeCSSFile("${myContext}/media/css/busWeb", "busWeb", []);
+		var currentCity = $.parseJSON('${model.getCitiesModel().getJSONSelectedCity()}');
+		var data = {
+			currentCity : currentCity,
+			contextPath : contextPath
+		};
 		$(document).ready(function() {
 			$("div.selectTabs_first, div.selectTabs_second").each(function() {
 				var tmp = $(this);
@@ -28,26 +34,26 @@
 					});
 				});
 			});
-			
-			initialize();
+			initialize(data);
 		});
+		
 	</script>
-	<script src="media/js/libs/selectbox.js"></script>
-	<script src="media/js/libs/jquery.poshytip.js"></script>
-	<script src="media/js/main/WidgetEvents.js"></script>
-	<script src="media/js/main/map/Markers.js"></script>
-	<script src="media/js/main/GoogleMap.js"></script>
-	<script src="media/js/main/BusAppData.js"></script>
-	<script src="media/js/main/BusApp.js"></script>
-	<script src="media/js/main/main.js"></script>
+	<script src="${myContext}/media/js/libs/selectbox.js"></script>
+	<script src="${myContext}/media/js/libs/jquery.poshytip.js"></script>
+	<script src="${myContext}/media/js/main/WidgetEvents.js"></script>
+	<script src="${myContext}/media/js/main/map/Markers.js"></script>
+	<script src="${myContext}/media/js/main/GoogleMap.js"></script>
+	<script src="${myContext}/media/js/main/BusAppData.js"></script>
+	<script src="${myContext}/media/js/main/BusApp.js"></script>
+	<script src="${myContext}/media/js/main/main.js"></script>
 
 	<script type="text/javascript">
-		$(function(){
+		$(function() {
 			$('.demo-tip-darkgray').poshytip({
-				className: 'tip-darkgray',
-				showTimeout: 1,
-				bgImageFrameSize: 11,
-				offsetX: -25
+				className : 'tip-darkgray',
+				showTimeout : 1,
+				bgImageFrameSize : 11,
+				offsetX : -25
 			});
 		});
 	</script>

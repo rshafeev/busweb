@@ -3,6 +3,9 @@ package com.pgis.bus.server.controllers;
 import java.util.Collection;
 import java.util.Locale;
 
+import org.scribe.builder.ServiceBuilder;
+import org.scribe.builder.api.TwitterApi;
+import org.scribe.oauth.OAuthService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.i18n.LocaleContextHolder;

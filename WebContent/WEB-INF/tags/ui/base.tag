@@ -12,11 +12,12 @@
 <meta http-equiv="Cache-control" content="no-cache">
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-<script src="media/js/libs/jquery.tinyscrollbar.min.js"></script>
-<script src="media/js/libs/jquery.json-2.3.js"></script>
-<script src="media/js/WidgetHelpers.js"></script>
+<script src="${myContext}/media/js/libs/jquery.tinyscrollbar.min.js"></script>
+<script src="${myContext}/media/js/libs/jquery.json-2.3.js"></script>
+<script src="${myContext}/media/js/WidgetHelpers.js"></script>
 <script type="text/javascript">
-	includeCSSFile("media/css/basic", "basic", []);
+	includeCSSFile("${myContext}/media/css/basic", "basic", []);
+	var contextPath = "${myContext}/";
 	function updateContainerSize() {
 		$("#container").css('height', getWindowSize().height - 35);
 	};
@@ -48,7 +49,7 @@
 				<div class="header">
 					<div class="block_header">
 						<div class="logo_menu">
-							<a href="#"><img src="media/css/images/log.png" /></a>
+							<a href="#"><img src="${myContext}/media/css/images/log.png" /></a>
 						</div>
 						<div class="menu-temp">
 
@@ -104,10 +105,10 @@ VK.Widgets.Like("vk_like", {type: "full"});
 									</script>
 
 
-									<a href="?lang=rus_RU"><img src="media/css/images/ru.png"
+									<a href="?lang=rus_RU"><img src="${myContext}/media/css/images/ru.png"
 										alt="Ru"></a> <a href="?lang=en_US"><img
-										src="media/css/images/uk.png" alt="En"></a> <a
-										href="?lang=uk_UA"><img src="media/css/images/ua.png"
+										src="${myContext}/media/css/images/uk.png" alt="En"></a> <a
+										href="?lang=uk_UA"><img src="${myContext}/media/css/images/ua.png"
 										alt="Ua"></a>
 								</div>
 							</div>

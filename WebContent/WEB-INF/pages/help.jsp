@@ -2,12 +2,13 @@
 <%@ taglib prefix="ui" tagdir="/WEB-INF/tags/ui"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="myContext" value="${pageContext.request.contextPath}" />
 
 <ui:columns>
 	<jsp:attribute name="page_head">
 	<title>Help</title>
 		<script type="text/javascript">
-			includeCSSFile("media/css/pages", "help", []);
+			includeCSSFile("${myContext}/media/css/pages", "help", []);
 		</script>
 	</jsp:attribute>
 	<jsp:attribute name="left_column">

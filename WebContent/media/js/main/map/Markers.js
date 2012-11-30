@@ -56,11 +56,13 @@ function Markers(busMap) {
 
 	this.initialize = function() {
 		var map = this.busMap.getMapObj();
-		this.marker_image_A = new google.maps.MarkerImage('media/css/images/from_ru.png');
-		this.marker_image_B = new google.maps.MarkerImage('media/css/images/to_ru.png');
+		this.marker_image_A = new google.maps.MarkerImage(contextPath
+				+ 'media/css/images/from_ru.png');
+		this.marker_image_B = new google.maps.MarkerImage(contextPath
+				+ 'media/css/images/to_ru.png');
 
 		google.maps.event.addListener(map, 'click', function(e) {
-					//console.log('clicked on the map');
+					// console.log('clicked on the map');
 					var lat = e.latLng.lat();
 					var lon = e.latLng.lng();
 
@@ -79,7 +81,7 @@ function Markers(busMap) {
 		getApp().getCodeAddress(e.latLng.lat(), e.latLng.lng(), function(text) {
 					if (text == null)
 						return null;
-					//console.log(text);
+					// console.log(text);
 					$('#editboxA').val(text);
 
 				});
@@ -89,7 +91,7 @@ function Markers(busMap) {
 		getApp().getCodeAddress(e.latLng.lat(), e.latLng.lng(), function(text) {
 					if (text == null)
 						return null;
-					//console.log(text);
+					// console.log(text);
 					$('#editboxB').val(text);
 				});
 
