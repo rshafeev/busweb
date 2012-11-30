@@ -75,7 +75,7 @@ public class HomeController {
 	@RequestMapping(value = { "", "/", "home" })
 	public ModelAndView home(
 			@CookieValue(value = "city_key", defaultValue = "") String city_key) {
-		
+
 		log.debug("city_key(CookieValue): " + city_key);
 		if (city_key == null || city_key.toString().length() == 0)
 			city_key = AppProperties.DefaultCity;
@@ -88,7 +88,7 @@ public class HomeController {
 		log.debug("city_key: " + city_key);
 		Locale locale = LocaleContextHolder.getLocale();
 		CitiesModel citiesModel = prepareCitiesModel(city_key);
-		if (citiesModel.getSelectedCity() == null) {
+		if (citiesModel == null || citiesModel.getSelectedCity() == null) {
 			return new ModelAndView("redirect:/error");
 		}
 		NavigationModel navModel = new NavigationModel(messageSource, locale,

@@ -54,7 +54,7 @@ public class RoutesController {
 	public ModelAndView routesCity(@PathVariable String city_key,
 			HttpServletRequest request, HttpServletResponse response) {
 		CitiesModel citiesModel = HomeController.prepareCitiesModel(city_key);
-		if (citiesModel.getSelectedCity() == null) {
+		if (citiesModel==null || citiesModel.getSelectedCity() == null) {
 			return new ModelAndView("redirect:/error");
 		}
 		Locale locale = LocaleContextHolder.getLocale();
