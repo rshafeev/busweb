@@ -87,7 +87,19 @@
 }
 
 .link_name {
-	background: #bbb;
+	background-image: linear-gradient(bottom, rgb(79,79,204) 19%, rgb(58,184,230) 60%);
+background-image: -o-linear-gradient(bottom, rgb(79,79,204) 19%, rgb(58,184,230) 60%);
+background-image: -moz-linear-gradient(bottom, rgb(79,79,204) 19%, rgb(58,184,230) 60%);
+background-image: -webkit-linear-gradient(bottom, rgb(79,79,204) 19%, rgb(58,184,230) 60%);
+background-image: -ms-linear-gradient(bottom, rgb(79,79,204) 19%, rgb(58,184,230) 60%);
+
+background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0.19, rgb(79,79,204)),
+	color-stop(0.6, rgb(58,184,230))
+);
 	border: none;
 	border-radius: 10px;
 	width: 340px;
@@ -174,6 +186,7 @@
 	line-height: 25px;
 	white-space: normal;
 	text-align: justify;
+	font-weight: bold;
 }
 
 .view-source .my_text a:hover,.view-source a:active {
