@@ -1,4 +1,5 @@
 function RSchems() {
+	this.data = null;
 	this.rightPanelVisible = false;
 	this.map = null;
 
@@ -6,7 +7,8 @@ function RSchems() {
 		return this.map;
 	};
 
-	this.main = function() {
+	this.main = function(data) {
+		this.data = data;
 		var T = this;
 		$(window).bind("resize", function(e) {
 			T.on_resize_window('#map_container', 134, 0);
@@ -44,40 +46,9 @@ function RSchems() {
 	};
 
 	
-	/* this.getCurrentCity = function() { return this.data.currentCity; };*/
-	 
 	this.getCurrentCity = function() {
-		var nameFromCombo = $("#selectbox_city").val();
-		var cities = this.getDataModel().cities;
-		var city = null;
-		// console.log(cities);
-		for ( var i = 0; i < cities.length; i++) {
-
-			if (cities[i].id == nameFromCombo) {
-				city = cities[i];
-				break;
-			}
-		}
-		return city;
+		return this.data.currentCity;
 	};
 
-	/*this.loadCitiesToComboBox = function() {
-		var defaultCity = getApp().getDataModel().defaultCity;
-		for ( var i = 0; i < this.getDataModel().cities.length; i++) {
-			if (defaultCity.id == this.getDataModel().cities[i].id) {
-				$(
-						'<option  selected="selected" value='
-								+ this.getDataModel().cities[i].id + '>'
-								+ this.getDataModel().cities[i].name
-								+ '</option>').appendTo("#selectbox_city");
-			} else {
-				$(
-						'<option  value=' + this.getDataModel().cities[i].id
-								+ '>' + this.getDataModel().cities[i].name
-								+ '</option>').appendTo("#selectbox_city");
-			}
-		}
-
-	};*/
 
 }

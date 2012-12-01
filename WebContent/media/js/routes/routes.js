@@ -27,18 +27,17 @@ function on_right_panel_show(e) {
 					cursor : "auto",
 					backgroundColor : "rgb(226, 226, 226)"
 				});
-		console.log(contextPath + "media/css/images/arrow_right.png");
-		img[0].src = contextPath + "media/css/images/arrow_right.png";
-		
+		img[0].src = getContextPath() + "media/css/images/arrow_right.png";
+
 	} else {
 		getRSchems().rightPanelVisible = false;
 		$("#map_canvas").width('98.5%').css({
 					cursor : "auto",
 					backgroundColor : "rgb(226, 226, 226)"
 				});
-		console.log(contextPath + "media/css/images/arrow_left.png");
-		img[0].src = (contextPath + "media/css/images/arrow_left.png");
-		
+		console.log(getContextPath() + "media/css/images/arrow_left.png");
+		img[0].src = (getContextPath() + "media/css/images/arrow_left.png");
+
 		var map = getRSchems().getMap();
 		if (map != null) {
 			google.maps.event.trigger(map, 'resize');
@@ -49,7 +48,7 @@ function on_right_panel_show(e) {
 
 function on_change_selectbox_city() {
 	var nameFromCombo = $("#selectbox_city").val();
-	document.location.href =  getApp().getContextPath() + 'home/' + nameFromCombo;
+	document.location.href = getContextPath() + 'routes/' + nameFromCombo;
 }
 
 function on_btn_arrow_click(e) {

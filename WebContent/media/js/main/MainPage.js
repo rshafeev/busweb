@@ -4,14 +4,14 @@
  * 
  */
 
-function BusApp() {
+function MainPage() {
 	this.data = null;
-	this.busAppData = null;
+	this.mainPageData = null;
 	this.googleMap = null;
 	this.rightPanelVisible = false;
 	this.main = function(data) {
 		this.data = data;
-		this.busAppData = new BusAppData();
+		this.mainPageData = new MainPageData();
 		
 		$('#panel_scrollbar').tinyscrollbar();	
 		this.on_resize_window('#map_container', 134, 0);
@@ -75,15 +75,12 @@ function BusApp() {
 		return opts;
 
 	};
-	this.getContextPath = function(){
-		return this.data.contextPath;
-	};
 	this.getCurrentCity = function() {
 		return this.data.currentCity;
 	};
 
-	this.getAppData = function() {
-		return this.busAppData;
+	this.getMainPageData = function() {
+		return this.mainPageData;
 	};
 	
 	this.getGoogleMap = function() {
@@ -130,7 +127,7 @@ function BusApp() {
 		$(block).css('height',
 				getWindowSize().height - headerHeight - footerHeight);
 
-		var map = getApp().getGoogleMap();
+		var map = this.getGoogleMap();
 		if (map != null) {
 
 			google.maps.event.trigger(map.getMapObj(), 'resize');

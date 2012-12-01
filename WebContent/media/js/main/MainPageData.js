@@ -1,4 +1,4 @@
-function BusAppData() {
+function MainPageData() {
 
 	this.curr_way_ind = -1;
 	this.waysData = [];

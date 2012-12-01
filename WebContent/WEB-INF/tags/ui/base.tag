@@ -18,6 +18,9 @@
 <script type="text/javascript">
 	includeCSSFile("${myContext}/media/css/basic", "basic", []);
 	var contextPath = "${myContext}/";
+	function getContextPath() {
+		return contextPath;
+	}
 	function updateContainerSize() {
 		$("#container").css('height', getWindowSize().height - 35);
 	};

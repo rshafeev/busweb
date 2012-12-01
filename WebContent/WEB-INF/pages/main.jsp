@@ -14,86 +14,23 @@
 	
 	<script type="text/javascript">
 		includeCSSFile("${myContext}/media/css/busWeb", "busWeb", []);
-		var currentCity = $
-				.parseJSON('${model.getCitiesModel().getJSONSelectedCity()}');
+		var currentCity = $.parseJSON('${model.getCitiesModel().getJSONSelectedCity()}');
 		var data = {
-			currentCity : currentCity,
-			contextPath : contextPath
+			currentCity : currentCity
 		};
-		$(document)
-				.ready(
-						function() {
-							$("div.selectTabs_first, div.selectTabs_second")
-									.each(
-											function() {
-												var tmp = $(this);
-												//console.log($(tmp).find(" .lineTabs li"));
-												$(tmp)
-														.find(".lineTabs li")
-														.each(
-																function(i) {
-																	$(tmp)
-																			.find(
-																					".lineTabs li:eq("
-																							+ i
-																							+ ") a")
-																			.click(
-																					function() {
-																						var tab_id = i + 1;
-																						$(
-																								tmp)
-																								.find(
-																										".lineTabs li a")
-																								.removeClass(
-																										"active");
-																						$(
-																								this)
-																								.addClass(
-																										"active");
-																						$(
-																								tmp)
-																								.find(
-																										".content div")
-																								.stop(
-																										false,
-																										false)
-																								.hide();
-																						$(
-																								tmp)
-																								.find(
-																										".tab"
-																												+ tab_id)
-																								.stop(
-																										false,
-																										false)
-																								.show();
-																						return false;
-																					});
-																});
-											});
-							initialize(data);
-						});
+		$(document).ready(function() {
+			initialize(data);
+		});
 	</script>
 	<script src="${myContext}/media/js/libs/selectbox.js"></script>
 	<script src="${myContext}/media/js/libs/jquery.poshytip.js"></script>
 	<script src="${myContext}/media/js/main/WidgetEvents.js"></script>
 	<script src="${myContext}/media/js/main/map/Markers.js"></script>
 	<script src="${myContext}/media/js/main/GoogleMap.js"></script>
-	<script src="${myContext}/media/js/main/BusAppData.js"></script>
-	<script src="${myContext}/media/js/main/BusApp.js"></script>
+	<script src="${myContext}/media/js/main/MainPageData.js"></script>
+	<script src="${myContext}/media/js/main/MainPage.js"></script>
 	<script src="${myContext}/media/js/main/main.js"></script>
-
-	<script type="text/javascript">
-		$(function() {
-			$('.demo-tip-darkgray').poshytip({
-				className : 'tip-darkgray',
-				showTimeout : 1,
-				bgImageFrameSize : 11,
-				offsetX : -25
-			});
-		});
-	</script>
-		
+	
 
 	</jsp:attribute>
 

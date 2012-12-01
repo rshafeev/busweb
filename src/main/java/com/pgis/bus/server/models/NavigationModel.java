@@ -48,7 +48,6 @@ public class NavigationModel {
 		routesLink.setCode(pages_enum.c_Routes.getValue());
 		links.add(routesLink);
 		
-		
 		LinkModel programmsLink = new LinkModel();
 		programmsLink.setLabel(messageSource.getMessage("welcome.help", null,
 				currentLocale));
