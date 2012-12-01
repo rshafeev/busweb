@@ -10,6 +10,7 @@ function RSchems() {
 	this.main = function(data) {
 		this.data = data;
 		var T = this;
+		$('#right_routes_column_scrollbar').tinyscrollbar();	
 		$(window).bind("resize", function(e) {
 			T.on_resize_window('#map_container', 134, 0);
 		});
@@ -41,7 +42,7 @@ function RSchems() {
 			google.maps.event.trigger(this.map, 'resize');
 		}
 
-		/* $('#panel_scrollbar').tinyscrollbar_update(); */
+		 $('#right_routes_column_scrollbar').tinyscrollbar_update();
 
 	};
 

@@ -33,6 +33,13 @@
 				offsetX : -25
 			});
 		});
+		$(document).ready(function() {
+			$('#right_routes_column_scrollbar').tinyscrollbar();
+			$('#right_routes_column_scrollbar').tinyscrollbar_update();
+			$(window).bind("resize", function(e) {
+				$('#right_routes_column_scrollbar').tinyscrollbar_update();
+			});
+		});
 	</script>
 	<script src="${myContext}/media/js/libs/selectbox.js"></script>
 	<script src="${myContext}/media/js/libs/jquery.poshytip.js"></script>
@@ -53,290 +60,28 @@
 			
 			</div> 
 			<div id="routes_panel"> 
+			<div class="city_tab">
+						<h3>Выбирете город:</h3>
 						<jsp:directive.include file="widgets/city_table.jsp" />
-
-			<div id="containerv">
-	<div id="contentv">
-	<div class="view-source">
-<div class="link_name" onclick="on_btn_arrow_click(this);">
-									<div class="link_p">
-										<p>Метро </p>
-									</div>
-				<div class="link_img">
-				<a href="#"><img name='img'
-											src='${myContext}/media/css/images/arrow_down.png' />	</a>	
-				</div>			
-								</div>
-								
-<div class="hide nocookies">
-<div class="my_text">		
-<a href="#" class="demo-tip-darkgray"
-											title="<b>23-Августа - метростроителей им.Ващенка</b> <br>
-Номер маршрута: 23 <br>
-Стоимость проезда: 2.50 <br>
-Интервал движения: 5 мин. <br>
-Время работы: 6:30 - 23:30">Алексеевская линия</a><br>
-<a href="#" class="demo-tip-darkgray"
-											title="<b>Холодная гора - Пролетарская</b> <br>
-Номер маршрута: 23 <br>
-Стоимость проезда: 2.50 <br>
-Интервал движения: 5 мин. <br>
-Время работы: 6:30 - 23:30">Холодногорско-заводская</a><br>
-<a href="#" class="demo-tip-darkgray"
-											title="<b>Советская - Геров труда</b> <br>
-Номер маршрута: 23 <br>
-Стоимость проезда: 2.50 <br>
-Интервал движения: 5 мин. <br>
-Время работы: 6:30 - 23:30">Салтовская</a>
-			</div>
-	</div>	
-	<div class="view-source">
-<div class="link_name" onclick="on_btn_arrow_click(this);">
-								<div class="link_p">	<p>Трамвай</p>
-										</div>
-									<div class="link_img">
-				<img name='img' src='${myContext}/media/css/images/arrow_down.png' />		
+</div>
+<div class="routes_inform">
+<div id="right_routes_column_scrollbar" class="scrollbar_body_routes">
+			 <div class="scrollbar">
+					<div class="track">
+						<div class="thumb">
+							<div class="end"></div>
+						</div>
+					</div>				
 				</div>
-								</div>
-<div class="hide nocookies">
-<div class="my_text">		
-<a href="#" class="demo-tip-darkgray"
-												title="<b>ул.23-Августа - прт.Ленина</b> <br>
-Номер маршрута: 23 <br>
-Стоимость проезда: 2.50 <br>
-Интервал движения: 5 мин. <br>
-Время работы: 6:30 - 23:30">23</a>
-<a href="#" class="demo-tip-darkgray"
-												title="<b>ул.23-Августа - прт.Ленина</b> <br>
-Номер маршрута: 23 <br>
-Стоимость проезда: 2.50 <br>
-Интервал движения: 5 мин. <br>
-Время работы: 6:30 - 23:30">23</a>
-<a href="#" class="demo-tip-darkgray"
-												title="<b>ул.23-Августа - прт.Ленина</b> <br>
-Номер маршрута: 23 <br>
-Стоимость проезда: 2.50 <br>
-Интервал движения: 5 мин. <br>
-Время работы: 6:30 - 23:30">23</a>
-<a href="#" class="demo-tip-darkgray"
-												title="<b>ул.23-Августа - прт.Ленина</b> <br>
-Номер маршрута: 23 <br>
-Стоимость проезда: 2.50 <br>
-Интервал движения: 5 мин. <br>
-Время работы: 6:30 - 23:30">23</a>
-<a href="#" class="demo-tip-darkgray"
-												title="<b>ул.23-Августа - прт.Ленина</b> <br>
-Номер маршрута: 23 <br>
-Стоимость проезда: 2.50 <br>
-Интервал движения: 5 мин. <br>
-Время работы: 6:30 - 23:30">23</a>
-<a href="#" class="demo-tip-darkgray"
-												title="<b>ул.23-Августа - прт.Ленина</b> <br>
-Номер маршрута: 23 <br>
-Стоимость проезда: 2.50 <br>
-Интервал движения: 5 мин. <br>
-Время работы: 6:30 - 23:30">23</a>
-<a href="#" class="demo-tip-darkgray"
-												title="<b>ул.23-Августа - прт.Ленина</b> <br>
-Номер маршрута: 23 <br>
-Стоимость проезда: 2.50 <br>
-Интервал движения: 5 мин. <br>
-Время работы: 6:30 - 23:30">23</a>
-<a href="#" class="demo-tip-darkgray"
-												title="<b>ул.23-Августа - прт.Ленина</b> <br>
-Номер маршрута: 23 <br>
-Стоимость проезда: 2.50 <br>
-Интервал движения: 5 мин. <br>
-Время работы: 6:30 - 23:30">23</a>
-
-<a href="#" class="demo-tip-darkgray"
-												title="<b>ул.23-Августа - прт.Ленина</b> <br>
-Номер маршрута: 23 <br>
-Стоимость проезда: 2.50 <br>
-Интервал движения: 5 мин. <br>
-Время работы: 6:30 - 23:30">23</a>
-<a href="#" class="demo-tip-darkgray"
-												title="<b>ул.23-Августа - прт.Ленина</b> <br>
-Номер маршрута: 23 <br>
-Стоимость проезда: 2.50 <br>
-Интервал движения: 5 мин. <br>
-Время работы: 6:30 - 23:30">23</a>
-<a href="#" class="demo-tip-darkgray"
-												title="<b>ул.23-Августа - прт.Ленина</b> <br>
-Номер маршрута: 23 <br>
-Стоимость проезда: 2.50 <br>
-Интервал движения: 5 мин. <br>
-Время работы: 6:30 - 23:30">23</a>
-
-			</div>
-			</div>
-	</div>	
-		<div class="view-source">
-<div class="link_name" onclick="on_btn_arrow_click(this);">
-								<div class="link_p">	<p>Автобус</p>
-										</div>
-									<div class="link_img">
-				<img name='img' src='${myContext}/media/css/images/arrow_down.png' />		
-				</div>
-								</div>
-<div class="hide nocookies">
-		<div class="my_text">		
-<a href="#" class="demo-tip-darkgray"
-												title="<b>ул.23-Августа - прт.Ленина</b> <br>
-Номер маршрута: 23 <br>
-Стоимость проезда: 2.50 <br>
-Интервал движения: 5 мин. <br>
-Время работы: 6:30 - 23:30">23</a>
-<a href="#" class="demo-tip-darkgray"
-												title="<b>ул.23-Августа - прт.Ленина</b> <br>
-Номер маршрута: 23 <br>
-Стоимость проезда: 2.50 <br>
-Интервал движения: 5 мин. <br>
-Время работы: 6:30 - 23:30">23</a>
-<a href="#" class="demo-tip-darkgray"
-												title="<b>ул.23-Августа - прт.Ленина</b> <br>
-Номер маршрута: 23 <br>
-Стоимость проезда: 2.50 <br>
-Интервал движения: 5 мин. <br>
-Время работы: 6:30 - 23:30">23</a>
-<a href="#" class="demo-tip-darkgray"
-												title="<b>ул.23-Августа - прт.Ленина</b> <br>
-Номер маршрута: 23 <br>
-Стоимость проезда: 2.50 <br>
-Интервал движения: 5 мин. <br>
-Время работы: 6:30 - 23:30">23</a>
-<a href="#" class="demo-tip-darkgray"
-												title="<b>ул.23-Августа - прт.Ленина</b> <br>
-Номер маршрута: 23 <br>
-Стоимость проезда: 2.50 <br>
-Интервал движения: 5 мин. <br>
-Время работы: 6:30 - 23:30">23</a>
-<a href="#" class="demo-tip-darkgray"
-												title="<b>ул.23-Августа - прт.Ленина</b> <br>
-Номер маршрута: 23 <br>
-Стоимость проезда: 2.50 <br>
-Интервал движения: 5 мин. <br>
-Время работы: 6:30 - 23:30">23</a>
-<a href="#" class="demo-tip-darkgray"
-												title="<b>ул.23-Августа - прт.Ленина</b> <br>
-Номер маршрута: 23 <br>
-Стоимость проезда: 2.50 <br>
-Интервал движения: 5 мин. <br>
-Время работы: 6:30 - 23:30">23</a>
-<a href="#" class="demo-tip-darkgray"
-												title="<b>ул.23-Августа - прт.Ленина</b> <br>
-Номер маршрута: 23 <br>
-Стоимость проезда: 2.50 <br>
-Интервал движения: 5 мин. <br>
-Время работы: 6:30 - 23:30">23</a>
-
-<a href="#" class="demo-tip-darkgray"
-												title="<b>ул.23-Августа - прт.Ленина</b> <br>
-Номер маршрута: 23 <br>
-Стоимость проезда: 2.50 <br>
-Интервал движения: 5 мин. <br>
-Время работы: 6:30 - 23:30">23</a>
-<a href="#" class="demo-tip-darkgray"
-												title="<b>ул.23-Августа - прт.Ленина</b> <br>
-Номер маршрута: 23 <br>
-Стоимость проезда: 2.50 <br>
-Интервал движения: 5 мин. <br>
-Время работы: 6:30 - 23:30">23</a>
-<a href="#" class="demo-tip-darkgray"
-												title="<b>ул.23-Августа - прт.Ленина</b> <br>
-Номер маршрута: 23 <br>
-Стоимость проезда: 2.50 <br>
-Интервал движения: 5 мин. <br>
-Время работы: 6:30 - 23:30">23</a>
-
-			</div>
-		</div>	
-	</div>	
-		<div class="view-source">
-<div class="link_name" onclick="on_btn_arrow_click(this);">
-									<div class="link_p">
-											<p>Троллейбус</p>
-										</div>
-									<div class="link_img">
-				<img name='img' src='${myContext}/media/css/images/arrow_down.png' />		
-				</div>
-								</div>
-<div class="hide nocookies">
-<div class="my_text">		
-<a href="#" class="demo-tip-darkgray"
-												title="<b>ул.23-Августа - прт.Ленина</b> <br>
-Номер маршрута: 23 <br>
-Стоимость проезда: 2.50 <br>
-Интервал движения: 5 мин. <br>
-Время работы: 6:30 - 23:30">23</a>
-<a href="#" class="demo-tip-darkgray"
-												title="<b>ул.23-Августа - прт.Ленина</b> <br>
-Номер маршрута: 23 <br>
-Стоимость проезда: 2.50 <br>
-Интервал движения: 5 мин. <br>
-Время работы: 6:30 - 23:30">23</a>
-<a href="#" class="demo-tip-darkgray"
-												title="<b>ул.23-Августа - прт.Ленина</b> <br>
-Номер маршрута: 23 <br>
-Стоимость проезда: 2.50 <br>
-Интервал движения: 5 мин. <br>
-Время работы: 6:30 - 23:30">23</a>
-<a href="#" class="demo-tip-darkgray"
-												title="<b>ул.23-Августа - прт.Ленина</b> <br>
-Номер маршрута: 23 <br>
-Стоимость проезда: 2.50 <br>
-Интервал движения: 5 мин. <br>
-Время работы: 6:30 - 23:30">23</a>
-<a href="#" class="demo-tip-darkgray"
-												title="<b>ул.23-Августа - прт.Ленина</b> <br>
-Номер маршрута: 23 <br>
-Стоимость проезда: 2.50 <br>
-Интервал движения: 5 мин. <br>
-Время работы: 6:30 - 23:30">23</a>
-<a href="#" class="demo-tip-darkgray"
-												title="<b>ул.23-Августа - прт.Ленина</b> <br>
-Номер маршрута: 23 <br>
-Стоимость проезда: 2.50 <br>
-Интервал движения: 5 мин. <br>
-Время работы: 6:30 - 23:30">23</a>
-<a href="#" class="demo-tip-darkgray"
-												title="<b>ул.23-Августа - прт.Ленина</b> <br>
-Номер маршрута: 23 <br>
-Стоимость проезда: 2.50 <br>
-Интервал движения: 5 мин. <br>
-Время работы: 6:30 - 23:30">23</a>
-<a href="#" class="demo-tip-darkgray"
-												title="<b>ул.23-Августа - прт.Ленина</b> <br>
-Номер маршрута: 23 <br>
-Стоимость проезда: 2.50 <br>
-Интервал движения: 5 мин. <br>
-Время работы: 6:30 - 23:30">23</a>
-
-<a href="#" class="demo-tip-darkgray"
-												title="<b>ул.23-Августа - прт.Ленина</b> <br>
-Номер маршрута: 23 <br>
-Стоимость проезда: 2.50 <br>
-Интервал движения: 5 мин. <br>
-Время работы: 6:30 - 23:30">23</a>
-<a href="#" class="demo-tip-darkgray"
-												title="<b>ул.23-Августа - прт.Ленина</b> <br>
-Номер маршрута: 23 <br>
-Стоимость проезда: 2.50 <br>
-Интервал движения: 5 мин. <br>
-Время работы: 6:30 - 23:30">23</a>
-<a href="#" class="demo-tip-darkgray"
-												title="<b>ул.23-Августа - прт.Ленина</b> <br>
-Номер маршрута: 23 <br>
-Стоимость проезда: 2.50 <br>
-Интервал движения: 5 мин. <br>
-Время работы: 6:30 - 23:30">23</a>
-
-			</div>
-			</div>
-	</div>		
-	</div>	
+								<div class="viewport">
+					<div class="overview">
+					
+<jsp:directive.include file="widgets/containerv.jsp" />
 	</div>
-			</div>
+
+				</div>
+				</div>
+		</div>	
 		</div>
 	
 	</div>
