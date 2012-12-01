@@ -6,15 +6,16 @@
 
 <ui:base>
 	<jsp:attribute name="page_head">	
-
 	<script type="text/javascript"
 			src="http://maps.google.com/maps/api/js?sensor=false&libraries=drawing"></script>
-	<script src="${myContext}/media/js/libs/selectbox.js"></script>
-	<script src="${myContext}/media/js/libs/jquery.poshytip.js"></script>
-	<script src="${myContext}/media/js/routes/routes.js"></script>	
-	<script src="${myContext}/media/js/routes/RSchems.js"></script>
 	<script type="text/javascript">
 		includeCSSFile("${myContext}/media/css/pages", "routes", []);
+		var currentCity = $
+				.parseJSON('${model.getCitiesModel().getJSONSelectedCity()}');
+		var data = {
+			currentCity : currentCity,
+			contextPath : contextPath
+		};
 		$(document).ready(function() {
 			$('.view-source .hide').hide();
 			$('.view-source .link_name').toggle(function() {
@@ -33,7 +34,10 @@
 			});
 		});
 	</script>
-
+	<script src="${myContext}/media/js/libs/selectbox.js"></script>
+	<script src="${myContext}/media/js/libs/jquery.poshytip.js"></script>
+	<script src="${myContext}/media/js/routes/routes.js"></script>	
+	<script src="${myContext}/media/js/routes/RSchems.js"></script>
 	</jsp:attribute>
 
 	<jsp:attribute name="content">
@@ -49,14 +53,8 @@
 			
 			</div> 
 			<div id="routes_panel"> 
-			<div class="select_box"
-						style="width: 100px; height: 30px; background: red; margin-left: 5px;">
-					<form name="testform">
-			<select id="selectbox_city" class="selectbox" name="websites"
-								size="1" onChange="on_change_selectbox_city()">
-			</select>
-		</form>
-		</div>
+						<jsp:directive.include file="widgets/city_table.jsp" />
+
 			<div id="containerv">
 	<div id="contentv">
 	<div class="view-source">

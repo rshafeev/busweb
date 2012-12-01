@@ -30,6 +30,7 @@ import com.pgis.bus.server.models.data.CitiesModel;
 import com.pgis.bus.server.models.data.CityModel;
 import com.pgis.bus.server.models.page.ArticlesPageModel;
 import com.pgis.bus.server.models.page.MainPageModel;
+import com.pgis.bus.server.models.page.RoutesPageModel;
 
 @Controller
 @RequestMapping(value = "routes")
@@ -60,7 +61,9 @@ public class RoutesController {
 		Locale locale = LocaleContextHolder.getLocale();
 		NavigationModel navModel = new NavigationModel(messageSource, locale,
 				NavigationModel.pages_enum.c_Routes);
-		ArticlesPageModel model = new ArticlesPageModel(navModel);
+		ArticlesPageModel armodel = new ArticlesPageModel(navModel);
+		RoutesPageModel model = new RoutesPageModel(navModel);
+		model.setCitiesModel(citiesModel);
 
 		Cookie cityCookie = new Cookie("city_key", city_key);
 		cityCookie.setPath(request.getContextPath());
