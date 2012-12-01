@@ -61,11 +61,9 @@ public class RoutesController {
 		NavigationModel navModel = new NavigationModel(messageSource, locale,
 				NavigationModel.pages_enum.c_Routes);
 		ArticlesPageModel model = new ArticlesPageModel(navModel);
-
 		Cookie cityCookie = new Cookie("city_key", city_key);
 		cityCookie.setPath(request.getContextPath());
 		response.addCookie(cityCookie);
-
 		return new ModelAndView("routes", "model", model);
 	}
 
