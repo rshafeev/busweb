@@ -11,7 +11,7 @@
 %>
 
 <script type="text/javascript">
-getApp().getAppData().clearWaysData();
+getMainPage().getMainPageData().clearWaysData();
 </script>
 
 
@@ -106,7 +106,7 @@ getApp().getAppData().clearWaysData();
 							
 			%>
 			<script type="text/javascript">
-		getApp().getAppData().addRouteToWay(
+			getMainPage().getMainPageData().addRouteToWay(
 		        <%=i%>,
 		        "<%=Integer.toString(r.getDirectRouteID())%>",
 				"<%=r.getRouteType()%>",

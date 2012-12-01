@@ -61,7 +61,6 @@ public class RoutesController {
 		Locale locale = LocaleContextHolder.getLocale();
 		NavigationModel navModel = new NavigationModel(messageSource, locale,
 				NavigationModel.pages_enum.c_Routes);
-		ArticlesPageModel armodel = new ArticlesPageModel(navModel);
 		RoutesPageModel model = new RoutesPageModel(navModel);
 		model.setCitiesModel(citiesModel);
 		Cookie cityCookie = new Cookie("city_key", city_key);

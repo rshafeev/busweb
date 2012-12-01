@@ -10,7 +10,7 @@
 %>
 <script type="text/javascript">
 function loadWay(){
-var googleMap = getApp().getGoogleMap();
+var googleMap = getMainPage().getGoogleMap();
 googleMap.deleteAllStations();
 googleMap.deleteAllPolilines();
 

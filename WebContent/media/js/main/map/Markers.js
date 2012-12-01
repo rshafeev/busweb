@@ -78,7 +78,7 @@ function Markers(busMap) {
 	 */
 
 	this.on_change_markerA = function(e) {
-		getApp().getCodeAddress(e.latLng.lat(), e.latLng.lng(), function(text) {
+		getMainPage().getCodeAddress(e.latLng.lat(), e.latLng.lng(), function(text) {
 					if (text == null)
 						return null;
 					// console.log(text);
@@ -88,7 +88,7 @@ function Markers(busMap) {
 
 	};
 	this.on_change_markerB = function(e) {
-		getApp().getCodeAddress(e.latLng.lat(), e.latLng.lng(), function(text) {
+		getMainPage().getCodeAddress(e.latLng.lat(), e.latLng.lng(), function(text) {
 					if (text == null)
 						return null;
 					// console.log(text);
