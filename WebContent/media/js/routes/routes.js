@@ -48,7 +48,8 @@ function on_right_panel_show(e) {
 }
 
 function on_change_selectbox_city() {
-
+	var nameFromCombo = $("#selectbox_city").val();
+	document.location.href =  getApp().getContextPath() + 'home/' + nameFromCombo;
 }
 
 function on_btn_arrow_click(e) {

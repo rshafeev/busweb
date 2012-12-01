@@ -14,29 +14,65 @@
 	
 	<script type="text/javascript">
 		includeCSSFile("${myContext}/media/css/busWeb", "busWeb", []);
-		var currentCity = $.parseJSON('${model.getCitiesModel().getJSONSelectedCity()}');
+		var currentCity = $
+				.parseJSON('${model.getCitiesModel().getJSONSelectedCity()}');
 		var data = {
 			currentCity : currentCity,
 			contextPath : contextPath
 		};
-		$(document).ready(function() {
-			$("div.selectTabs_first, div.selectTabs_second").each(function() {
-				var tmp = $(this);
-				//console.log($(tmp).find(" .lineTabs li"));
-				$(tmp).find(".lineTabs li").each(function(i) {
-					$(tmp).find(".lineTabs li:eq(" + i + ") a").click(function() {
-						var tab_id = i + 1;
-						$(tmp).find(".lineTabs li a").removeClass("active");
-						$(this).addClass("active");
-						$(tmp).find(".content div").stop(false, false).hide();
-						$(tmp).find(".tab" + tab_id).stop(false, false).show();
-						return false;
-					});
-				});
-			});
-			initialize(data);
-		});
-		
+		$(document)
+				.ready(
+						function() {
+							$("div.selectTabs_first, div.selectTabs_second")
+									.each(
+											function() {
+												var tmp = $(this);
+												//console.log($(tmp).find(" .lineTabs li"));
+												$(tmp)
+														.find(".lineTabs li")
+														.each(
+																function(i) {
+																	$(tmp)
+																			.find(
+																					".lineTabs li:eq("
+																							+ i
+																							+ ") a")
+																			.click(
+																					function() {
+																						var tab_id = i + 1;
+																						$(
+																								tmp)
+																								.find(
+																										".lineTabs li a")
+																								.removeClass(
+																										"active");
+																						$(
+																								this)
+																								.addClass(
+																										"active");
+																						$(
+																								tmp)
+																								.find(
+																										".content div")
+																								.stop(
+																										false,
+																										false)
+																								.hide();
+																						$(
+																								tmp)
+																								.find(
+																										".tab"
+																												+ tab_id)
+																								.stop(
+																										false,
+																										false)
+																								.show();
+																						return false;
+																					});
+																});
+											});
+							initialize(data);
+						});
 	</script>
 	<script src="${myContext}/media/js/libs/selectbox.js"></script>
 	<script src="${myContext}/media/js/libs/jquery.poshytip.js"></script>
@@ -69,8 +105,16 @@
 						<tbody>
 							<tr>
 								<td style="width: 171px;">
-								
+								<div class="mini_table_town">
+								<div class="mini_table_town_center">
+										<div class="mini_table-town_top">
+			<p>
+				<b><spring:message code="welcome.city" text="default text" /> </b>
+			</p>
+		</div>
   									<jsp:directive.include file="widgets/city_table.jsp" />
+  									</div>
+  									</div>
 								</td>
 								<td style="width: 250px;">
   									<jsp:directive.include file="widgets/route_table.jsp" />

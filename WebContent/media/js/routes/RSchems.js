@@ -1,19 +1,20 @@
 function RSchems() {
 	this.rightPanelVisible = false;
 	this.map = null;
-	
+
 	this.getMap = function() {
 		return this.map;
 	};
-	
+
 	this.main = function() {
 		var T = this;
 		$(window).bind("resize", function(e) {
-					T.on_resize_window('#map_container', 134, 0);
-				});
-		var latlng = new google.maps.LatLng(-34.397, 150.644);
+			T.on_resize_window('#map_container', 134, 0);
+		});
+		var latlng = new google.maps.LatLng(currentCity.location.lat,
+				currentCity.location.lon);
 		var myOptions = {
-			zoom : 5,
+			zoom : currentCity.scale,
 			center : latlng,
 			mapTypeId : google.maps.MapTypeId.ROADMAP
 		};
@@ -21,8 +22,9 @@ function RSchems() {
 				myOptions);
 		this.map.setOptions({
 					draggableCursor : 'crosshair',
-					minZoom : 4
+					minZoom : currentCity.scale
 				});
+
 
 		/*
 		 * this.markers = new Markers(this); this.markers.initialize();
@@ -40,14 +42,16 @@ function RSchems() {
 		/* $('#panel_scrollbar').tinyscrollbar_update(); */
 
 	};
-	
 
-	/*this.getCurrentCity = function() {
+	
+	/* this.getCurrentCity = function() { return this.data.currentCity; };*/
+	 
+	this.getCurrentCity = function() {
 		var nameFromCombo = $("#selectbox_city").val();
 		var cities = this.getDataModel().cities;
 		var city = null;
-		//console.log(cities);
-		for (var i = 0; i < cities.length; i++) {
+		// console.log(cities);
+		for ( var i = 0; i < cities.length; i++) {
 
 			if (cities[i].id == nameFromCombo) {
 				city = cities[i];
@@ -55,5 +59,25 @@ function RSchems() {
 			}
 		}
 		return city;
+	};
+
+	/*this.loadCitiesToComboBox = function() {
+		var defaultCity = getApp().getDataModel().defaultCity;
+		for ( var i = 0; i < this.getDataModel().cities.length; i++) {
+			if (defaultCity.id == this.getDataModel().cities[i].id) {
+				$(
+						'<option  selected="selected" value='
+								+ this.getDataModel().cities[i].id + '>'
+								+ this.getDataModel().cities[i].name
+								+ '</option>').appendTo("#selectbox_city");
+			} else {
+				$(
+						'<option  value=' + this.getDataModel().cities[i].id
+								+ '>' + this.getDataModel().cities[i].name
+								+ '</option>').appendTo("#selectbox_city");
+			}
+		}
+
 	};*/
+
 }
