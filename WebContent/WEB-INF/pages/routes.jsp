@@ -10,8 +10,7 @@
 			src="http://maps.google.com/maps/api/js?sensor=false&libraries=drawing"></script>
 	<script type="text/javascript">
 		includeCSSFile("${myContext}/media/css/pages", "routes", []);
-		var currentCity = $
-				.parseJSON('${model.getCitiesModel().getJSONSelectedCity()}');
+		var currentCity = $.parseJSON('${model.getCitiesModel().getJSONSelectedCity()}');
 		var data = {
 			currentCity : currentCity,
 			contextPath : contextPath
@@ -76,7 +75,7 @@
 								<div class="viewport">
 					<div class="overview">
 					
-<jsp:directive.include file="widgets/containerv.jsp" />
+					<jsp:directive.include file="widgets/routes/container.jsp" />
 	</div>
 
 				</div>
