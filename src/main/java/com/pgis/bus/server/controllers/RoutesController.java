@@ -25,6 +25,7 @@ import com.pgis.bus.data.impl.DataBaseService;
 import com.pgis.bus.data.orm.City;
 import com.pgis.bus.data.repositories.RepositoryException;
 import com.pgis.bus.server.AppProperties;
+import com.pgis.bus.server.helpers.LanguageHelper;
 import com.pgis.bus.server.models.NavigationModel;
 import com.pgis.bus.server.models.data.CitiesModel;
 import com.pgis.bus.server.models.data.CityModel;
@@ -59,6 +60,8 @@ public class RoutesController {
 			return new ModelAndView("redirect:/error");
 		}
 		Locale locale = LocaleContextHolder.getLocale();
+		String lang_id = LanguageHelper.getDataBaseLanguage(locale);
+		
 		NavigationModel navModel = new NavigationModel(messageSource, locale,
 				NavigationModel.pages_enum.c_Routes);
 		RoutesPageModel model = new RoutesPageModel(navModel);

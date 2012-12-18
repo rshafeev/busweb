@@ -16,7 +16,7 @@
 <script src="${myContext}/media/js/libs/jquery.json-2.3.js"></script>
 <script src="${myContext}/media/js/WidgetHelpers.js"></script>
 <script type="text/javascript">
-	includeCSSFile("${myContext}/media/css/basic", "basic", []);
+	includeCSSFile("${myContext}/media/css/basic", "basic", ["ff", "ie8"]);
 	var contextPath = "${myContext}/";
 	function getContextPath() {
 		return contextPath;
@@ -40,7 +40,21 @@
 		onlyWidgets : true
 	});
 </script>
-
+<script>
+$(function(){
+/* выбор города */
+$('.delivery_list').click(function(){
+$(".cities_list").slideToggle('fast');
+});
+$('ul.cities_list li').click(function(){
+var tx = $(this).html();
+var tv = $(this).attr('alt');
+$(".cities_list").slideUp('fast');
+$(".delivery_list span").html(tx);
+$(".delivery_text").html(tv);
+});
+})
+</script>
 <jsp:invoke fragment="page_head" />
 </head>
 
@@ -52,7 +66,8 @@
 				<div class="header">
 					<div class="block_header">
 						<div class="logo_menu">
-							<a href="#"><img src="${myContext}/media/css/images/log.png" /></a>
+							<a href="#">
+							<img style="margin-top:8px;margin-left:10px;"src="${myContext}/media/css/images/citylogotip.png" /></a>
 						</div>
 						<div class="menu-temp">
 
@@ -89,16 +104,8 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 <div class="fb-like" data-href="http://ways.in.ua" data-send="false" data-layout="button_count" data-width="90" data-show-faces="true" data-font="arial"></div>	 -->
 							</div>
-							<div class="lang_panel">
-
-								<div class="lang_panel">
-
-									<!-- 				<div id="vk_like"></div>
-<script type="text/javascript">
-VK.Widgets.Like("vk_like", {type: "full"});
-</script> -->
-									<div class="g-plusone" data-size="medium"
-										data-annotation="inline" data-width="120"></div>
+																<div class="g-plusone" data-size="medium"
+										data-annotation="inline" data-width="50"></div>
 									<script type="text/javascript">
 										(function() {
 											var po = document.createElement('script');
@@ -109,15 +116,38 @@ VK.Widgets.Like("vk_like", {type: "full"});
 											s.parentNode.insertBefore(po, s);
 										})();
 									</script>
+							<div class="lang_panel">
+
+								
+
+									<!-- 				<div id="vk_like"></div>
+<script type="text/javascript">
+VK.Widgets.Like("vk_like", {type: "full"});
+</script> -->
 
 
-									<a href="?lang=rus_RU"><img
-										src="${myContext}/media/css/images/ru.png" alt="Ru"></a> <a
-										href="?lang=en_US"><img
-										src="${myContext}/media/css/images/uk.png" alt="En"></a> <a
-										href="?lang=uk_UA"><img
-										src="${myContext}/media/css/images/ua.png" alt="Ua"></a>
-								</div>
+<!-- 
+<ul class="lang_ul">
+        <li><a href="?lang=rus_RU" class="dropdown_langmenu">
+        <img src="${myContext}/media/css/images/ru.png" alt="Ru"></a> 
+        <li class="sublinks">
+<a href="?lang=en_US"><img src="${myContext}/media/css/images/uk.png" alt="En"></a> 
+<a href="?lang=uk_UA"><img src="${myContext}/media/css/images/uk.png" alt="Ua"></a> 
+        </li>
+        
+    </ul> -->
+    <div class="delivery_block">
+<div class="delivery_list"><div id="btn"> </div><span><a href="?lang=rus_RU" >
+        <img src="${myContext}/media/css/images/ru.png" alt="Ru"></a> </span></div>
+
+<ul class="cities_list">
+<li><a href="?lang=en_US"><img src="${myContext}/media/css/images/uk.png" alt="En"></a> </li>
+<li><a href="?lang=uk_UA"><img src="${myContext}/media/css/images/ua.png" alt="Ua"></a> </li>
+</ul>
+</div>
+
+</div>
+							
 							</div>
 						</div>
 					</div>

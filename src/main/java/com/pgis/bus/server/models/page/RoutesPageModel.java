@@ -1,7 +1,10 @@
 package com.pgis.bus.server.models.page;
+import java.util.Collection;
+
 import com.google.gson.Gson;
 import com.pgis.bus.server.models.NavigationModel;
 import com.pgis.bus.server.models.data.CitiesModel;
+import com.pgis.bus.server.models.data.RoutesModel;
 
 public class RoutesPageModel extends PageModel {
 	private CitiesModel citiesModel;
@@ -19,5 +22,15 @@ public class RoutesPageModel extends PageModel {
 	public String getJsonCitiesModel(){
 		return  (new Gson()).toJson(citiesModel);
 	}
+	private Collection <RoutesModel> routes;
+
+	public Collection<RoutesModel> getRoutes() {
+		return routes;
+	}
+
+	public void setRoutes(Collection<RoutesModel> routes) {
+		this.routes = routes;
+	}
+	
 
 }

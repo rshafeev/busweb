@@ -28,7 +28,7 @@
 		$(function() {
 			$('.demo-tip-darkgray').poshytip({
 				className : 'tip-darkgray',
-				showTimeout : 1,
+				showTimeout : 300,
 				bgImageFrameSize : 11,
 				offsetX : -25
 			});

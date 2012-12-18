@@ -1,5 +1,6 @@
 package com.pgis.bus.server.models.data;
 
+import java.util.Collection;
 import java.util.Locale;
 
 import com.pgis.bus.data.orm.City;
@@ -78,5 +79,6 @@ public class CityModel {
 	public void setScale(int scale) {
 		this.scale = scale;
 	}
+	
 	
 }
