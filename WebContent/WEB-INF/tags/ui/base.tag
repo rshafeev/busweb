@@ -43,7 +43,7 @@
 <script>
 $(function(){
 /* выбор города */
-$('.delivery_list').click(function(){
+$('.delivery_list').hover(function(){
 $(".cities_list").slideToggle('fast');
 });
 $('ul.cities_list li').click(function(){
