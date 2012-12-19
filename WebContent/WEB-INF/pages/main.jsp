@@ -13,7 +13,7 @@
 			src="http://maps.google.com/maps/api/js?sensor=false&libraries=drawing"></script>
 	
 	<script type="text/javascript">
-		includeCSSFile("${myContext}/media/css/busWeb", "busWeb", []);
+		includeCSSFile("${myContext}/media/css/busWeb", "busWeb", ["ff", "ie8"]);
 		var currentCity = $.parseJSON('${model.getCitiesModel().getJSONSelectedCity()}');
 		var data = {
 			currentCity : currentCity

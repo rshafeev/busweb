@@ -2,7 +2,7 @@
 
 <p style="font-size: 11px; display: inline; color: black;">Время выезда.</p>
 <p style="font-size: 10px; margin-left: 25px; display: inline; color: black;">час:</p>
-<select style="width: 40px; display: inline; margin-left: 10px; margin-top: 10px;">
+<select style="width: 40px; display: inline; margin-left: 10px; margin-top: 10px;border-radius:5px;">
 	<option>01</option>
 	<option>02</option>
 	<option>03</option>
@@ -28,8 +28,8 @@
 	<option>23</option>
 	<option>24</option>
 </select>
-<p style="font-size: 10px; color: black; margin-left: 0px; display: inline;">мин:</p>
-<select style="width: 40px; display: inline;">
+<p style="font-size: 10px; color: black; margin-left: 0px; display: inline; ">мин:</p>
+<select style="width: 40px; display: inline;border-radius:5px;">
 	<option>00</option>
 	<option>05</option>
 	<option>10</option>
@@ -45,7 +45,7 @@
 </select>
 <br>
 <p style="font-size: 11px; color: black; display: inline;">День недели:</p>
-<select name=day_s size=1 style="width: 104px; margin-top: 7px; display: inline; margin-left: 32px; font-size: 11px;">
+<select name=day_s size=1 style="width: 104px; margin-top: 7px; display: inline; margin-left: 32px; font-size: 11px;border-radius:5px;">
 	<option value=1 selected>Понедельник</option>
 	<option value=2>Вторник</option>
 	<option value=3>Среда</option>

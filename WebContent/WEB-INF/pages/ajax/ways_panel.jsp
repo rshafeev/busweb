@@ -27,19 +27,13 @@ getMainPage().getMainPageData().clearWaysData();
 	%>
 
 	
-	<div id="result_numb_<%=i%>" style="height: 70px;
-	width: 350px;
-	border-radius: 5px;
-	margin-left: 6px;
-	margin-top: 5px;
-	margin-bottom: 10px;
-	cursor: pointer;
-	padding-top:5px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);" onclick="on_selectWay(<%=i%>,<%=wayModel.createRoutePartArrStr()%>)">
+	<div id="result_numb_<%=i%>" onclick="on_selectWay(<%=i%>,<%=wayModel.createRoutePartArrStr()%>)">
 		<div id="rout_numb">
 		
-<div id="numb">
-			<a id="way_ref_<%=i%>"
+<div id="numb_<%=i%>">
+			<a id="way_ref_<%=i%>" style="color:white;
+	font-size: 24px;
+	font-weight: 900;"
 				onclick="on_selectWay(<%=i%>,<%=wayModel.createRoutePartArrStr()%>)">
 				<%=i+1%>
 				

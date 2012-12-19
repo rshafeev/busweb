@@ -82,4 +82,5 @@ public class CityModel {
 		this.scale = scale;
 	}
 	
+	
 }

@@ -32,5 +32,15 @@ public class RoutesPageModel extends PageModel {
 	public String getJsonCitiesModel(){
 		return  (new Gson()).toJson(citiesModel);
 	}
+	private Collection <RoutesModel> routes;
+
+	public Collection<RoutesModel> getRoutes() {
+		return routes;
+	}
+
+	public void setRoutes(Collection<RoutesModel> routes) {
+		this.routes = routes;
+	}
+	
 
 }

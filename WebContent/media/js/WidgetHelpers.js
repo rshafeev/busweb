@@ -23,29 +23,29 @@ function includeCSSFile(path, fileName, browsersTagsArr) {
 
 	var b = $.browser;
 	var v = parseFloat(b.version);
-   
-	oldMSIEBrowser9 = (b.msie && ver == "9");
-	oldMSIEBrowser8 = (b.msie && ver == "8");
-	oldMSIEBrowser6 = (b.msie && ver == "6");
-	oldMSIEBrowser7 = (b.msie && ver == "7");
+	var vers = b.version;
+	oldMSIEBrowser9 = (b.msie && vers == "9");
+	oldMSIEBrowser8 = (b.msie && vers == "8");
+	oldMSIEBrowser6 = (b.msie && vers == "6");
+	oldMSIEBrowser7 = (b.msie && vers == "7");
 
 	var s1 = "<link rel=\"stylesheet\" href=\"" + path + "/" + fileName;
 	var s2 = ".css\" type=\"text/css\">";
-	var vers = $.browser.version;
+	
 	var tag = "";
 	if ($.browser.opera && vers <= 10.0
 			&& isExistsInArray(browsersTagsArr, "op") == true) {
 		tag = "_op";
-	} else if (b.msie && ver == "9"
+	} else if (b.msie && vers == "9"
 			&& isExistsInArray(browsersTagsArr, "ie9") == true) {
 		tag = "_ie9";
-	} else if (b.msie && ver == "8"
+	} else if (b.msie && vers == "8"
 			&& isExistsInArray(browsersTagsArr, "ie8") == true) {
 		tag = "_ie8";
-	} else if (b.msie && ver == "7"
+	} else if (b.msie && vers == "7"
 			&& isExistsInArray(browsersTagsArr, "ie7") == true) {
 		tag = "_ie7";
-	} else if (b.msie && ver == "6"
+	} else if (b.msie && vers == "6"
 			&& isExistsInArray(browsersTagsArr, "ie6") == true) {
 		tag = "_ie6";
 	} else if (b.mozilla && v < "10"
