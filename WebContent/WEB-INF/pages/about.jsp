@@ -6,17 +6,23 @@
 <c:set var="myContext" value="${pageContext.request.contextPath}" />
 
 <ui:columns>
+
 	<jsp:attribute name="page_head">
-	<title>About</title>
+	<title><spring:message code="about.title" text="default text" /> </title>
 		<script type="text/javascript">
 			includeCSSFile("${myContext}/media/css/pages", "about", []);
-			
+			function loadSrc(src,_this){
+				console.log(src);
+				console.log(this);
+				_this.src = src;
+			};
 		</script>
 	</jsp:attribute>
 	<jsp:attribute name="left_column">
    
 			<div class="text_info">
-
+				<spring:message code="about.text" text="default text" />
+				<img src="/media/css/images/bus.png"/>
 				<h3>О проекте "CityWays"</h3>
 				<h6>CityWays - это интернет-сервис, который помогает ответить
 					на такие часто задаваемые вопросы как доехать? и как добраться? из

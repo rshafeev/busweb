@@ -4,8 +4,8 @@
 	<div class="mini_table_transp_center">
 		<div class="mini_table-transp_top">
 			<p>
-				<b><spring:message code="welcome.type" text="default text" /> </b>
-				<b style="margin-left: 5px;"> <spring:message code="welcome.transport" text="default text" />
+				<b><spring:message code="basic.type" text="default text" /> </b>
+				<b style="margin-left: 5px;"> <spring:message code="basic.transport" text="default text" />
 				</b>
 			</p>
 		</div>

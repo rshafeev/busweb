@@ -4,7 +4,7 @@
 	<div class="mini_table_route_center">
 		<div class="mini_table-route_top">
 			<p>
-				<b> <spring:message code="welcome.travel_line" text="default text" /></b>
+				<b> <spring:message code="basic.travel_line" text="default text" /></b>
 			</p>
 		</div>
 		

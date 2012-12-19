@@ -35,28 +35,28 @@ public class NavigationModel {
 		ArrayList<LinkModel> links = new ArrayList<LinkModel>();
 		/* Для добавления новой вкладки, добавить новый LinkModel */
 		LinkModel homeLink = new LinkModel();
-		homeLink.setLabel(messageSource.getMessage("welcome.home", null,
+		homeLink.setLabel(messageSource.getMessage("basic.home", null,
 				currentLocale));
 		homeLink.setUrl("home");
 		homeLink.setCode(pages_enum.c_Home.getValue());
 		links.add(homeLink);
 
 		LinkModel routesLink = new LinkModel();
-		routesLink.setLabel(messageSource.getMessage("welcome.routes", null,
+		routesLink.setLabel(messageSource.getMessage("basic.routes", null,
 				currentLocale));
 		routesLink.setUrl("routes");
 		routesLink.setCode(pages_enum.c_Routes.getValue());
 		links.add(routesLink);
 		
 		LinkModel programmsLink = new LinkModel();
-		programmsLink.setLabel(messageSource.getMessage("welcome.help", null,
+		programmsLink.setLabel(messageSource.getMessage("basic.help", null,
 				currentLocale));
 		programmsLink.setUrl("help");
 		programmsLink.setCode(pages_enum.c_Help.getValue());
 		links.add(programmsLink);
 
 		LinkModel aboutLink = new LinkModel();
-		aboutLink.setLabel(messageSource.getMessage("welcome.about", null,
+		aboutLink.setLabel(messageSource.getMessage("basic.about", null,
 				currentLocale));
 		aboutLink.setUrl("about");
 		aboutLink.setCode(pages_enum.c_About.getValue());

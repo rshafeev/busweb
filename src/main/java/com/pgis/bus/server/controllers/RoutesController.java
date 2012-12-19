@@ -31,6 +31,7 @@ import com.pgis.bus.server.helpers.LanguageHelper;
 import com.pgis.bus.server.models.NavigationModel;
 import com.pgis.bus.server.models.data.CitiesModel;
 import com.pgis.bus.server.models.data.CityModel;
+import com.pgis.bus.server.models.data.RouteSchemeModel;
 import com.pgis.bus.server.models.data.RouteTypeModel;
 import com.pgis.bus.server.models.data.RoutesModel;
 import com.pgis.bus.server.models.page.ArticlesPageModel;
@@ -102,11 +103,25 @@ public class RoutesController {
 			
 			models = new ArrayList <RoutesModel>();
 			for (String routeTypeID : types){
-				String routeTypeName = messageSource.getMessage("welcome." + routeTypeID, null,locale);
+				String routeTypeName = messageSource.getMessage("basic." + routeTypeID, null,locale);
 				
 				Collection <Route> routes= db.getRoutes(routeTypeID, cityID, lang_id);
+				log.debug(Integer.toString(routes.size()));
 				RoutesModel routesModel = new RoutesModel();
-				routesModel.setRoutes(routes);
+				
+				Collection<RouteSchemeModel> routeSchemes = new ArrayList <RouteSchemeModel>();
+				for (Route r : routes )
+				{
+				
+					RouteSchemeModel routeSchemeModel = new RouteSchemeModel(); 
+					routeSchemeModel.setName(r.getFullName(lang_id));
+					routeSchemeModel.setRouteID(r.getId());
+					routeSchemeModel.setCost(r.getCost());
+					routeSchemes.add(routeSchemeModel);
+					log.debug(routeSchemeModel.toString());
+				}
+				
+				routesModel.setRoutes(routeSchemes);
 				routesModel.setRouteType(new RouteTypeModel(routeTypeID,routeTypeName));
 				models.add(routesModel);
 			}

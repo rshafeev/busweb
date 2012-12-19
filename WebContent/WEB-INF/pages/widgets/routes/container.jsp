@@ -25,11 +25,11 @@
 			<div class="hide nocookies">
 				<div class="my_text">
 					<a href="#" class="demo-tip-darkgray"
-						title="<b>23-Августа - метростроителей им.Ващенка</b> <br/>
-Номер маршрута: 23 <br/>
+						title="<b>${route.getName()}</b> <br/>
+Номер маршрута: ${route.getName()} <br/>
 Стоимость проезда: ${route.getCost()}  <br/>
 Интервал движения: 5 мин. <br/>
-Время работы: 6:30 - 23:30">sdfds</a><br />
+Время работы: 6:30 - 23:30">${route.getName()}</a><br />
 				</div>
 			</div>
 				</c:forEach>

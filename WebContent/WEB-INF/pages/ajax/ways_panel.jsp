@@ -20,7 +20,7 @@ getMainPage().getMainPageData().clearWaysData();
 <div id="routes_info">
 <div id="head_ways"></div>
 <div id="ways" >
-
+    <p>Время поиска: <%=model.getFindTimeSecs() %> сек </p>
 	<%
 		int i = 0;
 		for (WayModel wayModel : model.getWays()) {

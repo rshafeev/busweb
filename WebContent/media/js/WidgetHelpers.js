@@ -5,6 +5,7 @@ function isExistsInArray(arr, elem) {
 	for (var i = 0; i < arr.length; i++) {
 		if (arr[i].toString() == elem.toString()) {
 			return true;
+			
 		}
 	}
 	return false;
@@ -22,7 +23,7 @@ function includeCSSFile(path, fileName, browsersTagsArr) {
 
 	var b = $.browser;
 	var v = parseFloat(b.version);
-
+   
 	oldMSIEBrowser9 = (b.msie && ver == "9");
 	oldMSIEBrowser8 = (b.msie && ver == "8");
 	oldMSIEBrowser6 = (b.msie && ver == "6");

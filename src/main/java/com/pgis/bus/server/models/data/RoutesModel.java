@@ -5,7 +5,7 @@ import java.util.Collection;
 import com.pgis.bus.data.orm.Route;
 
 public class RoutesModel {
-	private Collection<Route> routes;
+	private Collection<RouteSchemeModel> routes;
 	private RouteTypeModel routeType;
 
 	public RouteTypeModel getRouteType() {
@@ -14,10 +14,10 @@ public class RoutesModel {
 	public void setRouteType(RouteTypeModel routeType) {
 		this.routeType = routeType;
 	}
-	public Collection<Route> getRoutes() {
+	public Collection<RouteSchemeModel> getRoutes() {
 		return routes;
 	}
-	public void setRoutes(Collection<Route> routes) {
+	public void setRoutes(Collection<RouteSchemeModel> routes) {
 		this.routes = routes;
 	}
 	

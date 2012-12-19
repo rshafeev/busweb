@@ -82,9 +82,11 @@ public class WaysController {
 			log.debug(options.toString());
 			// get ways
 			IDataBaseService db = new DataBaseService();
+			long findTime = System.currentTimeMillis();
 			Collection<WayElem> ways = db.getShortestWays(options);
+			findTime = System.currentTimeMillis() - findTime; 
 			WaysModel waysModel = new WaysModel(ways);
-
+			waysModel.setFindTime(findTime);
 			// Отправим модель во view
 			modelView.addObject("model", waysModel);
 
