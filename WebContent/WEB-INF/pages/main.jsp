@@ -46,7 +46,7 @@
 								<div class="mini_table_town_center">
 										<div class="mini_table-town_top">
 			<p>
-				<b><spring:message code="welcome.city" text="default text" /> </b>
+				<b><spring:message code="basic.city" text="default text" /> </b>
 			</p>
 		</div>
   									<jsp:directive.include file="widgets/city_table.jsp" />
@@ -86,7 +86,7 @@
 						 <td style="width: 180px;">
 								<button type="submit" class="button"
 										onclick="on_btn_calculate_click();">
-									<spring:message code="welcome.btn_calc" text="default text" />
+									<spring:message code="basic.btn_calc" text="default text" />
 								</button>
 						</td>   
 					</tr>

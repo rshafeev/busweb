@@ -59,8 +59,11 @@ public class HomeController {
 			for (City city : cities) {
 				if (city.key.equals(selectedCityKey) == true) {
 					selectedCity = new CityModel(city, locale);
+					model.addCity(selectedCity);
+				}else{
+					model.addCity(new CityModel(city, locale));
 				}
-				model.addCity(new CityModel(city, locale));
+				
 			}
 			model.setSelectedCity(selectedCity);
 			// Отправим модель в формате GSON клиенту

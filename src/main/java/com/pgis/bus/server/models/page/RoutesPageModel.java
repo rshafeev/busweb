@@ -9,6 +9,8 @@ import com.pgis.bus.server.models.data.RoutesModel;
 public class RoutesPageModel extends PageModel {
 	private CitiesModel citiesModel;
 	
+	private Collection<RoutesModel> routes;
+	
 	public RoutesPageModel(NavigationModel navigationModel) {
 		super(navigationModel);
 		}
@@ -22,7 +24,6 @@ public class RoutesPageModel extends PageModel {
 	public String getJsonCitiesModel(){
 		return  (new Gson()).toJson(citiesModel);
 	}
-	private Collection <RoutesModel> routes;
 
 	public Collection<RoutesModel> getRoutes() {
 		return routes;

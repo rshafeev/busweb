@@ -13,6 +13,8 @@ public class CityModel {
 	private String key;
 
 	private LocationModel location;
+	
+	
 	private int scale;
 
 	public String getKey() {

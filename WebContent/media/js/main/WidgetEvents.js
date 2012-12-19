@@ -154,7 +154,8 @@ function on_selectWay(way_ind, routeParts_arr) {
 			$(num).css(cssNumbDesActiveNewBr);}
 		}
 	}
-	$('#panel_scrollbar').tinyscrollbar_update();
+	$('#panel_scrollbar').tinyscrollbar_update(85*way_ind);
+	//$('#panel_scrollbar').setTop(100);
 
 };
 function on_btn_calculate_click() {

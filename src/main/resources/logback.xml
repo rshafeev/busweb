@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <configuration>
 
-	<appender name="JPANEL"
-		class="com.pgis.vrp.distcomp.client.JPanelAppender">
-		<!-- <evaluator class="ch.qos.logback.classic.boolex.OnMarkerEvaluator"> 
-			<marker>USER_MARKER</marker> </evaluator> -->
-	</appender>
 
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 		<layout class="ch.qos.logback.classic.PatternLayout">
