@@ -22,12 +22,15 @@ function includeCSSFile(path, fileName, browsersTagsArr) {
 	var agent = navigator.userAgent.toLowerCase();
 
 	var b = $.browser;
+	
 	var v = parseFloat(b.version);
 	var vers = b.version;
 	oldMSIEBrowser9 = (b.msie && vers == "9");
 	oldMSIEBrowser8 = (b.msie && vers == "8");
 	oldMSIEBrowser6 = (b.msie && vers == "6");
 	oldMSIEBrowser7 = (b.msie && vers == "7");
+	
+	
 
 	var s1 = "<link rel=\"stylesheet\" href=\"" + path + "/" + fileName;
 	var s2 = ".css\" type=\"text/css\">";
