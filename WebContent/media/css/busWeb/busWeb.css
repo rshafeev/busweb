@@ -855,7 +855,7 @@ input {
 }
 
 #clipboard img {
-	margin-top: 5px;
+	margin-top: -20px;
 	margin-left: 5px;
 	cursor: pointer;
 }
@@ -868,9 +868,9 @@ input {
 }
 
 #cost_info {
-	margin-top: 5px;
-	margin-left: 145px;
-	line-height: 10px;
+	margin-top: 2px;
+	margin-left: 20px;
+	line-height: 15px;
 	color: #353535;
 	font-size: 12px;
 }

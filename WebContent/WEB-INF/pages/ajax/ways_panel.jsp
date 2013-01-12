@@ -4,6 +4,7 @@
 	        java.util.ArrayList,
 	        com.google.gson.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <c:set var="myContext" value="${pageContext.request.contextPath}" />
 	        
 <%

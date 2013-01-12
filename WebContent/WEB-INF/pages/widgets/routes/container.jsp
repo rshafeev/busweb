@@ -8,7 +8,22 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div id="containerv">
-	<c:forEach var="routesModel" items="${model.getRoutes()}">
+<c:forEach var="routesModel" items="${model.getRoutes()}">
+<div id="block_bus">
+<div id="bus_label">
+<p style="">${routesModel.getRouteType().getName() }</p>
+</div>
+	<c:forEach var="route" items="${routesModel.getRoutes()}">
+	<a href="#" class="demo-tip-darkgray"
+						title="<b>${route.getName()}</b> <br/>
+Номер маршрута: ${route.getName()} <br/>
+Стоимость проезда: ${route.getCost()}  <br/>
+Интервал движения: 5 мин. <br/>
+Время работы: 6:30 - 23:30">${route.getName()}</a>
+		</c:forEach>
+</div>
+</c:forEach>
+	<!--<c:forEach var="routesModel" items="${model.getRoutes()}">
 		<div class="view-source">
 			<div class="link_name" onclick="on_btn_arrow_click(this);">
 				<div class="link_p">
@@ -34,7 +49,7 @@
 			</div>
 				</c:forEach>
 		</div>
-	</c:forEach>
+	</c:forEach>-->
 </div>
 
 
