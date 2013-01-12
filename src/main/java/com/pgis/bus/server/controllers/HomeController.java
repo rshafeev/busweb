@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.context.support.StaticMessageSource;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -78,7 +79,7 @@ public class HomeController {
 	@RequestMapping(value = { "", "/", "home" })
 	public ModelAndView home(
 			@CookieValue(value = "city_key", defaultValue = "") String city_key) {
-
+		StaticMessageSource source = new StaticMessageSource();
 		log.debug("city_key(CookieValue): " + city_key);
 		if (city_key == null || city_key.toString().length() == 0)
 			city_key = AppProperties.DefaultCity;

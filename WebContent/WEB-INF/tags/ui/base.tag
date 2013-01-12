@@ -31,6 +31,7 @@
 		updateContainerSize();
 	});
 </script>
+<!--  -
 <script src="http://vkontakte.ru/js/api/openapi.js"
 	type="text/javascript"></script>
 <script type="text/javascript" src="//vk.com/js/api/openapi.js?66"></script>
@@ -40,6 +41,9 @@
 		onlyWidgets : true
 	});
 </script>
+
+-->
+
 <script>
 $(function(){
 /* выбор города */
