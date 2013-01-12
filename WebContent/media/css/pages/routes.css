@@ -455,13 +455,14 @@
 
 #block_bus {
     height: auto;
-    position: absolute;
+    /*position: absolute;*/
     width: 355px;
     margin-left: 3px;
     margin-top: 7px;
+    margin-bottom:5px;
     border-radius: 5px;
     text-align: justify;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+   box-shadow: 0 0 6px rgba(0,0,0,0.5);
     background-image: linear-gradient(bottom,rgb(186,186,186) 17%,rgb(224,224,224) 69%);
     background-image: -o-linear-gradient(bottom,rgb(186,186,186) 17%,rgb(224,224,224) 69%);
     background-image: -moz-linear-gradient(bottom,rgb(186,186,186) 17%,rgb(224,224,224) 69%);
@@ -477,10 +478,10 @@
 }
 
 #bus_label {
-    width: 100px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    width: 110px;
+    box-shadow:  0 0 10px rgba(0,0,0,0.5);
     height: 27px;
-    position: relative;
+    /*position: relative;*/
     margin-top: 3px;
     margin-left: 5px;
     border-radius: 7px;

@@ -10,10 +10,11 @@
 <div id="containerv">
 <c:forEach var="routesModel" items="${model.getRoutes()}">
 <div id="block_bus">
+
 <div id="bus_label">
 <p style="">${routesModel.getRouteType().getName() }</p>
 </div>
-	<c:forEach var="route" items="${routesModel.getRoutes()}">
+<c:forEach var="route" items="${routesModel.getRoutes()}">
 	<a href="#" class="demo-tip-darkgray"
 						title="<b>${route.getName()}</b> <br/>
 Номер маршрута: ${route.getName()} <br/>
@@ -23,6 +24,9 @@
 		</c:forEach>
 </div>
 </c:forEach>
+	<!---->
+
+
 	<!--<c:forEach var="routesModel" items="${model.getRoutes()}">
 		<div class="view-source">
 			<div class="link_name" onclick="on_btn_arrow_click(this);">
