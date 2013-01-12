@@ -1,8 +1,8 @@
 .contacts_info {
-	vertical-align: top;
+	/*vertical-align: top;*/
 	height: 100%;
 	width: 100%;
-	
+	text-align: left;
 }
 
 .contacts_info h3 {
@@ -18,15 +18,33 @@
 	font-size: 13px;
 	font-weight: normal;
 	color: black;
-	line-height: 32px;
-	color: black;
-	margin-top: 20px;
+	margin-top:-10px;
+	line-height: 30px;
 	display: inline;
-	vertical-align: middle;
 	position: relative;
 }
 
 .contacts_info img {
-	margin-left: 10px;
+	margin-left: 20px;
 	display: inline;
+	margin-top:2px;
+}
+
+.inf
+{
+    height:auto;
+    width:90%;
+    display: inline-block;
+    margin-left:10px;
+    margin-top: 10px;
+}
+
+.img_div
+{
+    width: 50px; height: auto;float: left;
+}
+
+.text_div
+{
+    width: 200px; height: auto;  float: center; margin-left: 60px;
 }

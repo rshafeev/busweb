@@ -11,7 +11,7 @@
 	<title><spring:message code="about.title" text="default text" /> </title>
 		<script type="text/javascript">
 			includeCSSFile("${myContext}/media/css/pages", "about", []);
-			function loadSrc(src,_this){
+			function loadSrc(src, _this) {
 				console.log(src);
 				console.log(this);
 				_this.src = src;
@@ -21,41 +21,22 @@
 	<jsp:attribute name="left_column">
    
 			<div class="text_info">
-				<spring:message code="about.text" text="default text" />
-				<img src="/media/css/images/bus.png"/>
-				<h3>О проекте "CityWays"</h3>
-				<h6>CityWays - это интернет-сервис, который помогает ответить
-					на такие часто задаваемые вопросы как доехать? и как добраться? из
-					точки А в точку Б, используя общественный транспорт или автомобиль.
-					Возможности CityWays позволяют подобрать наиболее выгодные, как с
-					точки зрения времени, так и затрат варианты маршрутов.</h6>
-				<h4>Карты городов Украины с маршрутами</h4>
-				<h6>Довольно часто мы сталкиваемся с ситуацией, когда не знаем,
-					как доехать на общественном транспорте или автомобиле до нужного
-					места. Существует много сайтов, где размещена информация об
-					общественном транспорте городов Украины, но эта информация не дает
-					понять, где и как проходят их маршруты. А главное, мы не получаем
-					ответ на вопрос как доехать до нужного нам места. Поэтому у нас
-					возникла идея создать интерактивные карты городов Украины с
-					маршрутами общественного транспорта.</h6>
-					<!-- 
-				<h6>На сайте CityWays размещены карты городов Украины, на
-					которые нанесены все актуальные маршруты и остановки общественного
-					транспорта. Чтобы узнать, как доехать до нужного места, достаточно
-					кликнуть на карте, обозначив точки ОТ и ДО, и нажать кнопку
-					СОСТАВИТЬ МАРШРУТ. Сервис CityWays визуально отобразит Вам на карте
-					основные возможные маршруты по данному запросу. При этом Вы можете
-					исключить определенный тип транспорта из своей схемы движения. А
-					также, Вы можете установить критерий поиска - оптимальный, быстрый
-					или дешевый маршрут.</h6> -->
-				<h4>CityWays рекомендует помнить:</h4>
-				<h6>В случае, если Вы столкнулись с неточностями работы сервиса
-					или заметили ошибки на сайте, просим сообщить разработчиками с
-					помощью формы НАШЛИ ОШИБКУ.</h6>
-				<h6>Команда CityWays постоянно работает над улучшением качества
-					предоставляемых услуг! CityWays не обещает сделать Вашу жизнь
-					идеальной, но гарантирует существенно облегчить ежедневные
-					трудности городских поездок.</h6>
+				<h3><spring:message code="about.title" text="default text" /></h3>
+				<h6 style="margin-top:20px;">Передвижение по городу является неотъемлимой частью нашей повседневной жизни. 
+				Каждй день нам необходимо перемещаться между разными точками города.
+				И часто возникают вопросы: <b style="   color:#5794BF; font-weight: normal;">как добраться в тот или иной пункт? как быстрей доехать? где сделать
+				пересадку?</b> и т.д.</h6>
+				<h6>В наше время существует достаточно много сайтов, на которых можно найти информацию об общественном транспорте 
+				любого города Украины. Однако сайты не смогут ответить на наши вопросы.</h6>
+				<h6>Именно поэтому у нас возникла идея создать интернет-сервис с маршрутами общественного транспорта Украины.</h6>
+				
+				<h4><spring:message code="about.details" text="default text" /> CityWays</h4>
+				<h6><b style="color:#5794BF;font-size: 16px;">CityWays</b> - это интернет-сервис, который поможет Вам добраться, на городском транспорте либо
+				на автомобиле, с одной точки города в другую.</h6>
+				<h6>С помощью <b style="color:#5794BF;">CityWays</b> Вы сможете построить и выбрать наиболее оптимальный по стоимости
+				и времени маршрут.</h6>
+			<h6>Благодаря расширенным настройкам появляется возможность построения маршрута с учетов дня недели и времени
+			выезда, а также с учетом проездного, льготного или студенческого.</h6>
 			</div>
 	
    </jsp:attribute>
@@ -63,28 +44,38 @@
 	<jsp:attribute name="right_column">
      	<div class="contacts_info">
 				<h3>
-				Контакты:
+				<spring:message code="about.contacts" text="default text" />:
 				</h3>
-				<img src="${myContext}/media/css/images/adres.png" />
-				<h6>
-				ул. Сумская, 17
-				</h6>
-			<br>
-				<img src="${myContext}/media/css/images/telef.png" />
-				<h6>
-				+38(057)712-32-45
-				</h6>
-			<br>
-				<img src="${myContext}/media/css/images/email.png" />
-				<h6>
-				<a href="#">support@premiumgis.com</a>
-				</h6>
-			<br>
-				<img src="${myContext}/media/css/images/site.png" />
-				<h6>
-				<a href="#">www.premiumgis.com</a>
-				</h6>
-			<br>
+				<div class="inf">
+				<div class="img_div">
+			<img style="padding: 5px;"
+						src="${myContext}/media/css/images/adres.png" /><br>
+					<img style="padding: 3px;"
+						src="${myContext}/media/css/images/Phone.png" /><br>
+											<img style="padding: 3px;"
+						src="${myContext}/media/css/images/phone.png" /><br>
+						<img style="padding: 4px;"
+						src="${myContext}/media/css/images/vkontakte.png" height="20" width="20" /><br>
+						<img style="padding: 4px;"
+						src="${myContext}/media/css/images/facebook.png" height="20" width="20" /><br>
+						<img style="padding: 4px;"
+						src="${myContext}/media/css/images/twitter.png" height="20" width="20" /><br>
+				<img style="padding: 4px;"
+						src="${myContext}/media/css/images/email.png" /><br>
+					<img style="padding: 4px;"
+						src="${myContext}/media/css/images/site.png" /><br>
+				</div>
+				<div class="text_div">
+				 <h6>ул. Сумская, 17</h6>
+				<h6>+38(057)712-32-45</h6>
+				<h6>+38(067)235-56-14</h6>
+				<h6><a href="http://vk.com/cityways_public">vk.com/cityways_public</a></h6>
+				<h6><a href="http://www.facebook.com/pages/City-Ways/320120854768477">facebook.com/pages/City-Ways</a></h6>
+				<h6><a href="https://twitter.com/City_Ways">twitter.com/City_Ways</a></h6>
+				<h6><a href="#">support@premiumgis.com</a></h6>
+				<h6><a href="#">www.premiumgis.com</a></h6> 
+			</div>
+			</div>
 			</div>
    </jsp:attribute>
 
