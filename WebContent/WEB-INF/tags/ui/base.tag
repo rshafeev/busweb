@@ -136,7 +136,7 @@ VK.Widgets.Like("vk_like", {type: "full"});
         </li>
         
     </ul> -->
-    <div class="delivery_block">
+    <!-- <div class="delivery_block">
 <div class="delivery_list"><div id="btn"> </div><span><a href="?lang=rus_RU" >
         <img src="${myContext}/media/css/images/ru.png" alt="Ru"></a> </span></div>
 
@@ -144,8 +144,11 @@ VK.Widgets.Like("vk_like", {type: "full"});
 <li><a href="?lang=en_US"><img src="${myContext}/media/css/images/uk.png" alt="En"></a> </li>
 <li><a href="?lang=uk_UA"><img src="${myContext}/media/css/images/ua.png" alt="Ua"></a> </li>
 </ul>
-</div>
-
+</div>-->
+<a href="?lang=rus_RU" class="dropdown_langmenu">
+        <img src="${myContext}/media/css/images/ru.png" alt="Ru"></a> 
+        <a href="?lang=en_US"><img src="${myContext}/media/css/images/uk.png" alt="En"></a>
+        <a href="?lang=uk_UA"><img src="${myContext}/media/css/images/ua.png" alt="Ua"></a>
 </div>
 							
 							</div>

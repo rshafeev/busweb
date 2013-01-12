@@ -43,7 +43,7 @@ function on_selectWay(way_ind, routeParts_arr) {
 		        'width' : '354px',
 		        'border-radius' : '10px',
 		        'margin-left' : '6px',
-		        'margin-top' : '5px',
+		        'margin-top' : '0px',
 		        'margin-bottom' : '10px',
 		        'cursor': 'pointer',
 		        'padding-top' : '5px',

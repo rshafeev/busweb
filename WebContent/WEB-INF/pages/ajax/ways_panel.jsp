@@ -20,7 +20,7 @@ getMainPage().getMainPageData().clearWaysData();
 <div id="routes_info">
 <div id="head_ways"></div>
 <div id="ways" >
-    <p>Время поиска: <%=model.getFindTimeSecs() %> сек </p>
+    <p><spring:message code="rightpanel.search_time" text="default text" />: <%=model.getFindTimeSecs() %> сек </p>
 	<%
 		int i = 0;
 		for (WayModel wayModel : model.getWays()) {
@@ -53,11 +53,11 @@ getMainPage().getMainPageData().clearWaysData();
 		</div>
 			</div>
 			<div id="cost_info">				
-			<p>Стоимость : <%=wayModel.getCost()%></p>
-			<p>В пути : <%=wayModel.getTime()%> мин. </p>
+			<p><spring:message code="rightpanel.cost" text="default text" /> : <%=wayModel.getCost()%></p>
+			<p><spring:message code="rightpanel.trip_time" text="default text" /> : <%=wayModel.getTime()%> мин. </p>
 			</div>
 				</div>
-	<div id="res_text_<%=i%>" style="width: 322px; margin-left:10px;">
+	<div id="res_text_<%=i%>" style="width: 322px; margin-left:10px;white-space: normal;">
 <div id="print">
 	<a href="#"><img src="${myContext}/media/css/images/print.png"  title="Print" ></a> 
 	
@@ -80,15 +80,15 @@ getMainPage().getMainPageData().clearWaysData();
 			%>
 			<div style="line-height:15px;">
 				<p>
-					Пешком до станции
+					<spring:message code="rightpanel.by_foot_to_station" text="default text" /> :
 					<b><%=nextRoute.getStationStart()%></b></p>
 				<p>
-					Время(пешком):
+					<spring:message code="rightpanel.trip_time_foot" text="default text" /> :
 					<%=r.getMoveTime().getMinutes()%>
 					минут
 				</p>
 				<p>
-					Расстояние(пешком):
+					<spring:message code="rightpanel.distance_by_foot" text="default text" /> :
 					<%=(new Double(r.getDistance())).intValue()%>
 					м.
 				</p>
@@ -107,33 +107,33 @@ getMainPage().getMainPageData().clearWaysData();
 				"<%=r.getRouteName()%>");
 		</script>
 
-			<div style="line-height:15px;">	
+			<div class="line_height">	
 			<span class="result_transp"><img src="${myContext}/media/css/images/<%=r.getRouteType()%>.png"/>   <%=r.getRouteName()%></span>
 				<p>
-					Стоимость :
+					<spring:message code="rightpanel.cost" text="default text" /> :
 					<%=r.getCost()%>
 				</p>
 				<p>
-					Интервал движения:
+					<spring:message code="rightpanel.service_interval" text="default text" /> :
 					<%=r.getInterval().getMinutes()%>
 					минут
 				</p>
 				<p>
-					Время в пути :
+					<spring:message code="rightpanel.trip_time" text="default text" /> :
 					<%=r.getMoveTime().getMinutes()%>
 					минут
 				</p>
 				<p>
-					Расстояние:
+					<spring:message code="rightpanel.distance" text="default text" />:
 					<%=(new Double(r.getDistance() / 100.0))
 								.intValue() / 10.0%>
-					км.
+					<spring:message code="rightpanel.km" text="default text" />
 				</p>
 				<p>
-					Садиться:
+					<spring:message code="rightpanel.get_on" text="default text" />:
 					<b><%=r.getStationStart()%></b></p>
 				<p>
-					Выходить:
+					<spring:message code="rightpanel.alight_at" text="default text" />:
 					<b><%=r.getStationFinish()%></b></p>
 
 			</div>
@@ -152,8 +152,7 @@ getMainPage().getMainPageData().clearWaysData();
 			%>
 			<div style="height:auto; line-height:15px;">
 				<p>
-					Пересадка :</p>
-					
+					<spring:message code="rightpanel.transfer" text="default text" /> :</p>					
 					<span class="result_transp"><img src="${myContext}/media/css/images/<%=prevRoute.getRouteType()%>.png"/>  <%=prevRoute.getRouteName()%></span>
 					<span class="result_transp_img"><img  src="${myContext}/media/css/images/arrow_refresh.png"/></span>
 					<span class="result_transp"><img src="${myContext}/media/css/images/<%=nextRoute.getRouteType()%>.png"/>
@@ -161,21 +160,21 @@ getMainPage().getMainPageData().clearWaysData();
 					</span>
 					
 				<p>
-					С остановки:
+					<spring:message code="rightpanel.from_station" text="default text" />:
 					<b><%=prevRoute.getStationFinish()%></b></p>
 				<p>
-					На остановку:
+					<spring:message code="rightpanel.to_station" text="default text" />:
 					<b><%=nextRoute.getStationStart()%></b></p>
 				<p>
-					Время(пешком):
+					<spring:message code="rightpanel.trip_time_foot" text="default text" />:
 					<%=r.getMoveTime().getMinutes()%>
 					минут
 				</p>
 				<p>
-					Расстояние(пешком):
+					<spring:message code="rightpanel.distance_by_foot" text="default text" />:
 					<%=(new Double(r.getDistance() / 100.0))
 								.intValue() / 10.0%>
-					км.
+					<spring:message code="rightpanel.km" text="default text" />
 				</p>
 			</div>
 			<%
@@ -188,15 +187,15 @@ getMainPage().getMainPageData().clearWaysData();
 			%>
 			<div style="height:auto; line-height:15px; ">
 				<p>
-					Пешком от станции
+					<spring:message code="rightpanel.by_foot_from_station" text="default text" />
 					<b><%=prevRoute.getStationFinish()%></b></p>
 				<p>
-					Время(пешком):
+					<spring:message code="rightpanel.trip_time_foot" text="default text" />:
 					<%=r.getMoveTime().getMinutes()%>
 					минут
 				</p>
 				<p>
-					Расстояние(пешком):
+					<spring:message code="rightpanel.distance_by_foot" text="default text" />:
 					<%=(new Double(r.getDistance())).intValue()%>
 					м.
 				</p>

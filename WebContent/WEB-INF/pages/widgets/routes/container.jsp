@@ -39,7 +39,7 @@
 
 
 
-
+<!-- 
 <div id="contentv">
 	<div class="view-source">
 		<div class="link_name" onclick="on_btn_arrow_click(this);">
@@ -369,6 +369,5 @@
 			</div>
 		</div>
 	</div>
-</div>
-</div>
-</div>
+</div>-->
+

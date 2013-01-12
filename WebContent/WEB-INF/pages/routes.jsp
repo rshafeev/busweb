@@ -61,7 +61,7 @@
 			
 			</div> 
 			<div id="routes_panel"> 
-			<div class="city_tab">
+			<div class="city_tab" style="display: inline-block;">
 						<h3>Выбирете город:</h3>
 						<jsp:directive.include file="widgets/city_table.jsp" />
 </div>

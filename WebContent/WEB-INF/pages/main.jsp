@@ -65,9 +65,9 @@
 
 										 <div class="content">
 										 	<ul class="lineTabs">
-										 		<li class="first"><a class="active" href="#">Маршрут</a></li>
-												<li class="second"><a href="#">Выезд</a></li>
-												<li class="third"><a href="#">Проездной</a></li>				
+										 		<li class="first"><a class="active" href="#"><spring:message code="basic.route" text="default text" /></a></li>
+												<li class="second"><a href="#"><spring:message code="basic.departure" text="default text" /></a></li>
+												<li class="third"><a href="#"><spring:message code="basic.travel_doc" text="default text" /></a></li>				
 											</ul> 
 											<div class="tab1">
 												<jsp:directive.include file="widgets/settings_panel.jsp" />
