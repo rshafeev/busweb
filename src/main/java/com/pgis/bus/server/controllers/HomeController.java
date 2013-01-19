@@ -34,23 +34,30 @@ import com.pgis.bus.server.models.page.MainPageModel;
 
 @Controller
 @RequestMapping(value = "")
-public class HomeController {
+public class HomeController extends BaseController {
+
 	private static final Logger log = LoggerFactory
 			.getLogger(HomeController.class);
+
+	public HomeController() {
+		super();
+	}
+
+	public HomeController(IDataBaseService db) {
+		super(db);
+	}
 
 	@Autowired
 	private MessageSource messageSource;
 
-	public static CitiesModel prepareCitiesModel(String selectedCityKey) {
+	public static CitiesModel prepareCitiesModel(Collection<City> cities,
+			String selectedCityKey) {
 		try {
 
 			// Получим объект с информацией о текущей локали
 			Locale locale = LocaleContextHolder.getLocale();
 
 			// Загрузим список всех городов из БД
-			IDataBaseService db = new DataBaseService();
-
-			Collection<City> cities = db.getAllCities();
 
 			// Создадим модель CitiesModel на базе списка cities
 			CitiesModel model = new CitiesModel();
@@ -60,16 +67,16 @@ public class HomeController {
 				if (city.key.equals(selectedCityKey) == true) {
 					selectedCity = new CityModel(city, locale);
 					model.addCity(selectedCity);
-				}else{
+				} else {
 					model.addCity(new CityModel(city, locale));
 				}
-				
+
 			}
 			model.setSelectedCity(selectedCity);
 			// Отправим модель в формате GSON клиенту
 
 			return model;
-		} catch (RepositoryException e) {
+		} catch (Exception e) {
 			log.debug("Error:", e);
 			return null;
 		}
@@ -88,23 +95,29 @@ public class HomeController {
 	@RequestMapping(value = "home/{city_key}")
 	public ModelAndView homeCity(@PathVariable String city_key,
 			HttpServletRequest request, HttpServletResponse response) {
-		log.debug("city_key: " + city_key);
-		Locale locale = LocaleContextHolder.getLocale();
-		CitiesModel citiesModel = prepareCitiesModel(city_key);
-		if (citiesModel == null || citiesModel.getSelectedCity() == null) {
-			return new ModelAndView("redirect:/error");
+		try {
+			log.debug("city_key: " + city_key);
+			Locale locale = LocaleContextHolder.getLocale();
+			CitiesModel citiesModel = prepareCitiesModel(db.getAllCities(),
+					city_key);
+			if (citiesModel == null || citiesModel.getSelectedCity() == null) {
+				return new ModelAndView("redirect:/error");
+			}
+			NavigationModel navModel = new NavigationModel(messageSource,
+					locale, NavigationModel.pages_enum.c_Home);
+
+			MainPageModel model = new MainPageModel(navModel);
+			model.setCitiesModel(citiesModel);
+
+			Cookie cityCookie = new Cookie("city_key", city_key);
+			cityCookie.setPath(request.getContextPath());
+			response.addCookie(cityCookie);
+			return new ModelAndView("main", "model", model);
+		} catch (RepositoryException e) {
+			log.debug("Error:", e);
+			return null;
 		}
-		NavigationModel navModel = new NavigationModel(messageSource, locale,
-				NavigationModel.pages_enum.c_Home);
 
-		MainPageModel model = new MainPageModel(navModel);
-		model.setCitiesModel(citiesModel);
-
-		Cookie cityCookie = new Cookie("city_key", city_key);
-		cityCookie.setPath(request.getContextPath());
-		response.addCookie(cityCookie);
-
-		return new ModelAndView("main", "model", model);
 	}
 
 }

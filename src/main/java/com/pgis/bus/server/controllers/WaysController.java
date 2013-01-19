@@ -28,10 +28,9 @@ import com.pgis.bus.server.models.data.RouteGeoDataModel;
 import com.pgis.bus.server.models.data.WayGeoDataModel;
 import com.pgis.bus.server.models.request.LoadWayOptions;
 
-
 @Controller
 @RequestMapping(value = "ways/")
-public class WaysController {
+public class WaysController extends BaseController {
 	private static final Logger log = LoggerFactory
 			.getLogger(WaysController.class);
 
@@ -47,7 +46,6 @@ public class WaysController {
 
 			WayGeoDataModel geoWayModel = new WayGeoDataModel(wayOptions);
 
-			IDataBaseService db = new DataBaseService();
 			RoutePart[] parts = wayOptions.getRouteParts();
 			for (int i = 0; i < parts.length; i++) {
 				Collection<RouteGeoData> routeData = db.getGeoDataByRoutePart(
@@ -56,7 +54,7 @@ public class WaysController {
 						routeData);
 				geoWayModel.addRouteGeoDataModel(routeModel);
 			}
-			
+
 			modelView.addObject("model", geoWayModel);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -81,10 +79,9 @@ public class WaysController {
 			options.setLang_id(LanguageHelper.getDataBaseLanguage(locale));
 			log.debug(options.toString());
 			// get ways
-			IDataBaseService db = new DataBaseService();
 			long findTime = System.currentTimeMillis();
 			Collection<WayElem> ways = db.getShortestWays(options);
-			findTime = System.currentTimeMillis() - findTime; 
+			findTime = System.currentTimeMillis() - findTime;
 			WaysModel waysModel = new WaysModel(ways);
 			waysModel.setFindTime(findTime);
 			// Отправим модель во view

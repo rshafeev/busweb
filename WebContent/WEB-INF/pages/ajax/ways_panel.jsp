@@ -3,12 +3,16 @@
 	        com.pgis.bus.data.models.route.*,
 	        java.util.ArrayList,
 	        com.google.gson.*"%>
+
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="myContext" value="${pageContext.request.contextPath}" />
 	        
 <%
 	WaysModel model = (WaysModel) request.getAttribute("model");
 %>
+
+
 
 <script type="text/javascript">
 getMainPage().getMainPageData().clearWaysData();

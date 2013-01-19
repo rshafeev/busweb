@@ -10,9 +10,9 @@ import javax.servlet.ServletContextListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.pgis.bus.data.DBConnectionFactory;
 import com.pgis.bus.data.DBConnectionManager;
 import com.pgis.bus.server.AppProperties;
+import com.pgis.bus.server.data.DBConnectionFactory;
 
 /**
  * навешивает логику на момент создания/удаления сервлета
