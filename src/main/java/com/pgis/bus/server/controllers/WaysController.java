@@ -17,12 +17,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.pgis.bus.data.IDataBaseService;
 import com.pgis.bus.data.impl.DataBaseService;
-import com.pgis.bus.data.models.FindWaysOptions;
 import com.pgis.bus.data.models.RouteGeoData;
 import com.pgis.bus.data.models.RoutePart;
 
 import com.pgis.bus.data.models.WaysModel;
 import com.pgis.bus.data.orm.WayElem;
+import com.pgis.bus.net.request.FindPathsOptions;
 import com.pgis.bus.server.helpers.LanguageHelper;
 import com.pgis.bus.server.models.data.RouteGeoDataModel;
 import com.pgis.bus.server.models.data.WayGeoDataModel;
@@ -67,16 +67,14 @@ public class WaysController extends BaseController {
 		ModelAndView modelView = new ModelAndView("ajax/ways_panel");
 		try {
 			log.debug("find.json");
-			FindWaysOptions options = (new Gson()).fromJson(data,
-					FindWaysOptions.class);
+			FindPathsOptions options = (new Gson()).fromJson(data,
+					FindPathsOptions.class);
 			if (options == null)
 				return modelView;
 			// Получим объект с информацией о текущей локали
 			Locale locale = LocaleContextHolder.getLocale();
-			options.getP1().setSrid(4326);
-			options.getP2().setSrid(4326);
 			options.setMaxDistance(500);
-			options.setLang_id(LanguageHelper.getDataBaseLanguage(locale));
+			options.setLangID(LanguageHelper.getDataBaseLanguage(locale));
 			log.debug(options.toString());
 			// get ways
 			long findTime = System.currentTimeMillis();

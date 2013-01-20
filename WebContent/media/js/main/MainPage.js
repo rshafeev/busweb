@@ -80,20 +80,21 @@ function MainPage() {
         });
 
         var opts = {
-            city_id : city.id,
+            cityID : city.id,
             p1 : {
-                x : markerA.getPosition().lat(),
-                y : markerA.getPosition().lng()
+                lat : markerA.getPosition().lat(),
+                lon : markerA.getPosition().lng()
             },
             p2 : {
-                x : markerB.getPosition().lat(),
-                y : markerB.getPosition().lng()
+                lat : markerB.getPosition().lat(),
+                lon : markerB.getPosition().lng()
             },
-            day_id : 'c_Sunday',
-            time_start_hours : 10,
-            time_start_minutes : 0,
-            alg_strategy : alg_type,
-            usage_routeTypes : usage_routeTypes
+            outTime : {
+                dayID : 'c_Sunday',
+                timeStart : 1000 * (10 * 60 * 60 + 10 * 60)
+            },
+            algStrategy : alg_type,
+            usageRouteTypes : usage_routeTypes
         };
         console.log(opts);
         return opts;
