@@ -3,9 +3,6 @@ package com.pgis.bus.server.controllers;
 import java.util.Collection;
 import java.util.Locale;
 
-import org.scribe.builder.ServiceBuilder;
-import org.scribe.builder.api.TwitterApi;
-import org.scribe.oauth.OAuthService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -15,24 +12,24 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
-import com.pgis.bus.data.IDataBaseService;
-import com.pgis.bus.data.impl.DataBaseService;
 import com.pgis.bus.data.models.RouteGeoData;
 import com.pgis.bus.data.models.RoutePart;
 
 import com.pgis.bus.data.models.WaysModel;
 import com.pgis.bus.data.orm.WayElem;
+import com.pgis.bus.net.models.PathsModel;
 import com.pgis.bus.net.request.FindPathsOptions;
 import com.pgis.bus.server.helpers.LanguageHelper;
+import com.pgis.bus.server.helpers.PathsModelConverter;
 import com.pgis.bus.server.models.data.RouteGeoDataModel;
 import com.pgis.bus.server.models.data.WayGeoDataModel;
 import com.pgis.bus.server.models.request.LoadWayOptions;
 
 @Controller
 @RequestMapping(value = "ways/")
-public class WaysController extends BaseController {
+public class PathsController extends BaseController {
 	private static final Logger log = LoggerFactory
-			.getLogger(WaysController.class);
+			.getLogger(PathsController.class);
 
 	@RequestMapping(value = "load_way.json", method = RequestMethod.POST)
 	public ModelAndView loadWay(String data) {
@@ -79,11 +76,12 @@ public class WaysController extends BaseController {
 			// get ways
 			long findTime = System.currentTimeMillis();
 			Collection<WayElem> ways = db.getShortestWays(options);
+			log.debug("Ways elems: " + ways.size());
 			findTime = System.currentTimeMillis() - findTime;
-			WaysModel waysModel = new WaysModel(ways);
-			waysModel.setFindTime(findTime);
+			PathsModel model = PathsModelConverter.makePathsModel(ways);
+			model.setFindTime(findTime);
 			// Отправим модель во view
-			modelView.addObject("model", waysModel);
+			modelView.addObject("model", model);
 
 		} catch (Exception e) {
 			e.printStackTrace();

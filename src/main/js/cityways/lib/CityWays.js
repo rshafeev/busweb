@@ -4,7 +4,7 @@
  * full text of the license. */
 
 /* 
- * @requires CityWays/BaseTypes.js --
+ * @requires CityWays/BaseTypes.js
  * @requires CityWays/Lang/en.js
  * @requires CityWays/Console.js
  */
@@ -161,4 +161,4 @@
  * When asking questions or reporting issues, make sure to include the output of
  *     OpenLayers.VERSION_NUMBER in the question or issue-description.
  */
-CityWays.VERSION_NUMBER="Release 2.13 dev";
+CityWays.VERSION_NUMBER="Release 2.14 dev";

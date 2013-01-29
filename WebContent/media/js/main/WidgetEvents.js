@@ -171,11 +171,7 @@ function on_btn_calculate_click() {
         data : $.toJSON(findWaysOptions)
     });
     
-    $('#ajax_js').load(getContextPath() + "stations/find_by_phrase.json", {
-        phrase : 'киев',
-        city_id : '2',
-        lang_id : 'c_en'
-    });
+   
 
 
 }

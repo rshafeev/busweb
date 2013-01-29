@@ -1,5 +1,5 @@
 /**
- * @requires OpenLayers/Lang.js
+ * @requires CityWays/Lang.js
  */
 
 /**

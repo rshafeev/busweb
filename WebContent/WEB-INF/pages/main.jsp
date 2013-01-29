@@ -11,15 +11,24 @@
 	<script src="${myContext}/media/js/libs/jquery.tinyscrollbar.min.js"></script>
 	<script type="text/javascript"
 			src="http://maps.google.com/maps/api/js?sensor=false&libraries=drawing"></script>
+	<script src="${myContext}/api/MainPage.js"></script>
 	
 	<script type="text/javascript">
-		includeCSSFile("${myContext}/media/css/busWeb", "busWeb", ["ff", "ie8"]);
+		includeCSSFile("${myContext}/media/css/busWeb", "busWeb", [ "ff", "ie8" ]);
 		var currentCity = $.parseJSON('${model.getCitiesModel().getJSONSelectedCity()}');
-		var data = {
-			currentCity : currentCity
+		var routeTypes = $.parseJSON('${model.getJsonRouteTypes()}');
+
+		var options = {
+			currentCity : currentCity,
+			routeTypes : routeTypes,
+			contextPath : "${myContext}/"
 		};
+
 		$(document).ready(function() {
-			initialize(data);
+			CityWays.Pages.Current = new CityWays.Pages.MainPage(options);
+			console.log(CityWays.Pages.Current.getDefaultCity());
+
+			initialize(options);
 		});
 	</script>
 	<script src="${myContext}/media/js/libs/selectbox.js"></script>
@@ -65,9 +74,12 @@
 
 										 <div class="content">
 										 	<ul class="lineTabs">
-										 		<li class="first"><a class="active" href="#"><spring:message code="basic.route" text="default text" /></a></li>
-												<li class="second"><a href="#"><spring:message code="basic.departure" text="default text" /></a></li>
-												<li class="third"><a href="#"><spring:message code="basic.travel_doc" text="default text" /></a></li>				
+										 		<li class="first"><a class="active" href="#"><spring:message
+																code="basic.route" text="default text" /></a></li>
+												<li class="second"><a href="#"><spring:message
+																code="basic.departure" text="default text" /></a></li>
+												<li class="third"><a href="#"><spring:message
+																code="basic.travel_doc" text="default text" /></a></li>				
 											</ul> 
 											<div class="tab1">
 												<jsp:directive.include file="widgets/settings_panel.jsp" />

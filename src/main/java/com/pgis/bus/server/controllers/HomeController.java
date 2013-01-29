@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Locale;
@@ -31,6 +32,7 @@ import com.pgis.bus.server.models.data.CitiesModel;
 import com.pgis.bus.server.models.data.CityModel;
 import com.pgis.bus.server.models.page.ArticlesPageModel;
 import com.pgis.bus.server.models.page.MainPageModel;
+import com.pgis.bus.server.models.page.main.RouteTypeModel;
 
 @Controller
 @RequestMapping(value = "")
@@ -105,10 +107,16 @@ public class HomeController extends BaseController {
 			}
 			NavigationModel navModel = new NavigationModel(messageSource,
 					locale, NavigationModel.pages_enum.c_Home);
-
+			
+			Collection<RouteTypeModel> routeTypes = new ArrayList<RouteTypeModel>();
+			for(String routeType :db.getRouteTypesForCity(citiesModel
+					.getSelectedCity().getId()) ){
+				routeTypes.add(new RouteTypeModel(routeType,messageSource,locale));
+			}
+			
 			MainPageModel model = new MainPageModel(navModel);
 			model.setCitiesModel(citiesModel);
-
+			model.setRouteTypes(routeTypes);
 			Cookie cityCookie = new Cookie("city_key", city_key);
 			cityCookie.setPath(request.getContextPath());
 			response.addCookie(cityCookie);
