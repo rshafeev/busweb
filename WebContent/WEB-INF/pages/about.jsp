@@ -31,12 +31,12 @@
 				<h6>Именно поэтому у нас возникла идея создать интернет-сервис с маршрутами общественного транспорта Украины.</h6>
 				
 				<h4><spring:message code="about.details" text="default text" /> CityWays</h4>
-				<h6><b style="color:#5794BF;font-size: 16px;">CityWays</b> - это интернет-сервис, который поможет Вам добраться, на городском транспорте либо
-				на автомобиле, с одной точки города в другую.</h6>
-				<h6>С помощью <b style="color:#5794BF;">CityWays</b> Вы сможете построить и выбрать наиболее оптимальный по стоимости
+				<h6><b style="color:#5794BF;font-size: 16px;">CityWays</b> - это интернет-сервис, который поможет Вам добраться на городском транспорте, либо
+				на автомобиле с одной точки города в другую.</h6>
+				<h6>С помощью <b style="color:#5794BF;">CityWays</b> Вы можете построить и выбрать наиболее оптимальный по стоимости
 				и времени маршрут.</h6>
-			<h6>Благодаря расширенным настройкам появляется возможность построения маршрута с учетов дня недели и времени
-			выезда, а также с учетом проездного, льготного или студенческого.</h6>
+			<h6>Благодаря расширенным настройкам появляется возможность построения маршрута с учетом дня недели и времени
+			выезда. Также сервис позволяет учитывать наличие проездного (льготного, студенческого) билетов.</h6>
 			</div>
 	
    </jsp:attribute>
@@ -48,33 +48,35 @@
 				</h3>
 				<div class="inf">
 				<div class="img_div">
-			<img style="padding: 5px;"
-						src="${myContext}/media/css/images/adres.png" /><br>
+		<!-- 	<img style="padding: 5px;"
+						src="${myContext}/media/css/images/adres.png" /><br> -->
 					<img style="padding: 3px;"
 						src="${myContext}/media/css/images/Phone.png" /><br>
 											<img style="padding: 3px;"
 						src="${myContext}/media/css/images/phone.png" /><br>
-						<img style="padding: 4px;"
-						src="${myContext}/media/css/images/vkontakte.png" height="20" width="20" /><br>
-						<img style="padding: 4px;"
-						src="${myContext}/media/css/images/facebook.png" height="20" width="20" /><br>
-						<img style="padding: 4px;"
-						src="${myContext}/media/css/images/twitter.png" height="20" width="20" /><br>
-				<img style="padding: 4px;"
+										<img style="padding: 4px;"
 						src="${myContext}/media/css/images/email.png" /><br>
-					<img style="padding: 4px;"
-						src="${myContext}/media/css/images/site.png" /><br>
+
+
+				<!-- x	<img style="padding: 4px;"
+						src="${myContext}/media/css/images/site.png" /><br> -->
 				</div>
+
 				<div class="text_div">
-				 <h6>ул. Сумская, 17</h6>
+				<!--  <h6>ул. Сумская, 17</h6>-->
 				<h6>+38(057)712-32-45</h6>
 				<h6>+38(067)235-56-14</h6>
-				<h6><a href="http://vk.com/cityways_public">vk.com/cityways_public</a></h6>
-				<h6><a href="http://www.facebook.com/pages/City-Ways/320120854768477">facebook.com/pages/City-Ways</a></h6>
-				<h6><a href="https://twitter.com/City_Ways">twitter.com/City_Ways</a></h6>
 				<h6><a href="#">support@premiumgis.com</a></h6>
-				<h6><a href="#">www.premiumgis.com</a></h6> 
+				<!-- <h6><a href="#">www.premiumgis.com</a></h6>  -->
 			</div>
+			<div class="icons_div">
+												<a href="http://vk.com/cityways_public">	<img style="padding: 4px;"
+						src="${myContext}/media/css/images/vkontakte.png" height="20" width="20" title="VK" /></a>
+					<a href="http://www.facebook.com/pages/City-Ways/320120854768477">	<img style="padding: 4px;"
+						src="${myContext}/media/css/images/facebook.png" height="20" width="20" title="Facebook" /></a>
+						<a href="https://twitter.com/City_Ways"><img style="padding: 4px;"
+						src="${myContext}/media/css/images/twitter.png" height="20" width="20" title="Twitter" /></a>
+						</div>
 			</div>
 			</div>
    </jsp:attribute>

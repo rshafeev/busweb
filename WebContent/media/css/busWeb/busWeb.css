@@ -570,9 +570,9 @@ input {
 	-webkit-box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
 	-moz-box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
 	box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
-	text-shadow: rgba(0, 0, 0, .4) 0 1px 0;
+	text-shadow: white 0 1px 0;
 	color: #472647;
-	font-size: 13px;
+	font-size: 12px;
 	font-family: Georgia, serif;
 	text-decoration: none;
 	vertical-align: middle;
@@ -601,6 +601,8 @@ input {
 		color-stop(0.79, rgb(37, 189, 245) ) );
 	color: white;
 	cursor: pointer;
+	text-shadow: black 0px 1px 0;
+
 }
 
 .button:active {
@@ -964,11 +966,12 @@ input {
 
 #line_res {
 	border-bottom: 4px dotted #148ab8;
-	width: 323px;
+	width: 333px;
 	margin-left: 5px; */
 	height: 4px;
 	margin-bottom: 5px;
 	margin-top: 5px;
+	box-shadow: 0 0 5px rgba(0,0,0,0.5);
 }
 
 #transp_type {

@@ -1,50 +1,57 @@
 .contacts_info {
-	/*vertical-align: top;*/
-	height: 100%;
-	width: 100%;
-	text-align: left;
+    /*vertical-align: top;*/
+    height: 100%;
+    width: 100%;
+    text-align: left;
 }
 
 .contacts_info h3 {
-	font-size: 20px;
-	line-height: 22px;
-	color: green;
-	text-align: center;
-	margin-top: 10px;
-}
-
-.contacts_info h6 {
-	font-family: Verdana, Arial, Tahoma;
-	font-size: 13px;
-	font-weight: normal;
-	color: black;
-	margin-top:-10px;
-	line-height: 30px;
-	display: inline;
-	position: relative;
-}
-
-.contacts_info img {
-	margin-left: 20px;
-	display: inline;
-	margin-top:2px;
-}
-
-.inf
-{
-    height:auto;
-    width:90%;
-    display: inline-block;
-    margin-left:10px;
+    font-size: 20px;
+    line-height: 22px;
+    color: green;
+    text-align: center;
     margin-top: 10px;
 }
 
-.img_div
-{
-    width: 50px; height: auto;float: left;
+.contacts_info h6 {
+    font-family: Verdana, Arial, Tahoma;
+    font-size: 13px;
+    font-weight: normal;
+    color: black;
+    margin-top: -10px;
+    line-height: 30px;
+    display: inline;
+    position: relative;
 }
 
-.text_div
-{
-    width: 200px; height: auto;  float: center; margin-left: 60px;
+.contacts_info img {
+    margin-left: 20px;
+    display: inline;
+    margin-top: 2px;
+}
+
+.inf {
+    height: auto;
+    width: 90%;
+    display: inline-block;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.img_div {
+    width: 50px;
+    height: auto;
+    float: left;
+}
+
+.text_div {
+    width: 200px;
+    height: auto;
+    float: center;
+    margin-left: 60px;
+}
+.icons_div {
+    width: auto;
+    height: auto;
+    margin-left: 40px;
 }
