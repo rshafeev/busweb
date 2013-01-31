@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+	<template id="template-main-waysPanel"> <![CDATA[
+		<p><%= value %></p>
+		<div class="start"> 
+			<div class="userplace">
+				<input type="text" id="username" />
+			</div>
+			<div class="buttonplace">
+				<input type="button" value="Проверить" />
+			</div>
+		</div>
+	]]>
+	</template>
+	<template id="template-main-product"><![CDATA[
+		<div>
+			<p>sdfdsf</p>
+			
+		</div>
+]]>
+	</template>
+</templates>

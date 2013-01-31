@@ -1,5 +1,5 @@
 /**
- * @requires OpenLayers/Lang.js
+ * @requires cityways/Language.js
  */
 
 /**
@@ -8,7 +8,7 @@
  *     <OpenLayers.Lang.translate>.  Entry bodies are normal strings or
  *     strings formatted for use with <OpenLayers.String.format> calls.
  */
-CityWays.Lang.en = {
+cityways.lang.En = {
 
     'unhandledRequest': "Unhandled request return ${statusText}",
 

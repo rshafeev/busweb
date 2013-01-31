@@ -40,9 +40,17 @@ import com.pgis.bus.server.models.page.RoutesPageModel;
 
 @Controller
 @RequestMapping(value = "routes")
-public class RoutesController {
+public class RoutesController extends BaseController {
 	private static final Logger log = LoggerFactory
 			.getLogger(RoutesController.class);
+
+	public RoutesController() {
+		super();
+	}
+
+	public RoutesController(IDataBaseService db) {
+		super(db);
+	}
 
 	@Autowired
 	private MessageSource messageSource;
@@ -60,77 +68,85 @@ public class RoutesController {
 	@RequestMapping(value = "{city_key}")
 	public ModelAndView routesCity(@PathVariable String city_key,
 			HttpServletRequest request, HttpServletResponse response) {
+		try {
+			// Создали модель, которая хранит в себе список городов и
+			// выбранный город(текущий)
+			CitiesModel citiesModel = HomeController.prepareCitiesModel(
+					db.getAllCities(), city_key);
 
-		// Создали модель, которая хранит в себе список городов и
-		// выбранный город(текущий)
-		CitiesModel citiesModel = HomeController.prepareCitiesModel(city_key);
+			// Если city_key нет в БД, то переходим на страницу "Ошибка"
+			if (citiesModel == null || citiesModel.getSelectedCity() == null) {
+				return new ModelAndView("redirect:/error");
+			}
 
-		// Если city_key нет в БД, то переходим на страницу "Ошибка"
-		if (citiesModel == null || citiesModel.getSelectedCity() == null) {
-			return new ModelAndView("redirect:/error");
+			// Передаем cookie клиенту
+			Cookie cityCookie = new Cookie("city_key", city_key);
+			cityCookie.setPath(request.getContextPath());
+			response.addCookie(cityCookie);
+
+			// Получаем текущий язык (локаль)
+			Locale locale = LocaleContextHolder.getLocale();
+
+			// Создаем модель навигации
+			NavigationModel navModel = new NavigationModel(messageSource,
+					locale, NavigationModel.pages_enum.c_Routes);
+
+			// Создаем модель маршрутов
+			Collection<RoutesModel> routesModel = prepareRoutesModels(
+					citiesModel.getSelectedCity().getId(), locale);
+
+			RoutesPageModel model = new RoutesPageModel(navModel);
+			model.setRoutes(routesModel);
+			model.setCitiesModel(citiesModel);
+
+			return new ModelAndView("routes", "model", model);
+
+		} catch (RepositoryException e) {
+			log.debug("Error:", e);
+			return null;
 		}
-
-		// Передаем cookie клиенту
-		Cookie cityCookie = new Cookie("city_key", city_key);
-		cityCookie.setPath(request.getContextPath());
-		response.addCookie(cityCookie);
-
-		// Получаем текущий язык (локаль)
-		Locale locale = LocaleContextHolder.getLocale();
-
-		// Создаем модель навигации
-		NavigationModel navModel = new NavigationModel(messageSource, locale,
-				NavigationModel.pages_enum.c_Routes);
-
-		// Создаем модель маршрутов
-		Collection<RoutesModel> routesModel = prepareRoutesModels(citiesModel
-				.getSelectedCity().getId(), locale);
-
-		RoutesPageModel model = new RoutesPageModel(navModel);
-		model.setRoutes(routesModel);
-		model.setCitiesModel(citiesModel);
-
-		return new ModelAndView("routes", "model", model);
 	}
 
-	private Collection<RoutesModel> prepareRoutesModels(int cityID, Locale locale) {
-		
-		Collection <RoutesModel> models = null;
+	private Collection<RoutesModel> prepareRoutesModels(int cityID,
+			Locale locale) {
+
+		Collection<RoutesModel> models = null;
 		try {
-			IDataBaseService db = new DataBaseService();
 			Collection<String> types = db.getRouteTypesForCity(cityID);
 			String lang_id = LanguageHelper.getDataBaseLanguage(locale);
-			
-			models = new ArrayList <RoutesModel>();
-			for (String routeTypeID : types){
-				String routeTypeName = messageSource.getMessage("basic." + routeTypeID, null,locale);
-				
-				Collection <Route> routes= db.getRoutes(routeTypeID, cityID, lang_id);
+
+			models = new ArrayList<RoutesModel>();
+			for (String routeTypeID : types) {
+				String routeTypeName = messageSource.getMessage("basic."
+						+ routeTypeID, null, locale);
+
+				Collection<Route> routes = db.getRoutes(routeTypeID, cityID,
+						lang_id);
 				log.debug(Integer.toString(routes.size()));
 				RoutesModel routesModel = new RoutesModel();
-				
-				Collection<RouteSchemeModel> routeSchemes = new ArrayList <RouteSchemeModel>();
-				for (Route r : routes )
-				{
-				
-					RouteSchemeModel routeSchemeModel = new RouteSchemeModel(); 
+
+				Collection<RouteSchemeModel> routeSchemes = new ArrayList<RouteSchemeModel>();
+				for (Route r : routes) {
+
+					RouteSchemeModel routeSchemeModel = new RouteSchemeModel();
 					routeSchemeModel.setName(r.getFullName(lang_id));
 					routeSchemeModel.setRouteID(r.getId());
 					routeSchemeModel.setCost(r.getCost());
 					routeSchemes.add(routeSchemeModel);
 					log.debug(routeSchemeModel.toString());
 				}
-				
+
 				routesModel.setRoutes(routeSchemes);
-				routesModel.setRouteType(new RouteTypeModel(routeTypeID,routeTypeName));
+				routesModel.setRouteType(new RouteTypeModel(routeTypeID,
+						routeTypeName));
 				models.add(routesModel);
 			}
-			
+
 		} catch (RepositoryException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return models;
 	}
 

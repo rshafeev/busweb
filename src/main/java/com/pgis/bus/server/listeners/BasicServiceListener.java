@@ -14,9 +14,9 @@ import test.TestDBConnectionManager;
 import test.TestDataSource;
 
 
-import com.pgis.bus.data.DBConnectionFactory;
 import com.pgis.bus.data.DBConnectionManager;
 import com.pgis.bus.server.AppProperties;
+import com.pgis.bus.server.data.DBConnectionFactory;
 
 /**
  * навешивает логику на момент создания/удаления сервлета

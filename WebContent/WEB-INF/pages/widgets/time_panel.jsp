@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 
-<p style="font-size: 11px; display: inline; color: black;">Время выезда.</p>
-<p style="font-size: 10px; margin-left: 25px; display: inline; color: black;">час:</p>
+<p style="font-size: 11px; display: inline; color: black;"><spring:message code="basic.check_out" text="default text" />:</p>
+<p style="font-size: 10px; margin-left: 25px; display: inline; color: black;"><spring:message code="basic.hour" text="default text" />:</p>
 <select style="width: 40px; display: inline; margin-left: 10px; margin-top: 10px;border-radius:5px;">
 	<option>01</option>
 	<option>02</option>
@@ -28,7 +28,7 @@
 	<option>23</option>
 	<option>24</option>
 </select>
-<p style="font-size: 10px; color: black; margin-left: 0px; display: inline; ">мин:</p>
+<p style="font-size: 10px; color: black; margin-left: 0px; display: inline; "><spring:message code="basic.minutes" text="default text" />:</p>
 <select style="width: 40px; display: inline;border-radius:5px;">
 	<option>00</option>
 	<option>05</option>
@@ -44,12 +44,13 @@
 	<option>55</option>
 </select>
 <br>
-<p style="font-size: 11px; color: black; display: inline;">День недели:</p>
+<p style="font-size: 11px; color: black; display: inline;"><spring:message code="basic.day_of_week" text="default text" />:</p>
 <select name=day_s size=1 style="width: 104px; margin-top: 7px; display: inline; margin-left: 32px; font-size: 11px;border-radius:5px;">
-	<option value=1 selected>Понедельник</option>
-	<option value=2>Вторник</option>
-	<option value=3>Среда</option>
-	<option value=4>Четверг</option>
-	<option value=5>Пятница</option>
-	<option value=6>Суббота</option>
+	<option value=1 selected><spring:message code="basic.monday" text="default text" /></option>
+	<option value=2><spring:message code="basic.tuesday" text="default text" /></option>
+	<option value=3><spring:message code="basic.wednesday" text="default text" /></option>
+	<option value=4><spring:message code="basic.thursday" text="default text" /></option>
+	<option value=5><spring:message code="basic.friday" text="default text" /></option>
+	<option value=6><spring:message code="basic.saturday" text="default text" /></option>
+	<option value=6><spring:message code="basic.sunday" text="default text" /></option>
 </select>

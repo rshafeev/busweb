@@ -1,0 +1,28 @@
+ 
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function message()
+{
+try
+  {
+     throw "empty";
+    
+  }
+catch(err)
+  {
+  var txt = "There was an error on this page.\n\n";
+  txt+="Error description: " + err.message + "\n\n";
+  txt+="Click OK to continue.\n\n";
+  alert(txt);
+  }
+}
+</script>
+</head>
+
+<body>
+<input type="button" value="View message" onclick="message()">
+</body>
+
+</html>

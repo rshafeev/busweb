@@ -3,38 +3,48 @@ package com.pgis.bus.server.controllers;
 import java.util.Collection;
 import java.util.Locale;
 
-import org.scribe.builder.ServiceBuilder;
-import org.scribe.builder.api.TwitterApi;
-import org.scribe.oauth.OAuthService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
-import com.pgis.bus.data.IDataBaseService;
-import com.pgis.bus.data.impl.DataBaseService;
-import com.pgis.bus.data.models.FindWaysOptions;
 import com.pgis.bus.data.models.RouteGeoData;
 import com.pgis.bus.data.models.RoutePart;
 
 import com.pgis.bus.data.models.WaysModel;
 import com.pgis.bus.data.orm.WayElem;
+import com.pgis.bus.net.models.PathsModel;
+import com.pgis.bus.net.request.FindPathsOptions;
 import com.pgis.bus.server.helpers.LanguageHelper;
+import com.pgis.bus.server.helpers.PathsModelConverter;
 import com.pgis.bus.server.models.data.RouteGeoDataModel;
 import com.pgis.bus.server.models.data.WayGeoDataModel;
 import com.pgis.bus.server.models.request.LoadWayOptions;
 
-
 @Controller
-@RequestMapping(value = "ways/")
-public class WaysController {
+@RequestMapping(value = "paths/")
+public class PathsController extends BaseController {
 	private static final Logger log = LoggerFactory
-			.getLogger(WaysController.class);
+			.getLogger(PathsController.class);
 
+	private PathsModel findShortestPaths(FindPathsOptions options) throws Exception{
+		if (options == null)
+			throw new Exception("Options error");
+		// get ways
+		long findTime = System.currentTimeMillis();
+		Collection<WayElem> ways = db.getShortestWays(options);
+		log.debug("Ways elems: " + ways.size());
+		findTime = System.currentTimeMillis() - findTime;
+		PathsModel model = PathsModelConverter.makePathsModel(ways);
+		model.setFindTime(findTime);
+		return model;
+	}
+	
 	@RequestMapping(value = "load_way.json", method = RequestMethod.POST)
 	public ModelAndView loadWay(String data) {
 		ModelAndView modelView = new ModelAndView("ajax/map_routes");
@@ -47,7 +57,6 @@ public class WaysController {
 
 			WayGeoDataModel geoWayModel = new WayGeoDataModel(wayOptions);
 
-			IDataBaseService db = new DataBaseService();
 			RoutePart[] parts = wayOptions.getRouteParts();
 			for (int i = 0; i < parts.length; i++) {
 				Collection<RouteGeoData> routeData = db.getGeoDataByRoutePart(
@@ -56,7 +65,7 @@ public class WaysController {
 						routeData);
 				geoWayModel.addRouteGeoDataModel(routeModel);
 			}
-			
+
 			modelView.addObject("model", geoWayModel);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -64,37 +73,30 @@ public class WaysController {
 		return modelView;
 	}
 
+	@ResponseBody
 	@RequestMapping(value = "find.json", method = RequestMethod.POST)
-	public ModelAndView find(String data) {
-		ModelAndView modelView = new ModelAndView("ajax/ways_panel");
+	public String find(String data) {
 		try {
 			log.debug("find.json");
-			FindWaysOptions options = (new Gson()).fromJson(data,
-					FindWaysOptions.class);
+			FindPathsOptions options = (new Gson()).fromJson(data,
+					FindPathsOptions.class);
 			if (options == null)
-				return modelView;
+				throw new Exception("Options error");
 			// Получим объект с информацией о текущей локали
 			Locale locale = LocaleContextHolder.getLocale();
-			options.getP1().setSrid(4326);
-			options.getP2().setSrid(4326);
 			options.setMaxDistance(500);
-			options.setLang_id(LanguageHelper.getDataBaseLanguage(locale));
+			options.setLangID(LanguageHelper.getDataBaseLanguage(locale));
 			log.debug(options.toString());
+			
 			// get ways
-			IDataBaseService db = new DataBaseService();
-			long findTime = System.currentTimeMillis();
-			Collection<WayElem> ways = db.getShortestWays(options);
-			findTime = System.currentTimeMillis() - findTime; 
-			WaysModel waysModel = new WaysModel(ways);
-			waysModel.setFindTime(findTime);
-			// Отправим модель во view
-			modelView.addObject("model", waysModel);
+			PathsModel model =findShortestPaths(options);
+			return (new Gson()).toJson(model);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		return modelView;
-
+		return "error";
 	}
+	
+	
 }

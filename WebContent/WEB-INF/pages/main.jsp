@@ -7,19 +7,31 @@
 
 <ui:base>
 	<jsp:attribute name="page_head">
+	<script src="${myContext}/media/cityways/themes/default/templates/main.xml" type="text/template"></script>
 	
 	<script src="${myContext}/media/js/libs/jquery.tinyscrollbar.min.js"></script>
 	<script type="text/javascript"
 			src="http://maps.google.com/maps/api/js?sensor=false&libraries=drawing"></script>
+	<script type="text/javascript"
+			src="http://underscorejs.ru/underscore.js"></script>
+	<script src="${myContext}/media/cityways/MainPage.js"></script>
 	
+		
 	<script type="text/javascript">
-		includeCSSFile("${myContext}/media/css/busWeb", "busWeb", ["ff", "ie8"]);
+		includeCSSFile("${myContext}/media/css/busWeb", "busWeb", [ "ff", "ie8" ]);
 		var currentCity = $.parseJSON('${model.getCitiesModel().getJSONSelectedCity()}');
-		var data = {
-			currentCity : currentCity
+		var routeTypes = $.parseJSON('${model.getJsonRouteTypes()}');
+
+		var options = {
+			currentCity : currentCity,
+			routeTypes : routeTypes,
+			contextPath : "${myContext}/"
 		};
+
 		$(document).ready(function() {
-			initialize(data);
+			cityways.Basic.ResourceURI = "${myContext}/media/cityways/";
+			cityways.Page.Current = new cityways.page.MainPage(options);
+			initialize(options);
 		});
 	</script>
 	<script src="${myContext}/media/js/libs/selectbox.js"></script>
@@ -65,9 +77,12 @@
 
 										 <div class="content">
 										 	<ul class="lineTabs">
-										 		<li class="first"><a class="active" href="#">Маршрут</a></li>
-												<li class="second"><a href="#">Выезд</a></li>
-												<li class="third"><a href="#">Проездной</a></li>				
+										 		<li class="first"><a class="active" href="#"><spring:message
+																code="basic.route" text="default text" /></a></li>
+												<li class="second"><a href="#"><spring:message
+																code="basic.departure" text="default text" /></a></li>
+												<li class="third"><a href="#"><spring:message
+																code="basic.travel_doc" text="default text" /></a></li>				
 											</ul> 
 											<div class="tab1">
 												<jsp:directive.include file="widgets/settings_panel.jsp" />
@@ -85,7 +100,7 @@
 							</td>
 						 <td style="width: 180px;">
 								<button type="submit" class="button"
-										onclick="on_btn_calculate_click();">
+										onclick="cityways.Page.Events().onFindBtnClick();">
 									<spring:message code="basic.btn_calc" text="default text" />
 								</button>
 						</td>   

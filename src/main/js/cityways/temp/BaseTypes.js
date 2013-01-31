@@ -4,7 +4,7 @@
  * full text of the license. */
 
 /**
- * @requires CityWays/SingleFile.js
+ * @requires cityways/CityWays.js
  */
 
 /** 
@@ -16,7 +16,7 @@
  * Namespace: OpenLayers.String
  * Contains convenience functions for string manipulation.
  */
-CityWays.String = {
+cityways.String = {
 
     /**
      * APIFunction: startsWith
@@ -148,7 +148,7 @@ CityWays.String = {
             }
         };
 
-        return template.replace(CityWays.String.tokenRegEx, replacer);
+        return template.replace(cityways.String.tokenRegEx, replacer);
     },
 
     /**
@@ -180,7 +180,7 @@ CityWays.String = {
      * {Boolean} String contains only a number.
      */
     isNumeric: function(value) {
-        return CityWays.String.numberRegEx.test(value);
+        return cityways.String.numberRegEx.test(value);
     },
     
     /**
@@ -200,7 +200,7 @@ CityWays.String = {
         if (trimWhitespace === true && value != null && value.replace) {
             value = value.replace(/^\s*|\s*$/g, "");
         }
-        return CityWays.String.isNumeric(value) ? parseFloat(value) : originalValue;
+        return cityways.String.isNumeric(value) ? parseFloat(value) : originalValue;
     }
 
 };
@@ -209,7 +209,7 @@ CityWays.String = {
  * Namespace: OpenLayers.Number
  * Contains convenience functions for manipulating numbers.
  */
-CityWays.Number = {
+cityways.Number = {
 
     /**
      * Property: decimalSeparator
@@ -262,9 +262,9 @@ CityWays.Number = {
     format: function(num, dec, tsep, dsep) {
         dec = (typeof dec != "undefined") ? dec : 0; 
         tsep = (typeof tsep != "undefined") ? tsep :
-            CityWays.Number.thousandsSeparator; 
+            cityways.Number.thousandsSeparator; 
         dsep = (typeof dsep != "undefined") ? dsep :
-            CityWays.Number.decimalSeparator;
+            cityways.Number.decimalSeparator;
 
         if (dec != null) {
             num = parseFloat(num.toFixed(dec));
@@ -302,7 +302,7 @@ CityWays.Number = {
  * Namespace: OpenLayers.Function
  * Contains convenience functions for function manipulation.
  */
-CityWays.Function = {
+cityways.Function = {
     /**
      * APIFunction: bind
      * Bind a function to an object.  Method to easily create closures with
@@ -393,7 +393,7 @@ CityWays.Function = {
  * Namespace: OpenLayers.Array
  * Contains convenience functions for array manipulation.
  */
-CityWays.Array = {
+cityways.Array = {
 
     /**
      * APIMethod: filter
