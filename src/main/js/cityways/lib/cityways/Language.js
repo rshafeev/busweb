@@ -4,16 +4,13 @@
  * full text of the license. */
 
 /**
- * @requires CityWays/BaseTypes.js
- * @requires CityWays/Console.js
+ * @requires cityways/CityWays.js
  */
 
 /**
- * Namespace: OpenLayers.Lang
- * Internationalization namespace.  Contains dictionaries in various languages
- *     and methods to set and get the current language.
+ * Статический класс
  */
-CityWays.Lang = {
+cityways.Language = {
     
     /** 
      * Property: code
@@ -28,7 +25,7 @@ CityWays.Lang = {
      * {String} Default language to use when a specific language can't be
      *     found.  Default is "en".
      */
-    defaultCode: "en",
+    defaultCode: "En",
         
     /**
      * APIFunction: getCode
@@ -38,10 +35,10 @@ CityWays.Lang = {
      * {String} The current language code.
      */
     getCode: function() {
-        if(!CityWays.Lang.code) {
-            CityWays.Lang.setCode();
+        if(!cityways.Language.code) {
+            cityways.Language.setCode();
         }
-        return CityWays.Lang.code;
+        return cityways.Language.code;
     },
     
     /**
@@ -59,31 +56,31 @@ CityWays.Lang = {
     setCode: function(code) {
         var lang;
         if(!code) {
-            code = (CityWays.BROWSER_NAME == "msie") ?
+            code = (cityways.BROWSER_NAME == "msie") ?
                 navigator.userLanguage : navigator.language;
         }
         var parts = code.split('-');
-        parts[0] = parts[0].toLowerCase();
-        if(typeof CityWays.Lang[parts[0]] == "object") {
+        parts[0] = parts[0];//.toLowerCase();
+        if(typeof cityways.lang[parts[0]] == "object") {
             lang = parts[0];
         }
 
         // check for regional extensions
         if(parts[1]) {
             var testLang = parts[0] + '-' + parts[1].toUpperCase();
-            if(typeof CityWays.Lang[testLang] == "object") {
+            if(typeof cityways.lang[testLang] == "object") {
                 lang = testLang;
             }
         }
         if(!lang) {
-            CityWays.Console.warn(
-                'Failed to find CityWays.Lang.' + parts.join("-") +
+            cityways.Console.warn(
+                'Failed to find cityways.Lang.' + parts.join("-") +
                 ' dictionary, falling back to default language'
             );
-            lang = CityWays.Lang.defaultCode;
+            lang = cityways.Language.defaultCode;
         }
         
-        CityWays.Lang.code = lang;
+        cityways.Language.code = lang;
     },
 
     /**
@@ -100,35 +97,14 @@ CityWays.Lang = {
      * Returns:
      * {String} A internationalized string.
      */
-    translate: function(key, context) {
-        var dictionary = CityWays.Lang[CityWays.Lang.getCode()];
+    translate: function(key) {
+        var dictionary = cityways.lang[cityways.Language.getCode()];
         var message = dictionary && dictionary[key];
         if(!message) {
-            // Message not found, fall back to message key
             message = key;
-        }
-        if(context) {
-            message = CityWays.String.format(message, context);
         }
         return message;
     }
     
 };
 
-
-/**
- * APIMethod: OpenLayers.i18n
- * Alias for <OpenLayers.Lang.translate>.  Looks up a key from a dictionary
- *     based on the current language string. The value of
- *     <OpenLayers.Lang.getCode> will be used to determine the appropriate
- *     dictionary.  Dictionaries are stored in <OpenLayers.Lang>.
- *
- * Parameters:
- * key - {String} The key for an i18n string value in the dictionary.
- * context - {Object} Optional context to be used with
- *     <OpenLayers.String.format>.
- * 
- * Returns:
- * {String} A internationalized string.
- */
-CityWays.i18n = CityWays.Lang.translate;

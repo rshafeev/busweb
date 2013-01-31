@@ -24,7 +24,7 @@
 				<label for="cheap" id="cheap_tip_label" style="margin-left: 5px; "   class="demo-tip-darkgray" title="<spring:message code="basic.cheap" text="default text" />"><spring:message code="basic.label_cheep" text="default text" /></label>
 			</td>
 			<td>
-				<input type="checkbox" id="direct" />
+				<input type="checkbox" id="check_without_transitions" />
 			</td>
 			<td>
 				<label for="direct" id="direct_tip_label" style="margin-left: 5px; " class="demo-tip-darkgray" title="<spring:message code="basic.direct_rout" text="default text" />"><spring:message code="basic.direct" text="default text" /></label>

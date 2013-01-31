@@ -6,6 +6,8 @@ public class RouteTypeModel {
 	private String id;
 	private String name;
 
+	
+	
 	public String getId() {
 		return id;
 	}

@@ -10,9 +10,13 @@ import javax.servlet.ServletContextListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.pgis.bus.data.DBConnectionFactory;
+import test.TestDBConnectionManager;
+import test.TestDataSource;
+
+
 import com.pgis.bus.data.DBConnectionManager;
 import com.pgis.bus.server.AppProperties;
+import com.pgis.bus.server.data.DBConnectionFactory;
 
 /**
  * навешивает логику на момент создания/удаления сервлета
@@ -40,7 +44,9 @@ public class BasicServiceListener implements ServletContextListener {
 		ServletContext context = event.getServletContext();
 		AppProperties.DefaultCity = context.getInitParameter("defaultCity");
 
-		DBConnectionFactory.init(new DBConnectionManager("jdbc/busPoolDB"));
+		//DBConnectionFactory.init(new DBConnectionManager("jdbc/busPoolDB"));
+		TestDataSource source = new TestDataSource();
+		DBConnectionFactory.init(new TestDBConnectionManager(source.getDataSource()));
 		log.debug("contextInitialized");
 
 	}

@@ -7,31 +7,26 @@
 
 <ui:base>
 	<jsp:attribute name="page_head">
-	<script src="${myContext}/media/cityways/themes/default/templates/main.xml" type="text/template"></script>
 	
 	<script src="${myContext}/media/js/libs/jquery.tinyscrollbar.min.js"></script>
 	<script type="text/javascript"
 			src="http://maps.google.com/maps/api/js?sensor=false&libraries=drawing"></script>
-	<script type="text/javascript"
-			src="http://underscorejs.ru/underscore.js"></script>
-	<script src="${myContext}/media/cityways/MainPage.js"></script>
+	<script src="${myContext}/api/MainPage.js"></script>
 	
-		
 	<script type="text/javascript">
 		includeCSSFile("${myContext}/media/css/busWeb", "busWeb", [ "ff", "ie8" ]);
 		var currentCity = $.parseJSON('${model.getCitiesModel().getJSONSelectedCity()}');
 		var routeTypes = $.parseJSON('${model.getJsonRouteTypes()}');
 
-		var options = {
-			currentCity : currentCity,
-			routeTypes : routeTypes,
-			contextPath : "${myContext}/"
-		};
-
 		$(document).ready(function() {
-			cityways.Basic.ResourceURI = "${myContext}/media/cityways/";
-			cityways.Page.Current = new cityways.page.MainPage(options);
-			initialize(options);
+			var options = {
+				currentCity : currentCity,
+				routeTypes : routeTypes,
+				contextPath : "${myContext}/"
+			};
+			
+			CityWays.Pages.Current = new CityWays.Pages.MainPage(options);
+			
 		});
 	</script>
 	<script src="${myContext}/media/js/libs/selectbox.js"></script>
@@ -100,7 +95,7 @@
 							</td>
 						 <td style="width: 180px;">
 								<button type="submit" class="button"
-										onclick="cityways.Page.Events().onFindBtnClick();">
+										onclick="on_btn_calculate_click();">
 									<spring:message code="basic.btn_calc" text="default text" />
 								</button>
 						</td>   

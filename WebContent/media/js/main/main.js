@@ -10,7 +10,7 @@ var mainPage = null;
  */
 function initialize(data) {
 	_prepareTabs();
-	_prepareNotes();
+	//_prepareNotes();
 
 	mainPage = new MainPage();
 	mainPage.main(data);
