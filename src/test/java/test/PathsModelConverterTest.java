@@ -139,7 +139,7 @@ public class PathsModelConverterTest {
 	
 	
 	@Test
-	public void makePathModel(){
+	public void makePathModelTest(){
 		List<WayElem> elems = Arrays.asList(this.data);
 		
 		PathModel path = PathsModelConverter.makePathModel(elems);
