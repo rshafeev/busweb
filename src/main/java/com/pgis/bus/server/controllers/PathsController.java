@@ -15,8 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.pgis.bus.data.models.RouteGeoData;
 import com.pgis.bus.data.models.RoutePart;
-
-import com.pgis.bus.data.models.WaysModel;
 import com.pgis.bus.data.orm.WayElem;
 import com.pgis.bus.net.models.PathsModel;
 import com.pgis.bus.net.request.FindPathsOptions;
