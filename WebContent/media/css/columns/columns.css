@@ -140,12 +140,11 @@
 	font-size: 13px;
 	font-weight: normal;
 	color: black;
-	line-height: 22px;
+	line-height: 25px;
 	text-align: justify;
 	text-indent: 25px;
 	white-space: normal;
-	color: black;
-	margin-top: 20px;
+	/*margin-top: 20px;*/
 }
 
 .text_info h3 {
@@ -156,13 +155,26 @@
 	margin-top: 10px;
 }
 
+.text_info h1
+{
+        font-family: Verdana, Arial, Tahoma;
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 25px;
+   
+   
+    white-space: normal;
+    color:#5794BF;
+}
+
 .text_info h4 {
 	font-family: Verdana, Arial, Tahoma;
 	font-size: 16px;
 	line-height: 20px;
-	color: blue;
+	color: #0088CC;
 	font-weight: bold;
-	margin-top: 20px;
+	margin-top: 15px;
+	margin-bottom: 15px;
 }
 
 .text_info img {

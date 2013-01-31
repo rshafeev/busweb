@@ -2,10 +2,10 @@
  * Additional static(global) functions
  */
 function isExistsInArray(arr, elem) {
-	for (var i = 0; i < arr.length; i++) {
+	for ( var i = 0; i < arr.length; i++) {
 		if (arr[i].toString() == elem.toString()) {
 			return true;
-			
+
 		}
 	}
 	return false;
@@ -22,19 +22,17 @@ function includeCSSFile(path, fileName, browsersTagsArr) {
 	var agent = navigator.userAgent.toLowerCase();
 
 	var b = $.browser;
-	
+
 	var v = parseFloat(b.version);
 	var vers = b.version;
 	oldMSIEBrowser9 = (b.msie && vers == "9");
 	oldMSIEBrowser8 = (b.msie && vers == "8");
 	oldMSIEBrowser6 = (b.msie && vers == "6");
 	oldMSIEBrowser7 = (b.msie && vers == "7");
-	
-	
 
 	var s1 = "<link rel=\"stylesheet\" href=\"" + path + "/" + fileName;
 	var s2 = ".css\" type=\"text/css\">";
-	
+
 	var tag = "";
 	if ($.browser.opera && vers <= 10.0
 			&& isExistsInArray(browsersTagsArr, "op") == true) {
@@ -72,7 +70,7 @@ function getShortAddress(address) {
 
 function getWindowSize() {
 	var myWidth = 0, myHeight = 0;
-	if (typeof(window.innerWidth) == 'number') {
+	if (typeof (window.innerWidth) == 'number') {
 		// Non-IE
 		myWidth = window.innerWidth;
 		myHeight = window.innerHeight;

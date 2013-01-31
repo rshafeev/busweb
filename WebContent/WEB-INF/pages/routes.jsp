@@ -62,7 +62,7 @@
 			</div> 
 			<div id="routes_panel"> 
 			<div class="city_tab" style="display: inline-block;">
-						<h3>Выбирете город:</h3>
+						<h3><spring:message code="routespanel.choosecity" text="default text" />:</h3>
 						<jsp:directive.include file="widgets/city_table.jsp" />
 </div>
 <div class="routes_inform">

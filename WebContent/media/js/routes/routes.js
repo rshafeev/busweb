@@ -24,17 +24,17 @@ function on_right_panel_show(e) {
 	if (getRSchems().rightPanelVisible == false) {
 		getRSchems().rightPanelVisible = true;
 		$("#map_canvas").width('68%').css({
-					cursor : "auto",
-					backgroundColor : "rgb(226, 226, 226)"
-				});
+			cursor : "auto",
+			backgroundColor : "rgb(226, 226, 226)"
+		});
 		img[0].src = getContextPath() + "media/css/images/arrow_right.png";
 
 	} else {
 		getRSchems().rightPanelVisible = false;
 		$("#map_canvas").width('98.5%').css({
-					cursor : "auto",
-					backgroundColor : "rgb(226, 226, 226)"
-				});
+			cursor : "auto",
+			backgroundColor : "rgb(226, 226, 226)"
+		});
 		console.log(getContextPath() + "media/css/images/arrow_left.png");
 		img[0].src = (getContextPath() + "media/css/images/arrow_left.png");
 
