@@ -1,18 +1,18 @@
 /**
- * @requires CityWays/BaseTypes/Class.js
+ * @requires cityways/type/Class.js
  */
 
 /**
- * Class: CityWays.WidgetMap
+ * Class: cityways.WidgetMap
 
  */
 /*Example:
  * <html>
  * <head>
- * 		<script>.../CityWays.js</script>
+ * 		<script>.../cityways.js</script>
  *		<script>
  * 				function initialize(){
- * 				var map = new CityWays.WidgetMap ('map');
+ * 				var map = new cityways.WidgetMap ('map');
  * 				}
  * 		</script>
  * </head>
@@ -22,7 +22,7 @@
  * </html>
  * 
  */
-CityWays.WidgetMap = CityWays.Class({
+cityways.WidgetMap = cityways.type.Class({
 
 	initialize : function(div, options) {
 		console.log('map was initialized');

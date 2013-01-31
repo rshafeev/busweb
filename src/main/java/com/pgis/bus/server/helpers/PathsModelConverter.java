@@ -43,63 +43,82 @@ public class PathsModelConverter {
 	}
 
 	public static PathModel makePathModel(List<WayElem> elems) {
+		PathModel path = new PathModel();
+
 		if (elems.size() < 3) {
-			return null;
+			return path;
 		}
-		// добавим первый маршрут: "пешком от точки А до первой остановки"
-		InputWayModel input = new InputWayModel();
-		input.setDistance(elems.get(0).distance);
-		input.setMoveTimeSecs(DateTimeHelper.toSeconds(elems.get(0).move_time));
-		input.setToRouteID(elems.get(0).direct_route_id);
+		ArrayList<TransitionWayModel> transitions = new ArrayList<TransitionWayModel>();
+		ArrayList<RouteWayModel> routes = new ArrayList<RouteWayModel>();
 
-		Collection<TransitionWayModel> transitions = new ArrayList<TransitionWayModel>();
-		Collection<RouteWayModel> routes = new ArrayList<RouteWayModel>();
-		// добавим все послед. машруты
-		for (int i = 0; i < elems.size() - 1; i += 2) {
-			WayElem elem1 = elems.get(i);
-			WayElem elem2 = elems.get(i + 1);
-			RouteWayModel route = new RouteWayModel();
-			route.setCost(elem1.cost);
-			route.setDistance(elem2.distance);
-			route.setID(elem1.direct_route_id);
-			route.setName(elem1.route_name);
-			route.setType(elem1.route_type);
-			route.setMoveTimeSecs(DateTimeHelper.toSeconds(elem2.move_time));
-			route.setWaitBeforeTimeSecs(DateTimeHelper
-					.toSeconds(elem1.wait_time));
-			route.setStartStation(elem1.station_name);
-			route.setStartRelationIndex(elem1.relation_index);
-			route.setFinishStation(elem2.station_name);
-			route.setFinishRelationIndex(elem2.relation_index);
+		int i = 0;
+		double distance = 0.0;
+		int moveTime = 0;
+		while (i < elems.size()) {
+			WayElem elem = elems.get(i);
+			if (elem.direct_route_id == null || elem.direct_route_id <= 0) {
+				distance += elem.distance;
+				moveTime += DateTimeHelper.toSeconds(elem.move_time);
 
-			if (i != 0 && i != elems.size() - 2) {
+				if (i == elems.size() - 1) {
+					if (routes.size() == 0)
+						return path;
+					OutWayModel output = new OutWayModel();
+					output.setDistance(distance);
+					output.setMoveTimeSecs(moveTime);
+					output.setFromRouteID(routes.get(routes.size() - 1).getID());
+					path.setOut(output);
+
+					break;
+				}
+				i++;
+				continue;
+			}
+
+			if (path.getInput() == null) {
+				InputWayModel input = new InputWayModel();
+				input.setDistance(distance);
+				input.setMoveTimeSecs(moveTime);
+				input.setToRouteID(elem.direct_route_id);
+				path.setInput(input);
+			} else if (moveTime > 0 && routes.size() > 0) {
 				TransitionWayModel transition = new TransitionWayModel();
-				transition.setDistance(elem1.distance);
-				transition.setMoveTimeSecs(DateTimeHelper
-						.toSeconds(elem1.move_time));
-				transition.setFromRouteID(elems.get(i - 1).direct_route_id);
-				transition.setToRouteID(elem1.direct_route_id);
+				transition.setDistance(distance);
+				transition.setMoveTimeSecs(moveTime);
+				transition
+						.setFromRouteID(routes.get(routes.size() - 1).getID());
+				transition.setToRouteID(elem.direct_route_id);
 				transitions.add(transition);
 			}
-			routes.add(route);
+
+			if (i < elems.size() - 1) {
+				WayElem nextElem = elems.get(i + 1);
+				RouteWayModel route = new RouteWayModel();
+				route.setCost(elem.cost);
+				route.setDistance(elem.distance);
+				route.setID(elem.direct_route_id);
+				route.setName(elem.route_name);
+				route.setType(elem.route_type);
+				route.setMoveTimeSecs(DateTimeHelper.toSeconds(elem.move_time));
+				route.setWaitBeforeTimeSecs(DateTimeHelper
+						.toSeconds(elem.wait_time));
+				route.setStartStation(elem.station_name);
+				route.setStartRelationIndex(elem.relation_index);
+				route.setFinishStation(nextElem.station_name);
+				route.setFinishRelationIndex(nextElem.relation_index);
+				routes.add(route);
+			}
+			distance = 0.0;
+			moveTime = 0;
+			i += 2;
+		}
+		if (elems.size() > 0) {
+			path.setPathID(elems.get(0).path_id);
 		}
 
-		// добавим последний маршрут:
-		// "пешком последней остановки до точки назначения B"
-		WayElem finishElem = elems.get(elems.size() - 1);
-		OutWayModel output = new OutWayModel();
-		output.setDistance(finishElem.distance);
-		output.setMoveTimeSecs(DateTimeHelper.toSeconds(finishElem.move_time));
-		output.setFromRouteID(elems.get(elems.size() - 2).direct_route_id);
-
-		// Формируем путь
-		PathModel path = new PathModel();
-		path.setPathID(finishElem.path_id);
-		path.setInput(input);
-		path.setOut(output);
 		path.setRoutes(routes);
 		path.setTransitions(transitions);
 		return path;
+
 	}
 }
-

@@ -9,6 +9,7 @@ import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
@@ -26,11 +27,24 @@ import com.pgis.bus.server.models.data.WayGeoDataModel;
 import com.pgis.bus.server.models.request.LoadWayOptions;
 
 @Controller
-@RequestMapping(value = "ways/")
+@RequestMapping(value = "paths/")
 public class PathsController extends BaseController {
 	private static final Logger log = LoggerFactory
 			.getLogger(PathsController.class);
 
+	private PathsModel findShortestPaths(FindPathsOptions options) throws Exception{
+		if (options == null)
+			throw new Exception("Options error");
+		// get ways
+		long findTime = System.currentTimeMillis();
+		Collection<WayElem> ways = db.getShortestWays(options);
+		log.debug("Ways elems: " + ways.size());
+		findTime = System.currentTimeMillis() - findTime;
+		PathsModel model = PathsModelConverter.makePathsModel(ways);
+		model.setFindTime(findTime);
+		return model;
+	}
+	
 	@RequestMapping(value = "load_way.json", method = RequestMethod.POST)
 	public ModelAndView loadWay(String data) {
 		ModelAndView modelView = new ModelAndView("ajax/map_routes");
@@ -59,35 +73,30 @@ public class PathsController extends BaseController {
 		return modelView;
 	}
 
+	@ResponseBody
 	@RequestMapping(value = "find.json", method = RequestMethod.POST)
-	public ModelAndView find(String data) {
-		ModelAndView modelView = new ModelAndView("ajax/ways_panel");
+	public String find(String data) {
 		try {
 			log.debug("find.json");
 			FindPathsOptions options = (new Gson()).fromJson(data,
 					FindPathsOptions.class);
 			if (options == null)
-				return modelView;
+				throw new Exception("Options error");
 			// Получим объект с информацией о текущей локали
 			Locale locale = LocaleContextHolder.getLocale();
 			options.setMaxDistance(500);
 			options.setLangID(LanguageHelper.getDataBaseLanguage(locale));
 			log.debug(options.toString());
+			
 			// get ways
-			long findTime = System.currentTimeMillis();
-			Collection<WayElem> ways = db.getShortestWays(options);
-			log.debug("Ways elems: " + ways.size());
-			findTime = System.currentTimeMillis() - findTime;
-			PathsModel model = PathsModelConverter.makePathsModel(ways);
-			model.setFindTime(findTime);
-			// Отправим модель во view
-			modelView.addObject("model", model);
+			PathsModel model =findShortestPaths(options);
+			return (new Gson()).toJson(model);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		return modelView;
-
+		return "error";
 	}
+	
+	
 }
