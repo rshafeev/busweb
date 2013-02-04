@@ -118,6 +118,7 @@ public class HomeController extends BaseController {
 			MainPageModel model = new MainPageModel(navModel);
 			model.setCitiesModel(citiesModel);
 			model.setRouteTypes(routeTypes);
+			model.setLanguage(locale);
 			Cookie cityCookie = new Cookie("city_key", city_key);
 			cityCookie.setPath(request.getContextPath());
 			response.addCookie(cityCookie);

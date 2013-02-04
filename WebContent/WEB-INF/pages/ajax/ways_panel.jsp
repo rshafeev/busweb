@@ -77,6 +77,11 @@ getMainPage().getMainPageData().clearWaysData();
 				</p>
 			</div>
 		</div>
+		
+		
+		
+		
+		
 		<div id="res_text_<%=i%>"
 			style="width: 322px; margin-left: 10px; white-space: normal;">
 			<div id="print">
@@ -260,6 +265,13 @@ getMainPage().getMainPageData().clearWaysData();
 				}
 			%>
 		</div>
+		
+		
+		
+		
+		
+		
+		
 		<%
 			i++;
 			}

@@ -156,6 +156,7 @@ function on_selectWay(way_ind, routeParts_arr) {
     //$('#panel_scrollbar').setTop(100);
 
 };
+
 function on_btn_calculate_click() {
     if (getMainPage().rightPanelVisible == false)
         on_right_panel_show();
@@ -180,46 +181,6 @@ function on_change_selectbox_city() {
     var nameFromCombo = $("#selectbox_city").val();
     document.location.href = getContextPath() + 'home/' + nameFromCombo;
 }
-
-function on_btn_metro_click(e) {
-    var g = e.getElementsByTagName('img');
-    if (g[0].src.indexOf(getContextPath() + 'media/css/images/metro_selected.png') != -1)
-        g[0].src = getContextPath() + 'media/css/images/metro.png';
-    else
-        g[0].src = getContextPath() + 'media/css/images/metro_selected.png';
-};
-
-function on_btn_bus_click(e) {
-    var g = e.getElementsByTagName('img');
-    if (g[0].src.indexOf(contextPath + 'media/css/images/bus_selected.png') != -1)
-        g[0].src = getContextPath() + 'media/css/images/bus.png';
-    else
-        g[0].src = getContextPath() + 'media/css/images/bus_selected.png';
-};
-
-function on_btn_troll_click(e) {
-    var g = e.getElementsByTagName('img');
-    if (g[0].src.indexOf(contextPath + 'media/css/images/trol_selected.png') != -1)
-        g[0].src = getContextPath() + 'media/css/images/trol.png';
-    else
-        g[0].src = getContextPath() + 'media/css/images/trol_selected.png';
-};
-
-function on_btn_tram_click(e) {
-    var g = e.getElementsByTagName('img');
-    if (g[0].src.indexOf('media/css/images/tram_selected.png') != -1)
-        g[0].src = getContextPath() + 'media/css/images/tram.png';
-    else
-        g[0].src = getContextPath() + 'media/css/images/tram_selected.png';
-};
-
-function on_btn_auto_click(e) {
-    var g = e.getElementsByTagName('img');
-    if (g[0].src.indexOf(contextPath + 'media/css/images/auto.png') != -1)
-        g[0].src = getContextPath() + 'media/css/images/auto_selected.png';
-    else
-        g[0].src = getContextPath() + 'media/css/images/auto.png';
-};
 
 function on_right_panel_show() {
 

@@ -2,6 +2,7 @@ package com.pgis.bus.server.models.page;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Locale;
 
 import com.google.gson.Gson;
 import com.pgis.bus.server.models.NavigationModel;
@@ -11,10 +12,32 @@ import com.pgis.bus.server.models.page.main.RouteTypeModel;
 public class MainPageModel extends PageModel {
 	private CitiesModel citiesModel;
 	private Collection<RouteTypeModel> routeTypes;
-
+	/**
+	 * Язык локализации: ru,en,uk
+	 */
+	private String language = "ru"; 
+	
 	public MainPageModel(NavigationModel navigationModel) {
 		super(navigationModel);
 	}
+
+	
+	public String getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(Locale locale){
+		
+		if (locale.getLanguage() == null
+				|| locale.getLanguage().equalsIgnoreCase("rus"))
+			this.language = "ru";
+		else 
+			this.language = locale.getLanguage();
+	}
+	public void setLanguage(String language) {
+		this.language = language;
+	}
+
 
 	public void setCitiesModel(CitiesModel citiesModel) {
 		this.citiesModel = citiesModel;
