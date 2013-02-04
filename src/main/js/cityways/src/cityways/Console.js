@@ -1,5 +1,5 @@
 /**
- * @requires cityways/type/Class.js
+ * @requires cityways/Namespace.js
  */
 
 if (cityways.Console === undefined) {

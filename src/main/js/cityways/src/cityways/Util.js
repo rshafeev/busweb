@@ -1,5 +1,5 @@
 /**
- * @requires cityways/CityWays.js
+ * @requires cityways/Namespace.js
  */
 
 cityways.Util = {

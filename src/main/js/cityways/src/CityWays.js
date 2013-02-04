@@ -24,13 +24,30 @@
     
 	
 	if(!singleFile) {
-		jsFiles = [
+		var jsFiles = [
 				"cityways/Namespace.js",
+				"cityways/helper/Time.js",
+				"cityways/Language.js",
+				"cityways/Page.js",
+				"cityways/Util.js",
+				"cityways/type/Class.js",
+				"cityways/page/MainPage.js",
+				"cityways/model/Path.js",
+				"cityways/page/main/SettingsPanel.js",
+				"cityways/page/main/WidgetEventHandlers.js",
 				"cityways/Console.js",
+				"cityways/template/HtmlTemplates.js",
                 "cityways/Basic.js",
-                "cityways/type/Class.js"
-                
+                "cityways/lang/ru.js",
+                "cityways/lang/en.js",
+                "cityways/lang/uk.js",
+                "cityways/loader/PathsLoader.js",
+                "cityways/loader/TemplatesLoader.js",
+                "cityways/WidgetMap.js"
                 ];
+                
+
+
 		var scriptTags = new Array(jsFiles.length);
         var host = _getScriptLocation("CityWays") + "/";
         for (var i=0, len=jsFiles.length; i<len; i++) {

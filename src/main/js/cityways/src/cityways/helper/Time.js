@@ -1,3 +1,8 @@
+/**
+ * @requires cityways/Namespace.js
+ */
+
+
 cityways.helper.Time = {
 
 /**

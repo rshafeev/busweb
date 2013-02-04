@@ -1,9 +1,6 @@
 
-test('trim()', function () {
+test('hello()', function () {
 
-  equal(trim(' x'), 'x', 'Начальные пробелы');
+  equal('x', 'x', 'Знакомимся с QTest');
 });
 
-test('trim2()', function () {
-  equal(trim(' x'), 'x', 'Начальные пробелы');
-});

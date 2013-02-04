@@ -1,5 +1,5 @@
 /**
- * @requires cityways/Language.js
+ * @requires cityways/Namespace.js
  */
 
 /**

@@ -4,7 +4,7 @@
  * full text of the license. */
 
 /**
- * @requires cityways/CityWays.js
+ * @requires cityways/Namespace.js
  */
 
 /**
