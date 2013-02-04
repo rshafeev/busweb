@@ -36,7 +36,7 @@ def build(config_file = None, output_file = None, options = None):
     if options.compressor and options.compressor in have_compressor:
         use_compressor = options.compressor
 
-    sourceDirectory = "../lib"
+    sourceDirectory = "../src"
     configFilename = "full.cfg"
     outputFilename = ""
     if config_file:
