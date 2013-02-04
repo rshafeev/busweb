@@ -8,7 +8,15 @@
  *     <OpenLayers.Lang.translate>.  Entry bodies are normal strings or
  *     strings formatted for use with <OpenLayers.String.format> calls.
  */
-cityways.lang.En = {
+cityways.lang.en = {
+	'path_time': "Path time",
+	'cost': "Coast",
+	'time': "Path time",
+	'UAH' : "UAH",
+	'time.minute': "minute",
+	'time.minutes10': "minutes",
+	'time.minutes': "minutes",
+	'time.minutes_ru': "minutes",
 
     'unhandledRequest': "Unhandled request return ${statusText}",
 
