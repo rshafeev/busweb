@@ -7,6 +7,7 @@
 
 <ui:base>
 	<jsp:attribute name="page_head">
+	<link rel="stylesheet" type="text/css" href="${myContext}/media/cityways/themes/default/css/main.css">
 	<script src="${myContext}/media/cityways/themes/default/templates/main.xml" type="text/template"></script>
 	
 	<script src="${myContext}/media/js/libs/jquery.tinyscrollbar.min.js"></script>
@@ -29,6 +30,8 @@
 		};
 
 		$(document).ready(function() {
+			cityways.Basic.ServerHost = "${myContext}";
+			cityways.Language.setCode("${model.getLanguage()}");
 			cityways.Basic.ResourceURI = "${myContext}/media/cityways/";
 			cityways.Page.Current = new cityways.page.MainPage(options);
 			initialize(options);

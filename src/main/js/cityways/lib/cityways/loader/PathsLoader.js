@@ -41,19 +41,20 @@ cityways.loader.PathsLoader = cityways.type.Class({
         };
  * @param {Object} resultFunc Callback функция
 			 */
-			findShortestPaths : function(options, resultFunc) {
+			findShortestPaths : function(options, callback) {
 				$.ajax({
-							url : cityways.ResourceURI + "paths/find.json",
+							url : cityways.Basic.ServerHost + "/paths/find.json",
 							type : "POST",
 							data : {data: $.toJSON(options ) },
 							success : function(data) {
-							    if(resultFunc == null)
+								cityways.Console.log("findShortestPaths");
+								var obj = $.parseJSON(data);
+							    if(callback == null)
 							         throw new Error("resultFunc was not defined");
-								resultFunc({
-											data : data
+								callback({
+											data : obj
 										});
-							},
-							dataType : "application/json"
+							}
 						});
 			}
 		});

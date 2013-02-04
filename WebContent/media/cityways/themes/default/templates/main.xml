@@ -1,7 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <templates>
-	<template id="template-main-waysPanel"> <![CDATA[
+	<template id="template-main-waysPanelHeader">
+	<![CDATA[
+<div class="result_numb" id="result_numb_<%=index%>"
+			onclick="on_selectDetailWay(<%=index%>)">
+			<div id="rout_numb">
+
+				<div class="numb">
+					<a id="way_ref_<%=index%>"
+						style="color: white; font-size: 24px; font-weight: 900;"
+						onclick="on_selectWay(<%=index%>)">
+						<%=index%>
+
+					</a>
+				</div>
+
+
+			</div>
+			<div id="cost_info">
+				<p><%= locale("cost") + cost  + " " + locale("UAH") %></p>
+				<p><%= locale("time") + time%></p>
+			</div>
+		</div>
+	]]>
+	</template>
+	<template id="template-main-waysPanelInfo"> <![CDATA[
 		<p><%= value %></p>
+		<p><%= locale("path_time") %></p>
+
 		<div class="start"> 
 			<div class="userplace">
 				<input type="text" id="username" />
@@ -15,8 +42,8 @@
 	<template id="template-main-product"><![CDATA[
 		<div>
 			<p>sdfdsf</p>
-			
+
 		</div>
-]]>
+	]]>
 	</template>
 </templates>

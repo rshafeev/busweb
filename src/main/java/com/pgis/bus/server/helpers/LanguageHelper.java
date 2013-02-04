@@ -19,4 +19,5 @@ public class LanguageHelper {
 
 		return "c_" + locale.getLanguage();
 	}
+	
 }

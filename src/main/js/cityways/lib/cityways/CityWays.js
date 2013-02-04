@@ -13,7 +13,9 @@ var cityways =  {
     page : {},
     type : {},
     widget : {},
-    template : {}
+    template : {},
+    model : {},
+    helper: {}
 };
 
 cityways.page = {

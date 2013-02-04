@@ -25,7 +25,7 @@ cityways.Language = {
      * {String} Default language to use when a specific language can't be
      *     found.  Default is "en".
      */
-    defaultCode: "En",
+    defaultCode: "ru",
         
     /**
      * APIFunction: getCode
@@ -60,7 +60,7 @@ cityways.Language = {
                 navigator.userLanguage : navigator.language;
         }
         var parts = code.split('-');
-        parts[0] = parts[0];//.toLowerCase();
+        parts[0] = parts[0].toLowerCase();
         if(typeof cityways.lang[parts[0]] == "object") {
             lang = parts[0];
         }
@@ -105,6 +105,7 @@ cityways.Language = {
         }
         return message;
     }
+    
     
 };
 

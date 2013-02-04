@@ -4,7 +4,9 @@
  */
 
 cityways.Console =  {
-    log : console.log.bind(console)
+    log : console.log.bind(console),
+    
+    warn: console.warn.bind(console)
 };
 
 

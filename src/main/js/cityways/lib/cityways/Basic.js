@@ -8,6 +8,8 @@
  */
 cityways.Basic = {
     
+    ServerHost : "http://ways.in.ua",
+    
     Theme : "default",
     
     /**
@@ -66,7 +68,11 @@ cityways.Basic = {
             }
         }
         return l;
-    }
+   },
+   
+   getResourcePath : function(){
+   	 return cityways.Basic.ResourceURI +"themes/" + cityways.Basic.Theme + "/";
+   }
 
 };
 /**
