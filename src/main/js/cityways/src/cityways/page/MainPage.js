@@ -1,14 +1,24 @@
 /**
- * @requires cityways/type/Class.js
+ * @requires cityways/Class.js
+ * @requires cityways/page.js
  */
 
+
 /**
- * Class: cityways.Pages.MainPage
+ * [MainPage description]
+ * @class cityways.page.MainPage
  */
-cityways.page.MainPage = cityways.type.Class({
+cityways.page.MainPage = cityways.Class({
 
 	/**
 	 * Видимость правой панели
+	 */
+	/**
+	 * Видимость правой панели.
+	 * @fieldOf cityways.page.MainPage.prototype
+	 * @default false
+	 * @typedef {bool}
+	 * @type {bool}
 	 */
 	rightPanelVisible : null,
 	
@@ -22,14 +32,17 @@ cityways.page.MainPage = cityways.type.Class({
 	currentCity : null,
 
 	/**
-	 * 
-	 * @param {Object}
-	 *            options
+	 * [initialize description]
+	 * @constructor
+	 * @this cityways.page.MainPage
+	 * @class cityways.page.MainPage
+	 * @param  {[type]} options [description]
+	 * @return {[type]}         [description]
 	 */
 	initialize : function(options) {
-		cityways.Console.log(this);
-		cityways.Console.log('MainPage was initialized!!');
-		
+		cityways.log(this);
+		cityways.log('MainPage was initialized!!');
+		//alert("Hello");
 		this.currentCity = options.currentCity;
 		this.widgetEventHandlers = new cityways.page.main.WidgetEventHandlers();
 		this.settingsPanel = new cityways.page.main.SettingsPanel({
@@ -37,8 +50,15 @@ cityways.page.MainPage = cityways.type.Class({
 				});
 		
 		this.visibleRightPanel(false);
+		
 	},
 
+	/**
+	 * 
+	 * Возвращает текущий город.
+	 * @methodOf cityways.page.MainPage.prototype
+	 * @return {[type]} [description]
+	 */
 	getCurrentCity : function() {
 		return this.currentCity;
 	},

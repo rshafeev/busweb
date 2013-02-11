@@ -11,11 +11,13 @@
 *.class
 *.orig
 .directory
+src/main/js/cityways/jsdoc-toolkit
 bin*/
 target*/
 build/
 bin/
 target/
+WebContent/WEB-INF/classes
 WebContent/META-INF/context.xml
 >>>>>>> 96600d1929838e5e765d5e12f72d64af681041c8
 

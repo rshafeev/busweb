@@ -1,12 +1,12 @@
 /**
- * @requires cityways/type/Class.js
- * 
+ * @requires cityways/Class.js
+ * @requires cityways/page.js
  */
 
 /**
  * Class: cityways.Pages.MainPage.WidgetEventHandlers
  */
-cityways.page.main.WidgetEventHandlers = cityways.type.Class({
+cityways.page.main.WidgetEventHandlers = cityways.Class({
 
 			/**
 			 * 

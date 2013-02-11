@@ -1,11 +1,16 @@
-/* Copyright (c) 2006-2012 by OpenLayers Contributors (see authors.txt for 
- * full list of contributors). Published under the 2-clause BSD license.
- * See license.txt in the OpenLayers distribution or repository for the
- * full text of the license. */
-
 /**
- * @requires cityways/Namespace.js
+ * @overview
+ * 
+ * @copyright 
+ * 2012,PremiumGIS Inc. All Rights Reserved. <a href="http://premiumgis.com">PremiumGIS</a>
+ * Project url: <a href="http://ways.in.ua">cityways</a>
+ * 
+ * @author <a href="mailto:rs@premiumgis.com">Roman Shafeyev</a>
+ *
+ * @requires cityways/cityways.js
+ *
  */
+
 
 /**
  * Constructor: cityways.Class
@@ -24,13 +29,18 @@
  * To create a new OpenLayers-style class with multiple inheritance, use the
  *     following syntax:
  * (code)
- *     var MyClass = OpenLayers.Class(Class1, Class2, prototype);
+ *     var MyClass = cityways.Class(Class1, Class2, prototype);
  * (end)
  * 
  * Note that instanceof reflection will only reveal Class1 as superclass.
  *
  */
-cityways.type.Class = function() {
+/**
+ * @description  Base class used to construct all other classes. Includes support for 
+ * multiple inheritance. 
+   @constructor 
+*/ 
+cityways.Class = function() {
     var len = arguments.length;
     var P = arguments[0];
     var F = arguments[len-1];
@@ -42,7 +52,7 @@ cityways.type.Class = function() {
     if (len > 1) {
         var newArgs = [C, P].concat(
                 Array.prototype.slice.call(arguments).slice(1, len-1), F);
-        cityways.Util.inherit.apply(null, newArgs);
+        cityways.inherit.apply(null, newArgs);
     } else {
         C.prototype = F;
     }

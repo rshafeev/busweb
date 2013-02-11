@@ -1,19 +1,19 @@
 
-test('cityways.helper.Time.secsToLocaleString(secs)', function () {
+test('cityways.helper.time.secsToLocaleString(secs)', function () {
 
   // Настроим язык
-  cityways.Language.setCode("ru");
+  cityways.language.setCode("ru");
   
   // Unit testing
-  equal(cityways.helper.Time.secsToLocaleString(100), '1 минута', '');
-  equal(cityways.helper.Time.secsToLocaleString(120), '2 минуты', '');
+  equal(cityways.helper.time.secsToLocaleString(100), '1 минута', '');
+  equal(cityways.helper.time.secsToLocaleString(120), '2 минуты', '');
 
 });
 
-test('cityways.helper.Time.minsOfHourToLocaleString(mins)', function () {
+test('cityways.helper.time.minsOfHourToLocaleString(mins)', function () {
 
   // Настроим язык
-  cityways.Language.setCode("ru");
+  cityways.language.setCode("ru");
    
  equal('check', 'check', ''); 
 });

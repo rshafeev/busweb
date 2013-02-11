@@ -1,5 +1,5 @@
 /**
- * @requires cityways/type/Class.js
+ * @requires cityways/Class.js
  */
 
 /**
@@ -22,10 +22,22 @@
  * </html>
  * 
  */
-cityways.WidgetMap = cityways.type.Class({
-
+/**
+ * [Map description]
+ * @constructor
+ * @type {cityways.Map}
+ * @this {cityways.Map}
+ */
+cityways.Map = cityways.Class({
+    
+    div  : null,
+    
+    mapObj : null,
+    
 	initialize : function(div, options) {
-		console.log('map was initialized');
+	    this.div = div;
+	    this.mapObj = new cityways.map.GoogleMap(div,options);
+	    cityways.Util.extend(this,this.mapObj);
 	}
 
 });

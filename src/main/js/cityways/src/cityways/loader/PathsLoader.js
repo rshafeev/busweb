@@ -1,8 +1,8 @@
 /**
- * @requires cityways/type/Class.js
+ * @requires cityways/Class.js
  */
 
-cityways.loader.PathsLoader = cityways.type.Class({
+cityways.loader.PathsLoader = cityways.Class({
 
 			/**
 			 * 
@@ -43,11 +43,11 @@ cityways.loader.PathsLoader = cityways.type.Class({
 			 */
 			findShortestPaths : function(options, callback) {
 				$.ajax({
-							url : cityways.Basic.ServerHost + "/paths/find.json",
+							url : cityways.options.ServerHost + "/paths/find.json",
 							type : "POST",
 							data : {data: $.toJSON(options ) },
 							success : function(data) {
-								cityways.Console.log("findShortestPaths");
+								cityways.log("findShortestPaths");
 								var obj = $.parseJSON(data);
 							    if(callback == null)
 							         throw new Error("resultFunc was not defined");

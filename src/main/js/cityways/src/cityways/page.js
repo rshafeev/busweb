@@ -1,20 +1,15 @@
 
 /**
- * @requires cityways/Namespace.js
- */
-
-/** 
- * Header: OpenLayers Base Types
- * OpenLayers custom string, number and function functions are described here.
+ * @requires cityways/cityways.js
  */
 
 /**
- * Namespace: cityways.Pages
- * Contains convenience functions for string manipulation.
+ * @namespace 
+ * @type {Object}
  */
-
-cityways.Page = {
-    
+cityways.page = {
+    main : {},
+    routes : {},
     /**
      * Текущая страница
      */
@@ -24,9 +19,7 @@ cityways.Page = {
     * 
     * @return Обработчик событий виджетов текущей страницы 
     */
-    Events : function(){
-        return cityways.Page.Current.getWidgetEventHandlers();
-    }
+    Events : null
     
     
     

@@ -48,6 +48,7 @@ public class HomeController extends BaseController {
 
 	public HomeController(IDataBaseService db) {
 		super(db);
+		
 	}
 
 	@Autowired

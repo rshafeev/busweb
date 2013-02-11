@@ -17,18 +17,1679 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
  * POSSIBILITY OF SUCH DAMAGE.
  */
-var cityways={lang:{},loader:{},page:{},type:{},widget:{},template:{},model:{},helper:{},page:{main:{},routes:{}}};cityways.helper.Time={secsToLocaleString:function(a){var b=parseInt(a/3600);a=parseInt((a-3600*b)/60);return 0==b?cityways.helper.Time.minsOfHourToLocaleString(a):cityways.helper.Time.hoursToLocaleString(b)+" "+cityways.helper.Time.minsOfHourToLocaleString(a)},minsOfHourToLocaleString:function(a){if(10<=a&&20>=a)return a+" "+cityways.Language.translate("time.minutes10");var b=a%10;return 1>=b?a+" "+cityways.Language.translate("time.minute"):1<b&&5>b?a+" "+cityways.Language.translate("time.minutes"):
-a+" "+cityways.Language.translate("time.minutes_ru")},hoursToLocaleString:function(a){if(5<=a&&20>=a)return a+" "+cityways.Language.translate("time.hours");var b=a%10;return 1==b?a+" "+cityways.Language.translate("time.hour"):2<=b&&5>b?a+" "+cityways.Language.translate("time.hours_ru"):a+" "+cityways.Language.translate("time.hours")}};cityways.Language={code:null,defaultCode:"ru",getCode:function(){cityways.Language.code||cityways.Language.setCode();return cityways.Language.code},setCode:function(a){var b;a||(a="msie"==cityways.BROWSER_NAME?navigator.userLanguage:navigator.language);a=a.split("-");a[0]=a[0].toLowerCase();"object"==typeof cityways.lang[a[0]]&&(b=a[0]);if(a[1]){var c=a[0]+"-"+a[1].toUpperCase();"object"==typeof cityways.lang[c]&&(b=c)}b||(cityways.Console.warn("Failed to find cityways.Lang."+a.join("-")+" dictionary, falling back to default language"),
-b=cityways.Language.defaultCode);cityways.Language.code=b},translate:function(a){var b=cityways.lang[cityways.Language.getCode()];(b=b&&b[a])||(b=a);return b}};cityways.Page={Current:null,Events:function(){return cityways.Page.Current.getWidgetEventHandlers()}};cityways.Util={inherit:function(a,b){var c=function(){};c.prototype=b.prototype;a.prototype=new c;var d,e,c=2;for(d=arguments.length;c<d;c++)e=arguments[c],"function"===typeof e&&(e=e.prototype),cityways.Util.extend(a.prototype,e)},extend:function(a,b){a=a||{};if(b){for(var c in b){var d=b[c];void 0!==d&&(a[c]=d)}!("function"==typeof window.Event&&b instanceof window.Event)&&(b.hasOwnProperty&&b.hasOwnProperty("toString"))&&(a.toString=b.toString)}return a}};cityways.type.Class=function(){var a=arguments.length,b=arguments[0],c=arguments[a-1],d="function"==typeof c.initialize?c.initialize:function(){b.prototype.initialize.apply(this,arguments)};1<a?(a=[d,b].concat(Array.prototype.slice.call(arguments).slice(1,a-1),c),cityways.Util.inherit.apply(null,a)):d.prototype=c;return d};cityways.page.MainPage=cityways.type.Class({rightPanelVisible:null,settingsPanel:null,widgetEventHandlers:null,currentCity:null,initialize:function(a){cityways.Console.log(this);cityways.Console.log("MainPage was initialized!!");this.currentCity=a.currentCity;this.widgetEventHandlers=new cityways.page.main.WidgetEventHandlers;this.settingsPanel=new cityways.page.main.SettingsPanel({availableRouteTypes:a.routeTypes});this.visibleRightPanel(!1)},getCurrentCity:function(){return this.currentCity},getWidgetEventHandlers:function(){return this.widgetEventHandlers},
-getSettingsPanel:function(){return this.settingsPanel},getPathsOptions:function(){var a=this.getCurrentCity(),b=[];b.push({discount:1,route_type_id:"c_route_transition"});b.push({discount:1,route_type_id:"c_route_station_input"});b.push({discount:1,route_type_id:"c_route_station_output"});b.push({discount:0.5,route_type_id:"c_route_metro"});b.push({discount:1,route_type_id:"c_route_bus"});b.push({discount:1,route_type_id:"c_route_trolley"});return{cityID:a.id,p1:{lat:50.0253640226659,lon:36.3350757963562},
-p2:{lat:50.0353179327227,lon:36.2199825018311},outTime:{dayID:"c_Sunday",timeStart:366E5},algStrategy:"c_time",usageRouteTypes:b}},visibleRightPanel:function(a){var b=cityways.Basic.ResourceURI;this.rightPanelVisible!=a&&(!0==a?($("#map_canvas").width("68%").css({cursor:"auto",backgroundColor:"rgb(226, 226, 226)"}),document.img.src=b+"themes/default/images/arrow_right.png"):($("#map_canvas").width("98.5%").css({cursor:"auto",backgroundColor:"rgb(226, 226, 226)"}),document.img.src=b+"themes/default/images/arrow_left.png"),
-this.rightPanelVisible=a)}});cityways.model.Path=cityways.type.Class({pathID:null,input:null,out:null,transitions:[],routes:[],initialize:function(a){cityways.Util.extend(this,a)},getFullCost:function(){if(null==this.routes)return 0;for(var a=0,b=0;b<this.routes.length;b++)a+=this.routes[b].cost;return a},getWalkingTime:function(){for(var a=0,b=0;b<this.transitions.length;b++)a+=this.transitions[b].moveTimeSecs;a+=this.input.moveTimeSecs;a+=this.out.moveTimeSecs;return cityways.helper.Time.secsToLocaleString(a)}});cityways.page.main.SettingsPanel=cityways.type.Class({availableRouteTypes:null,initialize:function(a){this.availableRouteTypes=a.availableRouteTypes},getEnabledRouteTypes:function(){console.log(this.availableRouteTypes)},enableRouteTypeBtn:function(a,b){this.getEnabledRouteTypes();var c=cityways.Basic.ResourceURI,d=this._getRouteTypeBtnHtmlElement(a).find("img").get(0),c=c+"media/css/images/route_types/32/"+a;d.src=!0==b?c+"_selected.png":c+".png"},_getRouteTypeBtnHtmlElement:function(a){console.log($("#cways_menu_route_btn_"+
-a));return $("#cways_menu_route_btn_"+a)},isEnabledRouteTypeBtn:function(a){var b=this._getRouteTypeBtnHtmlElement(a),c=cityways.Basic.ResourceURI;return-1!=b.find("img").get(0).src.indexOf(c+"media/css/images/route_types/32/"+a+".png")?!1:!0}});cityways.page.main.WidgetEventHandlers=cityways.type.Class({initialize:function(){},onRouteTypeClick:function(a,b,c,d){a=cityways.Page.Current;!0==a.getSettingsPanel().isEnabledRouteTypeBtn(b)?a.getSettingsPanel().enableRouteTypeBtn(b,!1,c):(console.log("false"),a.getSettingsPanel().enableRouteTypeBtn(b,!0,d))},_onMakeRightPanelContent:function(a,b,c){a=c["template-main-waysPanelHeader"];b=b.paths;c="";for(var d=0;d<b.length;d++){var e=new cityways.model.Path(b[d]);cityways.Console.log(e.getFullCost());
-e={index:d+1,locale:cityways.Language.translate,cost:e.getFullCost(),time:e.getWalkingTime()};c+=a(e)}$("#panel_data").html(c)},_onLoadedPaths:function(a,b){var c=b.data,d={},e=0,f=this;cityways.template.HtmlTemplates.get("template-main-waysPanelHeader",function(a){e++;d["template-main-waysPanelHeader"]=a;2==e&&f._onMakeRightPanelContent(f,c,d)});cityways.template.HtmlTemplates.get("template-main-waysPanelInfo",function(a){e++;d["template-main-waysPanelInfo"]=a;2==e&&f._onMakeRightPanelContent(f,
-c,d)})},onFindBtnClick:function(){var a=cityways.Page.Current,b=a.getPathsOptions(),c=document.getElementById("ways_panel");if(null!=b){c.style.display="block";c=cityways.Basic.getResourcePath()+"images/load.gif";$("#panel_data").html("<div class='loader_text'><img src='"+c+"'/></div>");$("#panel_scrollbar").tinyscrollbar_update();a.visibleRightPanel(!0);var d=this;cityways.Console.log("onFindBtnClick");(new cityways.loader.PathsLoader).findShortestPaths(b,function(a){cityways.Console.log("findShortestPaths");
-d._onLoadedPaths(d,a)})}},on_selectDetailWay:function(){cityways.Console.log("OK")}});void 0===cityways.Console&&(cityways.Console={log:function(){}});cityways.template.HtmlTemplates={_templates:{},get:function(a,b){var c=cityways.template.HtmlTemplates._templates;if(void 0===c[a]){var d=new cityways.loader.TemplatesLoader,e=cityways.template.HtmlTemplates._getFileByTemplateName(a);d.loadHtmlTemplates(e,function(d){cityways.Util.extend(c,d);b(c[a])})}else b(c[a])},_getFileByTemplateName:function(){return"main"}};(function(){var a=!0;void 0===window.cityways&&(a=!1);if(!a){for(var a="cityways/Namespace.js cityways/helper/Time.js cityways/Language.js cityways/Page.js cityways/Util.js cityways/type/Class.js cityways/page/MainPage.js cityways/model/Path.js cityways/page/main/SettingsPanel.js cityways/page/main/WidgetEventHandlers.js cityways/Console.js cityways/template/HtmlTemplates.js cityways/Basic.js cityways/lang/ru.js cityways/lang/en.js cityways/lang/uk.js cityways/loader/PathsLoader.js cityways/loader/TemplatesLoader.js cityways/WidgetMap.js".split(" "),
-b=Array(a.length),c=/(^|(.*?\/))(CityWays[^\/]*?\.js)(\?|$)/,d=document.getElementsByTagName("script"),e,f="",g=0,h=d.length;g<h;g++)if(e=d[g].getAttribute("src"))if(e=e.match(c)){f=e[1];break}c=f+"/";d=0;for(f=a.length;d<f;d++)b[d]="<script src='"+c+a[d]+"'>\x3c/script>";0<b.length&&document.write(b.join(""))}})();cityways.Basic={ServerHost:"http://ways.in.ua",Theme:"default",ResourceURI:"/",VERSION_NUMBER:"Release 2.13 dev",_getScriptLocation:function(a){a=RegExp("(^|(.*?\\/))("+a+"[^\\/]*?\\.js)(\\?|$)");for(var b=document.getElementsByTagName("script"),c,d="",e=0,f=b.length;e<f;e++)if(c=b[e].getAttribute("src"))if(c=c.match(a)){d=c[1];break}return d},getResourcePath:function(){return cityways.Basic.ResourceURI+"themes/"+cityways.Basic.Theme+"/"}};
-(function(){cityways.Basic.ResourceURI=cityways.Basic._getScriptLocation("MainPage");cityways.Console.log(cityways.Basic.ResourceURI)})();cityways.lang.uk={path_time:"\u0427\u0430\u0441 \u0432 \u0434\u043e\u0440\u043e\u0437i",cost:"\u0412\u0430\u0440\u0442i\u0441\u0442\u044c:",time:"\u0427\u0430\u0441 \u0443 \u0434\u043e\u0440\u043e\u0437i: ",UAH:"\u0433\u0440\u043d","time.minute":"\u0445\u0432\u0438\u043b\u0438\u043d\u0430","time.minutes10":"\u0445\u0432\u0438\u043b\u0438\u043d","time.minutes":"\u0445\u0432\u0438\u043b\u0438\u043d\u0438","time.minutes_ru":"\u0445\u0432\u0438\u043b\u0438\u043d"};cityways.lang.ru={path_time:"\u0412\u0440\u0435\u043c\u044f \u0432 \u043f\u0443\u0442\u0438",cost:"\u0421\u0442\u043e\u0438\u043c\u043e\u0441\u0442\u044c:",time:"\u0412\u0440\u0435\u043c\u044f \u0432 \u043f\u0443\u0442\u0438: ",UAH:"\u0433\u0440\u043d","time.minute":"\u043c\u0438\u043d\u0443\u0442\u0430","time.minutes10":"\u043c\u0438\u043d\u0443\u0442","time.minutes":"\u043c\u0438\u043d\u0443\u0442\u044b","time.minutes_ru":"\u043c\u0438\u043d\u0443\u0442"};cityways.loader.PathsLoader=cityways.type.Class({initialize:function(){},findShortestPaths:function(a,b){$.ajax({url:cityways.Basic.ServerHost+"/paths/find.json",type:"POST",data:{data:$.toJSON(a)},success:function(a){cityways.Console.log("findShortestPaths");a=$.parseJSON(a);if(null==b)throw Error("resultFunc was not defined");b({data:a})}})}});cityways.WidgetMap=cityways.type.Class({initialize:function(){console.log("map was initialized")}});cityways.lang.en={path_time:"Path time",cost:"Coast",time:"Path time",UAH:"UAH","time.minute":"minute","time.minutes10":"minutes","time.minutes":"minutes","time.minutes_ru":"minutes",unhandledRequest:"Unhandled request return ${statusText}",Permalink:"Permalink",Overlays:"Overlays","Base Layer":"Base Layer",noFID:"Can't update a feature for which there is no FID.",browserNotSupported:"Your browser does not support vector rendering. Currently supported renderers are:\n${renderers}",minZoomLevelError:"The minZoomLevel property is only intended for use with the FixedZoomLevels-descendent layers. That this wfs layer checks for minZoomLevel is a relic of thepast. We cannot, however, remove it without possibly breaking OL based applications that may depend on it. Therefore we are deprecating it -- the minZoomLevel check below will be removed at 3.0. Please instead use min/max resolution setting as described here: http://trac.openlayers.org/wiki/SettingZoomLevels",
-commitSuccess:"WFS Transaction: SUCCESS ${response}",commitFailed:"WFS Transaction: FAILED ${response}",googleWarning:"The Google Layer was unable to load correctly.<br><br>To get rid of this message, select a new BaseLayer in the layer switcher in the upper-right corner.<br><br>Most likely, this is because the Google Maps library script was either not included, or does not contain the correct API key for your site.<br><br>Developers: For help getting this working correctly, <a href='http://trac.openlayers.org/wiki/Google' target='_blank'>click here</a>",
-getLayerWarning:"The ${layerType} Layer was unable to load correctly.<br><br>To get rid of this message, select a new BaseLayer in the layer switcher in the upper-right corner.<br><br>Most likely, this is because the ${layerLib} library script was not correctly included.<br><br>Developers: For help getting this working correctly, <a href='http://trac.openlayers.org/wiki/${layerLib}' target='_blank'>click here</a>","Scale = 1 : ${scaleDenom}":"Scale = 1 : ${scaleDenom}",W:"W",E:"E",N:"N",S:"S",Graticule:"Graticule",
-reprojectDeprecated:"You are using the 'reproject' option on the ${layerName} layer. This option is deprecated: its use was designed to support displaying data over commercial basemaps, but that functionality should now be achieved by using Spherical Mercator support. More information is available from http://trac.openlayers.org/wiki/SphericalMercator.",methodDeprecated:"This method has been deprecated and will be removed in 3.0. Please use ${newMethod} instead.",end:""};cityways.loader.TemplatesLoader=cityways.type.Class({initialize:function(){},loadHtmlTemplates:function(a,b){$.ajax({url:cityways.Basic.ResourceURI+"themes/"+cityways.Basic.Theme+"/templates/"+a+".xml",success:function(a){if(null==b)throw Error("callback was not defined");a=a.getElementsByTagName("template");for(var d={},e=0;e<a.length;e++)try{cityways.Console.log(a[e].textContent);cityways.Console.log(a[e].getAttribute("id"));var f=a[e].getAttribute("id"),g=_.template(a[e].textContent);d[f]=g;cityways.Console.log("ok")}catch(h){}b(d)}})}});
+/* ======================================================================
+    cityways/cityways.js
+   ====================================================================== */
+
+
+ /**
+ * Определим все namespace и корневые статические функции
+ */
+/**
+ * [cityways description]
+ * @namespace cityways
+ * @type {Object}
+ */
+var cityways =  {
+    lang : {},
+    loader : {},
+    page : {},
+    type : {},
+    widget : {},
+    template : {},
+    model : {},
+    helper: {},
+    map : {},
+    
+     /**
+     * Function: inherit
+     * 
+     * Parameters: C - {Object} the class that inherits P - {Object} the
+     * superclass to inherit from
+     * 
+     * In addition to the mandatory C and P parameters, an arbitrary number of
+     * objects can be passed, which will extend C.
+     */
+    inherit : function(C, P) {
+        var F = function() {
+        };
+        F.prototype = P.prototype;
+        C.prototype = new F;
+        var i, l, o;
+        for (i = 2, l = arguments.length; i < l; i++) {
+            o = arguments[i];
+            if (typeof o === "function") {
+                o = o.prototype;
+            }
+            cityways.extend(C.prototype, o);
+            
+        }
+        
+    },
+
+    /**
+     * [extend description]
+     * @param  {[type]} destination [description]
+     * @param  {[type]} source      [description]
+     * @return {[type]}             [description]
+     */
+    extend : function(destination, source) {
+        destination = destination || {};
+        if (source) {
+            for (var property in source) {
+                var value = source[property];
+                if (value !== undefined) {
+                    destination[property] = value;
+                }
+            }
+        
+            
+            /**
+             * IE doesn't include the toString property when iterating over an
+             * object's properties with the for(property in object) syntax.
+             * Explicitly check if the source has its own toString property.
+             */
+
+            /*
+             * FF/Windows < 2.0.0.13 reports "Illegal operation on WrappedNative
+             * prototype object" when calling hawOwnProperty if the source
+             * object is an instance of window.Event.
+             */
+
+            var sourceIsEvt = typeof window.Event == "function"
+                    && source instanceof window.Event;
+
+            if (!sourceIsEvt && source.hasOwnProperty
+                    && source.hasOwnProperty("toString")) {
+                destination.toString = source.toString;
+            }
+        }
+        return destination;
+    },
+    
+    log : function(){}
+    
+};
+
+
+
+
+
+
+
+/* ======================================================================
+    test/TestConsole.js
+   ====================================================================== */
+
+
+/**
+ * @requires cityways/cityways.js
+ */
+
+cityways.log  = console.log.bind(console);
+cityways.warn = console.warn.bind(console);
+
+
+
+
+
+/* ======================================================================
+    cityways/Class.js
+   ====================================================================== */
+
+/**
+ * @overview
+ * 
+ * @copyright 
+ * 2012,PremiumGIS Inc. All Rights Reserved. <a href="http://premiumgis.com">PremiumGIS</a>
+ * Project url: <a href="http://ways.in.ua">cityways</a>
+ * 
+ * @author <a href="mailto:rs@premiumgis.com">Roman Shafeyev</a>
+ *
+ * @requires cityways/cityways.js
+ *
+ */
+
+
+/**
+ * Constructor: cityways.Class
+ * Base class used to construct all other classes. Includes support for 
+ *     multiple inheritance. 
+ *     
+ * This constructor is new in OpenLayers 2.5.  At OpenLayers 3.0, the old 
+ *     syntax for creating classes and dealing with inheritance 
+ *     will be removed.
+ * 
+ * To create a new OpenLayers-style class, use the following syntax:
+ * (code)
+ *     var MyClass = cityways.Class(prototype);
+ * (end)
+ *
+ * To create a new OpenLayers-style class with multiple inheritance, use the
+ *     following syntax:
+ * (code)
+ *     var MyClass = cityways.Class(Class1, Class2, prototype);
+ * (end)
+ * 
+ * Note that instanceof reflection will only reveal Class1 as superclass.
+ *
+ */
+/**
+ * @description  Base class used to construct all other classes. Includes support for 
+ * multiple inheritance. 
+   @constructor 
+*/ 
+cityways.Class = function() {
+    var len = arguments.length;
+    var P = arguments[0];
+    var F = arguments[len-1];
+
+    var C = typeof F.initialize == "function" ?
+        F.initialize :
+        function(){ P.prototype.initialize.apply(this, arguments); };
+
+    if (len > 1) {
+        var newArgs = [C, P].concat(
+                Array.prototype.slice.call(arguments).slice(1, len-1), F);
+        cityways.inherit.apply(null, newArgs);
+    } else {
+        C.prototype = F;
+    }
+    return C;
+};
+
+/* ======================================================================
+    cityways/page.js
+   ====================================================================== */
+
+
+/**
+ * @requires cityways/cityways.js
+ */
+
+/**
+ * @namespace 
+ * @type {Object}
+ */
+cityways.page = {
+    main : {},
+    routes : {},
+    /**
+     * Текущая страница
+     */
+    Current : null,
+    
+   /**
+    * 
+    * @return Обработчик событий виджетов текущей страницы 
+    */
+    Events : null
+    
+    
+    
+};
+/* ======================================================================
+    cityways/page/main/WidgetEventHandlers.js
+   ====================================================================== */
+
+/**
+ * @requires cityways/Class.js
+ * @requires cityways/page.js
+ */
+
+/**
+ * Class: cityways.Pages.MainPage.WidgetEventHandlers
+ */
+cityways.page.main.WidgetEventHandlers = cityways.Class({
+
+			/**
+			 * 
+			 * @param {Object}
+			 *            mainPage
+			 */
+			initialize : function() {
+
+			},
+
+			onRouteTypeClick : function(self, routeType, includeTitle,
+					excludeTitle) {
+				var page = cityways.Page.Current;
+				if (page.getSettingsPanel().isEnabledRouteTypeBtn(routeType) == true) {
+					page.getSettingsPanel().enableRouteTypeBtn(routeType,
+							false, includeTitle);
+				} else {
+					console.log("false");
+					page.getSettingsPanel().enableRouteTypeBtn(routeType, true,
+							excludeTitle);
+				}
+
+			},
+			_onMakeRightPanelContent : function(self, data, templates) {
+				var headersTemplate = templates["template-main-waysPanelHeader"];
+				var infoTemplate = templates["template-main-waysPanelInfo"];
+				var paths = data.paths;
+				var htmlBody = "";
+				for (var i = 0; i < paths.length; i++) {
+					var path = new cityways.model.Path(paths[i]);
+					cityways.Console.log(path.getFullCost());
+					var params = {
+						index : i + 1,
+						locale : cityways.Language.translate,
+						cost : path.getFullCost(),
+						time: path.getWalkingTime()
+					};
+					htmlBody = htmlBody + headersTemplate(params);
+				}
+				$('#panel_data').html(htmlBody);
+			},
+
+			_onLoadedPaths : function(self, e) {
+				var data = e.data;
+				var templates = {};
+				var loadedTemplates = 0;
+				var templatesCount = 2;
+				var _this = this;
+
+				cityways.template.HtmlTemplates.get(
+						"template-main-waysPanelHeader", function(template) {
+							loadedTemplates++;
+							templates["template-main-waysPanelHeader"] = template;
+							if (loadedTemplates == templatesCount) {
+								_this._onMakeRightPanelContent(_this, data,
+										templates);
+							}
+						});
+
+				cityways.template.HtmlTemplates.get(
+						"template-main-waysPanelInfo", function(template) {
+							loadedTemplates++;
+							templates["template-main-waysPanelInfo"] = template;
+							if (loadedTemplates == templatesCount) {
+								_this._onMakeRightPanelContent(_this, data,
+										templates);
+							}
+						});
+
+			},
+
+			onFindBtnClick : function() {
+				var page = cityways.Page.Current;
+				var options = page.getPathsOptions();
+
+				var el = document.getElementById('ways_panel');
+				if (options == null)
+					return;
+				el.style.display = 'block';
+				var loadGif = cityways.Basic.getResourcePath()
+						+ "images/load.gif";
+				$('#panel_data').html("<div class='loader_text'><img src='"
+						+ loadGif + "'/></div>");
+				$('#panel_scrollbar').tinyscrollbar_update();
+				page.visibleRightPanel(true);
+				var _this = this;
+				cityways.Console.log("onFindBtnClick");
+				var loader = new cityways.loader.PathsLoader();
+				loader.findShortestPaths(options, function(e) {
+							cityways.Console.log("findShortestPaths");
+							_this._onLoadedPaths(_this, e);
+						});
+
+			},
+			
+			on_selectDetailWay : function(way_ind)
+			{
+			cityways.Console.log("OK");
+			}
+		});
+/* ======================================================================
+    cityways/model/Path.js
+   ====================================================================== */
+
+/**
+ * @author Roman Shafeyev
+
+ * @requires cityways/Class.js
+ */
+
+cityways.model.Path = cityways.Class({
+
+			pathID : null,
+
+			input : null,
+
+			out : null,
+
+			transitions : [],
+
+			routes : [],
+			/**
+			 * 
+			 * @param {Object}
+			 *            mainPage
+			 */
+			initialize : function(pathData) {
+				cityways.Util.extend(this, pathData);
+
+			},
+			
+			/**
+			 * Возвращает стоимть пути
+			 */
+			getFullCost : function() {
+				if (this.routes == null)
+					return 0.0;
+				var cost = 0.0;
+				for (var i = 0; i < this.routes.length; i++) {
+					cost += this.routes[i].cost;
+				}
+				/*Отформатируем строку*/
+				return cost;
+			},
+			
+			/**
+			 * Возвращает время передвижения пешком, String
+			 */
+			getWalkingTime : function(){
+				var time = 0.0;
+				for(var i=0;i < this.transitions.length; i++)
+				{
+					time += this.transitions[i].moveTimeSecs;
+				}
+				time += this.input.moveTimeSecs;
+				time += this.out.moveTimeSecs;			 
+				return cityways.helper.Time.secsToLocaleString(time);
+			}
+
+		});
+/* ======================================================================
+    cityways/page/main/SettingsPanel.js
+   ====================================================================== */
+
+
+/**
+ * @requires cityways/Class.js
+ * @requires cityways/page.js
+ */
+
+/**
+ * Class:
+ */
+console.log(cityways.page);
+cityways.page.main.SettingsPanel = cityways.Class({
+    
+    /**
+     * Список возможных типов маршрутов, по которым ведется поиск,String[]
+     * Возможные значения: ['c_route_bus', 'c_route_metro',...]
+     */
+    availableRouteTypes : null,
+
+    /**
+     * 
+     * @param {Object}
+     *            mainPage
+     */
+    initialize : function(options) {
+        // Найдем в dom все типы маршрутов
+        this.availableRouteTypes = options.availableRouteTypes;
+    },
+    
+    
+    getEnabledRouteTypes : function(){
+       console.log(this.availableRouteTypes);
+       // $("mini_table_transp_list").a
+        
+    },
+   
+    /**
+     * 
+ * @param {String} routeType  Тип маршрута
+ * @param {Bool} val вкл/выкл
+ * @param {String} title Надпись
+     */
+    enableRouteTypeBtn : function(routeType,val,title){
+        this.getEnabledRouteTypes();
+        var ResourceURI = cityways.Basic.ResourceURI;
+        var elem = this._getRouteTypeBtnHtmlElement(routeType);
+        var img  = elem.find("img").get(0);
+        var imgFileName = ResourceURI
+                + 'media/css/images/route_types/32/' + routeType;
+        //elem.title = title; 
+        if(val == true){
+            img.src = imgFileName + '_selected.png';
+        }else
+        {
+            img.src = imgFileName + '.png';
+        }
+       
+    },
+    
+    _getRouteTypeBtnHtmlElement : function(routeType){
+         console.log($("#cways_menu_route_btn_" + routeType));
+          return $("#cways_menu_route_btn_" + routeType);
+    },
+    
+    isEnabledRouteTypeBtn : function(routeType){
+        var elem = this._getRouteTypeBtnHtmlElement(routeType);
+        var ResourceURI = cityways.Basic.ResourceURI;
+        var img  = elem.find("img").get(0);
+        var imgFileName = ResourceURI
+                + 'media/css/images/route_types/32/' + routeType;
+        
+        if (img.src.indexOf(imgFileName + '.png') != -1) {
+                return false;
+            } else {
+            return true;
+        }  
+    }
+    
+    
+});
+/* ======================================================================
+    cityways/helper/time.js
+   ====================================================================== */
+
+/**
+ * @requires cityways/cityways.js
+ */
+
+
+cityways.helper.time = {
+
+/**
+ * @secs int[0,3600*24]
+ * @return
+ */
+secsToLocaleString : function(secs) {
+
+	var h = parseInt(secs / 3600);
+	var m = parseInt((secs - h * 3600) / 60);
+	if (h==0)
+	{
+		return cityways.helper.time.minsOfHourToLocaleString(m);
+	}
+	return cityways.helper.time.hoursToLocaleString(h) +" " +cityways.helper.time.minsOfHourToLocaleString(m);
+	
+},
+
+/**
+ * @mins int [0,60]
+ */ minsOfHourToLocaleString  : function(mins) {
+
+	// минут
+	if (mins >= 10 && mins <= 20) {
+		return mins + " " + cityways.language.translate("time.minutes10");
+	}
+
+	var ostatok = mins % 10;
+	// минута
+	if (ostatok <= 1) {
+		return mins + " " + cityways.language.translate("time.minute");
+	}
+	// минуты
+	if (ostatok > 1 && ostatok < 5) {
+		return mins + " " + cityways.language.translate("time.minutes");
+	}
+	// минут
+	return mins + " " + cityways.language.translate("time.minutes_ru");
+
+},
+
+/**
+ * @mins int [0,24]
+ */ hoursToLocaleString  : function(hours) {
+
+	//часов
+	if (hours >= 5 && hours <= 20) {
+		return hours + " " + cityways.language.translate("time.hours");
+	}
+	var ostatok = hours % 10;
+	//час
+	if (ostatok == 1) {
+		return hours + " " + cityways.language.translate("time.hour");
+	}
+
+	//часа
+	if (ostatok >= 2 && ostatok < 5) {
+		return hours + " " + cityways.language.translate("time.hours_ru");
+	}
+	
+	return hours + " " + cityways.language.translate("time.hours");
+
+	}
+
+};
+/* ======================================================================
+    cityways/helper/array.js
+   ====================================================================== */
+
+/**
+ * @requires cityways/cityways.js
+ */
+
+cityways.helper.array = {
+
+	isExistElement : function(arr, elem) {
+		for (var i = 0; i < arr.length; i++) {
+			if (arr[i].toString() == elem.toString()) {
+				return true;
+			}
+			
+		}
+		return false;
+	}
+
+};
+/* ======================================================================
+    cityways/map/GoogleMap.js
+   ====================================================================== */
+
+/**
+ * @author Roman Shafeyev
+ */
+
+/**
+ * @requires cityways/Class.js
+ */
+
+/*Example:
+ * <html>
+ * <head>
+ * 		<script>.../cityways.js</script>
+ *		<script>
+ * 				function initialize(){
+ * 				var map = new cityways.map.GoogleMap ('map');
+ * 				}
+ * 		</script>
+ * </head>
+ * <body onload="initialize()">
+ * 		<div id="map"></div>
+ * </body>
+ * </html>
+ * 
+ */
+
+cityways.map.GoogleMap = cityways.Class({
+    div  : null,
+    
+	initialize : function(div, options) {
+	    this.div = div;
+	    cityways.log('Google map was initialized');
+	}
+
+});
+/* ======================================================================
+    cityways/BrowserDetect.js
+   ====================================================================== */
+
+
+/**
+ * @requires cityways/Class.js
+ */
+
+/**
+ * Статический класс, хранит общие статические свойства
+ */
+cityways.BrowserDetect = cityways.Class ({
+    
+    browserDetect : null,
+    
+    versionSearchString : null,
+    
+    browser : null,
+    
+    version : null,
+    
+    OS : null,
+    
+    initialize: function () {
+        this.browser = this.searchString(this.dataBrowser) || "An unknown browser";
+        this.version = this.searchVersion(navigator.userAgent)
+            || this.searchVersion(navigator.appVersion)
+            || "an unknown version";
+        this.OS = this.searchString(this.dataOS) || "an unknown OS";
+    },
+    
+    searchString: function (data) {
+        for (var i=0;i<data.length;i++) {
+            var dataString = data[i].string;
+            var dataProp = data[i].prop;
+            this.versionSearchString = data[i].versionSearch || data[i].identity;
+            if (dataString) {
+                if (dataString.indexOf(data[i].subString) != -1)
+                    return data[i].identity;
+            }
+            else if (dataProp)
+                return data[i].identity;
+        }
+    },
+    
+    searchVersion: function (dataString) {
+        var index = dataString.indexOf(this.versionSearchString);
+        if (index == -1) return;
+        return parseFloat(dataString.substring(index+this.versionSearchString.length+1));
+    },
+    
+    dataBrowser: [
+        {
+            string: navigator.userAgent,
+            subString: "Chrome",
+            identity: "Chrome"
+        },
+        {   string: navigator.userAgent,
+            subString: "OmniWeb",
+            versionSearch: "OmniWeb/",
+            identity: "OmniWeb"
+        },
+        {
+            string: navigator.vendor,
+            subString: "Apple",
+            identity: "Safari",
+            versionSearch: "Version"
+        },
+        {
+            prop: window.opera,
+            identity: "Opera",
+            versionSearch: "Version"
+        },
+        {
+            string: navigator.vendor,
+            subString: "iCab",
+            identity: "iCab"
+        },
+        {
+            string: navigator.vendor,
+            subString: "KDE",
+            identity: "Konqueror"
+        },
+        {
+            string: navigator.userAgent,
+            subString: "Firefox",
+            identity: "Firefox"
+        },
+        {
+            string: navigator.vendor,
+            subString: "Camino",
+            identity: "Camino"
+        },
+        {       // for newer Netscapes (6+)
+            string: navigator.userAgent,
+            subString: "Netscape",
+            identity: "Netscape"
+        },
+        {
+            string: navigator.userAgent,
+            subString: "MSIE",
+            identity: "Explorer",
+            versionSearch: "MSIE"
+        },
+        {
+            string: navigator.userAgent,
+            subString: "Gecko",
+            identity: "Mozilla",
+            versionSearch: "rv"
+        },
+        {       // for older Netscapes (4-)
+            string: navigator.userAgent,
+            subString: "Mozilla",
+            identity: "Netscape",
+            versionSearch: "Mozilla"
+        }
+    ],
+    dataOS : [
+        {
+            string: navigator.platform,
+            subString: "Win",
+            identity: "Windows"
+        },
+        {
+            string: navigator.platform,
+            subString: "Mac",
+            identity: "Mac"
+        },
+        {
+               string: navigator.userAgent,
+               subString: "iPhone",
+               identity: "iPhone/iPod"
+        },
+        {
+            string: navigator.platform,
+            subString: "Linux",
+            identity: "Linux"
+        }
+    ]
+
+
+});
+  
+/* ======================================================================
+    cityways/util.js
+   ====================================================================== */
+
+/**
+ * @requires cityways/cityways.js
+ * @requires cityways/BrowserDetect.js
+ */
+
+cityways.util = {
+    
+    _browserDetec : null,
+    
+    browserVersion : function(){
+        if(cityways.util._browserDetec == null){
+            cityways.util._browserDetec = new cityways.BrowserDetect();
+        }
+        return cityways.util._browserDetec.version;
+    },
+    
+    browser : function(){
+        if(cityways.util._browserDetec == null){
+            cityways.util._browserDetec = new cityways.BrowserDetect();
+        }
+        return cityways.util._browserDetec.browser;
+    }
+
+};
+/* ======================================================================
+    cityways/lang/uk.js
+   ====================================================================== */
+
+/**
+ * @requires cityways/cityways.js
+ */
+
+/**
+ * Namespace: OpenLayers.Lang["en"] Dictionary for English. Keys for entries are
+ * used in calls to <OpenLayers.Lang.translate>. Entry bodies are normal strings
+ * or strings formatted for use with <OpenLayers.String.format> calls.
+ */
+cityways.lang.uk = {
+	'path_time' : "Час в дорозi",
+	'cost' : "Вартiсть:",
+	'time' : "Час у дорозi: ",
+	'UAH' : "грн",
+	'time.minute' : "хвилина",
+	'time.minutes10' : "хвилин",
+	'time.minutes' : "хвилини",
+	'time.minutes_ru' : "хвилин"
+
+};
+/* ======================================================================
+    cityways/cityways_ext.js
+   ====================================================================== */
+
+
+
+/**
+ * @requires cityways/cityways.js
+ */
+
+
+/* ======================================================================
+    cityways/template/html.js
+   ====================================================================== */
+
+
+/**
+ * @requires cityways/cityways.js
+ */
+
+/**
+ * Статический класс, хранит общие статические свойства
+ */
+cityways.template.html = {
+
+	_templates : {},
+
+	/**
+	 * Возвращает html шаблон со словаря _templates. Если такой не сущействует,
+	 * пытается загрузить его с сервера Функция ассинхронная,
+	 * 
+	 * @param {Object}
+	 *            templateName
+	 * @param {Object}
+	 *            callback
+	 */
+	get : function(templateName, callback) {
+		var templates = cityways.template.HtmlTemplates._templates;
+		if (templates[templateName] === undefined) {
+			var loader = new cityways.loader.TemplatesLoader();
+			var fileName = cityways.template.HtmlTemplates
+					._getFileByTemplateName(templateName);
+			loader.loadHtmlTemplates(fileName, function(__templates) {
+                        cityways.Util.extend(templates,__templates);
+                        callback(templates[templateName]);
+            		});
+		} else {
+			callback(templates[templateName]);
+		}
+
+	},
+
+	_getFileByTemplateName : function(templateName) {
+		// templateName = template-<file_name>-<name>
+		return "main";
+	}
+
+};
+/* ======================================================================
+    CityWays.js
+   ====================================================================== */
+
+
+(function() {
+	
+	var singleFile =  true; 
+	if (window.cityways === undefined)
+	  singleFile = false;
+	function _getScriptLocation(scriptName) {
+	    var regPattern = "(^|(.*?\\/))("+scriptName+"[^\\/]*?\\.js)(\\?|$)";
+        var r = new RegExp(regPattern),
+            s = document.getElementsByTagName('script'),
+            src, m, l = "";
+        for(var i=0, len=s.length; i<len; i++) {
+            src = s[i].getAttribute('src');
+            if(src) {
+                m = src.match(r);
+                if(m) {
+                    l = m[1];
+                    break;
+                }
+            }
+        }
+        return l;
+    }
+
+
+	
+	if(!singleFile) {
+		var jsFiles = [
+				"cityways/cityways.js",
+				"cityways/helper/time.js",
+				"cityways/helper/styles.js",
+				"cityways/helper/array.js",
+				"cityways/language.js",
+				"cityways/page.js",
+				"cityways/util.js",
+				"cityways/Class.js",
+				"cityways/page/MainPage.js",
+				"cityways/model/Path.js",
+				"cityways/page/main/SettingsPanel.js",
+				    "cityways/page/main/WidgetEventHandlers.js",
+				"cityways/template/html.js",
+                "cityways/options.js",
+                "cityways/lang/ru.js",
+                "cityways/lang/en.js",
+                "cityways/lang/uk.js",
+                "cityways/loader/PathsLoader.js",
+                "cityways/loader/TemplatesLoader.js",
+                "cityways/Map.js"
+                ];
+        
+                
+		var scriptTags = new Array(jsFiles.length);
+        
+        var host = _getScriptLocation("CityWays") + "/";
+        for (var i=0, len=jsFiles.length; i<len; i++) {
+            scriptTags[i] = "<script src='" + host + jsFiles[i] +
+                                   "'></script>"; 
+        }
+
+
+        
+        if (scriptTags.length > 0) {
+            document.write(scriptTags.join(""));
+        }
+        
+	};
+})();
+/* ======================================================================
+    cityways/Map.js
+   ====================================================================== */
+
+/**
+ * @requires cityways/Class.js
+ */
+
+/**
+ * Class: cityways.WidgetMap
+
+ */
+/*Example:
+ * <html>
+ * <head>
+ * 		<script>.../cityways.js</script>
+ *		<script>
+ * 				function initialize(){
+ * 				var map = new cityways.WidgetMap ('map');
+ * 				}
+ * 		</script>
+ * </head>
+ * <body onload="initialize()">
+ * 		<div id="map"></div>
+ * </body>
+ * </html>
+ * 
+ */
+/**
+ * [Map description]
+ * @constructor
+ * @type {cityways.Map}
+ * @this {cityways.Map}
+ */
+cityways.Map = cityways.Class({
+    
+    div  : null,
+    
+    mapObj : null,
+    
+	initialize : function(div, options) {
+	    this.div = div;
+	    this.mapObj = new cityways.map.GoogleMap(div,options);
+	    cityways.Util.extend(this,this.mapObj);
+	}
+
+});
+/* ======================================================================
+    cityways/lang/en.js
+   ====================================================================== */
+
+/**
+ * @requires cityways/cityways.js
+ */
+
+/**
+ * Namespace: OpenLayers.Lang["en"]
+ * Dictionary for English.  Keys for entries are used in calls to
+ *     <OpenLayers.Lang.translate>.  Entry bodies are normal strings or
+ *     strings formatted for use with <OpenLayers.String.format> calls.
+ */
+cityways.lang.en = {
+	'path_time': "Path time",
+	'cost': "Coast",
+	'time': "Path time",
+	'UAH' : "UAH",
+	'time.minute': "minute",
+	'time.minutes10': "minutes",
+	'time.minutes': "minutes",
+	'time.minutes_ru': "minutes",
+
+    'unhandledRequest': "Unhandled request return ${statusText}",
+
+    'Permalink': "Permalink",
+
+    'Overlays': "Overlays",
+
+    'Base Layer': "Base Layer",
+
+    'noFID': "Can't update a feature for which there is no FID.",
+
+    'browserNotSupported':
+        "Your browser does not support vector rendering. Currently supported renderers are:\n${renderers}",
+
+    // console message
+    'minZoomLevelError':
+        "The minZoomLevel property is only intended for use " +
+        "with the FixedZoomLevels-descendent layers. That this " +
+        "wfs layer checks for minZoomLevel is a relic of the" +
+        "past. We cannot, however, remove it without possibly " +
+        "breaking OL based applications that may depend on it." +
+        " Therefore we are deprecating it -- the minZoomLevel " +
+        "check below will be removed at 3.0. Please instead " +
+        "use min/max resolution setting as described here: " +
+        "http://trac.openlayers.org/wiki/SettingZoomLevels",
+
+    'commitSuccess': "WFS Transaction: SUCCESS ${response}",
+
+    'commitFailed': "WFS Transaction: FAILED ${response}",
+
+    'googleWarning':
+        "The Google Layer was unable to load correctly.<br><br>" +
+        "To get rid of this message, select a new BaseLayer " +
+        "in the layer switcher in the upper-right corner.<br><br>" +
+        "Most likely, this is because the Google Maps library " +
+        "script was either not included, or does not contain the " +
+        "correct API key for your site.<br><br>" +
+        "Developers: For help getting this working correctly, " +
+        "<a href='http://trac.openlayers.org/wiki/Google' " +
+        "target='_blank'>click here</a>",
+
+    'getLayerWarning':
+        "The ${layerType} Layer was unable to load correctly.<br><br>" +
+        "To get rid of this message, select a new BaseLayer " +
+        "in the layer switcher in the upper-right corner.<br><br>" +
+        "Most likely, this is because the ${layerLib} library " +
+        "script was not correctly included.<br><br>" +
+        "Developers: For help getting this working correctly, " +
+        "<a href='http://trac.openlayers.org/wiki/${layerLib}' " +
+        "target='_blank'>click here</a>",
+
+    'Scale = 1 : ${scaleDenom}': "Scale = 1 : ${scaleDenom}",
+    
+    //labels for the graticule control
+    'W': 'W',
+    'E': 'E',
+    'N': 'N',
+    'S': 'S',
+    'Graticule': 'Graticule',
+
+    // console message
+    'reprojectDeprecated':
+        "You are using the 'reproject' option " +
+        "on the ${layerName} layer. This option is deprecated: " +
+        "its use was designed to support displaying data over commercial " + 
+        "basemaps, but that functionality should now be achieved by using " +
+        "Spherical Mercator support. More information is available from " +
+        "http://trac.openlayers.org/wiki/SphericalMercator.",
+
+    // console message
+    'methodDeprecated':
+        "This method has been deprecated and will be removed in 3.0. " +
+        "Please use ${newMethod} instead.",
+
+    // **** end ****
+    'end': ''
+    
+};
+/* ======================================================================
+    cityways/language.js
+   ====================================================================== */
+
+/* Copyright (c) 2006-2012 by OpenLayers Contributors (see authors.txt for 
+ * full list of contributors). Published under the 2-clause BSD license.
+ * See license.txt in the OpenLayers distribution or repository for the
+ * full text of the license. */
+
+/**
+ * @requires cityways/cityways.js
+ */
+
+/**
+ * Статический класс
+ */
+cityways.language = {
+    
+    /** 
+     * Property: code
+     * {String}  Current language code to use in OpenLayers.  Use the
+     *     <setCode> method to set this value and the <getCode> method to
+     *     retrieve it.
+     */
+    code: null,
+
+    /** 
+     * APIProperty: defaultCode
+     * {String} Default language to use when a specific language can't be
+     *     found.  Default is "en".
+     */
+    defaultCode: "ru",
+        
+    /**
+     * APIFunction: getCode
+     * Get the current language code.
+     *
+     * Returns:
+     * {String} The current language code.
+     */
+    getCode: function() {
+        if(!cityways.language.code) {
+            cityways.language.setCode();
+        }
+        
+
+
+        return cityways.language.code;
+    },
+    
+    /**
+     * APIFunction: setCode
+     * Set the language code for string translation.  This code is used by
+     *     the <OpenLayers.Lang.translate> method.
+     *
+     * Parameters:
+     * code - {String} These codes follow the IETF recommendations at
+     *     http://www.ietf.org/rfc/rfc3066.txt.  If no value is set, the
+     *     browser's language setting will be tested.  If no <OpenLayers.Lang>
+     *     dictionary exists for the code, the <OpenLayers.String.defaultLang>
+     *     will be used.
+     */
+    setCode: function(code) {
+        var lang;
+        
+        if(!code) {
+            code = (cityways.BROWSER_NAME == "msie") ?
+                navigator.userLanguage : navigator.language;
+        }
+        var parts = code.split('-');
+        parts[0] = parts[0].toLowerCase();
+        
+        if(typeof cityways.lang[parts[0]] == "object") {
+            lang = parts[0];
+        }
+        
+        // check for regional extensions
+        if(parts[1]) {
+            var testLang = parts[0] + '-' + parts[1].toUpperCase();
+            if(typeof cityways.lang[testLang] == "object") {
+                lang = testLang;
+            }
+        }
+        if(!lang) {
+            cityways.Console.warn(
+                'Failed to find cityways.Lang.' + parts.join("-") +
+                ' dictionary, falling back to default language'
+            );
+            lang = cityways.Language.defaultCode;
+        }
+        
+        cityways.language.code = lang;
+    },
+
+    /**
+     * APIMethod: translate
+     * Looks up a key from a dictionary based on the current language string.
+     *     The value of <getCode> will be used to determine the appropriate
+     *     dictionary.  Dictionaries are stored in <OpenLayers.Lang>.
+     *
+     * Parameters:
+     * key - {String} The key for an i18n string value in the dictionary.
+     * context - {Object} Optional context to be used with
+     *     <OpenLayers.String.format>.
+     * 
+     * Returns:
+     * {String} A internationalized string.
+     */
+    translate: function(key) {
+        var dictionary = cityways.lang[cityways.language.getCode()];
+        var message = dictionary && dictionary[key];
+        if(!message) {
+            message = key;
+        }
+        return message;
+    }
+    
+    
+};
+
+/* ======================================================================
+    cityways/loader/TemplatesLoader.js
+   ====================================================================== */
+
+/**
+ * @requires cityways/Class.js
+ */
+
+cityways.loader.TemplatesLoader = cityways.Class({
+
+	initialize : function() {
+
+	},
+
+	loadHtmlTemplates : function(templateFile, callback) {
+		var url = cityways.options.ResourceURI + "themes/" + cityways.options.Theme
+				+ "/templates/" + templateFile + ".xml";
+		$.ajax({
+					url : url,
+					success : function(templatesHtml) {
+					    if (callback == null)
+                            throw new Error("callback was not defined");
+						var ts = templatesHtml.getElementsByTagName("template");
+						var templates = {};
+						for (var i = 0; i < ts.length; i++) {
+							try {
+								cityways.log(ts[i].textContent);
+								cityways.log(ts[i].getAttribute("id"));
+								var key = ts[i].getAttribute("id");
+								var value = _.template(ts[i].textContent);
+								templates[key] = value;
+								cityways.log("ok");
+							} catch (err) {
+
+							}
+						}
+						callback(templates);
+					}
+				});
+	}
+});
+/* ======================================================================
+    cityways/page/MainPage.js
+   ====================================================================== */
+
+/**
+ * @requires cityways/Class.js
+ * @requires cityways/page.js
+ */
+
+
+/**
+ * [MainPage description]
+ * @class cityways.page.MainPage
+ */
+cityways.page.MainPage = cityways.Class({
+
+	/**
+	 * Видимость правой панели
+	 */
+	/**
+	 * Видимость правой панели.
+	 * @fieldOf cityways.page.MainPage.prototype
+	 * @default false
+	 * @typedef {bool}
+	 * @type {bool}
+	 */
+	rightPanelVisible : null,
+	
+	/**
+	 * cityways.Pages.MainPage.RouteTypesPanel Панель "Виды транспорта"
+	 */
+	settingsPanel : null,
+
+	widgetEventHandlers : null,
+
+	currentCity : null,
+
+	/**
+	 * [initialize description]
+	 * @constructor
+	 * @this cityways.page.MainPage
+	 * @class cityways.page.MainPage
+	 * @param  {[type]} options [description]
+	 * @return {[type]}         [description]
+	 */
+	initialize : function(options) {
+		cityways.log(this);
+		cityways.log('MainPage was initialized!!');
+		//alert("Hello");
+		this.currentCity = options.currentCity;
+		this.widgetEventHandlers = new cityways.page.main.WidgetEventHandlers();
+		this.settingsPanel = new cityways.page.main.SettingsPanel({
+					availableRouteTypes : options.routeTypes
+				});
+		
+		this.visibleRightPanel(false);
+		
+	},
+
+	/**
+	 * 
+	 * Возвращает текущий город.
+	 * @methodOf cityways.page.MainPage.prototype
+	 * @return {[type]} [description]
+	 */
+	getCurrentCity : function() {
+		return this.currentCity;
+	},
+
+	getWidgetEventHandlers : function() {
+		return this.widgetEventHandlers;
+	},
+
+	getSettingsPanel : function() {
+		return this.settingsPanel;
+	},
+
+	getPathsOptions : function() {
+		var city = this.getCurrentCity();
+		var isTransitions = true;
+		var alg_type = "c_time";
+		var usage_routeTypes = [];
+
+		if (isTransitions == true) {
+			usage_routeTypes.push({
+						discount : 1.0,
+						route_type_id : "c_route_transition"
+					});
+		}
+
+		usage_routeTypes.push({
+					discount : 1.0,
+					route_type_id : "c_route_station_input"
+				});
+		usage_routeTypes.push({
+					discount : 1.0,
+					route_type_id : "c_route_station_output"
+				});
+		usage_routeTypes.push({
+					discount : 0.5,
+					route_type_id : "c_route_metro"
+				});
+		usage_routeTypes.push({
+					discount : 1.0,
+					route_type_id : "c_route_bus"
+				});
+		usage_routeTypes.push({
+					discount : 1.0,
+					route_type_id : "c_route_trolley"
+				});
+
+		var opts = {
+			cityID : city.id,
+			p1 : {
+				lat : 50.0253640226659,
+				lon : 36.3350757963562
+			},
+			p2 : {
+				lat : 50.0353179327227,
+				lon : 36.2199825018311
+			},
+			outTime : {
+				dayID : 'c_Sunday',
+				timeStart : 1000 * (10 * 60 * 60 + 10 * 60)
+			},
+			algStrategy : alg_type,
+			usageRouteTypes : usage_routeTypes
+		};
+		return opts;
+
+	},
+
+	/**
+	 * 
+	 * @param {bool}
+	 *            true: show, false : hide
+	 */
+	visibleRightPanel : function(value) {
+		 var ResourceURI = cityways.Basic.ResourceURI;
+		if(this.rightPanelVisible == value)
+			return;
+		if (value == true) {
+			$("#map_canvas").width('68%').css({
+						cursor : "auto",
+						backgroundColor : "rgb(226, 226, 226)"
+					});
+			
+			document.img.src = ResourceURI + 'themes/default/images/arrow_right.png';
+					
+		} else {
+			$("#map_canvas").width('98.5%').css({
+						cursor : "auto",
+						backgroundColor : "rgb(226, 226, 226)"
+					});
+					
+			document.img.src =ResourceURI + 'themes/default/images/arrow_left.png';
+		}
+		this.rightPanelVisible = value;
+		
+	}
+});
+/* ======================================================================
+    cityways/options.js
+   ====================================================================== */
+
+
+/**
+ * @requires cityways/cityways.js
+ */
+
+/**
+ * Статический класс, хранит общие статические свойства
+ */
+cityways.options = {
+    
+    ServerHost : "http://ways.in.ua",
+    
+    Theme : "default",
+    
+    /**
+     * Property: ImgPath {String} Set this to the path where control images are
+     * stored, a path given here must end with a slash. If set to '' (which is
+     * the default) OpenLayers will use its script location + "img/".
+     * 
+     * You will need to set this property when you have a singlefile build of
+     * 
+     * Layers that either is not named "OpenLayers.js" or if you move the file
+     * in a way such that the image directory cannot be derived from the script
+     * location.
+     * 
+     * If your custom OpenLayers build is named "my-custom-ol.js" and the images
+     * of OpenLayers are in a folder "/resources/external/images/ol" a correct
+     * way of including OpenLayers in your HTML would be:
+     * 
+     * (code) <script src="/path/to/my-custom-ol.js" type="text/javascript"></script>
+     * <script type="text/javascript"> // tell OpenLayers where the control
+     * images are // remember the trailing slash OpenLayers.ImgPath =
+     * "/resources/external/images/ol/"; </script> (end code)
+     * 
+     * Please remember that when your OpenLayers script is not named
+     * "OpenLayers.js" you will have to make sure that the default theme is
+     * loaded into the page by including an appropriate <link>-tag, e.g.:
+     * 
+     * (code) <link rel="stylesheet" href="/path/to/default/style.css"
+     * type="text/css"> (end code)
+     */  
+	ResourceURI : "/",
+	/**
+	 * Constant: VERSION_NUMBER
+	 */
+	VERSION_NUMBER : "Release 2.13 dev",
+
+    /**
+	 * Method: _getScriptLocation Return the path to this script. This is also
+	 * implemented in OpenLayers.js
+	 * 
+	 * Returns: {String} Path to this script
+	 */
+
+	_getScriptLocation: function(scriptName) {
+	    var regPattern = "(^|(.*?\\/))("+scriptName+"[^\\/]*?\\.js)(\\?|$)";
+        var r = new RegExp(regPattern),
+            s = document.getElementsByTagName('script'),
+            src, m, l = "";
+        for(var i=0, len=s.length; i<len; i++) {
+            src = s[i].getAttribute('src');
+            if(src) {
+                m = src.match(r);
+                if(m) {
+                    l = m[1];
+                    break;
+                }
+            }
+        }
+        return l;
+   },
+   
+   getResourcePath : function(){
+   	 return cityways.options.ResourceURI +"themes/" + cityways.options.Theme + "/";
+   },
+   
+   getBrowserName : function(browser){
+       var name = null;
+       $.each(browser, function(i, val) {
+           if(i != "version")
+            {
+                name = i;
+                return false;
+            }
+        });
+       return name;
+   },
+   
+   getCurrentBrowserName : function(){
+       return cityways.options.getBrowserName($.browser);
+   }
+
+};
+/**
+ * Функция инициализации
+ */
+(function() {
+    cityways.options.ResourceURI = cityways.options._getScriptLocation("MainPage");
+    cityways.log(cityways.options.ResourceURI);
+})();
+  
+/* ======================================================================
+    cityways/lang/ru.js
+   ====================================================================== */
+
+/**
+ * @requires cityways/cityways.js
+ */
+
+/**
+ * Namespace: OpenLayers.Lang["en"]
+ * Dictionary for English.  Keys for entries are used in calls to
+ *     <OpenLayers.Lang.translate>.  Entry bodies are normal strings or
+ *     strings formatted for use with <OpenLayers.String.format> calls.
+ */
+cityways.lang.ru = {
+	'path_time': "Время в пути",
+	'cost': "Стоимость:",
+	'time': "Время в пути: ",
+	'UAH' : "грн",
+	'time.minute': "минута",
+	'time.minutes10': "минут",
+	'time.minutes': "минуты",
+	'time.minutes_ru': "минут"
+
+};
+/* ======================================================================
+    cityways/helper/styles.js
+   ====================================================================== */
+
+/**
+ * @requires cityways/cityways.js
+ * @requires cityways/util.js
+ */
+
+
+cityways.helper.styles = {
+
+	include : function(cssFileName) {
+		var css = "<link rel=\"stylesheet\" href=\"" + cssFileName + "\" type=\"text/css\">";
+		document.write(css);
+	},
+
+	/**
+	 * 
+	 * 
+	 * @param options
+	 * Example:
+	 * cssOptions = [
+	 *         {
+	 *             name : "style.css"
+	 *         },
+	 *         {
+	 *             name : "style_ie7.css",
+     *             browsers : {
+     *                          "mozilla" : {min : "1.7.12", max : "1.9"}
+     *                        },
+	 *         {
+	 *             name : "style_ff.css",
+	 *             browsers : {
+	 *                           "msie" :  {max : "7.0"},
+	 *                           "opera" : {min : "8.0", max : "10.06"}
+	 *                        }
+	 *         }];
+	 * 
+	 * 
+	 */
+	includeCSSFile : function(filePath, cssOptions) {
+        var fileName =  cityways.helper.Styles._selectCSSFile(cssOptions,$.browser);
+        if(fileName == null)
+            throw new Error("includeCSSFile() was not found css file");
+        cityways.helper.Styles.include(filePath + fileName);
+	},
+	
+	/**
+	 * Выбирает css файл в зафисимости от текущего браузера
+ * @param  {Object} cssFiles
+ * @param  {Object} browser Информация о браузере. Хранит версию и название текущего браузера
+ * browser = {
+ *     "msie" : true,
+ *      version : 7.0
+ * };
+ * @return {String} название css файла 
+
+ * О возможных названиях браузеров и версия см. http://jquery-docs.ru/utilities/jquery-browser/
+ * */
+	_selectCSSFile : function(cssFiles,browser){
+	     var defaultFile = null;
+	     var selectedFile = null;
+	     var browserName = cityways.Basic.getBrowserName(browser);
+         
+	     for(var i=0;i < cssFiles.length; i++ ){
+         if(cssFiles[i].browsers === undefined || cssFiles[i].browsers == null ){
+                   defaultFile = cssFiles[i];
+         }
+               else{
+                   for(var j = 0; j  < cssFiles[i].browsers.length; j++ ){
+                       var bname = cssFiles[j].browsers[j].name;
+                       var min_v = cssFiles[j].browsers[j].min;
+                       var max_v = cssFiles[j].browsers[j].max;
+                       if(bname == browserName){
+                           selectedFile =  selectedFile;
+                                
+                       }
+                   }
+               }
+               
+        }
+        
+        return defaultFile;
+      
+	}
+};
+/* ======================================================================
+    cityways/loader/PathsLoader.js
+   ====================================================================== */
+
+/**
+ * @requires cityways/Class.js
+ */
+
+cityways.loader.PathsLoader = cityways.Class({
+
+			/**
+			 * 
+			 * @param {Object}
+			 *            mainPage
+			 */
+			initialize : function() {
+
+			},
+			
+			/**
+			 * 
+ * @param {Object} options Опции, по которым будет производиться поиск крат. пути
+ * var opts = {
+            cityID : Integer,
+            p1 : {
+                lat : Double,
+                lon : Double
+            },
+            p2 : {
+                lat : Double,
+                lon : Double
+            },
+            outTime : {
+                dayID : 'c_Sunday',
+                timeStart : Integer(secs)
+            },
+            algStrategy : 'c_time', 'c_cost',
+            usageRouteTypes : [
+               {
+            discount : 1.0,
+            route_type_id : "c_route_station_input"
+        },
+        ...
+            ]
+        };
+ * @param {Object} resultFunc Callback функция
+			 */
+			findShortestPaths : function(options, callback) {
+				$.ajax({
+							url : cityways.options.ServerHost + "/paths/find.json",
+							type : "POST",
+							data : {data: $.toJSON(options ) },
+							success : function(data) {
+								cityways.log("findShortestPaths");
+								var obj = $.parseJSON(data);
+							    if(callback == null)
+							         throw new Error("resultFunc was not defined");
+								callback({
+											data : obj
+										});
+							}
+						});
+			}
+		});

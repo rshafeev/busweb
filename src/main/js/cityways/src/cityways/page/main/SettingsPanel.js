@@ -1,12 +1,14 @@
 
 /**
- * @requires cityways/type/Class.js
+ * @requires cityways/Class.js
+ * @requires cityways/page.js
  */
 
 /**
  * Class:
  */
-cityways.page.main.SettingsPanel = cityways.type.Class({
+console.log(cityways.page);
+cityways.page.main.SettingsPanel = cityways.Class({
     
     /**
      * Список возможных типов маршрутов, по которым ведется поиск,String[]

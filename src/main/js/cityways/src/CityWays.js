@@ -21,39 +21,44 @@
         }
         return l;
     }
-    
+
+
 	
 	if(!singleFile) {
 		var jsFiles = [
-				"cityways/Namespace.js",
-				"cityways/helper/Time.js",
-				"cityways/Language.js",
-				"cityways/Page.js",
-				"cityways/Util.js",
-				"cityways/type/Class.js",
+				"cityways/cityways.js",
+				"cityways/helper/time.js",
+				"cityways/helper/styles.js",
+				"cityways/helper/array.js",
+				"cityways/language.js",
+				"cityways/page.js",
+				"cityways/util.js",
+				"cityways/Class.js",
 				"cityways/page/MainPage.js",
 				"cityways/model/Path.js",
 				"cityways/page/main/SettingsPanel.js",
-				"cityways/page/main/WidgetEventHandlers.js",
-				"cityways/Console.js",
-				"cityways/template/HtmlTemplates.js",
-                "cityways/Basic.js",
+				    "cityways/page/main/WidgetEventHandlers.js",
+				"cityways/template/html.js",
+                "cityways/options.js",
                 "cityways/lang/ru.js",
                 "cityways/lang/en.js",
                 "cityways/lang/uk.js",
                 "cityways/loader/PathsLoader.js",
                 "cityways/loader/TemplatesLoader.js",
-                "cityways/WidgetMap.js"
+                "cityways/Map.js"
                 ];
+        
                 
-
-
 		var scriptTags = new Array(jsFiles.length);
+        
         var host = _getScriptLocation("CityWays") + "/";
         for (var i=0, len=jsFiles.length; i<len; i++) {
             scriptTags[i] = "<script src='" + host + jsFiles[i] +
                                    "'></script>"; 
         }
+
+
+        
         if (scriptTags.length > 0) {
             document.write(scriptTags.join(""));
         }

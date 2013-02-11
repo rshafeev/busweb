@@ -1,15 +1,15 @@
 /**
- * @requires cityways/type/Class.js
+ * @requires cityways/Class.js
  */
 
-cityways.loader.TemplatesLoader = cityways.type.Class({
+cityways.loader.TemplatesLoader = cityways.Class({
 
 	initialize : function() {
 
 	},
 
 	loadHtmlTemplates : function(templateFile, callback) {
-		var url = cityways.Basic.ResourceURI + "themes/" + cityways.Basic.Theme
+		var url = cityways.options.ResourceURI + "themes/" + cityways.options.Theme
 				+ "/templates/" + templateFile + ".xml";
 		$.ajax({
 					url : url,
@@ -20,12 +20,12 @@ cityways.loader.TemplatesLoader = cityways.type.Class({
 						var templates = {};
 						for (var i = 0; i < ts.length; i++) {
 							try {
-								cityways.Console.log(ts[i].textContent);
-								cityways.Console.log(ts[i].getAttribute("id"));
+								cityways.log(ts[i].textContent);
+								cityways.log(ts[i].getAttribute("id"));
 								var key = ts[i].getAttribute("id");
 								var value = _.template(ts[i].textContent);
 								templates[key] = value;
-								cityways.Console.log("ok");
+								cityways.log("ok");
 							} catch (err) {
 
 							}

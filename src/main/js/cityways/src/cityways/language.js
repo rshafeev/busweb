@@ -4,13 +4,13 @@
  * full text of the license. */
 
 /**
- * @requires cityways/Namespace.js
+ * @requires cityways/cityways.js
  */
 
 /**
  * Статический класс
  */
-cityways.Language = {
+cityways.language = {
     
     /** 
      * Property: code
@@ -35,10 +35,13 @@ cityways.Language = {
      * {String} The current language code.
      */
     getCode: function() {
-        if(!cityways.Language.code) {
-            cityways.Language.setCode();
+        if(!cityways.language.code) {
+            cityways.language.setCode();
         }
-        return cityways.Language.code;
+        
+
+
+        return cityways.language.code;
     },
     
     /**
@@ -55,16 +58,18 @@ cityways.Language = {
      */
     setCode: function(code) {
         var lang;
+        
         if(!code) {
             code = (cityways.BROWSER_NAME == "msie") ?
                 navigator.userLanguage : navigator.language;
         }
         var parts = code.split('-');
         parts[0] = parts[0].toLowerCase();
+        
         if(typeof cityways.lang[parts[0]] == "object") {
             lang = parts[0];
         }
-
+        
         // check for regional extensions
         if(parts[1]) {
             var testLang = parts[0] + '-' + parts[1].toUpperCase();
@@ -80,7 +85,7 @@ cityways.Language = {
             lang = cityways.Language.defaultCode;
         }
         
-        cityways.Language.code = lang;
+        cityways.language.code = lang;
     },
 
     /**
@@ -98,7 +103,7 @@ cityways.Language = {
      * {String} A internationalized string.
      */
     translate: function(key) {
-        var dictionary = cityways.lang[cityways.Language.getCode()];
+        var dictionary = cityways.lang[cityways.language.getCode()];
         var message = dictionary && dictionary[key];
         if(!message) {
             message = key;

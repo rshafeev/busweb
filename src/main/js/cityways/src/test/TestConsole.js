@@ -1,13 +1,11 @@
 
 /**
- * @requires cityways/Namespace.js
+ * @requires cityways/cityways.js
  */
 
-cityways.Console =  {
-    log : console.log.bind(console),
-    
-    warn: console.warn.bind(console)
-};
+cityways.log  = console.log.bind(console);
+cityways.warn = console.warn.bind(console);
+
 
 
 

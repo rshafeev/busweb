@@ -1,6 +1,10 @@
+/**
+ * @author Roman Shafeyev
 
+ * @requires cityways/Class.js
+ */
 
-cityways.model.Path = cityways.type.Class({
+cityways.model.Path = cityways.Class({
 
 			pathID : null,
 

@@ -1,12 +1,12 @@
 
 /**
- * @requires cityways/Console.js
+ * @requires cityways/cityways.js
  */
 
 /**
  * Статический класс, хранит общие статические свойства
  */
-cityways.template.HtmlTemplates = {
+cityways.template.html = {
 
 	_templates : {},
 

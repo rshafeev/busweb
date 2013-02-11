@@ -1,12 +1,12 @@
 
 /**
- * @requires cityways/Console.js
+ * @requires cityways/cityways.js
  */
 
 /**
  * Статический класс, хранит общие статические свойства
  */
-cityways.Basic = {
+cityways.options = {
     
     ServerHost : "http://ways.in.ua",
     
@@ -71,7 +71,23 @@ cityways.Basic = {
    },
    
    getResourcePath : function(){
-   	 return cityways.Basic.ResourceURI +"themes/" + cityways.Basic.Theme + "/";
+   	 return cityways.options.ResourceURI +"themes/" + cityways.options.Theme + "/";
+   },
+   
+   getBrowserName : function(browser){
+       var name = null;
+       $.each(browser, function(i, val) {
+           if(i != "version")
+            {
+                name = i;
+                return false;
+            }
+        });
+       return name;
+   },
+   
+   getCurrentBrowserName : function(){
+       return cityways.options.getBrowserName($.browser);
    }
 
 };
@@ -79,7 +95,7 @@ cityways.Basic = {
  * Функция инициализации
  */
 (function() {
-    cityways.Basic.ResourceURI = cityways.Basic._getScriptLocation("MainPage");
-    cityways.Console.log(cityways.Basic.ResourceURI);
+    cityways.options.ResourceURI = cityways.options._getScriptLocation("MainPage");
+    cityways.log(cityways.options.ResourceURI);
 })();
   
