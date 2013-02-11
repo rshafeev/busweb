@@ -28,6 +28,7 @@ var cityways =  {
      * objects can be passed, which will extend C.
      */
     inherit : function(C, P) {
+        
         var F = function() {
         };
         F.prototype = P.prototype;
