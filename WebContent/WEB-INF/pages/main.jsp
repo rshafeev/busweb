@@ -23,6 +23,7 @@
 		
 	<script type="text/javascript">
 		(function() {
+			
 			var options = {
 					currentCity : $.parseJSON('${model.getCitiesModel().getJSONSelectedCity()}'),
 					routeTypes : $.parseJSON('${model.getJsonRouteTypes()}')
@@ -34,13 +35,8 @@
 			cityways.page.Current = new cityways.page.MainPage(options);
 		})();
 		
-		includeCSSFile("${myContext}/media/css/busWeb", "busWeb", [ "ff", "ie8" ]);
+		//includeCSSFile("${myContext}/media/css/busWeb", "busWeb", [ "ff", "ie8" ]);
 		
-
-
-		$(document).ready(function() {
-			//initialize(options);
-		});
 	</script>
 	<script src="${myContext}/media/js/libs/selectbox.js"></script>
 	<script src="${myContext}/media/js/libs/jquery.poshytip.js"></script>
