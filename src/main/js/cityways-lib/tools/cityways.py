@@ -4,10 +4,9 @@
 import sys
 import os
 import os.path
-sys.path.append("/opt/Closure")
+sys.path.append("compiler")
 import mergejs
 import optparse
-
 
 configDir = "configs/"
 outputDir = "../../../../../WebContent/media/cityways/"
@@ -42,7 +41,5 @@ if buildType == "":
 command = commandPattern % (buildTool,configDir + buildType + conf_type,outputDir + buildType + ".js", compressor)
 print command
 os.system(command)
-
-
 
 
