@@ -11,7 +11,6 @@
 *.class
 *.orig
 .directory
-src/main/js/cityways/jsdoc-toolkit
 bin*/
 target*/
 build/
