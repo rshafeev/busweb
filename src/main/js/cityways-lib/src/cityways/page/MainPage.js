@@ -7,11 +7,6 @@
  * @author <a href="mailto:rs@premiumgis.com">Roman Shafeyev</a>
  * 
  * @requires cityways/Class.js
- */
-
-
-/**
- * @requires cityways/Class.js
  * @requires cityways/page.js
  */
 
@@ -22,8 +17,11 @@
 cityways.page.MainPage = cityways.Class({
 
 	/**
-	 * Видимость правой панели
+	 * [mapWidget description]
+	 * @type {cityways.Map}
 	 */
+	mapWidget : null,
+
 	/**
 	 * Видимость правой панели.
 	 * @private
@@ -41,6 +39,18 @@ cityways.page.MainPage = cityways.Class({
 
 	widgetEventHandlers : null,
 
+	/**
+	 * @private
+	 * @type {Object}
+	 * @example Структура:
+	 * {
+	 * scale : {Number},
+	 * location : {
+	 * 			     lat : {Number},
+	 * 			     lon : {Number}	
+	 * 			  }
+	 * }
+	 */
 	currentCity : null,
 
 	/**
@@ -52,17 +62,34 @@ cityways.page.MainPage = cityways.Class({
 	 * @return {[type]}         [description]
 	 */
 	initialize : function(options) {
-		cityways.logger.info(this);
-		cityways.logger.info('MainPage was initialized!!');
-		//alert("Hello");
+		selectbox_initialize();
+
+		cityways.helper.styles.includeCSSFile(cityways.options.getResourcePath() + "css/",
+												[{
+													name : "main.css"
+												}]);
+		this._prepareTabs();
 		this.currentCity = options.currentCity;
 		this.widgetEventHandlers = new cityways.page.main.WidgetEventHandlers();
 		this.settingsPanel = new cityways.page.main.SettingsPanel({
 					availableRouteTypes : options.routeTypes
 				});
-		
+
+		var mapOptions = {
+			mapProvider : "google",
+			zoom : this.currentCity.scale,
+			center : {
+				lat : this.currentCity.location.lat,
+				lng : this.currentCity.location.lon
+			}
+		};
+		this.mapWidget = new cityways.MapWidget("map_canvas",mapOptions);
 		this.visibleRightPanel(false);
+		cityways.logger.info('MainPage was initialized!!');
 		
+		cityways.event.addListener(this.mapWidget.getMap(),cityways.map.event.ON_MAP_CLICK,function(){
+			cityways.logger.info('Click on the map.');
+		});
 	},
 
 	/**
@@ -165,5 +192,35 @@ cityways.page.MainPage = cityways.Class({
 		}
 		this.rightPanelVisible = value;
 		
+	},
+
+	_prepareTabs : function() {
+		$("div.selectTabs_first, div.selectTabs_second").each(function() {
+		var tmp = $(this);
+		// console.log($(tmp).find(" .lineTabs li"));
+		$(tmp).find(".lineTabs li").each(function(i) {
+					$(tmp).find(".lineTabs li:eq(" + i + ") a").click(
+							function() {
+								var tab_id = i + 1;
+								$(tmp).find(".lineTabs li a")
+										.removeClass("active");
+								$(this).addClass("active");
+								$(tmp).find(".content div").stop(false, false)
+										.hide();
+								$(tmp).find(".tab" + tab_id).stop(false, false)
+										.show();
+								return false;
+							});
+				});
+		});
+	},
+
+	_prepareNotes : function() {
+		$('.demo-tip-darkgray').poshytip({
+				className : 'tip-darkgray',
+				showTimeout : 1,
+				bgImageFrameSize : 11,
+				offsetX : -25
+			});
 	}
 });

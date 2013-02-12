@@ -19,12 +19,12 @@ cityways.page.main.WidgetEventHandlers = cityways.Class({
 
 			onRouteTypeClick : function(self, routeType, includeTitle,
 					excludeTitle) {
-				var page = cityways.Page.Current;
+				var page = cityways.page.Current;
 				if (page.getSettingsPanel().isEnabledRouteTypeBtn(routeType) == true) {
 					page.getSettingsPanel().enableRouteTypeBtn(routeType,
 							false, includeTitle);
 				} else {
-					console.log("false");
+					cityways.logger.info("false");
 					page.getSettingsPanel().enableRouteTypeBtn(routeType, true,
 							excludeTitle);
 				}
@@ -37,7 +37,7 @@ cityways.page.main.WidgetEventHandlers = cityways.Class({
 				var htmlBody = "";
 				for (var i = 0; i < paths.length; i++) {
 					var path = new cityways.model.Path(paths[i]);
-					cityways.Console.log(path.getFullCost());
+					cityways.logger.info(path.getFullCost());
 					var params = {
 						index : i + 1,
 						locale : cityways.Language.translate,
@@ -56,7 +56,7 @@ cityways.page.main.WidgetEventHandlers = cityways.Class({
 				var templatesCount = 2;
 				var _this = this;
 
-				cityways.template.HtmlTemplates.get(
+				cityways.template.html.get(
 						"template-main-waysPanelHeader", function(template) {
 							loadedTemplates++;
 							templates["template-main-waysPanelHeader"] = template;
@@ -66,7 +66,7 @@ cityways.page.main.WidgetEventHandlers = cityways.Class({
 							}
 						});
 
-				cityways.template.HtmlTemplates.get(
+				cityways.template.html.get(
 						"template-main-waysPanelInfo", function(template) {
 							loadedTemplates++;
 							templates["template-main-waysPanelInfo"] = template;
@@ -79,24 +79,24 @@ cityways.page.main.WidgetEventHandlers = cityways.Class({
 			},
 
 			onFindBtnClick : function() {
-				var page = cityways.Page.Current;
+				var page = cityways.page.Current;
 				var options = page.getPathsOptions();
 
 				var el = document.getElementById('ways_panel');
 				if (options == null)
 					return;
 				el.style.display = 'block';
-				var loadGif = cityways.Basic.getResourcePath()
+				var loadGif = cityways.options.getResourcePath()
 						+ "images/load.gif";
 				$('#panel_data').html("<div class='loader_text'><img src='"
 						+ loadGif + "'/></div>");
 				$('#panel_scrollbar').tinyscrollbar_update();
 				page.visibleRightPanel(true);
 				var _this = this;
-				cityways.Console.log("onFindBtnClick");
+				cityways.logger.info("onFindBtnClick");
 				var loader = new cityways.loader.PathsLoader();
 				loader.findShortestPaths(options, function(e) {
-							cityways.Console.log("findShortestPaths");
+							cityways.logger.info("findShortestPaths");
 							_this._onLoadedPaths(_this, e);
 						});
 
@@ -104,6 +104,6 @@ cityways.page.main.WidgetEventHandlers = cityways.Class({
 			
 			on_selectDetailWay : function(way_ind)
 			{
-			cityways.Console.log("OK");
+			cityways.logger.info("OK");
 			}
 		});

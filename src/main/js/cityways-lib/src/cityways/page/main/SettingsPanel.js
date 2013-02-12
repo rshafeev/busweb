@@ -7,7 +7,6 @@
 /**
  * Class:
  */
-console.log(cityways.page);
 cityways.page.main.SettingsPanel = cityways.Class({
     
     /**
@@ -28,7 +27,7 @@ cityways.page.main.SettingsPanel = cityways.Class({
     
     
     getEnabledRouteTypes : function(){
-       console.log(this.availableRouteTypes);
+       cityways.logger.info(this.availableRouteTypes);
        // $("mini_table_transp_list").a
         
     },
@@ -41,11 +40,10 @@ cityways.page.main.SettingsPanel = cityways.Class({
      */
     enableRouteTypeBtn : function(routeType,val,title){
         this.getEnabledRouteTypes();
-        var ResourceURI = cityways.Basic.ResourceURI;
+        var resourcePath = cityways.options.ServerHost;
         var elem = this._getRouteTypeBtnHtmlElement(routeType);
         var img  = elem.find("img").get(0);
-        var imgFileName = ResourceURI
-                + 'media/css/images/route_types/32/' + routeType;
+        var imgFileName = resourcePath  + 'media/css/images/route_types/32/' + routeType;
         //elem.title = title; 
         if(val == true){
             img.src = imgFileName + '_selected.png';
@@ -57,16 +55,15 @@ cityways.page.main.SettingsPanel = cityways.Class({
     },
     
     _getRouteTypeBtnHtmlElement : function(routeType){
-         console.log($("#cways_menu_route_btn_" + routeType));
+         cityways.logger.info($("#cways_menu_route_btn_" + routeType));
           return $("#cways_menu_route_btn_" + routeType);
     },
     
     isEnabledRouteTypeBtn : function(routeType){
         var elem = this._getRouteTypeBtnHtmlElement(routeType);
-        var ResourceURI = cityways.Basic.ResourceURI;
+        var resourcePath = cityways.options.ServerHost;
         var img  = elem.find("img").get(0);
-        var imgFileName = ResourceURI
-                + 'media/css/images/route_types/32/' + routeType;
+        var imgFileName = resourcePath  + 'media/css/images/route_types/32/' + routeType;
         
         if (img.src.indexOf(imgFileName + '.png') != -1) {
                 return false;

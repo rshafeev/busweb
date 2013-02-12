@@ -19,7 +19,13 @@ cityways.page = {
     * 
     * @return Обработчик событий виджетов текущей страницы 
     */
-    Events : null
+    Events : null,
+
+
+    setCurrent : function(page){
+        cityways.page.Current = page;
+        cityways.page.Events = page.getWidgetEventHandlers();
+    }
     
     
     

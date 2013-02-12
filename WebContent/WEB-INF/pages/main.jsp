@@ -7,20 +7,15 @@
 
 <ui:base>
 	<jsp:attribute name="page_head">
-	<link rel="stylesheet" type="text/css"
-			href="${myContext}/media/cityways/themes/default/css/main.css">
-	<script
-			src="${myContext}/media/cityways/themes/default/templates/main.xml"
-			type="text/template"></script>
-	
-	<script src="${myContext}/media/js/libs/jquery.tinyscrollbar.min.js"></script>
 	<script type="text/javascript"
 			src="http://maps.google.com/maps/api/js?sensor=false&libraries=drawing"></script>
 	<script type="text/javascript"
 			src="http://underscorejs.ru/underscore.js"></script>
-	<script src="${myContext}/media/cityways/MainPage.js"></script>
+	<script src="${myContext}/media/js/libs/jquery.tinyscrollbar.min.js"></script>
+	<script src="${myContext}/media/js/libs/selectbox.js"></script>
+	<script src="${myContext}/media/js/libs/jquery.poshytip.js"></script>
+	<script src="${myContext}/media/cityways/main_page.js"></script>
 	
-		
 	<script type="text/javascript">
 		(function() {
 			// Подключим файлы со стилями
@@ -40,26 +35,15 @@
 					currentCity : $.parseJSON('${model.getCitiesModel().getJSONSelectedCity()}'),
 					routeTypes : $.parseJSON('${model.getJsonRouteTypes()}')
 				};
-			cityways.options.ServerHost = "${myContext}";
+			cityways.options.ServerHost = "${myContext}/";
 			cityways.options.ResourceURI = "${myContext}/media/cityways/";
 			cityways.language.setCode("${model.getLanguage()}");
-			cityways.page.Current = new cityways.page.MainPage(options);
+			cityways.page.setCurrent( new cityways.page.MainPage(options) );
 		})();
 		
 		//includeCSSFile("${myContext}/media/css/busWeb", "busWeb", [ "ff", "ie8" ]);
 		
 	</script>
-	<script src="${myContext}/media/js/libs/selectbox.js"></script>
-	<script src="${myContext}/media/js/libs/jquery.poshytip.js"></script>
-	
-	<!--  
-		<script src="${myContext}/media/js/main/WidgetEvents.js"></script>
-		<script src="${myContext}/media/js/main/map/Markers.js"></script>
-		<script src="${myContext}/media/js/main/GoogleMap.js"></script>
-		<script src="${myContext}/media/js/main/MainPageData.js"></script>
-		<script src="${myContext}/media/js/main/MainPage.js"></script>
-		<script src="${myContext}/media/js/main/main.js"></script>
-	-->
 
 	</jsp:attribute>
 
