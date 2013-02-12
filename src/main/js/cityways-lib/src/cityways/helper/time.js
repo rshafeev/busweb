@@ -1,8 +1,18 @@
 /**
+ * @overview
+ * @copyright 
+ * 2012,PremiumGIS Inc. All Rights Reserved. <a href="http://premiumgis.com">PremiumGIS</a>
+ * Project url: <a href="http://ways.in.ua">cityways</a>
+ * 
+ * @author <a href="mailto:mr@premiumgis.com">Marianna Roshchenko</a>
+ * 
  * @requires cityways/cityways.js
  */
 
-
+/**
+ * @namespace cityways.helper.time
+ * @description [description]
+ */
 cityways.helper.time = {
 
 /**

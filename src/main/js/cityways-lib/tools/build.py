@@ -2,7 +2,7 @@
 
 import sys
 import os
-sys.path.append("/opt/Closure")
+sys.path.append("compiler")
 import mergejs
 import optparse
 

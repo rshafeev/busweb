@@ -27,19 +27,21 @@
 	if(!singleFile) {
 		var jsFiles = [
 				"cityways/cityways.js",
+                "cityways/logger.js",
+                "test/logger.js",
 				"cityways/helper/time.js",
 				"cityways/helper/styles.js",
 				"cityways/helper/array.js",
 				"cityways/language.js",
 				"cityways/page.js",
-				"cityways/util.js",
+				"cityways/options.js",
+                "cityways/util.js",
 				"cityways/Class.js",
 				"cityways/page/MainPage.js",
 				"cityways/model/Path.js",
 				"cityways/page/main/SettingsPanel.js",
 				    "cityways/page/main/WidgetEventHandlers.js",
 				"cityways/template/html.js",
-                "cityways/options.js",
                 "cityways/lang/ru.js",
                 "cityways/lang/en.js",
                 "cityways/lang/uk.js",
@@ -58,7 +60,6 @@
         }
 
 
-        
         if (scriptTags.length > 0) {
             document.write(scriptTags.join(""));
         }

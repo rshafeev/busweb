@@ -17,10 +17,7 @@
 <script src="${myContext}/media/js/WidgetHelpers.js"></script>
 <script type="text/javascript">
 	includeCSSFile("${myContext}/media/css/basic", "basic", ["ff", "ie8"]);
-	var contextPath = "${myContext}/";
-	function getContextPath() {
-		return contextPath;
-	}
+
 	function updateContainerSize() {
 		$("#container").css('height', getWindowSize().height - 35);
 	};

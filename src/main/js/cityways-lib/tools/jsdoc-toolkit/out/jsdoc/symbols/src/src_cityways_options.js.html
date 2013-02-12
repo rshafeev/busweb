@@ -11,98 +11,42 @@
 <span class='line'>  4</span>  */</span><span class="WHIT">
 <span class='line'>  5</span> 
 <span class='line'>  6</span> </span><span class="COMM">/**
-<span class='line'>  7</span>  * Статический класс, хранит общие статические свойства
+<span class='line'>  7</span>  * @namespace Хранит глобальные настройки
 <span class='line'>  8</span>  */</span><span class="WHIT">
 <span class='line'>  9</span> </span><span class="NAME">cityways.options</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'> 10</span> </span><span class="WHIT">    
-<span class='line'> 11</span>     </span><span class="NAME">ServerHost</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"http://ways.in.ua"</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 12</span> </span><span class="WHIT">    
-<span class='line'> 13</span>     </span><span class="NAME">Theme</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"default"</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 14</span> </span><span class="WHIT">    
-<span class='line'> 15</span>     </span><span class="COMM">/**
-<span class='line'> 16</span>      * Property: ImgPath {String} Set this to the path where control images are
-<span class='line'> 17</span>      * stored, a path given here must end with a slash. If set to '' (which is
-<span class='line'> 18</span>      * the default) OpenLayers will use its script location + "img/".
-<span class='line'> 19</span>      * 
-<span class='line'> 20</span>      * You will need to set this property when you have a singlefile build of
-<span class='line'> 21</span>      * 
-<span class='line'> 22</span>      * Layers that either is not named "OpenLayers.js" or if you move the file
-<span class='line'> 23</span>      * in a way such that the image directory cannot be derived from the script
-<span class='line'> 24</span>      * location.
-<span class='line'> 25</span>      * 
-<span class='line'> 26</span>      * If your custom OpenLayers build is named "my-custom-ol.js" and the images
-<span class='line'> 27</span>      * of OpenLayers are in a folder "/resources/external/images/ol" a correct
-<span class='line'> 28</span>      * way of including OpenLayers in your HTML would be:
-<span class='line'> 29</span>      * 
-<span class='line'> 30</span>      * (code) &lt;script src="/path/to/my-custom-ol.js" type="text/javascript">&lt;/script>
-<span class='line'> 31</span>      * &lt;script type="text/javascript"> // tell OpenLayers where the control
-<span class='line'> 32</span>      * images are // remember the trailing slash OpenLayers.ImgPath =
-<span class='line'> 33</span>      * "/resources/external/images/ol/"; &lt;/script> (end code)
-<span class='line'> 34</span>      * 
-<span class='line'> 35</span>      * Please remember that when your OpenLayers script is not named
-<span class='line'> 36</span>      * "OpenLayers.js" you will have to make sure that the default theme is
-<span class='line'> 37</span>      * loaded into the page by including an appropriate &lt;link>-tag, e.g.:
-<span class='line'> 38</span>      * 
-<span class='line'> 39</span>      * (code) &lt;link rel="stylesheet" href="/path/to/default/style.css"
-<span class='line'> 40</span>      * type="text/css"> (end code)
-<span class='line'> 41</span>      */</span><span class="WHIT">  
-<span class='line'> 42</span> 	</span><span class="NAME">ResourceURI</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"/"</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 43</span> </span><span class="WHIT">	</span><span class="COMM">/**
-<span class='line'> 44</span> 	 * Constant: VERSION_NUMBER
-<span class='line'> 45</span> 	 */</span><span class="WHIT">
-<span class='line'> 46</span> </span><span class="WHIT">	</span><span class="NAME">VERSION_NUMBER</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"Release 2.13 dev"</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 47</span> 
-<span class='line'> 48</span> </span><span class="WHIT">    </span><span class="COMM">/**
-<span class='line'> 49</span> 	 * Method: _getScriptLocation Return the path to this script. This is also
-<span class='line'> 50</span> 	 * implemented in OpenLayers.js
-<span class='line'> 51</span> 	 * 
-<span class='line'> 52</span> 	 * Returns: {String} Path to this script
-<span class='line'> 53</span> 	 */</span><span class="WHIT">
-<span class='line'> 54</span> 
-<span class='line'> 55</span> </span><span class="WHIT">	</span><span class="NAME">_getScriptLocation</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">scriptName</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 56</span> </span><span class="WHIT">	    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">regPattern</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"(^|(.*?\\/))("</span><span class="PUNC">+</span><span class="NAME">scriptName</span><span class="PUNC">+</span><span class="STRN">"[^\\/]*?\\.js)(\\?|$)"</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 57</span> </span><span class="WHIT">        </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">r</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">RegExp</span><span class="PUNC">(</span><span class="NAME">regPattern</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 58</span> </span><span class="WHIT">            </span><span class="NAME">s</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">document.getElementsByTagName</span><span class="PUNC">(</span><span class="STRN">'script'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 59</span> </span><span class="WHIT">            </span><span class="NAME">src</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">m</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">l</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">""</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 60</span> </span><span class="WHIT">        </span><span class="KEYW">for</span><span class="PUNC">(</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">i</span><span class="PUNC">=</span><span class="NUMB">0</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">len</span><span class="PUNC">=</span><span class="NAME">s.length</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">i</span><span class="PUNC">&lt;</span><span class="NAME">len</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">i</span><span class="PUNC">++</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 61</span> </span><span class="WHIT">            </span><span class="NAME">src</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">s</span><span class="PUNC">[</span><span class="NAME">i</span><span class="PUNC">]</span><span class="PUNC">.</span><span class="NAME">getAttribute</span><span class="PUNC">(</span><span class="STRN">'src'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 62</span> </span><span class="WHIT">            </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">src</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 63</span> </span><span class="WHIT">                </span><span class="NAME">m</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">src.match</span><span class="PUNC">(</span><span class="NAME">r</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 64</span> </span><span class="WHIT">                </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">m</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 65</span> </span><span class="WHIT">                    </span><span class="NAME">l</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">m</span><span class="PUNC">[</span><span class="NUMB">1</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 66</span> </span><span class="WHIT">                    </span><span class="KEYW">break</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 67</span> </span><span class="WHIT">                </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'> 68</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'> 69</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'> 70</span> </span><span class="WHIT">        </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">l</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 71</span> </span><span class="WHIT">   </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 72</span> </span><span class="WHIT">   
-<span class='line'> 73</span>    </span><span class="NAME">getResourcePath</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 74</span> </span><span class="WHIT">   	 </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">cityways.options.ResourceURI</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="STRN">"themes/"</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">cityways.options.Theme</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">"/"</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 75</span> </span><span class="WHIT">   </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 76</span> </span><span class="WHIT">   
-<span class='line'> 77</span>    </span><span class="NAME">getBrowserName</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">browser</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 78</span> </span><span class="WHIT">       </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">name</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 79</span> </span><span class="WHIT">       </span><span class="NAME">$.each</span><span class="PUNC">(</span><span class="NAME">browser</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">i</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">val</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 80</span> </span><span class="WHIT">           </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">i</span><span class="WHIT"> </span><span class="PUNC">!=</span><span class="WHIT"> </span><span class="STRN">"version"</span><span class="PUNC">)</span><span class="WHIT">
-<span class='line'> 81</span> </span><span class="WHIT">            </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 82</span> </span><span class="WHIT">                </span><span class="NAME">name</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">i</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 83</span> </span><span class="WHIT">                </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">false</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 84</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'> 85</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 86</span> </span><span class="WHIT">       </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">name</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 87</span> </span><span class="WHIT">   </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 88</span> </span><span class="WHIT">   
-<span class='line'> 89</span>    </span><span class="NAME">getCurrentBrowserName</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 90</span> </span><span class="WHIT">       </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">cityways.options.getBrowserName</span><span class="PUNC">(</span><span class="NAME">$.browser</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 91</span> </span><span class="WHIT">   </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'> 92</span> 
-<span class='line'> 93</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 94</span> </span><span class="COMM">/**
-<span class='line'> 95</span>  * Функция инициализации
-<span class='line'> 96</span>  */</span><span class="WHIT">
-<span class='line'> 97</span> </span><span class="PUNC">(</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 98</span> </span><span class="WHIT">    </span><span class="NAME">cityways.options.ResourceURI</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">cityways.options._getScriptLocation</span><span class="PUNC">(</span><span class="STRN">"MainPage"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 99</span> </span><span class="WHIT">    </span><span class="NAME">cityways.log</span><span class="PUNC">(</span><span class="NAME">cityways.options.ResourceURI</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>100</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>101</span> </span><span class="WHIT">  </span></pre></body></html>
+<span class='line'> 11</span>   </span><span class="COMM">/**
+<span class='line'> 12</span>    * Хост сервера cityways
+<span class='line'> 13</span>    */</span><span class="WHIT">
+<span class='line'> 14</span> </span><span class="WHIT">  </span><span class="NAME">ServerHost</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"http://ways.in.ua"</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 15</span> </span><span class="WHIT">    
+<span class='line'> 16</span>   </span><span class="COMM">/**
+<span class='line'> 17</span>    * Название темы
+<span class='line'> 18</span>    * @type {String}
+<span class='line'> 19</span>    */</span><span class="WHIT">
+<span class='line'> 20</span> </span><span class="WHIT">  </span><span class="NAME">Theme</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"default"</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 21</span> </span><span class="WHIT">    
+<span class='line'> 22</span>   </span><span class="COMM">/**
+<span class='line'> 23</span>    * [ResourceURI description]
+<span class='line'> 24</span>    * @type {String}
+<span class='line'> 25</span>    */</span><span class="WHIT">
+<span class='line'> 26</span> </span><span class="WHIT">	</span><span class="NAME">ResourceURI</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"/"</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 27</span> 
+<span class='line'> 28</span> 
+<span class='line'> 29</span> 
+<span class='line'> 30</span> </span><span class="WHIT">    </span><span class="COMM">/**
+<span class='line'> 31</span> 	 * Method: _getScriptLocation Return the path to this script. This is also
+<span class='line'> 32</span> 	 * implemented in OpenLayers.js
+<span class='line'> 33</span> 	 * 
+<span class='line'> 34</span> 	 * Returns: {String} Path to this script
+<span class='line'> 35</span> 	 */</span><span class="WHIT">
+<span class='line'> 36</span> 
+<span class='line'> 37</span> 
+<span class='line'> 38</span> </span><span class="WHIT">   
+<span class='line'> 39</span>    </span><span class="NAME">getResourcePath</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 40</span> </span><span class="WHIT">   	 </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">cityways.options.ResourceURI</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="STRN">"themes/"</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">cityways.options.Theme</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">"/"</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 41</span> </span><span class="WHIT">   </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 42</span> </span><span class="WHIT"> 
+<span class='line'> 43</span> 
+<span class='line'> 44</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 45</span> </span></pre></body></html>

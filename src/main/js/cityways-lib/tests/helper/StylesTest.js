@@ -3,25 +3,28 @@ test('cityways.helper.styles._selectCSSFile(cssFiles,currentBrowser)', function 
 
    var files1 = [
    {
-       name : "style1.css"
+       name : "style.css"
    },
    {
        name : "style_ff.css",
-       browsers : { mozilla : {min : "1.7.12", max : "1.9"} },
+       browsers : { mozilla : {min : 1.712, max : 1.9} },
    },
    {
        name : "style_ie.css",
-       browsers : { msie : { max : "7.0"} },
+       browsers : { msie : { max : 7.0} },
    },
    {
        
    }
    ];
-   var browser1 = {"msie" : true, version : "7.0"};
-   var browser2 = {"mozilla" : true, version : "1.7.12"};
-   
+   var browser1 = {name : "msie", version : 7.0};
+   var browser2 = {name : "mozilla", version : 1.712};
+   var browser3 = {name : "chrome", version : 20};
+
   // Unit testing
-  equal( '1 минута', '1 минута', '');
- // equal(cityways.helper.Styles._selectCSSFile(120), '2 минуты', '');
+ 
+  equal(cityways.helper.styles._selectCSSFile(files1,browser1), 'style_ie.css', 'style_ie.css');
+  equal(cityways.helper.styles._selectCSSFile(files1,browser2), 'style_ff.css', 'style_ff.css');
+  equal(cityways.helper.styles._selectCSSFile(files1,browser3), 'style.css', 'style.css');
 
 });

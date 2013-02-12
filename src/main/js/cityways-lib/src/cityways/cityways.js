@@ -7,7 +7,7 @@
  * @namespace cityways
  * @type {Object}
  */
-var cityways =  {
+ var cityways =  {
     lang : {},
     loader : {},
     page : {},
@@ -17,7 +17,14 @@ var cityways =  {
     model : {},
     helper: {},
     map : {},
+    logger : {},
     
+    /**
+    * Версия библиотеки
+    * @type {String}
+    */
+    VERSION_NUMBER : "Release 2.13 dev",
+
      /**
      * Function: inherit
      * 
@@ -27,7 +34,7 @@ var cityways =  {
      * In addition to the mandatory C and P parameters, an arbitrary number of
      * objects can be passed, which will extend C.
      */
-    inherit : function(C, P) {
+     inherit : function(C, P) {
         
         var F = function() {
         };
@@ -51,7 +58,7 @@ var cityways =  {
      * @param  {[type]} source      [description]
      * @return {[type]}             [description]
      */
-    extend : function(destination, source) {
+     extend : function(destination, source) {
         destination = destination || {};
         if (source) {
             for (var property in source) {
@@ -60,7 +67,7 @@ var cityways =  {
                     destination[property] = value;
                 }
             }
-        
+            
             
             /**
              * IE doesn't include the toString property when iterating over an
@@ -74,19 +81,17 @@ var cityways =  {
              * object is an instance of window.Event.
              */
 
-            var sourceIsEvt = typeof window.Event == "function"
-                    && source instanceof window.Event;
+             var sourceIsEvt = typeof window.Event == "function"
+             && source instanceof window.Event;
 
-            if (!sourceIsEvt && source.hasOwnProperty
-                    && source.hasOwnProperty("toString")) {
+             if (!sourceIsEvt && source.hasOwnProperty
+                && source.hasOwnProperty("toString")) {
                 destination.toString = source.toString;
-            }
         }
-        return destination;
-    },
-    
-    log : function(){}
-    
+    }
+    return destination;
+}
+
 };
 
 

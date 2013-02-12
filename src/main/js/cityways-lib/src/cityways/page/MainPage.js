@@ -1,8 +1,19 @@
 /**
+ * @overview class cityways.page.MainPage
+ * @copyright 
+ * 2012,PremiumGIS Inc. All Rights Reserved. <a href="http://premiumgis.com">PremiumGIS</a>
+ * Project url: <a href="http://ways.in.ua">cityways</a>
+ * 
+ * @author <a href="mailto:rs@premiumgis.com">Roman Shafeyev</a>
+ * 
+ * @requires cityways/Class.js
+ */
+
+
+/**
  * @requires cityways/Class.js
  * @requires cityways/page.js
  */
-
 
 /**
  * [MainPage description]
@@ -15,6 +26,7 @@ cityways.page.MainPage = cityways.Class({
 	 */
 	/**
 	 * Видимость правой панели.
+	 * @private
 	 * @fieldOf cityways.page.MainPage.prototype
 	 * @default false
 	 * @typedef {bool}
@@ -40,8 +52,8 @@ cityways.page.MainPage = cityways.Class({
 	 * @return {[type]}         [description]
 	 */
 	initialize : function(options) {
-		cityways.log(this);
-		cityways.log('MainPage was initialized!!');
+		cityways.logger.info(this);
+		cityways.logger.info('MainPage was initialized!!');
 		//alert("Hello");
 		this.currentCity = options.currentCity;
 		this.widgetEventHandlers = new cityways.page.main.WidgetEventHandlers();
@@ -132,7 +144,7 @@ cityways.page.MainPage = cityways.Class({
 	 *            true: show, false : hide
 	 */
 	visibleRightPanel : function(value) {
-		 var ResourceURI = cityways.Basic.ResourceURI;
+		 var ResourceURI = cityways.options.ResourceURI;
 		if(this.rightPanelVisible == value)
 			return;
 		if (value == true) {
@@ -141,7 +153,7 @@ cityways.page.MainPage = cityways.Class({
 						backgroundColor : "rgb(226, 226, 226)"
 					});
 			
-			document.img.src = ResourceURI + 'themes/default/images/arrow_right.png';
+			//document.img.src = ResourceURI + 'themes/default/images/arrow_right.png';
 					
 		} else {
 			$("#map_canvas").width('98.5%').css({
@@ -149,7 +161,7 @@ cityways.page.MainPage = cityways.Class({
 						backgroundColor : "rgb(226, 226, 226)"
 					});
 					
-			document.img.src =ResourceURI + 'themes/default/images/arrow_left.png';
+			//document.img.src =ResourceURI + 'themes/default/images/arrow_left.png';
 		}
 		this.rightPanelVisible = value;
 		

@@ -23,12 +23,23 @@
 		
 	<script type="text/javascript">
 		(function() {
-			
+			// Подключим файлы со стилями
+			cityways.helper.styles.includeCSSFile("${myContext}/media/css/busWeb/",
+												[{
+													name : "busWeb.css"
+												},
+												{
+													name : "busWeb_ff.css",
+													browsers : {mozilla : {max : 10}},
+												},
+												{
+													name : "busWeb_ie8",
+													browsers : {msie : {max : 8.0}}
+												}]);
 			var options = {
 					currentCity : $.parseJSON('${model.getCitiesModel().getJSONSelectedCity()}'),
 					routeTypes : $.parseJSON('${model.getJsonRouteTypes()}')
 				};
-			
 			cityways.options.ServerHost = "${myContext}";
 			cityways.options.ResourceURI = "${myContext}/media/cityways/";
 			cityways.language.setCode("${model.getLanguage()}");

@@ -30,7 +30,7 @@
  * @namespace cityways
  * @type {Object}
  */
-var cityways =  {
+ var cityways =  {
     lang : {},
     loader : {},
     page : {},
@@ -40,7 +40,14 @@ var cityways =  {
     model : {},
     helper: {},
     map : {},
+    logger : {},
     
+    /**
+    * Версия библиотеки
+    * @type {String}
+    */
+    VERSION_NUMBER : "Release 2.13 dev",
+
      /**
      * Function: inherit
      * 
@@ -50,7 +57,8 @@ var cityways =  {
      * In addition to the mandatory C and P parameters, an arbitrary number of
      * objects can be passed, which will extend C.
      */
-    inherit : function(C, P) {
+     inherit : function(C, P) {
+        
         var F = function() {
         };
         F.prototype = P.prototype;
@@ -73,7 +81,7 @@ var cityways =  {
      * @param  {[type]} source      [description]
      * @return {[type]}             [description]
      */
-    extend : function(destination, source) {
+     extend : function(destination, source) {
         destination = destination || {};
         if (source) {
             for (var property in source) {
@@ -82,7 +90,7 @@ var cityways =  {
                     destination[property] = value;
                 }
             }
-        
+            
             
             /**
              * IE doesn't include the toString property when iterating over an
@@ -96,19 +104,17 @@ var cityways =  {
              * object is an instance of window.Event.
              */
 
-            var sourceIsEvt = typeof window.Event == "function"
-                    && source instanceof window.Event;
+             var sourceIsEvt = typeof window.Event == "function"
+             && source instanceof window.Event;
 
-            if (!sourceIsEvt && source.hasOwnProperty
-                    && source.hasOwnProperty("toString")) {
+             if (!sourceIsEvt && source.hasOwnProperty
+                && source.hasOwnProperty("toString")) {
                 destination.toString = source.toString;
-            }
         }
-        return destination;
-    },
-    
-    log : function(){}
-    
+    }
+    return destination;
+}
+
 };
 
 
@@ -118,21 +124,88 @@ var cityways =  {
 
 
 /* ======================================================================
-    test/TestConsole.js
+    cityways/logger.js
+   ====================================================================== */
+
+/**
+ * @overview namespace cityways.logger
+ * @copyright 
+ * 2012,PremiumGIS Inc. All Rights Reserved. <a href="http://premiumgis.com">PremiumGIS</a>
+ * Project url: <a href="http://ways.in.ua">cityways</a>
+ * 
+ * @author <a href="mailto:rs@premiumgis.com">Roman Shafeyev</a>
+ * 
+ * @requires cityways/cityways.js
+ */
+
+ /**
+ * @private
+ * @namespace
+ * @interface
+ * @description Содержит функции логгирования
+ */
+ cityways.logger = {
+
+ 	DEBUG_LEVEL : false,
+
+ 	INFO_LEVEL  : false,  
+
+ 	WARN_LEVEL  : false,
+ 	
+ 	info  : function(){},
+
+ 	debug : function(){},
+
+ 	warn  : function(){},
+
+ 	setLevelMode : function(level, val){}
+
+ };
+/* ======================================================================
+    test/logger.js
    ====================================================================== */
 
 
 /**
  * @requires cityways/cityways.js
+ * @requires cityways/logger.js
  */
 
-cityways.log  = console.log.bind(console);
-cityways.warn = console.warn.bind(console);
+
+cityways.logger.setLevelMode  = function(level, val){
+ 		if(level == "INFO_LEVEL"){
+ 			if(val == true)
+ 				cityways.logger.info  = console.log.bind(console);
+ 			else
+ 				cityways.logger.info = function(){};
+		}
+ 		if(level == "DEBUG_LEVEL"){
+ 			if(val == true)
+ 				cityways.logger.debug  = console.info.bind(console);
+ 			else
+ 				cityways.logger.debug = function(){};
+		}
+		 if(level == "WARN_LEVEL"){
+ 			if(val == true)
+ 				cityways.logger.warn  = console.warn.bind(console);
+ 			else
+ 				cityways.logger.warn = function(){};
+		}
+		cityways.logger[level] = val;
+}; 
+
+(function() {
+	cityways.logger.setLevelMode("INFO_LEVEL",true);
+	cityways.logger.setLevelMode("DEBUG_LEVEL",true);
+	cityways.logger.setLevelMode("WARN_LEVEL",true);
+})();
+  
 
 
 
 
 
+ 	
 /* ======================================================================
     cityways/Class.js
    ====================================================================== */
@@ -489,10 +562,20 @@ cityways.page.main.SettingsPanel = cityways.Class({
    ====================================================================== */
 
 /**
+ * @overview
+ * @copyright 
+ * 2012,PremiumGIS Inc. All Rights Reserved. <a href="http://premiumgis.com">PremiumGIS</a>
+ * Project url: <a href="http://ways.in.ua">cityways</a>
+ * 
+ * @author <a href="mailto:mr@premiumgis.com">Marianna Roshchenko</a>
+ * 
  * @requires cityways/cityways.js
  */
 
-
+/**
+ * @namespace cityways.helper.time
+ * @description [description]
+ */
 cityways.helper.time = {
 
 /**
@@ -762,14 +845,74 @@ cityways.BrowserDetect = cityways.Class ({
 });
   
 /* ======================================================================
-    cityways/util.js
+    cityways/options.js
    ====================================================================== */
+
 
 /**
  * @requires cityways/cityways.js
- * @requires cityways/BrowserDetect.js
  */
 
+/**
+ * @namespace Хранит глобальные настройки
+ */
+cityways.options = {
+    
+  /**
+   * Хост сервера cityways
+   */
+  ServerHost : "http://ways.in.ua",
+    
+  /**
+   * Название темы
+   * @type {String}
+   */
+  Theme : "default",
+    
+  /**
+   * [ResourceURI description]
+   * @type {String}
+   */
+	ResourceURI : "/",
+
+
+
+    /**
+	 * Method: _getScriptLocation Return the path to this script. This is also
+	 * implemented in OpenLayers.js
+	 * 
+	 * Returns: {String} Path to this script
+	 */
+
+
+   
+   getResourcePath : function(){
+   	 return cityways.options.ResourceURI +"themes/" + cityways.options.Theme + "/";
+   }
+ 
+
+};
+/* ======================================================================
+    cityways/util.js
+   ====================================================================== */
+
+
+/**
+ * @overview
+ * @copyright 
+ * 2012,PremiumGIS Inc. All Rights Reserved. <a href="http://premiumgis.com">PremiumGIS</a>
+ * Project url: <a href="http://ways.in.ua">cityways</a>
+ * 
+ * @author <a href="mailto:rs@premiumgis.com">Roman Shafeyev</a>
+ * 
+ * @requires cityways/cityways.js
+ * @requires cityways/BrowserDetect.js
+ * @requires cityways/options.js
+ */
+
+/**
+ * @namespace cityways.util
+ */
 cityways.util = {
     
     _browserDetec : null,
@@ -786,9 +929,42 @@ cityways.util = {
             cityways.util._browserDetec = new cityways.BrowserDetect();
         }
         return cityways.util._browserDetec.browser;
-    }
+    },
+
+
+   /**
+   * Возвращает uri-путь к скрипту
+   * @param  {String} scriptName Имя файла скрипта
+   * @return {String}            URI путь к скрипту
+   */
+    getScriptLocation: function(scriptName) {
+        var regPattern = "(^|(.*?\\/))("+scriptName+"[^\\/]*?\\.js)(\\?|$)";
+        var r = new RegExp(regPattern),
+            s = document.getElementsByTagName('script'),
+            src, m, l = "";
+        for(var i=0, len=s.length; i<len; i++) {
+            src = s[i].getAttribute('src');
+            if(src) {
+                m = src.match(r);
+                if(m) {
+                    l = m[1];
+                    break;
+                }
+            }
+        }
+        return l;
+   }
 
 };
+
+/**
+ * Функция инициализации
+ */
+(function() {
+    cityways.options.ResourceURI = cityways.util.getScriptLocation("cityways");
+    cityways.logger.info(cityways.options.ResourceURI);
+})();
+  
 /* ======================================================================
     cityways/lang/uk.js
    ====================================================================== */
@@ -871,77 +1047,6 @@ cityways.template.html = {
 	}
 
 };
-/* ======================================================================
-    CityWays.js
-   ====================================================================== */
-
-
-(function() {
-	
-	var singleFile =  true; 
-	if (window.cityways === undefined)
-	  singleFile = false;
-	function _getScriptLocation(scriptName) {
-	    var regPattern = "(^|(.*?\\/))("+scriptName+"[^\\/]*?\\.js)(\\?|$)";
-        var r = new RegExp(regPattern),
-            s = document.getElementsByTagName('script'),
-            src, m, l = "";
-        for(var i=0, len=s.length; i<len; i++) {
-            src = s[i].getAttribute('src');
-            if(src) {
-                m = src.match(r);
-                if(m) {
-                    l = m[1];
-                    break;
-                }
-            }
-        }
-        return l;
-    }
-
-
-	
-	if(!singleFile) {
-		var jsFiles = [
-				"cityways/cityways.js",
-				"cityways/helper/time.js",
-				"cityways/helper/styles.js",
-				"cityways/helper/array.js",
-				"cityways/language.js",
-				"cityways/page.js",
-				"cityways/util.js",
-				"cityways/Class.js",
-				"cityways/page/MainPage.js",
-				"cityways/model/Path.js",
-				"cityways/page/main/SettingsPanel.js",
-				    "cityways/page/main/WidgetEventHandlers.js",
-				"cityways/template/html.js",
-                "cityways/options.js",
-                "cityways/lang/ru.js",
-                "cityways/lang/en.js",
-                "cityways/lang/uk.js",
-                "cityways/loader/PathsLoader.js",
-                "cityways/loader/TemplatesLoader.js",
-                "cityways/Map.js"
-                ];
-        
-                
-		var scriptTags = new Array(jsFiles.length);
-        
-        var host = _getScriptLocation("CityWays") + "/";
-        for (var i=0, len=jsFiles.length; i<len; i++) {
-            scriptTags[i] = "<script src='" + host + jsFiles[i] +
-                                   "'></script>"; 
-        }
-
-
-        
-        if (scriptTags.length > 0) {
-            document.write(scriptTags.join(""));
-        }
-        
-	};
-})();
 /* ======================================================================
     cityways/Map.js
    ====================================================================== */
@@ -1256,10 +1361,21 @@ cityways.loader.TemplatesLoader = cityways.Class({
    ====================================================================== */
 
 /**
+ * @overview class cityways.page.MainPage
+ * @copyright 
+ * 2012,PremiumGIS Inc. All Rights Reserved. <a href="http://premiumgis.com">PremiumGIS</a>
+ * Project url: <a href="http://ways.in.ua">cityways</a>
+ * 
+ * @author <a href="mailto:rs@premiumgis.com">Roman Shafeyev</a>
+ * 
+ * @requires cityways/Class.js
+ */
+
+
+/**
  * @requires cityways/Class.js
  * @requires cityways/page.js
  */
-
 
 /**
  * [MainPage description]
@@ -1272,6 +1388,7 @@ cityways.page.MainPage = cityways.Class({
 	 */
 	/**
 	 * Видимость правой панели.
+	 * @private
 	 * @fieldOf cityways.page.MainPage.prototype
 	 * @default false
 	 * @typedef {bool}
@@ -1297,8 +1414,8 @@ cityways.page.MainPage = cityways.Class({
 	 * @return {[type]}         [description]
 	 */
 	initialize : function(options) {
-		cityways.log(this);
-		cityways.log('MainPage was initialized!!');
+		cityways.logger.info(this);
+		cityways.logger.info('MainPage was initialized!!');
 		//alert("Hello");
 		this.currentCity = options.currentCity;
 		this.widgetEventHandlers = new cityways.page.main.WidgetEventHandlers();
@@ -1389,7 +1506,7 @@ cityways.page.MainPage = cityways.Class({
 	 *            true: show, false : hide
 	 */
 	visibleRightPanel : function(value) {
-		 var ResourceURI = cityways.Basic.ResourceURI;
+		 var ResourceURI = cityways.options.ResourceURI;
 		if(this.rightPanelVisible == value)
 			return;
 		if (value == true) {
@@ -1398,7 +1515,7 @@ cityways.page.MainPage = cityways.Class({
 						backgroundColor : "rgb(226, 226, 226)"
 					});
 			
-			document.img.src = ResourceURI + 'themes/default/images/arrow_right.png';
+			//document.img.src = ResourceURI + 'themes/default/images/arrow_right.png';
 					
 		} else {
 			$("#map_canvas").width('98.5%').css({
@@ -1406,117 +1523,12 @@ cityways.page.MainPage = cityways.Class({
 						backgroundColor : "rgb(226, 226, 226)"
 					});
 					
-			document.img.src =ResourceURI + 'themes/default/images/arrow_left.png';
+			//document.img.src =ResourceURI + 'themes/default/images/arrow_left.png';
 		}
 		this.rightPanelVisible = value;
 		
 	}
 });
-/* ======================================================================
-    cityways/options.js
-   ====================================================================== */
-
-
-/**
- * @requires cityways/cityways.js
- */
-
-/**
- * Статический класс, хранит общие статические свойства
- */
-cityways.options = {
-    
-    ServerHost : "http://ways.in.ua",
-    
-    Theme : "default",
-    
-    /**
-     * Property: ImgPath {String} Set this to the path where control images are
-     * stored, a path given here must end with a slash. If set to '' (which is
-     * the default) OpenLayers will use its script location + "img/".
-     * 
-     * You will need to set this property when you have a singlefile build of
-     * 
-     * Layers that either is not named "OpenLayers.js" or if you move the file
-     * in a way such that the image directory cannot be derived from the script
-     * location.
-     * 
-     * If your custom OpenLayers build is named "my-custom-ol.js" and the images
-     * of OpenLayers are in a folder "/resources/external/images/ol" a correct
-     * way of including OpenLayers in your HTML would be:
-     * 
-     * (code) <script src="/path/to/my-custom-ol.js" type="text/javascript"></script>
-     * <script type="text/javascript"> // tell OpenLayers where the control
-     * images are // remember the trailing slash OpenLayers.ImgPath =
-     * "/resources/external/images/ol/"; </script> (end code)
-     * 
-     * Please remember that when your OpenLayers script is not named
-     * "OpenLayers.js" you will have to make sure that the default theme is
-     * loaded into the page by including an appropriate <link>-tag, e.g.:
-     * 
-     * (code) <link rel="stylesheet" href="/path/to/default/style.css"
-     * type="text/css"> (end code)
-     */  
-	ResourceURI : "/",
-	/**
-	 * Constant: VERSION_NUMBER
-	 */
-	VERSION_NUMBER : "Release 2.13 dev",
-
-    /**
-	 * Method: _getScriptLocation Return the path to this script. This is also
-	 * implemented in OpenLayers.js
-	 * 
-	 * Returns: {String} Path to this script
-	 */
-
-	_getScriptLocation: function(scriptName) {
-	    var regPattern = "(^|(.*?\\/))("+scriptName+"[^\\/]*?\\.js)(\\?|$)";
-        var r = new RegExp(regPattern),
-            s = document.getElementsByTagName('script'),
-            src, m, l = "";
-        for(var i=0, len=s.length; i<len; i++) {
-            src = s[i].getAttribute('src');
-            if(src) {
-                m = src.match(r);
-                if(m) {
-                    l = m[1];
-                    break;
-                }
-            }
-        }
-        return l;
-   },
-   
-   getResourcePath : function(){
-   	 return cityways.options.ResourceURI +"themes/" + cityways.options.Theme + "/";
-   },
-   
-   getBrowserName : function(browser){
-       var name = null;
-       $.each(browser, function(i, val) {
-           if(i != "version")
-            {
-                name = i;
-                return false;
-            }
-        });
-       return name;
-   },
-   
-   getCurrentBrowserName : function(){
-       return cityways.options.getBrowserName($.browser);
-   }
-
-};
-/**
- * Функция инициализации
- */
-(function() {
-    cityways.options.ResourceURI = cityways.options._getScriptLocation("MainPage");
-    cityways.log(cityways.options.ResourceURI);
-})();
-  
 /* ======================================================================
     cityways/lang/ru.js
    ====================================================================== */
@@ -1547,88 +1559,142 @@ cityways.lang.ru = {
    ====================================================================== */
 
 /**
+ * @overview namespace cityways.helper.styles
+ * @copyright 
+ * 2012,PremiumGIS Inc. All Rights Reserved. <a href="http://premiumgis.com">PremiumGIS</a>
+ * Project url: <a href="http://ways.in.ua">cityways</a>
+ * 
+ * @author <a href="mailto:rs@premiumgis.com">Roman Shafeyev</a>
+ * 
  * @requires cityways/cityways.js
  * @requires cityways/util.js
  */
 
-
-cityways.helper.styles = {
-
-	include : function(cssFileName) {
-		var css = "<link rel=\"stylesheet\" href=\"" + cssFileName + "\" type=\"text/css\">";
-		document.write(css);
-	},
+ /**
+ * @namespace cityways.helper.styles
+ * @description Включает в себя вспомогательные функции для работы со стилями. 
+ */
+ cityways.helper.styles = {
 
 	/**
-	 * 
-	 * 
-	 * @param options
-	 * Example:
-	 * cssOptions = [
+ 	* Подключает css файл к текущему html документу
+ 	* @param  {String} cssFileName Путь к css файлу
+ 	* @return {void}            
+ 	*/
+ 	include : function(cssFileName) {
+ 		var css = "<link rel=\"stylesheet\" href=\"" + cssFileName + "\" type=\"text/css\">";
+ 		document.write(css);
+ 	},
+
+	/**
+	 * Подключает css файл к текущему html документу в зависимости от  браузера клиента
+	 * @param {String} cssFiles Директория, в которой ле к css файлам
+	 * @param {Object} cssOptions Хранит связь css файлов и поддерживаемых ими браузеров. 
+	 * @return {String} Путь к подключенному css файлу
+	 * @example Приведем пример выбора нужного css файла в зависимости от  браузера клиента
+	 * var cssFiles = [
 	 *         {
 	 *             name : "style.css"
 	 *         },
 	 *         {
 	 *             name : "style_ie7.css",
      *             browsers : {
-     *                          "mozilla" : {min : "1.7.12", max : "1.9"}
+     *                          "msie" : {min : 7.0}
      *                        },
 	 *         {
 	 *             name : "style_ff.css",
 	 *             browsers : {
-	 *                           "msie" :  {max : "7.0"},
-	 *                           "opera" : {min : "8.0", max : "10.06"}
+	 *                           "mozilla" :  {min : 7.0, max : 16.0}
 	 *                        }
 	 *         }];
-	 * 
-	 * 
+	 * var cssFilename = cityways.helper.styles.includeCSSFile("media/css",cssFiles);
+	 * // cssFilename = "media/css/style.css", если текущий браузер не ff и ie
+	 * // cssFilename = "media/css/style_ie7.css", если текущий браузер ie7+
+	 * // cssFilename = "media/css/style_ff.css", если текущий браузер ff версии [7.0, 16.0]
 	 */
-	includeCSSFile : function(filePath, cssOptions) {
-        var fileName =  cityways.helper.Styles._selectCSSFile(cssOptions,$.browser);
-        if(fileName == null)
-            throw new Error("includeCSSFile() was not found css file");
-        cityways.helper.Styles.include(filePath + fileName);
-	},
-	
-	/**
-	 * Выбирает css файл в зафисимости от текущего браузера
- * @param  {Object} cssFiles
- * @param  {Object} browser Информация о браузере. Хранит версию и название текущего браузера
- * browser = {
- *     "msie" : true,
- *      version : 7.0
- * };
- * @return {String} название css файла 
+	 includeCSSFile : function(filePath, cssFiles) {
+	 	var browser = {
+	 		name : cityways.util.browser(),
+	 		version : cityways.util.browserVersion()
+	 	};
+	 	var fileName =  cityways.helper.styles._selectCSSFile(cssFiles,browser);
+	 	if(fileName == null)
+	 		throw new Error("includeCSSFile() was not found css file");
+	 	cityways.helper.styles.include(filePath + fileName);
+	 	return filePath + fileName;
+	 },
 
- * О возможных названиях браузеров и версия см. http://jquery-docs.ru/utilities/jquery-browser/
- * */
-	_selectCSSFile : function(cssFiles,browser){
-	     var defaultFile = null;
-	     var selectedFile = null;
-	     var browserName = cityways.Basic.getBrowserName(browser);
-         
-	     for(var i=0;i < cssFiles.length; i++ ){
-         if(cssFiles[i].browsers === undefined || cssFiles[i].browsers == null ){
-                   defaultFile = cssFiles[i];
-         }
-               else{
-                   for(var j = 0; j  < cssFiles[i].browsers.length; j++ ){
-                       var bname = cssFiles[j].browsers[j].name;
-                       var min_v = cssFiles[j].browsers[j].min;
-                       var max_v = cssFiles[j].browsers[j].max;
-                       if(bname == browserName){
-                           selectedFile =  selectedFile;
-                                
-                       }
-                   }
-               }
-               
-        }
-        
-        return defaultFile;
-      
-	}
-};
+	/**
+  	* Выбирает css файл в зафисимости от текущего браузера.
+  	* @private
+  	* @param  {Array}  cssFiles  		 Элементы массива хранят в себе названия сss-файлов и браузеры, которые они поддерживают.
+ 	* @param  {Object} browser 			 Информация о браузере. Хранит версию и название текущего браузера.
+  	* Структура объекта: <br>
+  	* {<br>
+  	* 	name    : {String} <br>
+  	* 	version : {Number} <br>
+  	* }<br>
+ 	* @param  {String} browser.name      Тип браузера("msie", "mozilla").
+ 	* @param  {Number} browser.version   Версия браузера.
+ 	* @return {String} 					 Название css файла. 
+ 	* @example 
+ 	* // Пример входных параметров:
+ 	* 
+ 	* var browser  = {
+ 	*      name    : "msie",
+ 	*      version : 7.0
+ 	* };
+ 	* 
+ 	* var cssFiles = [
+	*         {
+	*             name : "style.css"
+	*         },
+	*         {
+	*             name : "style_ie7.css",
+    *             browsers : {
+    *                          "msie" : {min : 7.0}
+    *                        },
+	*         {
+	*             name : "style_ff.css",
+	*             browsers : {
+	*                           "mozilla" :  {min : 7.0, max : 16.0}
+	*                        }
+	*         }];
+	* // Вызов функции:
+	* 
+	* var selectedFile = cityways.styles._selectCSSFile(cssFiles,browser);
+ 	*/
+ 	_selectCSSFile : function(cssFiles,browser) {
+ 		var defaultFile = null;
+ 		var selectedFile = null;
+ 		
+ 		for(var i=0; i < cssFiles.length; i++ ){
+
+ 			if(cssFiles[i].browsers == undefined &&   cssFiles[i].name != undefined){
+ 				defaultFile = cssFiles[i].name;
+ 			}
+ 			else if (cssFiles[i].browsers != undefined){
+
+ 				var cssBrowser = cssFiles[i].browsers[browser.name];
+ 				if(cssBrowser != undefined){
+ 					var min_v = cssBrowser.min;
+ 					var max_v = cssBrowser.max;
+ 					cityways.logger.debug("find",cssFiles[i]);
+ 		 				if( (min_v == undefined && max_v == undefined) ||
+ 							(min_v == undefined && max_v >= browser.version) ||
+ 							(max_v == undefined && min_v <= browser.version) ||
+ 							(min_v <= browser.version && max_v >= browser.version)){
+ 								selectedFile = cssFiles[i].name;
+ 						}
+ 				}
+ 			}
+ 		}
+ 		cityways.logger.debug(defaultFile);
+ 		if(selectedFile != undefined)
+ 			return selectedFile;
+ 		return defaultFile;
+ 	}
+ };
 /* ======================================================================
     cityways/loader/PathsLoader.js
    ====================================================================== */
