@@ -16,6 +16,18 @@ cityways.lang.ru = {
 	'time.minute': "минута",
 	'time.minutes10': "минут",
 	'time.minutes': "минуты",
-	'time.minutes_ru': "минут"
-
+	'time.minutes_ru': "минут",
+	'time.hours' : "часов",
+	'time.hour' : "час",
+	'time.hours_ru' : "часа",
+	'byFootToStation' : "Пешком до станции",
+	'timeFoot': "Время (пешком)",
+	'distanceFoot': "Расстояние (пешком)",
+	'interval' : "Интервал движения", 
+	'distanceTransport': "Расстояние",
+	'getIn': "Садиться",
+	'getOut': "Выходить",
+	'transfer': "Пересадка",
+	'transferFrom': "С остановки",
+	'transferTo': "На остановку"
 };

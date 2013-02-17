@@ -23,21 +23,36 @@ cityways.template.HtmlTemplates = {
 		var templates = cityways.template.HtmlTemplates._templates;
 		if (templates[templateName] === undefined) {
 			var loader = new cityways.loader.TemplatesLoader();
-			var fileName = cityways.template.HtmlTemplates
-					._getFileByTemplateName(templateName);
+			var fileName = cityways.template.HtmlTemplates._getFileNameByTemplateName(templateName);
 			loader.loadHtmlTemplates(fileName, function(__templates) {
-                        cityways.Util.extend(templates,__templates);
-                        callback(templates[templateName]);
-            		});
+						cityways.Util.extend(templates, __templates);
+						callback(templates[templateName]);
+					});
 		} else {
 			callback(templates[templateName]);
 		}
 
 	},
 
-	_getFileByTemplateName : function(templateName) {
-		// templateName = template-<file_name>-<name>
-		return "main";
+	_getFileNameByTemplateName : function(templateName) {
+		var templateName = new String(templateName);
+		var regTemplate = /template\-/gi;
+		var template = new String('template');
+		var regDef = /-/;
+		if (templateName == "") {
+			return null;
+		}
+		if (!templateName.match(regTemplate) || !templateName.match(regDef)) {
+			return null;
+		}
+		if (templateName.slice(0, 8) != template) {
+			return null;
+		} else {
+			var slicetemplateName = templateName.slice(9);
+			var to = slicetemplateName.search('-');
+			var fileName = slicetemplateName.substring(0, to);
+			return fileName;
+		}
 	}
 
 };

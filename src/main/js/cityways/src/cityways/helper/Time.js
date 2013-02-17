@@ -17,6 +17,11 @@ secsToLocaleString : function(secs) {
 	{
 		return cityways.helper.Time.minsOfHourToLocaleString(m);
 	}
+	
+		if (m==0)
+	{
+		return cityways.helper.Time.hoursToLocaleString(h);
+	}
 	return cityways.helper.Time.hoursToLocaleString(h) +" " +cityways.helper.Time.minsOfHourToLocaleString(m);
 	
 },

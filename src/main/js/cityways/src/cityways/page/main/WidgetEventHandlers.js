@@ -33,6 +33,7 @@ cityways.page.main.WidgetEventHandlers = cityways.type.Class({
 			_onMakeRightPanelContent : function(self, data, templates) {
 				var headersTemplate = templates["template-main-waysPanelHeader"];
 				var infoTemplate = templates["template-main-waysPanelInfo"];
+				//var detailInfoTemplate = templates["template-main-waysPanelInfo"];
 				var paths = data.paths;
 				var htmlBody = "";
 				for (var i = 0; i < paths.length; i++) {
@@ -42,7 +43,8 @@ cityways.page.main.WidgetEventHandlers = cityways.type.Class({
 						index : i + 1,
 						locale : cityways.Language.translate,
 						cost : path.getFullCost(),
-						time: path.getWalkingTime()
+						time: path.getWalkingTime(),
+						footTo : path.getStationName()
 					};
 					htmlBody = htmlBody + headersTemplate(params);
 				}
@@ -75,6 +77,16 @@ cityways.page.main.WidgetEventHandlers = cityways.type.Class({
 										templates);
 							}
 						});
+						
+										/*cityways.template.HtmlTemplates.get(
+						"template-main-detailWaysPanelInfo", function(template) {
+							loadedTemplates++;
+							templates["template-main-detailWaysPanelInfo"] = template;
+							if (loadedTemplates == templatesCount) {
+								_this._onMakeRightPanelContent(_this, data,
+										templates);
+							}
+						});*/
 
 			},
 

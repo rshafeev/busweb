@@ -15,6 +15,19 @@ cityways.lang.uk = {
 	'time.minute' : "хвилина",
 	'time.minutes10' : "хвилин",
 	'time.minutes' : "хвилини",
-	'time.minutes_ru' : "хвилин"
+	'time.minutes_ru' : "хвилин",
+	'time.hours' : "годин",
+	'time.hour' : "година",
+	'time.hours_ru' : "години",
+	'byFootToStation' : "Пiшки до станцii",
+	'timeFoot' : "Час (пiшки)",
+	'distanceFoot' : "Вiдстань (пiшки)",
+	'interval' : "iнтервал руху",
+	'distanceTransport' : "Вiдстань",
+	'getIn' : "Сiдати",
+	'getOut' : "Виходити",
+	'transfer' : "Пересадка",
+	'transferFrom' : "С зупинки",
+	'transferTo' : "На зупинку"
 
 };

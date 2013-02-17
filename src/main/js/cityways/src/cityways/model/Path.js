@@ -47,6 +47,18 @@ cityways.model.Path = cityways.type.Class({
 				time += this.input.moveTimeSecs;
 				time += this.out.moveTimeSecs;			 
 				return cityways.helper.Time.secsToLocaleString(time);
+			},
+			
+			getStationName : function() {
+				return this.routes[0].stationA;;
+				/*if (this.routes == null)
+					return 0.0;
+				var station = "";
+				for (var i = 0; i < this.routes.length; i++) {
+					station += this.routes[i].stationA;
+				}
+
+				return station;*/
 			}
 
 		});
