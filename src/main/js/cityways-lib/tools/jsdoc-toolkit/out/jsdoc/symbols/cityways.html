@@ -42,13 +42,21 @@
 				
 					<li><a href="../symbols/cityways.Class.html">cityways<span class='break'> </span>.<span class='break'> </span>Class</a></li>
 				
+					<li><a href="../symbols/cityways.event.html">cityways<span class='break'> </span>.<span class='break'> </span>event</a></li>
+				
+					<li><a href="../symbols/cityways.EventListener.html">cityways<span class='break'> </span>.<span class='break'> </span>EventListener</a></li>
+				
 					<li><a href="../symbols/cityways.helper.styles.html">cityways<span class='break'> </span>.<span class='break'> </span>helper<span class='break'> </span>.<span class='break'> </span>styles</a></li>
 				
 					<li><a href="../symbols/cityways.helper.time.html">cityways<span class='break'> </span>.<span class='break'> </span>helper<span class='break'> </span>.<span class='break'> </span>time</a></li>
 				
 					<li><a href="../symbols/cityways.logger.html">cityways<span class='break'> </span>.<span class='break'> </span>logger</a></li>
 				
-					<li><a href="../symbols/cityways.Map.html">cityways<span class='break'> </span>.<span class='break'> </span>Map</a></li>
+					<li><a href="../symbols/cityways.map.event.html">cityways<span class='break'> </span>.<span class='break'> </span>map<span class='break'> </span>.<span class='break'> </span>event</a></li>
+				
+					<li><a href="../symbols/cityways.map.GoogleMap.html">cityways<span class='break'> </span>.<span class='break'> </span>map<span class='break'> </span>.<span class='break'> </span>GoogleMap</a></li>
+				
+					<li><a href="../symbols/cityways.MapWidget.html">cityways<span class='break'> </span>.<span class='break'> </span>MapWidget</a></li>
 				
 					<li><a href="../symbols/cityways.options.html">cityways<span class='break'> </span>.<span class='break'> </span>options</a></li>
 				
@@ -67,7 +75,7 @@
 			Documentation generator: <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0<br />
 			Template: <a href="http://www.thebrightlines.com/2010/05/06/new-template-for-jsdoctoolkit-codeview/" target="_blank">Codeview</a> 1.2<br />
 			Generated on:
-			<time datetime='2013-1-11' pubdate>2013-1-11 20:45</time>
+			<time datetime='2013-1-13' pubdate>2013-1-13 21:36</time>
 		</footer>
 	</div>
 </div>
@@ -163,6 +171,16 @@
 													cityways.<b><a href="../symbols/cityways.html#.language">language</a></b>
 													</div>
 													<div class="description">Статический класс</div>
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="attributes">&lt;static&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont">
+													cityways.<b><a href="../symbols/cityways.html#.Map">Map</a></b>
+													</div>
+													<div class="description">[Map description]</div>
 												</td>
 											</tr>
 										
@@ -336,6 +354,50 @@ objects can be passed, which will extend C.</div>
 									
 								</div>
 								
+								
+									
+								
+								<div class="hr"></div>
+							
+								<div class="fixedFont heading" id=".Map">
+									<span class='lighter'>
+									&lt;static&gt; 
+									</span>
+									
+									
+									
+									<span class="light">cityways.</span><b>Map</b>							
+								</div>
+								
+								<div class="description">
+									[Map description]
+									
+										<br />
+										<i>Defined in: </i> <a href="../symbols/src/src_cityways_Map.js.html">Map.js</a>.
+									
+									
+									
+								</div>
+								
+								
+									
+										<pre class="code"><html>
+	<head>
+		<script>.../cityways.js</script>
+		<script>
+				function initialize(){
+				var options = {
+					mapProvider : "google"
+				};
+				var map = new cityways.Map('map',options);
+				}
+		</script>
+ </head>
+<body onload="initialize()">
+		<div id="map"></div>
+</body>
+</html></pre>
+									
 								
 									
 								

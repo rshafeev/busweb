@@ -10,13 +10,13 @@ import javax.servlet.ServletContextListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import test.TestDBConnectionManager;
-import test.TestDataSource;
 
 
 import com.pgis.bus.data.DBConnectionManager;
 import com.pgis.bus.server.AppProperties;
 import com.pgis.bus.server.data.DBConnectionFactory;
+import com.pgis.bus.server.data.test.TestDBConnectionManager;
+import com.pgis.bus.server.data.test.TestDataSource;
 
 /**
  * навешивает логику на момент создания/удаления сервлета

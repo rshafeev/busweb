@@ -1,13 +1,13 @@
 
 /**
- * @overview
+ * @overview Namespace {@link cityways.util}.
+ * @see Project url: {@link http://ways.in.ua}.
  * @copyright 
- * 2012,PremiumGIS Inc. All Rights Reserved. <a href="http://premiumgis.com">PremiumGIS</a>
- * Project url: <a href="http://ways.in.ua">cityways</a>
+ * CityWays-lib is copyright (c) 2012, {@link http://premiumgis.com|PremiumGIS} Inc. All Rights Reserved. 
+ * CityWays-lib is free software, licensed under the MIT license. 
+ * See the file {@link http://api.ways.in.ua/license.txt|license.txt} in this distribution for more details.
+ * @author Roman Shafeyev <rs@premiumgis.com>
  * 
- * @author <a href="mailto:rs@premiumgis.com">Roman Shafeyev</a>
- * 
- * @requires cityways/cityways.js
  * @requires cityways/BrowserDetect.js
  * @requires cityways/options.js
  */
@@ -87,10 +87,3 @@
 
 };
 
-/**
- * Функция инициализации
- */
- (function() {
-    cityways.options.ResourceURI = cityways.util.getScriptLocation("cityways");
-    cityways.logger.info(cityways.options.ResourceURI);
-})();

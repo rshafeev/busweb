@@ -1,0 +1,105 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">/**
+<span class='line'>  2</span>  * @requires cityways/cityways.js
+<span class='line'>  3</span>  */</span><span class="WHIT">
+<span class='line'>  4</span> 
+<span class='line'>  5</span> </span><span class="COMM">/**
+<span class='line'>  6</span>  * Namespace: OpenLayers.Lang["en"]
+<span class='line'>  7</span>  * Dictionary for English.  Keys for entries are used in calls to
+<span class='line'>  8</span>  *     &lt;OpenLayers.Lang.translate>.  Entry bodies are normal strings or
+<span class='line'>  9</span>  *     strings formatted for use with &lt;OpenLayers.String.format> calls.
+<span class='line'> 10</span>  */</span><span class="WHIT">
+<span class='line'> 11</span> </span><span class="NAME">cityways.lang.en</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 12</span> </span><span class="WHIT">	</span><span class="STRN">'path_time'</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"Path time"</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 13</span> </span><span class="WHIT">	</span><span class="STRN">'cost'</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"Coast"</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 14</span> </span><span class="WHIT">	</span><span class="STRN">'time'</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"Path time"</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 15</span> </span><span class="WHIT">	</span><span class="STRN">'UAH'</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"UAH"</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 16</span> </span><span class="WHIT">	</span><span class="STRN">'time.minute'</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"minute"</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 17</span> </span><span class="WHIT">	</span><span class="STRN">'time.minutes10'</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"minutes"</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 18</span> </span><span class="WHIT">	</span><span class="STRN">'time.minutes'</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"minutes"</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 19</span> </span><span class="WHIT">	</span><span class="STRN">'time.minutes_ru'</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"minutes"</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 20</span> 
+<span class='line'> 21</span> </span><span class="WHIT">    </span><span class="STRN">'unhandledRequest'</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"Unhandled request return ${statusText}"</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 22</span> 
+<span class='line'> 23</span> </span><span class="WHIT">    </span><span class="STRN">'Permalink'</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"Permalink"</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 24</span> 
+<span class='line'> 25</span> </span><span class="WHIT">    </span><span class="STRN">'Overlays'</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"Overlays"</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 26</span> 
+<span class='line'> 27</span> </span><span class="WHIT">    </span><span class="STRN">'Base Layer'</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"Base Layer"</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 28</span> 
+<span class='line'> 29</span> </span><span class="WHIT">    </span><span class="STRN">'noFID'</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"Can't update a feature for which there is no FID."</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 30</span> 
+<span class='line'> 31</span> </span><span class="WHIT">    </span><span class="STRN">'browserNotSupported'</span><span class="PUNC">:</span><span class="WHIT">
+<span class='line'> 32</span> </span><span class="WHIT">        </span><span class="STRN">"Your browser does not support vector rendering. Currently supported renderers are:\n${renderers}"</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 33</span> 
+<span class='line'> 34</span> </span><span class="WHIT">    </span><span class="COMM">// console message</span><span class="WHIT">
+<span class='line'> 35</span> </span><span class="WHIT">    </span><span class="STRN">'minZoomLevelError'</span><span class="PUNC">:</span><span class="WHIT">
+<span class='line'> 36</span> </span><span class="WHIT">        </span><span class="STRN">"The minZoomLevel property is only intended for use "</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
+<span class='line'> 37</span> </span><span class="WHIT">        </span><span class="STRN">"with the FixedZoomLevels-descendent layers. That this "</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
+<span class='line'> 38</span> </span><span class="WHIT">        </span><span class="STRN">"wfs layer checks for minZoomLevel is a relic of the"</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
+<span class='line'> 39</span> </span><span class="WHIT">        </span><span class="STRN">"past. We cannot, however, remove it without possibly "</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
+<span class='line'> 40</span> </span><span class="WHIT">        </span><span class="STRN">"breaking OL based applications that may depend on it."</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
+<span class='line'> 41</span> </span><span class="WHIT">        </span><span class="STRN">" Therefore we are deprecating it -- the minZoomLevel "</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
+<span class='line'> 42</span> </span><span class="WHIT">        </span><span class="STRN">"check below will be removed at 3.0. Please instead "</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
+<span class='line'> 43</span> </span><span class="WHIT">        </span><span class="STRN">"use min/max resolution setting as described here: "</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
+<span class='line'> 44</span> </span><span class="WHIT">        </span><span class="STRN">"http://trac.openlayers.org/wiki/SettingZoomLevels"</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 45</span> 
+<span class='line'> 46</span> </span><span class="WHIT">    </span><span class="STRN">'commitSuccess'</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"WFS Transaction: SUCCESS ${response}"</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 47</span> 
+<span class='line'> 48</span> </span><span class="WHIT">    </span><span class="STRN">'commitFailed'</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"WFS Transaction: FAILED ${response}"</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 49</span> 
+<span class='line'> 50</span> </span><span class="WHIT">    </span><span class="STRN">'googleWarning'</span><span class="PUNC">:</span><span class="WHIT">
+<span class='line'> 51</span> </span><span class="WHIT">        </span><span class="STRN">"The Google Layer was unable to load correctly.&lt;br>&lt;br>"</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
+<span class='line'> 52</span> </span><span class="WHIT">        </span><span class="STRN">"To get rid of this message, select a new BaseLayer "</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
+<span class='line'> 53</span> </span><span class="WHIT">        </span><span class="STRN">"in the layer switcher in the upper-right corner.&lt;br>&lt;br>"</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
+<span class='line'> 54</span> </span><span class="WHIT">        </span><span class="STRN">"Most likely, this is because the Google Maps library "</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
+<span class='line'> 55</span> </span><span class="WHIT">        </span><span class="STRN">"script was either not included, or does not contain the "</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
+<span class='line'> 56</span> </span><span class="WHIT">        </span><span class="STRN">"correct API key for your site.&lt;br>&lt;br>"</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
+<span class='line'> 57</span> </span><span class="WHIT">        </span><span class="STRN">"Developers: For help getting this working correctly, "</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
+<span class='line'> 58</span> </span><span class="WHIT">        </span><span class="STRN">"&lt;a href='http://trac.openlayers.org/wiki/Google' "</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
+<span class='line'> 59</span> </span><span class="WHIT">        </span><span class="STRN">"target='_blank'>click here&lt;/a>"</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 60</span> 
+<span class='line'> 61</span> </span><span class="WHIT">    </span><span class="STRN">'getLayerWarning'</span><span class="PUNC">:</span><span class="WHIT">
+<span class='line'> 62</span> </span><span class="WHIT">        </span><span class="STRN">"The ${layerType} Layer was unable to load correctly.&lt;br>&lt;br>"</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
+<span class='line'> 63</span> </span><span class="WHIT">        </span><span class="STRN">"To get rid of this message, select a new BaseLayer "</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
+<span class='line'> 64</span> </span><span class="WHIT">        </span><span class="STRN">"in the layer switcher in the upper-right corner.&lt;br>&lt;br>"</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
+<span class='line'> 65</span> </span><span class="WHIT">        </span><span class="STRN">"Most likely, this is because the ${layerLib} library "</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
+<span class='line'> 66</span> </span><span class="WHIT">        </span><span class="STRN">"script was not correctly included.&lt;br>&lt;br>"</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
+<span class='line'> 67</span> </span><span class="WHIT">        </span><span class="STRN">"Developers: For help getting this working correctly, "</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
+<span class='line'> 68</span> </span><span class="WHIT">        </span><span class="STRN">"&lt;a href='http://trac.openlayers.org/wiki/${layerLib}' "</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
+<span class='line'> 69</span> </span><span class="WHIT">        </span><span class="STRN">"target='_blank'>click here&lt;/a>"</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 70</span> 
+<span class='line'> 71</span> </span><span class="WHIT">    </span><span class="STRN">'Scale = 1 : ${scaleDenom}'</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"Scale = 1 : ${scaleDenom}"</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 72</span> </span><span class="WHIT">    
+<span class='line'> 73</span>     </span><span class="COMM">//labels for the graticule control</span><span class="WHIT">
+<span class='line'> 74</span> </span><span class="WHIT">    </span><span class="STRN">'W'</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'W'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 75</span> </span><span class="WHIT">    </span><span class="STRN">'E'</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'E'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 76</span> </span><span class="WHIT">    </span><span class="STRN">'N'</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'N'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 77</span> </span><span class="WHIT">    </span><span class="STRN">'S'</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'S'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 78</span> </span><span class="WHIT">    </span><span class="STRN">'Graticule'</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'Graticule'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 79</span> 
+<span class='line'> 80</span> </span><span class="WHIT">    </span><span class="COMM">// console message</span><span class="WHIT">
+<span class='line'> 81</span> </span><span class="WHIT">    </span><span class="STRN">'reprojectDeprecated'</span><span class="PUNC">:</span><span class="WHIT">
+<span class='line'> 82</span> </span><span class="WHIT">        </span><span class="STRN">"You are using the 'reproject' option "</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
+<span class='line'> 83</span> </span><span class="WHIT">        </span><span class="STRN">"on the ${layerName} layer. This option is deprecated: "</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
+<span class='line'> 84</span> </span><span class="WHIT">        </span><span class="STRN">"its use was designed to support displaying data over commercial "</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> 
+<span class='line'> 85</span>         </span><span class="STRN">"basemaps, but that functionality should now be achieved by using "</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
+<span class='line'> 86</span> </span><span class="WHIT">        </span><span class="STRN">"Spherical Mercator support. More information is available from "</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
+<span class='line'> 87</span> </span><span class="WHIT">        </span><span class="STRN">"http://trac.openlayers.org/wiki/SphericalMercator."</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 88</span> 
+<span class='line'> 89</span> </span><span class="WHIT">    </span><span class="COMM">// console message</span><span class="WHIT">
+<span class='line'> 90</span> </span><span class="WHIT">    </span><span class="STRN">'methodDeprecated'</span><span class="PUNC">:</span><span class="WHIT">
+<span class='line'> 91</span> </span><span class="WHIT">        </span><span class="STRN">"This method has been deprecated and will be removed in 3.0. "</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
+<span class='line'> 92</span> </span><span class="WHIT">        </span><span class="STRN">"Please use ${newMethod} instead."</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 93</span> 
+<span class='line'> 94</span> </span><span class="WHIT">    </span><span class="COMM">// **** end ****</span><span class="WHIT">
+<span class='line'> 95</span> </span><span class="WHIT">    </span><span class="STRN">'end'</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">''</span><span class="WHIT">
+<span class='line'> 96</span> </span><span class="WHIT">    
+<span class='line'> 97</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 98</span> </span></pre></body></html>

@@ -17,8 +17,8 @@
 <script src="${myContext}/media/cityways/basic.js"></script>
 
 <script type="text/javascript">
-	//includeCSSFile("${myContext}/media/css/basic", "basic", ["ff", "ie8"]);
-	cityways.helper.styles.includeCSSFile("${myContext}/media/css/basic/",
+ (function() {
+	var cssFile = cityways.helper.document.selectCSSFile("${myContext}/media/css/basic/",
 												[{
 													name : "basic.css"
 												},
@@ -30,16 +30,21 @@
 													name : "basic_ie8",
 													browsers : {msie : {max : 8.0}}
 												}]);
+	cityways.helper.document.appendCSSFile(cssFile,"write");
 
-	function updateContainerSize() {
-		$("#container").css('height', cityways.util.getWindowSize().height - 35);
-	};
-	$(document).ready(function() {
+  })();
+
+  $(document).ready(function() {
+  		function updateContainerSize(){
+  			$("#container").css('height', cityways.util.getWindowSize().height - 35);
+  		};
+  		updateContainerSize();
 		$(window).bind("resize", function(e) {
 			updateContainerSize();
 		});
-		updateContainerSize();
+		
 	});
+
 </script>
 <!--  -
 <script src="http://vkontakte.ru/js/api/openapi.js"

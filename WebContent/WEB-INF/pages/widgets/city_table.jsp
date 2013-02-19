@@ -3,7 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <form name="testform">
 	<select id="selectbox_city" class="selectbox" name="websites" size="1"
-		onChange="on_change_selectbox_city()">
+		onChange="cityways.page.Events.onChangeSelectboxCity()">
 		<c:forEach var="city" items="${model.getCitiesModel().getCities()}">
 			<c:choose>
 				<c:when

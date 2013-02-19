@@ -1,12 +1,13 @@
 /**
- * @overview namespace cityways.event
+ * @overview Namespace {@link cityways.event}.
+ * @see Project url: {@link http://ways.in.ua}.
  * @copyright 
- * 2012,PremiumGIS Inc. All Rights Reserved. <a href="http://premiumgis.com">PremiumGIS</a>
- * Project url: <a href="http://ways.in.ua">cityways</a>
+ * CityWays-lib is copyright (c) 2012, {@link http://premiumgis.com|PremiumGIS} Inc. All Rights Reserved. 
+ * CityWays-lib is free software, licensed under the MIT license. 
+ * See the file {@link http://api.ways.in.ua/license.txt|license.txt} in this distribution for more details.
+ * @author Roman Shafeyev <rs@premiumgis.com>
  * 
- * @author <a href="mailto:rs@premiumgis.com">Roman Shafeyev</a>
- * 
- * @requires cityways/cityways.js
+ * @requires cityways.js
  */
 
 /**
@@ -16,7 +17,7 @@
 
 	/**
 	 * [listeners description]
-	 * @type {Dictionary<Object,Dictionary<String, Array<cityways.map.EventListener > > >}
+	 * @type { {@link cityways.type.Dictionary}<Object,Dictionary<String, Array<cityways.map.EventListener > > >}
 	 * @private
 	 * @example
 	 * var listeners = {
@@ -39,7 +40,7 @@
 	 *     		}
 	 * };
 	 */
-	 listeners : {},
+	 listeners : null,
 
 	 /**
 	  * [addListener description]
@@ -48,37 +49,63 @@
 	  * @param {Function} callback 				[description]
 	  * @return {cityways.map.EventListener}    [description]
 	  */
-	 addListener : function(object, evt, callback) {
-	 	var listeners = cityways.event.listeners;
-	 	if(object[evt]){
-	 		var listener = new cityways.EventListener(object, evt, callback);
-	 		if(cityways.event.listeners[object] == undefined){
-	 			cityways.event.listeners[object] = {};
-	 			cityways.event.listeners[object][evt] = [];
-	 		}
-	 		cityways.event.listeners[object][evt].push(listener);
-	 		return listener;
-	 	}
-	 	return null;
+	  addListener : function(object, evt, callback) {
+	  	if(cityways.event.listeners == undefined)
+	  	{
+	  		cityways.event.listeners = new cityways.type.Dictionary();
+	  	}
+	 	//var listeners = cityways.event.listeners;
+	 	var listener = new cityways.EventListener(object, evt, callback);
 
-	 },
+	 	 cityways.logger.info(object);
+	 	
+	 	if(cityways.event.listeners.get(object) == null){
+	 		var val = {};
+	 		val[evt] = [];
+	 		cityways.event.listeners.put(object,val);
+	 	}
+	 	else 
+	 		if(cityways.event.listeners.get(object)[evt] == undefined){
+	 			cityways.event.listeners.get(object)[evt] = [];
+	 		}
+	 	cityways.logger.info(cityways.event.listeners);
+	 	
+	 	cityways.event.listeners.get(object)[evt].push(listener);
+	 	
+	 	return listener;
+
+	 	},
 
 	 /**
 	  * [removeListener description]
 	  * @param  {cityways.map.EventListener} listener [description]
 	  */
-	 removeListener : function(listener) {
-	 	var listeners = cityways.event.listeners;
-	 	if ( listeners[listener.object] && listeners[listener.object][listener.evt]) {
-	 		var objListeners = listeners[listener.object][listener.evt];
-	 		for(var i=0; i < objListeners.length; i++){
-	 			if(objListeners[i] == listener){
-	 				objListeners.remove(i);
-	 				return;
-	 			}
-	 		}
-	 	}
-	 },
+	  removeListener : function(listener) {
+	  	var listeners = cityways.event.listeners;
+	  	if ( listeners.get(listener.object) && listeners.get(listener.object)[listener.evt]) {
+	  		var evtListeners = listeners.get(listener.object)[listener.evt];
+	  		for(var i=0; i < evtListeners.length; i++){
+	  			if(evtListeners[i] == listener){
+	  				evtListeners.remove(i);
+	  				return true;
+	  			}
+	  		}
+	  	}
+	  	return false;
+	  },
+
+	  removeListeners : function(object, evt){
+	  	var listeners = cityways.event.listeners;
+	  	if(listeners.get(object) == null)
+	  		return;
+	  	if(evt == undefined ){
+	  		listeners.pull(object);
+	  		return;
+	  	}
+	  	if(listeners.get(object)[evt] != undefined)
+	  		delete listeners.get(object)[evt];
+
+	  },
 
 	 /**
 	  * [triggerEvent description]
@@ -87,15 +114,64 @@
 	  * @param  {[type]} args   [description]
 	  * @return {[type]}        [description]
 	  */
-	 triggerEvent : function(object, evt, args) {
-	 	var listeners = cityways.event.listeners;
-	 	if(listeners[object] && listeners[object][evt]){
-	 		var objListeners = listeners[object][evt];
-	 		for(var i = 0; i < objListeners.length; i++){
-	 			objListeners[i].callback(args);
-	 		}
-	 	}
-	 } 
+	  triggerEvent : function(object, evt, args) {
+	  	cityways.logger.info(cityways.event.listeners);
+	  	var listeners = cityways.event.listeners;
+	  	if(listeners == undefined)
+	  		return;
+	  	if( listeners.get(object) && listeners.get(object)[evt]){
+	  		var objListeners = listeners.get(object)[evt];
+	  		for(var i = 0; i < objListeners.length; i++){
+	  			objListeners[i].callback(args);
+	  		}
+	  	}
+	  },
 
 
-};
+	 /**
+ 	 * @constant
+ 	 * @type {String}
+ 	 */
+ 	 ON_CLICK : 1,
+
+ 	/**
+ 	 * @constant
+ 	 * @type {String}
+ 	 */
+ 	 ON_LOADED : 2,
+
+ 	/**
+ 	 * @constant
+ 	 * @type {String}
+ 	 */
+ 	 ON_RESIZE : 3,
+
+ 	/**
+ 	 * @constant
+ 	 * @type {String}
+ 	 */
+ 	 ON_CHANGED_LOCATION : 4,
+
+ 	/**
+ 	 * @constant
+ 	 * @type {String}
+ 	 */
+ 	 ON_CHANGED_ADDRESS  : 5,
+
+ 	/**
+ 	 * @constant
+ 	 * @type {String}
+ 	 */
+ 	 ON_CHANGED_DESTINATION_ADDR    : 7,
+
+
+ 	/**
+ 	 * @constant
+ 	 * @type {String}
+ 	 */
+ 	 ON_CHANGED_OPTIONS : 8
+
+
+
+
+ 	};

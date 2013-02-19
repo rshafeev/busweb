@@ -1,32 +1,50 @@
-
 /**
+ * @overview Class {@link cityways.BrowserDetect}.
+ * @see Project url: {@link http://ways.in.ua}.
+ * @copyright 
+ * CityWays-lib is copyright (c) 2012, {@link http://premiumgis.com|PremiumGIS} Inc. All Rights Reserved. 
+ * CityWays-lib is free software, licensed under the MIT license. 
+ * See the file {@link http://api.ways.in.ua/license.txt|license.txt} in this distribution for more details.
+ * @author Roman Shafeyev <rs@premiumgis.com>
+ *
  * @requires cityways/Class.js
  */
 
 /**
  * Статический класс, хранит общие статические свойства
  */
-cityways.BrowserDetect = cityways.Class ({
+/**
+ * @class cityways.BrowserDetect
+ */
+ cityways.BrowserDetect = cityways.Class ({
     
-    browserDetect : null,
-    
-    versionSearchString : null,
-    
-    browser : null,
-    
-    version : null,
-    
-    OS : null,
-    
-    initialize: function () {
+    constructor :  function () {
         this.browser = this.searchString(this.dataBrowser) || "An unknown browser";
         this.version = this.searchVersion(navigator.userAgent)
-            || this.searchVersion(navigator.appVersion)
-            || "an unknown version";
+        || this.searchVersion(navigator.appVersion)
+        || "an unknown version";
         this.OS = this.searchString(this.dataOS) || "an unknown OS";
     },
-    
-    searchString: function (data) {
+
+    members : { 
+
+        browserDetect : null,
+        
+        versionSearchString : null,
+        
+        browser : null,
+        
+        version : null,
+        
+        OS : null,
+        
+    /**
+     * [searchString description]
+     * @memberOf cityways.BrowserDetect.prototype
+     * @param  {[type]} data [description]
+     * @return {[type]}      [description]
+     */
+     searchString: function (data) {
         for (var i=0;i<data.length;i++) {
             var dataString = data[i].string;
             var dataProp = data[i].prop;
@@ -40,6 +58,7 @@ cityways.BrowserDetect = cityways.Class ({
         }
     },
     
+    
     searchVersion: function (dataString) {
         var index = dataString.indexOf(this.versionSearchString);
         if (index == -1) return;
@@ -47,47 +66,47 @@ cityways.BrowserDetect = cityways.Class ({
     },
     
     dataBrowser: [
-        {
-            string: navigator.userAgent,
-            subString: "Chrome",
-            identity: "Chrome"
-        },
-        {   string: navigator.userAgent,
-            subString: "OmniWeb",
-            versionSearch: "OmniWeb/",
-            identity: "OmniWeb"
-        },
-        {
-            string: navigator.vendor,
-            subString: "Apple",
-            identity: "Safari",
-            versionSearch: "Version"
-        },
-        {
-            prop: window.opera,
-            identity: "Opera",
-            versionSearch: "Version"
-        },
-        {
-            string: navigator.vendor,
-            subString: "iCab",
-            identity: "iCab"
-        },
-        {
-            string: navigator.vendor,
-            subString: "KDE",
-            identity: "Konqueror"
-        },
-        {
-            string: navigator.userAgent,
-            subString: "Firefox",
-            identity: "Firefox"
-        },
-        {
-            string: navigator.vendor,
-            subString: "Camino",
-            identity: "Camino"
-        },
+    {
+        string: navigator.userAgent,
+        subString: "Chrome",
+        identity: "Chrome"
+    },
+    {   string: navigator.userAgent,
+        subString: "OmniWeb",
+        versionSearch: "OmniWeb/",
+        identity: "OmniWeb"
+    },
+    {
+        string: navigator.vendor,
+        subString: "Apple",
+        identity: "Safari",
+        versionSearch: "Version"
+    },
+    {
+        prop: window.opera,
+        identity: "Opera",
+        versionSearch: "Version"
+    },
+    {
+        string: navigator.vendor,
+        subString: "iCab",
+        identity: "iCab"
+    },
+    {
+        string: navigator.vendor,
+        subString: "KDE",
+        identity: "Konqueror"
+    },
+    {
+        string: navigator.userAgent,
+        subString: "Firefox",
+        identity: "Firefox"
+    },
+    {
+        string: navigator.vendor,
+        subString: "Camino",
+        identity: "Camino"
+    },
         {       // for newer Netscapes (6+)
             string: navigator.userAgent,
             subString: "Netscape",
@@ -111,8 +130,8 @@ cityways.BrowserDetect = cityways.Class ({
             identity: "Netscape",
             versionSearch: "Mozilla"
         }
-    ],
-    dataOS : [
+        ],
+        dataOS : [
         {
             string: navigator.platform,
             subString: "Win",
@@ -124,17 +143,16 @@ cityways.BrowserDetect = cityways.Class ({
             identity: "Mac"
         },
         {
-               string: navigator.userAgent,
-               subString: "iPhone",
-               identity: "iPhone/iPod"
-        },
-        {
-            string: navigator.platform,
-            subString: "Linux",
-            identity: "Linux"
-        }
+         string: navigator.userAgent,
+         subString: "iPhone",
+         identity: "iPhone/iPod"
+     },
+     {
+        string: navigator.platform,
+        subString: "Linux",
+        identity: "Linux"
+    }
     ]
 
-
+}
 });
-  

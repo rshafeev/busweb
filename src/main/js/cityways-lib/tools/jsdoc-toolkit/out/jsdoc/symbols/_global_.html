@@ -42,13 +42,21 @@
 				
 					<li><a href="../symbols/cityways.Class.html">cityways<span class='break'> </span>.<span class='break'> </span>Class</a></li>
 				
+					<li><a href="../symbols/cityways.event.html">cityways<span class='break'> </span>.<span class='break'> </span>event</a></li>
+				
+					<li><a href="../symbols/cityways.EventListener.html">cityways<span class='break'> </span>.<span class='break'> </span>EventListener</a></li>
+				
 					<li><a href="../symbols/cityways.helper.styles.html">cityways<span class='break'> </span>.<span class='break'> </span>helper<span class='break'> </span>.<span class='break'> </span>styles</a></li>
 				
 					<li><a href="../symbols/cityways.helper.time.html">cityways<span class='break'> </span>.<span class='break'> </span>helper<span class='break'> </span>.<span class='break'> </span>time</a></li>
 				
 					<li><a href="../symbols/cityways.logger.html">cityways<span class='break'> </span>.<span class='break'> </span>logger</a></li>
 				
-					<li><a href="../symbols/cityways.Map.html">cityways<span class='break'> </span>.<span class='break'> </span>Map</a></li>
+					<li><a href="../symbols/cityways.map.event.html">cityways<span class='break'> </span>.<span class='break'> </span>map<span class='break'> </span>.<span class='break'> </span>event</a></li>
+				
+					<li><a href="../symbols/cityways.map.GoogleMap.html">cityways<span class='break'> </span>.<span class='break'> </span>map<span class='break'> </span>.<span class='break'> </span>GoogleMap</a></li>
+				
+					<li><a href="../symbols/cityways.MapWidget.html">cityways<span class='break'> </span>.<span class='break'> </span>MapWidget</a></li>
 				
 					<li><a href="../symbols/cityways.options.html">cityways<span class='break'> </span>.<span class='break'> </span>options</a></li>
 				
@@ -67,7 +75,7 @@
 			Documentation generator: <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0<br />
 			Template: <a href="http://www.thebrightlines.com/2010/05/06/new-template-for-jsdoctoolkit-codeview/" target="_blank">Codeview</a> 1.2<br />
 			Generated on:
-			<time datetime='2013-1-11' pubdate>2013-1-11 20:45</time>
+			<time datetime='2013-1-13' pubdate>2013-1-13 21:36</time>
 		</footer>
 	</div>
 </div>
@@ -113,13 +121,32 @@
 									<tbody>
 										
 											<tr>
-												<td class="attributes">&nbsp;</td>
+												<td class="attributes">&lt;private&gt; &nbsp;</td>
 												<td class="nameDescription">
 													<div class="fixedFont">
-													<b><a href="../symbols/_global_.html#availableRouteTypes">availableRouteTypes</a></b>
+													<b><a href="../symbols/_global_.html#address">address</a></b>
 													</div>
-													<div class="description">Список возможных типов маршрутов, по которым ведется поиск,String[]
-Возможные значения: ['c_route_bus', 'c_route_metro',.</div>
+													<div class="description">[address description]</div>
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="attributes">&lt;private&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont">
+													<b><a href="../symbols/_global_.html#div">div</a></b>
+													</div>
+													<div class="description">ID dom элемента, в который нужно поместить карту</div>
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="attributes">&lt;private&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont">
+													<b><a href="../symbols/_global_.html#googleMap">googleMap</a></b>
+													</div>
+													<div class="description">Объект google.maps.Map</div>
 												</td>
 											</tr>
 										
@@ -127,9 +154,19 @@
 												<td class="attributes">&nbsp;</td>
 												<td class="nameDescription">
 													<div class="fixedFont">
-													<b><a href="../symbols/_global_.html#settingsPanel">settingsPanel</a></b>
+													<b><a href="../symbols/_global_.html#imgFileName">imgFileName</a></b>
 													</div>
-													<div class="description">cityways.Pages.MainPage.RouteTypesPanel Панель "Виды транспорта"</div>
+													<div class="description">[img description]</div>
+												</td>
+											</tr>
+										
+											<tr>
+												<td class="attributes">&lt;private&gt; &nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont">
+													<b><a href="../symbols/_global_.html#location">location</a></b>
+													</div>
+													<div class="description">[location description]</div>
 												</td>
 											</tr>
 										
@@ -170,7 +207,7 @@
 											>
 												<td class="attributes">&nbsp;</td>
 												<td class="nameDescription">
-													<div class="fixedFont"><b><a href="../symbols/_global_.html#enableRouteTypeBtn">enableRouteTypeBtn</a></b>(routeType, val, title)
+													<div class="fixedFont"><b><a href="../symbols/_global_.html#_registerListeners">_registerListeners</a></b>()
 													</div>
 													<div class="description"></div>
 												</td>
@@ -192,7 +229,7 @@
 											>
 												<td class="attributes">&nbsp;</td>
 												<td class="nameDescription">
-													<div class="fixedFont"><b><a href="../symbols/_global_.html#initialize">initialize</a></b>(mainPage)
+													<div class="fixedFont"><b><a href="../symbols/_global_.html#getHeight">getHeight</a></b>()
 													</div>
 													<div class="description"></div>
 												</td>
@@ -203,7 +240,62 @@
 											>
 												<td class="attributes">&nbsp;</td>
 												<td class="nameDescription">
-													<div class="fixedFont"><b><a href="../symbols/_global_.html#visibleRightPanel">visibleRightPanel</a></b>(true:)
+													<div class="fixedFont"><b><a href="../symbols/_global_.html#getNativeMapObj">getNativeMapObj</a></b>()
+													</div>
+													<div class="description">[getNativeMapObj description]</div>
+												</td>
+											</tr>
+										
+											<tr
+												 class='item4'
+											>
+												<td class="attributes">&nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont"><b><a href="../symbols/_global_.html#getWidth">getWidth</a></b>()
+													</div>
+													<div class="description"></div>
+												</td>
+											</tr>
+										
+											<tr
+												 class='item5'
+											>
+												<td class="attributes">&nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont"><b><a href="../symbols/_global_.html#initialize">initialize</a></b>(mainPage)
+													</div>
+													<div class="description"></div>
+												</td>
+											</tr>
+										
+											<tr
+												 class='item6'
+											>
+												<td class="attributes">&nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont"><b><a href="../symbols/_global_.html#resize">resize</a></b>(w, h)
+													</div>
+													<div class="description"></div>
+												</td>
+											</tr>
+										
+											<tr
+												 class='item7'
+											>
+												<td class="attributes">&nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont"><b><a href="../symbols/_global_.html#setHeight">setHeight</a></b>(h)
+													</div>
+													<div class="description"></div>
+												</td>
+											</tr>
+										
+											<tr
+												 class='item8'
+											>
+												<td class="attributes">&nbsp;</td>
+												<td class="nameDescription">
+													<div class="fixedFont"><b><a href="../symbols/_global_.html#setWidth">setWidth</a></b>(w)
 													</div>
 													<div class="description"></div>
 												</td>
@@ -239,22 +331,21 @@
 							</h2>
 							
 							
-								<div class="fixedFont heading" id="availableRouteTypes">
+								<div class="fixedFont heading" id="address">
 									<span class='lighter'>
-									
+									&lt;private&gt; 
 									</span>
 									
 									
 									
-									<b>availableRouteTypes</b>							
+									<b>address</b>							
 								</div>
 								
 								<div class="description">
-									Список возможных типов маршрутов, по которым ведется поиск,String[]
-Возможные значения: ['c_route_bus', 'c_route_metro',...]
+									[address description]
 									
 										<br />
-										<i>Defined in: </i> <a href="../symbols/src/src_cityways_page_main_SettingsPanel.js.html">SettingsPanel.js</a>.
+										<i>Defined in: </i> <a href="../symbols/src/src_cityways_map_Marker.js.html">Marker.js</a>.
 									
 									
 									
@@ -265,21 +356,96 @@
 								
 								<div class="hr"></div>
 							
-								<div class="fixedFont heading" id="settingsPanel">
+								<div class="fixedFont heading" id="div">
+									<span class='lighter'>
+									&lt;private&gt; 
+									</span>
+									
+									
+									
+									<b>div</b>							
+								</div>
+								
+								<div class="description">
+									ID dom элемента, в который нужно поместить карту
+									
+										<br />
+										<i>Defined in: </i> <a href="../symbols/src/src_cityways_map_GoogleMap.js.html">GoogleMap.js</a>.
+									
+									
+									
+								</div>
+								
+								
+									
+								
+								<div class="hr"></div>
+							
+								<div class="fixedFont heading" id="googleMap">
+									<span class='lighter'>
+									&lt;private&gt; 
+									</span>
+									
+									
+									
+									<b>googleMap</b>							
+								</div>
+								
+								<div class="description">
+									Объект google.maps.Map
+									
+										<br />
+										<i>Defined in: </i> <a href="../symbols/src/src_cityways_map_GoogleMap.js.html">GoogleMap.js</a>.
+									
+									
+									
+								</div>
+								
+								
+									
+								
+								<div class="hr"></div>
+							
+								<div class="fixedFont heading" id="imgFileName">
 									<span class='lighter'>
 									
 									</span>
 									
 									
 									
-									<b>settingsPanel</b>							
+									<b>imgFileName</b>							
 								</div>
 								
 								<div class="description">
-									cityways.Pages.MainPage.RouteTypesPanel Панель "Виды транспорта"
+									[img description]
 									
 										<br />
-										<i>Defined in: </i> <a href="../symbols/src/src_cityways_page_MainPage.js.html">MainPage.js</a>.
+										<i>Defined in: </i> <a href="../symbols/src/src_cityways_map_Marker.js.html">Marker.js</a>.
+									
+									
+									
+								</div>
+								
+								
+									
+								
+								<div class="hr"></div>
+							
+								<div class="fixedFont heading" id="location">
+									<span class='lighter'>
+									&lt;private&gt; 
+									</span>
+									
+									
+									
+									<b>location</b>							
+								</div>
+								
+								<div class="description">
+									[location description]
+									
+										<br />
+										<i>Defined in: </i> <a href="../symbols/src/src_cityways_map_Marker.js.html">Marker.js</a>.
 									
 									
 									
@@ -311,14 +477,14 @@
 									<li 
 										 class='item0'
 									>
-										<div class="fixedFont heading" id="enableRouteTypeBtn">
+										<div class="fixedFont heading" id="_registerListeners">
 											<span class='lighter'>
 											
 											</span>
 											
 											
 											
-											<b>enableRouteTypeBtn</b>(routeType, val, title)
+											<b>_registerListeners</b>()
 										</div>
 										
 										<div class="description">
@@ -326,7 +492,7 @@
 											
 											
 												<br />
-												<i>Defined in: </i> <a href="../symbols/src/src_cityways_page_main_SettingsPanel.js.html">SettingsPanel.js</a>.
+												<i>Defined in: </i> <a href="../symbols/src/src_cityways_map_GoogleMap.js.html">GoogleMap.js</a>.
 											
 											
 											
@@ -334,29 +500,6 @@
 										
 										
 										
-										
-											<dl class="detailList params">
-												<dt class="heading">Parameters:</dt>
-												
-													<dt>
-														<span class="light fixedFont">{String}</span> <b>routeType</b>
-														
-													</dt>
-													<dd>Тип маршрута</dd>
-												
-													<dt>
-														<span class="light fixedFont">{Bool}</span> <b>val</b>
-														
-													</dt>
-													<dd>вкл/выкл</dd>
-												
-													<dt>
-														<span class="light fixedFont">{String}</span> <b>title</b>
-														
-													</dt>
-													<dd>Надпись</dd>
-												
-											</dl>
 										
 										
 										
@@ -438,6 +581,123 @@ var opts = {
 									<li 
 										 class='item2'
 									>
+										<div class="fixedFont heading" id="getHeight">
+											<span class='lighter'>
+											
+											</span>
+											
+											
+											
+											<b>getHeight</b>()
+										</div>
+										
+										<div class="description">
+											
+											
+											
+												<br />
+												<i>Defined in: </i> <a href="../symbols/src/src_cityways_map_GoogleMap.js.html">GoogleMap.js</a>.
+											
+											
+											
+										</div>
+										
+										
+										
+										
+										
+										
+										<div class="hr"></div>
+									</li>
+								
+									<li 
+										 class='item3'
+									>
+										<div class="fixedFont heading" id="getNativeMapObj">
+											<span class='lighter'>
+											
+											</span>
+											
+											<span class="light">{[type]}</span>
+											
+											<b>getNativeMapObj</b>()
+										</div>
+										
+										<div class="description">
+											[getNativeMapObj description]
+											
+											
+												<br />
+												<i>Defined in: </i> <a href="../symbols/src/src_cityways_Map.js.html">Map.js</a>.
+											
+											
+											
+										</div>
+										
+										
+										
+										
+										
+										
+											<dl class="detailList nomargin">
+											
+												
+												
+												
+												
+												
+												
+												
+													<dt class="heading">Returns:</dt>
+													
+														<dd><span class="light fixedFont">{[type]}</span> [description]</dd>
+													
+												
+												
+												
+												
+												
+											
+											</dl>
+										
+										<div class="hr"></div>
+									</li>
+								
+									<li 
+										 class='item4'
+									>
+										<div class="fixedFont heading" id="getWidth">
+											<span class='lighter'>
+											
+											</span>
+											
+											
+											
+											<b>getWidth</b>()
+										</div>
+										
+										<div class="description">
+											
+											
+											
+												<br />
+												<i>Defined in: </i> <a href="../symbols/src/src_cityways_map_GoogleMap.js.html">GoogleMap.js</a>.
+											
+											
+											
+										</div>
+										
+										
+										
+										
+										
+										
+										<div class="hr"></div>
+									</li>
+								
+									<li 
+										 class='item5'
+									>
 										<div class="fixedFont heading" id="initialize">
 											<span class='lighter'>
 											
@@ -479,16 +739,16 @@ var opts = {
 									</li>
 								
 									<li 
-										 class='item3'
+										 class='item6'
 									>
-										<div class="fixedFont heading" id="visibleRightPanel">
+										<div class="fixedFont heading" id="resize">
 											<span class='lighter'>
 											
 											</span>
 											
 											
 											
-											<b>visibleRightPanel</b>(true:)
+											<b>resize</b>(w, h)
 										</div>
 										
 										<div class="description">
@@ -496,7 +756,7 @@ var opts = {
 											
 											
 												<br />
-												<i>Defined in: </i> <a href="../symbols/src/src_cityways_page_MainPage.js.html">MainPage.js</a>.
+												<i>Defined in: </i> <a href="../symbols/src/src_cityways_Map.js.html">Map.js</a>.
 											
 											
 											
@@ -509,10 +769,102 @@ var opts = {
 												<dt class="heading">Parameters:</dt>
 												
 													<dt>
-														<span class="light fixedFont">{bool}</span> <b>true:</b>
+														<b>w</b>
 														
 													</dt>
-													<dd>show, false : hide</dd>
+													<dd></dd>
+												
+													<dt>
+														<b>h</b>
+														
+													</dt>
+													<dd></dd>
+												
+											</dl>
+										
+										
+										
+										<div class="hr"></div>
+									</li>
+								
+									<li 
+										 class='item7'
+									>
+										<div class="fixedFont heading" id="setHeight">
+											<span class='lighter'>
+											
+											</span>
+											
+											
+											
+											<b>setHeight</b>(h)
+										</div>
+										
+										<div class="description">
+											
+											
+											
+												<br />
+												<i>Defined in: </i> <a href="../symbols/src/src_cityways_Map.js.html">Map.js</a>.
+											
+											
+											
+										</div>
+										
+										
+										
+										
+											<dl class="detailList params">
+												<dt class="heading">Parameters:</dt>
+												
+													<dt>
+														<b>h</b>
+														
+													</dt>
+													<dd></dd>
+												
+											</dl>
+										
+										
+										
+										<div class="hr"></div>
+									</li>
+								
+									<li 
+										 class='item8'
+									>
+										<div class="fixedFont heading" id="setWidth">
+											<span class='lighter'>
+											
+											</span>
+											
+											
+											
+											<b>setWidth</b>(w)
+										</div>
+										
+										<div class="description">
+											
+											
+											
+												<br />
+												<i>Defined in: </i> <a href="../symbols/src/src_cityways_Map.js.html">Map.js</a>.
+											
+											
+											
+										</div>
+										
+										
+										
+										
+											<dl class="detailList params">
+												<dt class="heading">Parameters:</dt>
+												
+													<dt>
+														<b>w</b>
+														
+													</dt>
+													<dd></dd>
 												
 											</dl>
 										

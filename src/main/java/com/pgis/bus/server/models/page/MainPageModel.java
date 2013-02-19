@@ -7,7 +7,7 @@ import java.util.Locale;
 import com.google.gson.Gson;
 import com.pgis.bus.server.models.NavigationModel;
 import com.pgis.bus.server.models.data.CitiesModel;
-import com.pgis.bus.server.models.page.main.RouteTypeModel;
+import com.pgis.bus.server.models.data.RouteTypeModel;
 
 public class MainPageModel extends PageModel {
 	private CitiesModel citiesModel;

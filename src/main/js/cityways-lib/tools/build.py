@@ -34,6 +34,8 @@ def compile_closure(cfg, output_dir, options):
     closure_compiler_cfg += "--jscomp_warning checkVars "
     closure_compiler_cfg += "--jscomp_error checkRegExp "
     closure_compiler_cfg += "--jscomp_error undefinedVars "
+    # closure_compiler_cfg += "--use_types_for_optimization  "
+    # closure_compiler_cfg += "--compilation_level  ADVANCED_OPTIMIZATIONS "
     closure_compiler_cfg += "--module_output_path_prefix " + output_dir + " "
     closure_compiler_sfiles = ""
     closure_compiler_modules = ""
@@ -48,7 +50,7 @@ def compile_closure(cfg, output_dir, options):
     os.system(closure_compiler_cmd)
 
 
-def compile_none(cfg, output_dir, options):
+def compile_simple(cfg, output_dir, options):
     for module in cfg["modules"]:
         module_source_code = ""
         for source_f in module["code"]:
@@ -61,17 +63,32 @@ def compile_none(cfg, output_dir, options):
         f.close()
 
 
+def build_jsdoc(options):
+    options = options[1:(len(options) - 1)]
+    cmd = "cd jsdoc && ./jsdoc " + options + " " + "../" + sourceDir
+    print cmd
+    os.system(cmd)
+
+
 def build(config_file, output_dir, options):
     cfg = read_configs(config_file)
-    if options.compressor and options.compressor == "closure":
+    if options.build and options.build == "closure":
         compile_closure(cfg, output_dir, options)
-    else:
-        compile_none(cfg, output_dir, options)
-    print "done."
+    elif options.build and options.build == "simple":
+        compile_simple(cfg, output_dir, options)
+
+    if options.jsdoc and options.jsdoc == "true":
+        build_jsdoc(options.jsdoc_opts)
+    print "finish."
+
+
 
 opt = optparse.OptionParser(usage=" [config_file] [output_dir] [options]\n  Default config_file is " + config_file_default + 
     "\n  Default output dir is " + output_dir_default)
-opt.add_option("-c", "--compressor", dest="compressor", help="compression method: 'none'(default),'closure'", default="none")
+
+opt.add_option("-c", "--build", dest="build", help="build method: 'none','simple'(default), closure'", default="simple")
+opt.add_option("", "--jsdoc", dest="jsdoc", help="build jsDoc: false(default), true", default="false")
+opt.add_option("", "--jsdoc_opts", dest="jsdoc_opts", help="jsDoc options. Default : ''", default="'-r -p -d ../../bin/jsdoc -c conf.json'")
 
 (options, args) = opt.parse_args()
 if not len(args):

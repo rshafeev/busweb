@@ -31,9 +31,9 @@ import com.pgis.bus.server.AppProperties;
 import com.pgis.bus.server.models.NavigationModel;
 import com.pgis.bus.server.models.data.CitiesModel;
 import com.pgis.bus.server.models.data.CityModel;
+import com.pgis.bus.server.models.data.RouteTypeModel;
 import com.pgis.bus.server.models.page.ArticlesPageModel;
 import com.pgis.bus.server.models.page.MainPageModel;
-import com.pgis.bus.server.models.page.main.RouteTypeModel;
 
 @Controller
 @RequestMapping(value = "")
@@ -113,7 +113,7 @@ public class HomeController extends BaseController {
 			Collection<RouteTypeModel> routeTypes = new ArrayList<RouteTypeModel>();
 			for(String routeType :db.getRouteTypesForCity(citiesModel
 					.getSelectedCity().getId()) ){
-				routeTypes.add(new RouteTypeModel(routeType,messageSource,locale));
+				routeTypes.add(new RouteTypeModel(routeType));
 			}
 			
 			MainPageModel model = new MainPageModel(navModel);

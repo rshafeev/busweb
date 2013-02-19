@@ -2,7 +2,7 @@
 test('cityways.helper.time.secsToLocaleString(secs)', function () {
 
   // Настроим язык
-  cityways.language.setCode("ru");
+  cityways.lang.setCode("ru");
   
   // Unit testing
   equal(cityways.helper.time.secsToLocaleString(100), '1 минута', '');
@@ -13,7 +13,7 @@ test('cityways.helper.time.secsToLocaleString(secs)', function () {
 test('cityways.helper.time.minsOfHourToLocaleString(mins)', function () {
 
   // Настроим язык
-  cityways.language.setCode("ru");
+  cityways.lang.setCode("ru");
    
  equal('check', 'check', ''); 
 });
