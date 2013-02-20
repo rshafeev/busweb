@@ -6,6 +6,7 @@
 <c:set var="myContext" value="${pageContext.request.contextPath}" />
 
 <ui:base>
+	
 	<jsp:attribute name="page_head">
 	</jsp:attribute>
 
@@ -14,4 +15,5 @@
 	</jsp:attribute>
 	<jsp:attribute name="foot">
 	</jsp:attribute>
+
 </ui:base>

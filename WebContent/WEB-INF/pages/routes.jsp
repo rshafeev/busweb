@@ -8,14 +8,21 @@
 	<jsp:attribute name="page_head">	
 	<script type="text/javascript"
 			src="http://maps.google.com/maps/api/js?sensor=false&libraries=drawing"></script>
-	<script type="text/javascript" src="${myContext}/api/CityWays.js"></script>
 	<script type="text/javascript">
-		includeCSSFile("${myContext}/media/css/pages", "routes", []);
-		var currentCity = $.parseJSON('${model.getCitiesModel().getJSONSelectedCity()}');
-		var data = {
-			currentCity : currentCity,
-			contextPath : contextPath
-		};
+		cityways.helper.styles.includeCSSFile("${myContext}/media/css/pages/",
+												[{
+													name : "routes.css"
+												}]);
+		var pageOptions = {
+			currentCity : $.parseJSON('${model.getCitiesModel().getJSONSelectedCity()}')
+		}
+		
+		cityways.options.ServerHost = "${myContext}";
+		cityways.options.ResourceURI = "${myContext}/media/cityways/";
+		cityways.language.setCode("${model.getLanguage()}");
+		cityways.page.Current = new cityways.page.RoutesPage(pageOptions);
+
+		/*
 		$(document).ready(function() {
 			$('.view-source .hide').hide();
 			$('.view-source .link_name').toggle(function() {
@@ -41,6 +48,7 @@
 				$('#right_routes_column_scrollbar').tinyscrollbar_update();
 			});
 		});
+		*/
 	</script>
 	<script src="${myContext}/media/js/libs/selectbox.js"></script>
 	<script src="${myContext}/media/js/libs/jquery.poshytip.js"></script>

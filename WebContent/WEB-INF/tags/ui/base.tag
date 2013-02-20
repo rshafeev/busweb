@@ -14,22 +14,37 @@
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 <script src="${myContext}/media/js/libs/jquery.tinyscrollbar.min.js"></script>
 <script src="${myContext}/media/js/libs/jquery.json-2.3.js"></script>
-<script src="${myContext}/media/js/WidgetHelpers.js"></script>
+<script src="${myContext}/media/cityways/basic.js"></script>
+
 <script type="text/javascript">
-	includeCSSFile("${myContext}/media/css/basic", "basic", ["ff", "ie8"]);
-	var contextPath = "${myContext}/";
-	function getContextPath() {
-		return contextPath;
-	}
-	function updateContainerSize() {
-		$("#container").css('height', getWindowSize().height - 35);
-	};
-	$(document).ready(function() {
+ (function() {
+	var cssFile = cityways.helper.document.selectCSSFile("${myContext}/media/css/basic/",
+												[{
+													name : "basic.css"
+												},
+												{
+													name : "basic_ff.css",
+													browsers : {mozilla : {max : 10}},
+												},
+												{
+													name : "basic_ie8",
+													browsers : {msie : {max : 8.0}}
+												}]);
+	cityways.helper.document.appendCSSFile(cssFile,"write");
+
+  })();
+
+  $(document).ready(function() {
+  		function updateContainerSize(){
+  			$("#container").css('height', cityways.util.getWindowSize().height - 35);
+  		};
+  		updateContainerSize();
 		$(window).bind("resize", function(e) {
 			updateContainerSize();
 		});
-		updateContainerSize();
+		
 	});
+
 </script>
 <!--  -
 <script src="http://vkontakte.ru/js/api/openapi.js"

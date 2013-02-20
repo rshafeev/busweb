@@ -10,7 +10,11 @@
 	<jsp:attribute name="page_head">
 	<title><spring:message code="about.title" text="default text" /> </title>
 		<script type="text/javascript">
-			includeCSSFile("${myContext}/media/css/pages", "about", []);
+			//includeCSSFile("${myContext}/media/css/pages", "about", []);
+			cityways.helper.styles.includeCSSFile("${myContext}/media/css/pages/",
+												[{
+													name : "pages.css"
+												}]);
 			function loadSrc(src, _this) {
 				console.log(src);
 				console.log(this);

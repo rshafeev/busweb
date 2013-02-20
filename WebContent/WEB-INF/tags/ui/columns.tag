@@ -12,7 +12,11 @@
 <ui:base>
 	<jsp:attribute name="page_head">
 	<script type="text/javascript">
-		includeCSSFile("${myContext}/media/css/columns", "columns", []);
+   	    cityways.helper.styles.includeCSSFile("${myContext}/media/css/columns/",
+												[{
+													name : "columns.css"
+												}]);
+
 		$(document).ready(function() {
 			$('#left_column_scrollbar').tinyscrollbar();
 			$('#left_column_scrollbar').tinyscrollbar_update();

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: helper/styles.js</title>
+    
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Source: helper/styles.js</h1>
+    
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source"><code>/**
+ * @overview namespace cityways.helper.styles
+ * @copyright 
+ * 2012,PremiumGIS Inc. All Rights Reserved. &lt;a href="http://premiumgis.com">PremiumGIS&lt;/a>
+ * Project url: &lt;a href="http://ways.in.ua">cityways&lt;/a>
+ * 
+ * @author &lt;a href="mailto:rs@premiumgis.com">Roman Shafeyev&lt;/a>
+ * 
+ * @requires cityways/cityways.js
+ * @requires cityways/util.js
+ */
+
+ /**
+ * @namespace cityways.helper.styles
+ * @description Включает в себя вспомогательные функции для работы со стилями. 
+ */
+ cityways.helper.styles = {
+
+	/**
+ 	* Подключает css файл к текущему html документу
+ 	* @param  {String} cssFileName Путь к css файлу
+ 	* @return {void}            
+ 	*/
+ 	include : function(cssFileName) {
+ 		var css = "&lt;link rel=\"stylesheet\" href=\"" + cssFileName + "\" type=\"text/css\">";
+ 		document.write(css);
+ 	},
+
+	/**
+	 * Подключает css файл к текущему html документу в зависимости от  браузера клиента
+	 * @param {String} cssFiles Директория, в которой ле к css файлам
+	 * @param {Object} cssOptions Хранит связь css файлов и поддерживаемых ими браузеров. 
+	 * @return {String} Путь к подключенному css файлу
+	 * @example Приведем пример выбора нужного css файла в зависимости от  браузера клиента
+	 * var cssFiles = [
+	 *         {
+	 *             name : "style.css"
+	 *         },
+	 *         {
+	 *             name : "style_ie7.css",
+     *             browsers : {
+     *                          "msie" : {min : 7.0}
+     *                        },
+	 *         {
+	 *             name : "style_ff.css",
+	 *             browsers : {
+	 *                           "mozilla" :  {min : 7.0, max : 16.0}
+	 *                        }
+	 *         }];
+	 * var cssFilename = cityways.helper.styles.includeCSSFile("media/css",cssFiles);
+	 * // cssFilename = "media/css/style.css", если текущий браузер не ff и ie
+	 * // cssFilename = "media/css/style_ie7.css", если текущий браузер ie7+
+	 * // cssFilename = "media/css/style_ff.css", если текущий браузер ff версии [7.0, 16.0]
+	 */
+	 includeCSSFile : function(filePath, cssFiles) {
+	 	var browser = {
+	 		name : cityways.util.browser(),
+	 		version : cityways.util.browserVersion()
+	 	};
+	 	var fileName =  cityways.helper.styles._selectCSSFile(cssFiles,browser);
+	 	if(fileName == null)
+	 		throw new Error("includeCSSFile() was not found css file");
+	 	cityways.helper.styles.include(filePath + fileName);
+	 	return filePath + fileName;
+	 },
+
+	/**
+  	* Выбирает css файл в зафисимости от текущего браузера.
+  	* @private
+  	* @param  {Array}  cssFiles  		 Элементы массива хранят в себе названия сss-файлов и браузеры, которые они поддерживают.
+ 	* @param  {Object} browser 			 Информация о браузере. Хранит версию и название текущего браузера.
+  	* Структура объекта: &lt;br>
+  	* {&lt;br>
+  	* 	name    : {String} &lt;br>
+  	* 	version : {Number} &lt;br>
+  	* }&lt;br>
+ 	* @param  {String} browser.name      Тип браузера("msie", "mozilla").
+ 	* @param  {Number} browser.version   Версия браузера.
+ 	* @return {String} 					 Название css файла. 
+ 	* @example 
+ 	* // Пример входных параметров:
+ 	* 
+ 	* var browser  = {
+ 	*      name    : "msie",
+ 	*      version : 7.0
+ 	* };
+ 	* 
+ 	* var cssFiles = [
+	*         {
+	*             name : "style.css"
+	*         },
+	*         {
+	*             name : "style_ie7.css",
+    *             browsers : {
+    *                          "msie" : {min : 7.0}
+    *                        },
+	*         {
+	*             name : "style_ff.css",
+	*             browsers : {
+	*                           "mozilla" :  {min : 7.0, max : 16.0}
+	*                        }
+	*         }];
+	* // Вызов функции:
+	* 
+	* var selectedFile = cityways.styles._selectCSSFile(cssFiles,browser);
+ 	*/
+ 	_selectCSSFile : function(cssFiles,browser) {
+ 		var defaultFile = null;
+ 		var selectedFile = null;
+ 		
+ 		for(var i=0; i &lt; cssFiles.length; i++ ){
+
+ 			if(cssFiles[i].browsers == undefined &&   cssFiles[i].name != undefined){
+ 				defaultFile = cssFiles[i].name;
+ 			}
+ 			else if (cssFiles[i].browsers != undefined){
+
+ 				var cssBrowser = cssFiles[i].browsers[browser.name];
+ 				if(cssBrowser != undefined){
+ 					var min_v = cssBrowser.min;
+ 					var max_v = cssBrowser.max;
+ 					cityways.logger.debug("find",cssFiles[i]);
+ 		 				if( (min_v == undefined && max_v == undefined) ||
+ 							(min_v == undefined && max_v >= browser.version) ||
+ 							(max_v == undefined && min_v &lt;= browser.version) ||
+ 							(min_v &lt;= browser.version && max_v >= browser.version)){
+ 								selectedFile = cssFiles[i].name;
+ 						}
+ 				}
+ 			}
+ 		}
+ 		cityways.logger.debug(defaultFile);
+ 		if(selectedFile != undefined)
+ 			return selectedFile;
+ 		return defaultFile;
+ 	}
+ };
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="cityways.Class.html">Class</a></li><li><a href="cityways.EventListener.html">EventListener</a></li><li><a href="cityways.Map_.html">Map</a></li><li><a href="cityways.map.GoogleMap.html">GoogleMap</a></li><li><a href="cityways.map.Marker.html">Marker</a></li><li><a href="cityways.MapWidget.html">MapWidget</a></li><li><a href="cityways.page.MainPage.html">MainPage</a></li><li><a href="global.html#initialize">initialize</a></li></ul><h3>Events</h3><ul><li><a href="global.html#event:Вызваается при изменении изображения маркера">Вызваается при изменении изображения маркера</a></li><li><a href="global.html#event:Вызывается при изменении адреса маркера">Вызывается при изменении адреса маркера</a></li><li><a href="global.html#event:Вызывается при изменении местоположения маркера">Вызывается при изменении местоположения маркера</a></li><li><a href="global.html#event:Событие вызывается, когда произошло нажатие клавишей мыши на карте">Событие вызывается, когда произошло нажатие клавишей мыши на карте</a></li></ul><h3>Namespaces</h3><ul><li><a href="cityways.html">cityways</a></li><li><a href="cityways.event.html">event</a></li><li><a href="cityways.helper.styles.html">styles</a></li><li><a href="cityways.helper.time.html">time</a></li><li><a href="cityways.logger.html">logger</a></li><li><a href="cityways.map.html">map</a></li><li><a href="cityways.map.event.html">event</a></li><li><a href="cityways.options.html">options</a></li><li><a href="cityways.page.html">page</a></li><li><a href="cityways.util.html">util</a></li></ul><h3>Global</h3><ul><li><a href="global.html#address">address</a></li><li><a href="global.html#availableRouteTypes">availableRouteTypes</a></li><li><a href="global.html#currentCity">currentCity</a></li><li><a href="global.html#div">div</a></li><li><a href="global.html#enableRouteTypeBtn">enableRouteTypeBtn</a></li><li><a href="global.html#findShortestPaths">findShortestPaths</a></li><li><a href="global.html#finishMarker">finishMarker</a></li><li><a href="global.html#getCurrentCity">getCurrentCity</a></li><li><a href="global.html#getFullCost">getFullCost</a></li><li><a href="global.html#getNativeMapObj">getNativeMapObj</a></li><li><a href="global.html#getWalkingTime">getWalkingTime</a></li><li><a href="global.html#googleMap">googleMap</a></li><li><a href="global.html#imgFileName">imgFileName</a></li><li><a href="global.html#location">location</a></li><li><a href="global.html#mapWidget">mapWidget</a></li><li><a href="global.html#settingsPanel">settingsPanel</a></li><li><a href="global.html#startMarker">startMarker</a></li><li><a href="global.html#visibleRightPanel">visibleRightPanel</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.0-dev</a> on Thu Feb 14 2013 03:24:20 GMT+0200 (EET)
+</footer>
+
+<script> prettyPrint(); </script>
+</body>
+</html>

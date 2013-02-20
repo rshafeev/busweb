@@ -1,0 +1,29 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+ <script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+  <script>
+  $(document).ready(function(){
+
+    jQuery.each($.browser, function(i, val) {
+      $("<div>" + i + " : <span>" + val + "</span>")
+                .appendTo(document.body);
+    });
+    console.log($.browser);
+
+  });
+  </script>
+
+  <style>
+  p { color:green; font-weight:bolder; margin:3px 0 0 10px; }
+  div { color:blue; margin-left:20px; font-size:14px; }
+  span { color:red; }
+  </style>
+</head>
+<body>
+  <p>Browser info:</p>
+</body>
+
+</html> 

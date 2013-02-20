@@ -137,8 +137,7 @@ public class RoutesController extends BaseController {
 				}
 
 				routesModel.setRoutes(routeSchemes);
-				routesModel.setRouteType(new RouteTypeModel(routeTypeID,
-						routeTypeName));
+				routesModel.setRouteType(new RouteTypeModel(routeTypeID));
 				models.add(routesModel);
 			}
 

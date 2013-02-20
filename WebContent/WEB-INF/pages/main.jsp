@@ -7,45 +7,30 @@
 
 <ui:base>
 	<jsp:attribute name="page_head">
-	<link rel="stylesheet" type="text/css" href="${myContext}/media/cityways/themes/default/css/main.css">
-	<script src="${myContext}/media/cityways/themes/default/templates/main.xml" type="text/template"></script>
-	
-	<script src="${myContext}/media/js/libs/jquery.tinyscrollbar.min.js"></script>
 	<script type="text/javascript"
-			src="http://maps.google.com/maps/api/js?sensor=false&libraries=drawing"></script>
+			src="http://maps.google.com/maps/api/js?sensor=false&libraries=drawing&language=${model.getLanguage()}"></script>
+
 	<script type="text/javascript"
 			src="http://underscorejs.ru/underscore.js"></script>
-	<script src="${myContext}/media/cityways/MainPage.js"></script>
-	
-		
-	<script type="text/javascript">
-		includeCSSFile("${myContext}/media/css/busWeb", "busWeb", [ "ff", "ie8" ]);
-		var currentCity = $.parseJSON('${model.getCitiesModel().getJSONSelectedCity()}');
-		var routeTypes = $.parseJSON('${model.getJsonRouteTypes()}');
-
-		var options = {
-			currentCity : currentCity,
-			routeTypes : routeTypes,
-			contextPath : "${myContext}/"
-		};
-
-		$(document).ready(function() {
-			cityways.Basic.ServerHost = "${myContext}";
-			cityways.Language.setCode("${model.getLanguage()}");
-			cityways.Basic.ResourceURI = "${myContext}/media/cityways/";
-			cityways.Page.Current = new cityways.page.MainPage(options);
-			initialize(options);
-		});
-	</script>
 	<script src="${myContext}/media/js/libs/selectbox.js"></script>
 	<script src="${myContext}/media/js/libs/jquery.poshytip.js"></script>
-	<script src="${myContext}/media/js/main/WidgetEvents.js"></script>
-	<script src="${myContext}/media/js/main/map/Markers.js"></script>
-	<script src="${myContext}/media/js/main/GoogleMap.js"></script>
-	<script src="${myContext}/media/js/main/MainPageData.js"></script>
-	<script src="${myContext}/media/js/main/MainPage.js"></script>
-	<script src="${myContext}/media/js/main/main.js"></script>
+	<script src="${myContext}/media/cityways/main_page.js"></script>
 	
+	<script type="text/javascript">
+			var currentCity = $.parseJSON('${model.getCitiesModel().getJSONSelectedCity()}');
+			var options = {
+					routeTypes : $.parseJSON('${model.getJsonRouteTypes()}'),
+					serverHost : "${myContext}/",
+					resourceURI : "${myContext}/media/cityways/",
+					lang  : "${model.getLanguage()}"
+				};
+			cityways.page.setCurrent( new cityways.page.SearchPage(currentCity,options) );
+					
+		$(document).ready(function() {
+
+	 	});
+
+	</script>
 
 	</jsp:attribute>
 
@@ -72,7 +57,7 @@
   									<jsp:directive.include file="widgets/route_table.jsp" />
 								</td>
 								<td style="width: 145px;">	
-  									<jsp:directive.include file="widgets/transp_table.jsp" />
+  									<jsp:directive.include file="widgets/menu_route_types.jsp" />
 								</td>
 								<td style="width: 330px;">
 									<div class="mini_table_transp_new">
@@ -94,7 +79,7 @@
   		 										<jsp:directive.include file="widgets/time_panel.jsp" />				
 											</div>
 											<div class="tab3">								
-  												<jsp:directive.include file="widgets/ticket_type.jsp" />
+  												<jsp:directive.include file="widgets/menu_discount.jsp" />
 											</div>
 
 										</div>
@@ -103,7 +88,7 @@
 							</td>
 						 <td style="width: 180px;">
 								<button type="submit" class="button"
-										onclick="cityways.Page.Events().onFindBtnClick();">
+										onclick="cityways.page.Events.onFindBtnClick();">
 									<spring:message code="basic.btn_calc" text="default text" />
 								</button>
 						</td>   

@@ -1,0 +1,110 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">/**
+<span class='line'>  2</span>  * @overview abstract class cityways.Map
+<span class='line'>  3</span>  * @copyright 
+<span class='line'>  4</span>  * 2012,PremiumGIS Inc. All Rights Reserved. &lt;a href="http://premiumgis.com">PremiumGIS&lt;/a>
+<span class='line'>  5</span>  * Project url: &lt;a href="http://ways.in.ua">cityways&lt;/a>
+<span class='line'>  6</span>  * 
+<span class='line'>  7</span>  * @author &lt;a href="mailto:rs@premiumgis.com">Roman Shafeyev&lt;/a>
+<span class='line'>  8</span>  * 
+<span class='line'>  9</span>  * @requires cityways/Class.js
+<span class='line'> 10</span>  * @requires cityways/page.js
+<span class='line'> 11</span>  */</span><span class="WHIT">
+<span class='line'> 12</span> 
+<span class='line'> 13</span> </span><span class="COMM">/**
+<span class='line'> 14</span>  * [Map description]
+<span class='line'> 15</span>  * @class cityways.Map 
+<span class='line'> 16</span>  * @example
+<span class='line'> 17</span>  * &lt;html>
+<span class='line'> 18</span>  * 	&lt;head>
+<span class='line'> 19</span>  * 		&lt;script>.../cityways.js&lt;/script>
+<span class='line'> 20</span>  *		&lt;script>
+<span class='line'> 21</span>  * 				function initialize(){
+<span class='line'> 22</span>  * 				var options = {
+<span class='line'> 23</span>  * 					mapProvider : "google"
+<span class='line'> 24</span>  * 				};
+<span class='line'> 25</span>  * 				var map = new cityways.Map('map',options);
+<span class='line'> 26</span>  * 				}
+<span class='line'> 27</span>  * 		&lt;/script>
+<span class='line'> 28</span>  *  &lt;/head>
+<span class='line'> 29</span>  * &lt;body onload="initialize()">
+<span class='line'> 30</span>  * 		&lt;div id="map">&lt;/div>
+<span class='line'> 31</span>  * &lt;/body>
+<span class='line'> 32</span>  * &lt;/html>
+<span class='line'> 33</span>   */</span><span class="WHIT">
+<span class='line'> 34</span> </span><span class="NAME">cityways.Map</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">cityways.Class</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 35</span> 
+<span class='line'> 36</span> </span><span class="WHIT">    </span><span class="COMM">/**
+<span class='line'> 37</span>      * @event Событие вызывается, когда произошло нажатие клавишей мыши на карте 
+<span class='line'> 38</span>      * @example Описание аргументов:
+<span class='line'> 39</span>      * {
+<span class='line'> 40</span>      * 		lat : {Number},
+<span class='line'> 41</span>      * 		lng : {Number}
+<span class='line'> 42</span>      * };
+<span class='line'> 43</span>      */</span><span class="WHIT">
+<span class='line'> 44</span> </span><span class="WHIT">    </span><span class="STRN">"click"</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 45</span> </span><span class="WHIT"> 
+<span class='line'> 46</span> 
+<span class='line'> 47</span>  	</span><span class="STRN">"map_loaded"</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 48</span> 
+<span class='line'> 49</span> 
+<span class='line'> 50</span> </span><span class="WHIT"> 	</span><span class="COMM">/**
+<span class='line'> 51</span>  	 * @constructor
+<span class='line'> 52</span> 	 * @param  {String} div     ID dom элемента, в который будет помещена карта
+<span class='line'> 53</span> 	 * @param  {Object} options Начальные опции карты
+<span class='line'> 54</span> 	 * @example Структура объекта options:
+<span class='line'> 55</span> 	 * options = {
+<span class='line'> 56</span> 	 * 			  mapProvider : {String}, 			  // Провайдер карты, значения: "google", "yandex"
+<span class='line'> 57</span> 	 *    		  providerKey : {String},             // Key провайдера(только для yandex карт)
+<span class='line'> 58</span> 	 *      	  zoom        : {Number},             // Масштаб карты
+<span class='line'> 59</span> 	 *      	  minZoom     : {Number},             // Минимальный масштаб
+<span class='line'> 60</span> 	 *      	  center : {						  // Координаты центральной точки карты 
+<span class='line'> 61</span> 	 * 			     lat : {Number},	              // Широта
+<span class='line'> 62</span> 	 * 			     lng : {Number}	                  // Долгота
+<span class='line'> 63</span> 	 * 			  }
+<span class='line'> 64</span> 	 * };
+<span class='line'> 65</span>  	 */</span><span class="WHIT">
+<span class='line'> 66</span> </span><span class="WHIT">	</span><span class="NAME">initialize</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">div</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">options</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 67</span> </span><span class="WHIT">		</span><span class="NAME">this.div</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">div</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 68</span> </span><span class="WHIT">	    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">self</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 69</span> </span><span class="WHIT">	    
+<span class='line'> 70</span> 	    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">mapObj</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 71</span> </span><span class="WHIT">	    </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">options.mapProvider</span><span class="WHIT"> </span><span class="PUNC">==</span><span class="WHIT"> </span><span class="STRN">"google"</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 72</span> </span><span class="WHIT">	    	</span><span class="NAME">mapObj</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">cityways.map.GoogleMap</span><span class="PUNC">(</span><span class="NAME">div</span><span class="PUNC">,</span><span class="NAME">options</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 73</span> </span><span class="WHIT">	    </span><span class="NAME">cityways.extend</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">mapObj</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 74</span> 
+<span class='line'> 75</span> 
+<span class='line'> 76</span> </span><span class="WHIT">	    
+<span class='line'> 77</span> 	</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 78</span> 
+<span class='line'> 79</span> </span><span class="WHIT">	</span><span class="COMM">/**
+<span class='line'> 80</span> 	 * [getNativeMapObj description]
+<span class='line'> 81</span> 	 * @return {[type]} [description]
+<span class='line'> 82</span> 	 * 
+<span class='line'> 83</span> 	 */</span><span class="WHIT">
+<span class='line'> 84</span> </span><span class="WHIT">	</span><span class="NAME">getNativeMapObj</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 85</span> 
+<span class='line'> 86</span> 
+<span class='line'> 87</span> </span><span class="WHIT">	</span><span class="NAME">resize</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">w</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">h</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 88</span> 
+<span class='line'> 89</span> </span><span class="WHIT">	</span><span class="NAME">setHeight</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">h</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 90</span> 
+<span class='line'> 91</span> 
+<span class='line'> 92</span> </span><span class="WHIT">	</span><span class="NAME">setWidth</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">w</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 93</span> 
+<span class='line'> 94</span> </span><span class="WHIT">	</span><span class="COMM">/**
+<span class='line'> 95</span> 	 * [addMarker description]
+<span class='line'> 96</span> 	 * @function
+<span class='line'> 97</span> 	 * @memberOf cityways.Map.prototype
+<span class='line'> 98</span> 	 * @param {cityways.map.Marker} marker [description]
+<span class='line'> 99</span> 	 */</span><span class="WHIT">
+<span class='line'>100</span> </span><span class="WHIT">	</span><span class="NAME">addMarker</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">marker</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>101</span> 
+<span class='line'>102</span> 
+<span class='line'>103</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span></pre></body></html>

@@ -6,7 +6,6 @@
 <<<<<<< HEAD
 =======
 *.private
-*.jar
 *.*~
 *.class
 *.orig
@@ -16,6 +15,8 @@ target*/
 build/
 bin/
 target/
+WebContent/WEB-INF/classes
+WebContent/WEB-INF/lib
 WebContent/META-INF/context.xml
 >>>>>>> 96600d1929838e5e765d5e12f72d64af681041c8
 
