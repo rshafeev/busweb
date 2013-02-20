@@ -44,9 +44,9 @@ public class BasicServiceListener implements ServletContextListener {
 		ServletContext context = event.getServletContext();
 		AppProperties.DefaultCity = context.getInitParameter("defaultCity");
 
-		//DBConnectionFactory.init(new DBConnectionManager("jdbc/busPoolDB"));
-		TestDataSource source = new TestDataSource();
-		DBConnectionFactory.init(new TestDBConnectionManager(source.getDataSource()));
+		DBConnectionFactory.init(new DBConnectionManager("jdbc/busPoolDB"));
+		//TestDataSource source = new TestDataSource();
+		//DBConnectionFactory.init(new TestDBConnectionManager(source.getDataSource()));
 		log.debug("contextInitialized");
 
 	}
