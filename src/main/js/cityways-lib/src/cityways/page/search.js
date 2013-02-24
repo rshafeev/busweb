@@ -44,8 +44,12 @@
   	else
   		cityways.options.ResourceURI = cityways.util.getScriptLocation("main_page") + "/";
 
-  	if(options != undefined && options.serverHost)
-  		cityways.options.ServerHost = options.serverHost;
+  	if(options != undefined && options.serverHost != undefined){
+         
+   	 	   cityways.options.ServerHost = options.serverHost;
+         if(options.serverHost == "" || options.serverHost[options.serverHost.length-1] != "/")
+           cityways.options.ServerHost = cityways.options.ServerHost + "/";
+    }
   	else
   		cityways.options.ServerHost = "http://ways.in.ua/";
 

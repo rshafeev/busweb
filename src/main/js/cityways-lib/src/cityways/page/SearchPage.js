@@ -32,7 +32,7 @@
 	 	this._currentCity = currentCity;
 
 	 	// Создадим обработчик событий главной страницы
-	 	this._widgetEventHandlers = new cityways.page.search.WidgetEventHandlers();
+	 	this._widgetEventHandlers = new cityways.page.search.WidgetEventHandlers(this);
 	 	
 	 	
 	 	// Создадим панель настроек
@@ -56,6 +56,7 @@
 
 	 members : { 
 
+	 	
  	/**
  	 * [_headerHeight description]
 	 * @private
@@ -201,6 +202,10 @@
 	  */
 	  getPathsPanel : function(){
 	  	return this._pathsPanel;
+	  },
+
+	  getMapWidget : function(){
+	  	return this._mapWidget;
 	  },
 
 	/**

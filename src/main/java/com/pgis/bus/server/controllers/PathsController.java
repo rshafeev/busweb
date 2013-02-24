@@ -1,6 +1,5 @@
 package com.pgis.bus.server.controllers;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Locale;
 
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.pgis.bus.data.models.RouteGeoData;
@@ -22,9 +20,10 @@ import com.pgis.bus.net.request.FindPathsOptions;
 import com.pgis.bus.net.request.data.RouteTypeDiscount;
 import com.pgis.bus.server.helpers.LanguageHelper;
 import com.pgis.bus.server.helpers.PathsModelConverter;
-import com.pgis.bus.server.models.data.RouteGeoDataModel;
-import com.pgis.bus.server.models.data.WayGeoDataModel;
-import com.pgis.bus.server.models.request.LoadWayOptions;
+import com.pgis.bus.server.models.request.LoadPathOptions;
+import com.pgis.bus.server.models.response.ErrorModel;
+import com.pgis.bus.server.models.response.GeomPathModel;
+import com.pgis.bus.server.models.response.GeomRouteModel;
 
 @Controller
 @RequestMapping(value = "paths/")
@@ -46,32 +45,30 @@ public class PathsController extends BaseController {
 		return model;
 	}
 
-	@RequestMapping(value = "load_way.json", method = RequestMethod.POST)
-	public ModelAndView loadWay(String data) {
-		ModelAndView modelView = new ModelAndView("ajax/map_routes");
+	@ResponseBody
+	@RequestMapping(value = "get.json", method = RequestMethod.POST)
+	public String get(String data) {
 		try {
-			log.debug("load_way.json");
-			LoadWayOptions wayOptions = (new Gson()).fromJson(data,
-					LoadWayOptions.class);
+			log.debug("load_path.json");
+			LoadPathOptions pathOptions = (new Gson()).fromJson(data,
+					LoadPathOptions.class);
 			Locale locale = LocaleContextHolder.getLocale();
 			String lang_id = LanguageHelper.getDataBaseLanguage(locale);
 
-			WayGeoDataModel geoWayModel = new WayGeoDataModel(wayOptions);
+			GeomPathModel model = new GeomPathModel();
 
-			RoutePart[] parts = wayOptions.getRouteParts();
+			RoutePart[] parts = pathOptions.getRouteParts();
 			for (int i = 0; i < parts.length; i++) {
 				Collection<RouteGeoData> routeData = db.getGeoDataByRoutePart(
 						parts[i], lang_id);
-				RouteGeoDataModel routeModel = new RouteGeoDataModel(parts[i],
+				GeomRouteModel routeModel = new GeomRouteModel(parts[i],
 						routeData);
-				geoWayModel.addRouteGeoDataModel(routeModel);
+				model.addRouteGeoDataModel(routeModel);
 			}
-
-			modelView.addObject("model", geoWayModel);
+			return (new Gson()).toJson(model);
 		} catch (Exception e) {
-			e.printStackTrace();
+			return (new Gson()).toJson(new ErrorModel(e));
 		}
-		return modelView;
 	}
 
 	@ResponseBody
@@ -93,16 +90,13 @@ public class PathsController extends BaseController {
 			options.setMaxDistance(500);
 			options.setLangID(LanguageHelper.getDataBaseLanguage(locale));
 			log.debug(options.toString());
-
-			// get ways
+			// get paths
 			PathsModel model = findShortestPaths(options);
-
 			return (new Gson()).toJson(model);
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			return (new Gson()).toJson(new ErrorModel(e));
 		}
-		return "error";
 	}
 
 }

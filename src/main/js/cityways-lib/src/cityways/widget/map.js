@@ -1,5 +1,5 @@
 /**
- * @overview Namespace {@link cityways.maps.goog}.
+ * @overview Namespace {@link cityways.widget.map}.
  * @see Project url: {@link http://ways.in.ua}.
  * @copyright 
  * CityWays-lib is copyright (c) 2012, {@link http://premiumgis.com|PremiumGIS} Inc. All Rights Reserved. 
@@ -7,14 +7,13 @@
  * See the file {@link http://api.ways.in.ua/license.txt|license.txt} in this distribution for more details.
  * @author Roman Shafeyev <rs@premiumgis.com>
  * 
- * @requires cityways/maps.js
- * @requires cityways/Class.js
+ * @requires cityways.js
  */
 
 /**
- * @class cityways.maps.goog
+ * @namespace cityways.widget
  */
- cityways.maps.goog = {
+ cityways.widget.map = {
 
 
-};
+ };

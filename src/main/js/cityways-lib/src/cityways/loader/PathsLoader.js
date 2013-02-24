@@ -56,24 +56,101 @@
         cityways.logger.info("findShortestPaths",options);
         if(callback == null)
             throw new Error("resultFunc was not defined");
+        var url = cityways.options.ServerHost + "paths/find.json";
+        cityways.logger.info("url: " + url);
 
+        var args = {
+            error : null,
+            paths : [],
+            findTime : 0
+        };
         $.ajax({
-         url : cityways.options.ServerHost + "/paths/find.json",
+         url : url,
          type : "POST",
          data : {data: $.toJSON(options ) },
-         success : function(data) {
+         success : function(e) {
             try{
-                cityways.logger.info(data);
-                var obj = $.parseJSON(data);
-                callback(obj);
+               
+                var obj = $.parseJSON(e);
+
+                if(obj.error != undefined||  obj.paths == undefined || obj.paths.length == 0)
+                {
+                    args.error = e.error;
+                    callback(args);
+                    return;
+                }
+                cityways.logger.info(obj);
+                for (var i = 0; i < obj.paths.length; i++) 
+                {
+                    var path = new cityways.model.PathModel(obj.paths[i]);
+                    path.startLocation = options.p1;
+                    path.finishLocation = options.p2;
+                    args.paths.push(path);
+                }
+
+                args.findTime = obj.findTime;
+                callback(args);
+                return;
             }
             catch(e){
                 cityways.logger.error("Catch error", e, data);
                 callback({  error : e });
-
+                return;
             }
-          }
+        }
+    });
+},
+
+    /**
+     * [getPathGeom description]
+     * @memberOf cityways.loader.PathsLoader.prototype
+     * @param  {cityways.model.PathModel}   path     [description]
+     * @param  {Function} callback [description]
+     */
+     loadGeomDataForPath : function(path,callback){
+       cityways.logger.info("findShortestPaths");
+       if(callback == null)
+        throw new Error("resultFunc was not defined");
+    var url = cityways.options.ServerHost + "paths/get.json";
+    var inputData = {
+        p1 : path.startLocation,
+        p2 : path.finishLocation,
+        routeParts : []
+    };
+
+    for (var i = 0; i < path.routes.length; i++) {
+        inputData.routeParts.push({
+            ID : path.routes[i].ID,
+            startInd : path.routes[i].startInd,
+            finishInd : path.routes[i].finishInd
         });
     }
+
+    cityways.logger.info("inputData:",inputData);
+    $.ajax({
+     url : url,
+     type : "POST",
+     data : {data: $.toJSON(inputData) },
+     success : function(data) {
+        try{
+           
+            var obj = $.parseJSON(data);
+            path.setGeomData(obj);
+            var args ={
+                      path: path, 
+                      success : true
+                      };
+            callback(args);
+            return;
+        }
+        catch(e){
+            cityways.logger.error("Catch error", e, data);
+            callback({  error : e });
+
+        }
+    }
+});
+
+}
 }
 });

@@ -17,11 +17,29 @@
  */
  cityways.page.search.WidgetEventHandlers = cityways.Class({
 
- 	constructor :  function() {
-
+ 	constructor :  function(mainPage) {
+ 		this._mainPage = mainPage;
  	},
 
  	members : { 
+ 			/**
+ 			 * [_mainPage description]
+ 			 * @private 
+ 			 * @memberOf cityways.page.search.WidgetEventHandlers.prototype
+ 			 * @type {cityways.page.SearchPage}
+ 			 */
+ 			 _mainPage : null,
+
+ 			/**
+ 			 * [onSelectPath description]
+			 * @memberOf cityways.page.search.WidgetEventHandlers.prototype
+ 			 * @param  {Number} pathIndex [description]
+ 			 */
+ 			 onSelectPath : function(pathIndex){
+ 			 	var self = this;
+ 			    self._mainPage.getPathsPanel().selectPath(pathIndex);
+ 			 	
+ 			 },
 
 			/**
 			 * [onRouteTypeClick description]
@@ -30,87 +48,14 @@
 			 * @param  {[type]} routeType    [description]
 			 * @param  {[type]} includeTitle [description]
 			 * @param  {[type]} excludeTitle [description]
-			 * @return {[type]}              [description]
 			 */
 			 onRouteTypeClick : function(routeType) {
-			 	var page = cityways.page.Current;
-			 	cityways.logger.info(page.getSettingsPanel());
-			 	if (page.getSettingsPanel().isEnabledRouteTypeBtn(routeType) == true) {
-			 		page.getSettingsPanel().enableRouteTypeBtn(routeType, false);
+			 	cityways.logger.info(this._mainPage.getSettingsPanel());
+			 	if (this._mainPage.getSettingsPanel().isEnabledRouteTypeBtn(routeType) == true) {
+			 		this._mainPage.getSettingsPanel().enableRouteTypeBtn(routeType, false);
 			 	} else {
-			 		page.getSettingsPanel().enableRouteTypeBtn(routeType, true);
+			 		this._mainPage.getSettingsPanel().enableRouteTypeBtn(routeType, true);
 			 	}
-
-			 },
-
-			/**
-			 * [_onMakePathsPanelContent description]
-			 * @private
-			 * @memberOf cityways.page.search.WidgetEventHandlers.prototype
-			 * @param  {[type]} self      [description]
-			 * @param  {[type]} data      [description]
-			 * @param  {[type]} templates [description]
-			 * @return {[type]}           [description]
-			 */
-			 _onMakePathsPanelContent : function(data, templates) {
-			 	var page = cityways.page.Current;
-			 	var headersTemplate = templates["template-main-waysPanelHeader"];
-			 	var infoTemplate = templates["template-main-waysPanelInfo"];
-			 	cityways.logger.info(templates);
-			 	var paths = data.paths;
-			 	var htmlBody = "";
-			 	for (var i = 0; i < paths.length; i++) {
-			 		var path = new cityways.model.Path(paths[i]);
-			 		cityways.logger.info(path.getFullCost());
-			 		var params = {
-			 			index : i + 1,
-			 			locale : cityways.lang.translate,
-			 			cost : path.getFullCost(),
-			 			time: path.getWalkingTime()
-			 		};
-			 		htmlBody = htmlBody + headersTemplate(params);
-			 	}
-			 	page.getPathsPanel().setContent(htmlBody);
-			 },
-
-			/**
-			 * [_onLoadedPaths description]
-			 * @private
-			 * @memberOf cityways.page.search.WidgetEventHandlers.prototype
-			 * @param  {[type]} self [description]
-			 * @param  {[type]} e    [description]
-			 * @return {[type]}      [description]
-			 */
-			 _onLoadedPaths : function(e) {
-			 	if(e.error != undefined||  e.paths == undefined || e.paths.length == 0){
-			 		var page = cityways.page.Current;
-			 		page.getPathsPanel().setContent("<div><p>Не найдено.</p> </div>");
-			 		return;
-			 	}
-
-			 	var data = e.data;
-			 	var templates = {};
-			 	var loadedTemplates = 0;
-			 	var templatesCount = 2;
-			 	var self = this;
-
-			 	cityways.template.html.get(
-			 		"template-main-waysPanelHeader", function(template) {
-			 			loadedTemplates++;
-			 			templates["template-main-waysPanelHeader"] = template;
-			 			if (loadedTemplates == templatesCount) {
-			 				self._onMakePathsPanelContent(e,templates);
-			 			}
-			 		});
-
-			 	cityways.template.html.get(
-			 		"template-main-waysPanelInfo", function(template) {
-			 			loadedTemplates++;
-			 			templates["template-main-waysPanelInfo"] = template;
-			 			if (loadedTemplates == templatesCount) {
-			 				self._onMakePathsPanelContent(e,templates);
-			 			}
-			 		});
 
 			 },
 
@@ -120,25 +65,22 @@
 			 * @return {[type]} [description]
 			 */
 			 onFindBtnClick : function() {
-			 	var page = cityways.page.Current;
-			 	var findOptions = page.getPathsOptions();
+			 	var findOptions = this._mainPage.getPathsOptions();
 			 	if(findOptions == null)
 			 		return;
-			 	page.getPathsPanel().visible(true);
+			 	this._mainPage.getPathsPanel().visible(true);
 			 	var loadGif = cityways.options.getResourcePath()	+ "images/load.gif";
-			 	page.getPathsPanel().setContent("<div class='loader_text'><img src='"
+			 	this._mainPage.getPathsPanel().setContent("<div class='loader_text'><img src='"
 			 		+ loadGif + "'/></div>");
 			 	
 			 	var loader = new cityways.loader.PathsLoader();
 			 	var self = this;
 			 	loader.findShortestPaths(findOptions, function(e) {
-			 		cityways.logger.info("findShortestPaths");
-			 		self._onLoadedPaths(e);
+			 		self._mainPage.getPathsPanel().setPathsInfo(e, findOptions);
 			 	});
-
 			 	return;
 
-},
+			 },
 
 			/**
 			 * [on_selectDetailWay description]
@@ -151,16 +93,25 @@
 			 	cityways.logger.info("OK");
 			 },
 
-
+			/**
+		     * [onDiscountChanged description]
+		     * @memberOf cityways.page.search.WidgetEventHandlers.prototype
+			 * @param  {[type]} val        [description]
+			 * @param  {[type]} discountID [description]
+			 */
 			 onDiscountChanged : function(val, discountID){
 			 	var val = $("#cways_menu_" + discountID).is(':checked');
-			 	var page = cityways.page.Current;
-			 	page.getSettingsPanel().setDiscount(discountID,val);
+			 	this._mainPage.getSettingsPanel().setDiscount(discountID,val);
 			 },
 
+			/**
+			 * [onChangeSelectboxCity description]
+			 * @memberOf cityways.page.search.WidgetEventHandlers.prototype
+			 */
 			 onChangeSelectboxCity : function(){
 			 	var nameFromCombo = $("#selectbox_city").val();
 			 	document.location.href = cityways.options.ServerHost + 'home/' + nameFromCombo;
 			 }
+
 			}
 		});

@@ -19,7 +19,7 @@
  * @param {String} options.iconFileName [dest]
  * @param {Number} options.lat desc1 [dest]
  * @param {Number} options.lon desc2 [dest]
- * 
+ * @param {String} options.title 
  */
  cityways.maps.Marker = cityways.Class({
  	constructor : function(options) {
@@ -41,6 +41,8 @@
  	},
 
  	members :  {
+
+ 		_title : null,
 
 
 	/**
@@ -119,7 +121,7 @@
 	 			},
 	 			__fire__ : this
 	 		};
-	 		cityways.event.triggerEvent(this,cityways.maps.ON_CHANGED_OPTIONS,args);
+	 		cityways.event.triggerEvent(this,cityways.event.ON_CHANGED_OPTIONS,args);
 	 	}
 	 },
 
@@ -157,7 +159,7 @@
 	 		location : this._location,
 	 		__fire__ : this
 	 	};
-	 	cityways.event.triggerEvent(this,cityways.maps.ON_CHANGED_LOCATION,args);
+	 	cityways.event.triggerEvent(this,cityways.event.ON_CHANGED_LOCATION,args);
 	 },
 
 	 setAddress : function(address){
@@ -169,7 +171,7 @@
 	 			__fire__ : this
 	 		};
 	 		this._address = address;
-	 		cityways.event.triggerEvent(this,cityways.maps.ON_CHANGED_ADDRESS,args);
+	 		cityways.event.triggerEvent(this,cityways.event.ON_CHANGED_ADDRESS,args);
 	 	}
 	 },
 	 
@@ -182,7 +184,7 @@
 	 		},
 	 		__fire__ : this
 	 	};
-	 	cityways.event.triggerEvent(this,cityways.maps.ON_MARKER_OPTIONS,args);
+	 	cityways.event.triggerEvent(this,cityways.event.ON_CHANGED_OPTIONS,args);
 	 },
 
 	 destroy : function(){
@@ -193,14 +195,22 @@
 	 	return this._draggable;
 	 },
 
-	 /**
-	  * Возвращает карты, на которых размещен маркер.
-	  * Обратим внимание, что один и тот же маркер можно разместить на нескольких картах.
-	  * @return { cityways.type.ObjectDictionary}     Возвращает словарь, в котором ключами выступают 
-	  * объекты типа {@link cityways.Map, а значения: нативные маркеры от данных провайдеров}
-	  */
-	 getMaps : function(){
 
+	 setTitle : function(title){
+	 	var self = this;
+	 	self._title = title;
+
+	 	var args = {
+	 		options : {
+	 			title : title
+	 		},
+	 		__fire__ : self
+	 	};
+	 	cityways.event.triggerEvent(self,cityways.event.ON_CHANGED_OPTIONS,args);
+	 },
+
+	 getTitle : function(){
+	 	return this._title;
 	 }
 
 

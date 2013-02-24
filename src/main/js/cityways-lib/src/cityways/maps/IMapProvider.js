@@ -96,7 +96,32 @@
      * @memberOf cityways.maps.IMap.prototype
      * @param {cityways.maps.Marker} marker Маркер
      */
-     removeMarker : function(marker){}
+     removeMarker : function(marker){},
+
+  	/**
+     * Добавляет на карту полилинию
+     * @abstract
+     * @memberOf cityways.maps.IMap.prototype
+     * @param {cityways.maps.Polyline} polyline 
+     */
+     addPolyline : function(polyline){},
+
+  	/**
+     * Удаляет с карты полилинию
+     * @abstract
+     * @memberOf cityways.maps.IMap.prototype
+     * @param {cityways.maps.Polyline} polyline
+     */
+     removePolyline : function(polyline){},
+
+  	/**
+     * Удаляет с карты маркер
+     * @abstract
+     * @memberOf cityways.maps.IMap.prototype
+     * @param {cityways.maps.Marker} marker Маркер
+     */
+     destroy : function(marker){}
+
 
  };
 

@@ -43,11 +43,10 @@ public class PathsModelConverter {
 	}
 
 	public static PathModel makePathModel(List<Path_t> elems) {
-		PathModel path = new PathModel();
-
 		if (elems.size() < 3) {
-			return path;
+			return null;
 		}
+		PathModel path = new PathModel();
 		Path_t first = elems.get(0);
 		Path_t last = elems.get(elems.size() - 1);
 
@@ -66,11 +65,15 @@ public class PathsModelConverter {
 
 		for (int i = 1; i < elems.size() - 1; i++) {
 			Path_t e = elems.get(i);
-			if (e.direct_route_id == null) {
+			if (e.direct_route_id == null || e.direct_route_id.intValue() == 0) {
+
 				TransitionWayModel transition = new TransitionWayModel();
 				transition.setDistance(e.distance);
 				transition.setMoveTimeSecs(DateTimeHelper
 						.toSeconds(e.move_time));
+				if (elems.get(i - 1).direct_route_id == null
+						|| elems.get(i + 1).direct_route_id == null)
+					return null;
 				transition.setFromRouteID(elems.get(i - 1).direct_route_id);
 				transition.setToRouteID(elems.get(i + 1).direct_route_id);
 				transitions.add(transition);
@@ -80,12 +83,11 @@ public class PathsModelConverter {
 				route.setDistance(e.distance);
 				route.setID(e.direct_route_id);
 				route.setName(e.route_name);
-				route.setType(e.route_type);
+				route.setType(e.route_type.substring(8));
 				route.setMoveTimeSecs(DateTimeHelper.toSeconds(e.move_time));
 				route.setWaitBeforeTimeSecs(DateTimeHelper
 						.toSeconds(e.wait_time));
-				route.setFrequency(DateTimeHelper
-						.toSeconds(e.frequency));
+				route.setFrequency(DateTimeHelper.toSeconds(e.frequency));
 				route.setStartStation(e.station_name_a);
 				route.setStartRelationIndex(e.relation_index_a);
 				route.setFinishStation(e.station_name_b);

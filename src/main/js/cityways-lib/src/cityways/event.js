@@ -86,7 +86,7 @@
 	  		var evtListeners = listeners.get(listener.object)[listener.evt];
 	  		for(var i=0; i < evtListeners.length; i++){
 	  			if(evtListeners[i] == listener){
-	  				evtListeners.remove(i);
+	  				evtListeners.splice(i,1);
 	  				return true;
 	  			}
 	  		}

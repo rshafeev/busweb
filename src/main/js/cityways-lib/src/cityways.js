@@ -37,6 +37,10 @@
         };
         F.prototype = P.prototype;
         C.prototype = new F;
+        
+        /*C.prototype.constructor = C;
+        C.superclass = P.prototype;*/
+        
         var i, l, o;
         for (i = 2, l = arguments.length; i < l; i++) {
             o = arguments[i];
@@ -44,10 +48,23 @@
                 o = o.prototype;
             }
             cityways.extend(C.prototype, o);
-            
         }
+
+        //Rabbit.superclass.constructor.apply(this, arguments)
+
+
+        
         
     },
+/*
+    function extend(Child, Parent) {
+    var F = function() { }
+    F.prototype = Parent.prototype
+    Child.prototype = new F()
+    Child.prototype.constructor = Child
+    Child.superclass = Parent.prototype
+    }
+*/
 
     /**
      * [extend description]

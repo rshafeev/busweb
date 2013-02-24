@@ -94,20 +94,47 @@
   			this._mapProvider.addMarker(marker);
   		},
 
-  		/* override */
-  		destroy : function(){
-        this._mapProvider.destroy();
-  		},
+      /* override */
+      removeMarker : function(marker){
+        this._mapProvider.removeMarker(marker);
+      },
+
+      /* override */
+      addPolyline : function(polyline){
+        this._mapProvider.addPolyline(polyline);
+      },
+
+      /* override */
+      removePolyline : function(polyline){
+        this._mapProvider.removePolyline(polyline);
+      },
 
   		/* override */
   		resize : function(w,h){
   			this._mapProvider.resize(w,h);
   		},
 
-
+      /* override */
       setHeight : function(h){
         this._mapProvider.setHeight(h);
+      },
+
+      /* override */
+      setWidth : function(w){
+        this._mapProvider.setWidth(w);
+      },
+
+      /* override */
+      getNativeMapObj : function(){
+        this._mapProvider.getNativeMapObj();
+      },
+
+      /* override */
+      destroy : function(){
+        this._mapProvider.destroy();
       }
+
+     
 
 
 

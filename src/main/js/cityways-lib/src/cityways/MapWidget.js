@@ -37,9 +37,19 @@
  		cityways.event.addListener(this._map,cityways.event.ON_CLICK,function(e){
  			self._onClickMap(e);
  		});
+ 		this._paths = [];
  	},
 
  	members: {
+
+  	/**
+ 	 * [_paths description]
+ 	 * @private
+ 	 * @memberOf cityways.maps.MapWidget.prototype
+ 	 * @property 
+ 	 * @type {cityways.type.ObjectDictionary<Object,Object>}
+ 	 */   
+ 	 _paths : null,
 
  	/**
  	 * [map description]
@@ -152,7 +162,40 @@
 
 	 getFinishMarker : function(){
 	 	return this._finishMarker;
-	 }
+	 },
+
+
+	 removeAllPaths : function(){
+	 	var self = this;
+	 	for (var i = 0; i < self._paths.length; i++) {
+	 		var polylines = self._paths[i].getAllPolylines();
+	 		var stations = self._paths[i].getAllStations();
+	 		for(var j=0;j < polylines.length; j++){
+	 			this._map.removePolyline(polylines[j]);
+	 		} 
+	 		for(var j=0;j < stations.length; j++){
+	 			this._map.removeMarker(stations[j]);
+	 		} 
+	 		
+	 	};
+	 },
+
+	 /**
+	  * [addPath description]
+	  * @param {cityways.widget.map.Path} path [description]
+	  */
+	  addPath : function(path){
+	  	var self = this;
+	  	var polylines = path.getAllPolylines();
+	  	var stations = path.getAllStations();
+	  	for(var j=0;j < polylines.length; j++){
+	  		self._map.addPolyline(polylines[j]);
+	  	} 
+	  	for(var j=0;j < stations.length; j++){
+	  		self._map.addMarker(stations[j]);
+	  	} 
+	  	self._paths.push(path);
+	  }
 
 
 	}
