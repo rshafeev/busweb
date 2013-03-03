@@ -60,10 +60,8 @@
 			<div id="map_canvas"></div>
 		</div>
 		<div id="routes_extra">
-			 <div id="routes_arrow_div" onmousedown="return false"
-					onclick="on_right_panel_show(this);">
-			<a href="#"><img name='img_panel'
-						src='${myContext}/media/css/images/arrow_left.png' /></a>
+			 <div id="routes_arrow_div"  onclick="cityways.page.Events.onShowPanel();">
+			<a id="arrow_icon" href="#"><img id='img_panel' /></a>
 			
 			</div> 
 			<div id="routes_panel"> 

@@ -38,6 +38,16 @@
  			 */
  			 onSelectRoute : function(routeID){
  			 	this._routesPage.getRoutesPanel().selectRoute(routeID);
+ 			 },
+
+ 			 onChangeSelectboxCity : function(){
+ 			 		var nameFromCombo = $("#selectbox_city").val();
+			 	document.location.href = cityways.options.ServerHost + 'routes/' + nameFromCombo;
+ 			 },
+
+ 			 onShowPanel : function(){
+ 			 	var visible = this._routesPage.getRoutesPanel().visible();
+ 			 	this._routesPage.getRoutesPanel().visible(visible==true ? false : true);
  			 }
 
 			}

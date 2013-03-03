@@ -22,7 +22,7 @@
  		var self = this;
  		self._routesPage = routesPage;
  		self._selectedRoutes = new cityways.type.StringDictionary();
- 		var visible = (options != undefined && options.visible != undefined) ? options.visible : false;		
+ 		var visible = (options != undefined && options.visible != undefined) ? options.visible : true;		
  		$(document).ready(function() {
  			$('#cityways_routes_panel_scroll').tinyscrollbar();
  			self.visible(visible);
@@ -63,21 +63,21 @@
 	 		* @param {bool} value  true: show, false : hide
 	 		*/
 	 		visible : function(value) {
+
+	 			if(value == undefined)
+	 				return this._visible;
+	 			cityways.logger.info(value);
 	 			if(this._visible == value)
 	 				return;
 	 			if (value == true) {
-	 				$("#map_canvas").width('68%').css({
-	 					cursor : "auto",
-	 					backgroundColor : "rgb(226, 226, 226)"
-	 				});
-
+	 				$("#img_panel").attr("src",cityways.options.getResourcePath() + "images/arrow_right.png");
+	 				this._routesPage.getMapWidget().setWidth('68%');
 	 			} else {
-	 				$("#map_canvas").width('98.5%').css({
-	 					cursor : "auto",
-	 					backgroundColor : "rgb(226, 226, 226)"
-	 				});
+	 				$("#img_panel").attr("src",cityways.options.getResourcePath() + "images/arrow_left.png");
+	 				this._routesPage.getMapWidget().setWidth('98.5%');
 	 			}
 	 			this._visible = value;
+
 	 			$('#cityways_routes_panel_scroll').tinyscrollbar_update();
 	 		},
 
@@ -117,7 +117,7 @@
 	 					});
 	 					var linkID = "#route_link_" + routeID.toString();
 	 					$(linkID).css("background",color);
-	 					 
+
 	 				});
 	 			}else
 	 			{
