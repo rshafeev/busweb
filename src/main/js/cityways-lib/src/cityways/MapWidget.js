@@ -45,7 +45,7 @@
   	/**
  	 * [_paths description]
  	 * @private
- 	 * @memberOf cityways.maps.MapWidget.prototype
+ 	 * @memberOf cityways.MapWidget.prototype
  	 * @property 
  	 * @type {cityways.type.ObjectDictionary<Object,Object>}
  	 */   
@@ -54,7 +54,7 @@
  	/**
  	 * [map description]
  	 * @private
- 	 * @memberOf cityways.maps.MapWidget.prototype
+ 	 * @memberOf cityways.MapWidget.prototype
  	 * @type {cityways.Map}
  	 */
  	 _map : null, 
@@ -62,7 +62,7 @@
  	/**
  	 * [options description]
  	 * @private
- 	 * @memberOf cityways.maps.MapWidget.prototype
+ 	 * @memberOf cityways.MapWidget.prototype
  	 * @type {[Object}
  	 */
  	 _options : null,
@@ -70,7 +70,7 @@
 	/**
 	 * [startMarker description]
 	 * @private
-	 * @memberOf cityways.maps.MapWidget.prototype
+	 * @memberOf cityways.MapWidget.prototype
 	 * @type {cityways.maps.Marker}
 	 */
 	 _startMarker  : null,
@@ -78,7 +78,7 @@
 	/**
 	 * [finishMarker description]
 	 * @private
-	 * @memberOf cityways.maps.MapWidget.prototype
+	 * @memberOf cityways.MapWidget.prototype
 	 * @type {cityways.maps.Marker}
 	 */
 	 _finishMarker : null,

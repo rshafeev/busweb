@@ -31,7 +31,11 @@
  	},
 
  	members :  {
+ 		_stationID : null,
 
+ 		setID : function(id){
+ 			this._stationID = id;
+ 		}
 	}
 });
 

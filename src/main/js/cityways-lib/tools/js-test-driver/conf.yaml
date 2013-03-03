@@ -1,0 +1,7 @@
+load:
+ - ../../src/*.js
+
+ test:
+  - ../../tests/*.js
+
+server: http://localhost:4224

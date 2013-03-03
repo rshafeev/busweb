@@ -12,32 +12,11 @@ import com.pgis.bus.server.models.data.RouteTypeModel;
 public class MainPageModel extends PageModel {
 	private CitiesModel citiesModel;
 	private Collection<RouteTypeModel> routeTypes;
-	/**
-	 * Язык локализации: ru,en,uk
-	 */
-	private String language = "ru"; 
+
 	
 	public MainPageModel(NavigationModel navigationModel) {
 		super(navigationModel);
 	}
-
-	
-	public String getLanguage() {
-		return language;
-	}
-
-	public void setLanguage(Locale locale){
-		
-		if (locale.getLanguage() == null
-				|| locale.getLanguage().equalsIgnoreCase("rus"))
-			this.language = "ru";
-		else 
-			this.language = locale.getLanguage();
-	}
-	public void setLanguage(String language) {
-		this.language = language;
-	}
-
 
 	public void setCitiesModel(CitiesModel citiesModel) {
 		this.citiesModel = citiesModel;

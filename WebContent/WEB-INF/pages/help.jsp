@@ -8,10 +8,13 @@
 	<jsp:attribute name="page_head">
 	<title>Help</title>
 		<script type="text/javascript">
-			cityways.helper.styles.includeCSSFile("${myContext}/media/css/pages/",
-												[{
-													name : "help.css"
-												}]);
+				var cssFile = cityways.helper.document.selectCSSFile("${myContext}/media/css/pages/",
+				[{
+					name : "help.css"
+				}
+					]);
+			cityways.helper.document.appendCSSFile(cssFile,"write");
+
 		</script>
 	</jsp:attribute>
 	<jsp:attribute name="left_column">

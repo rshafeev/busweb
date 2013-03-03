@@ -14,7 +14,7 @@
 
 /**
  * [Marker description]
- * @class cityways.maps.Path
+ * @class cityways.widget.map.Path
  * @param {cityways.model.PathModel} pathModel Опции маркера
  * 
  */

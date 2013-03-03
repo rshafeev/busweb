@@ -147,7 +147,7 @@
           route_freq    : route.finish,
           route_move    : cityways.helper.time.secsToLocaleString(route.moveTimeSecs),    
           route_wait    : cityways.helper.time.secsToLocaleString(route.wait),
-          host : cityways.options.ServerHost         
+          host : cityways.options.ServerHeeost         
         };   
 
         pathInfoContent = pathInfoContent + t_route(routeParams);

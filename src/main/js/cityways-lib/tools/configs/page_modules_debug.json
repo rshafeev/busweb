@@ -1,0 +1,66 @@
+// Конфигурационный файл для сборки библиотеки cityways-js-lib
+{
+	"modules" : [
+				{
+					"core_module" : "",                
+					"name"		  : "basic",
+					"out" 		  : "basic.js",
+					"code" 	      : [
+					                 "cityways.js",
+									 "cityways/logger.js",
+									 "test/logger.js",
+									 "cityways/Class.js",
+									 "cityways/BrowserDetect.js",
+                					 "cityways/options.js",
+                					 "cityways/util.js",
+									 "cityways/helper.js",
+									 "cityways/helper/time.js",
+									 "cityways/helper/document.js",
+									 "cityways/helper/array.js",
+									 "cityways_ext.js"
+									]
+				},
+				{
+					"core_module" : "basic",
+					"name" 		  : "main_page",
+					"out" 		  : "main_page.js",
+					"code" 	      : ["cityways/type.js",
+									 "cityways/type/Dictionary.js",
+									 "cityways/type/StringDictionary.js",
+									 "cityways/type/ObjectDictionary.js",
+									 "cityways/lang.js",
+                					 "cityways/lang/ru.js",
+                					 "cityways/lang/en.js",
+                					 "cityways/lang/uk.js",
+									 "cityways/event.js",
+									 "cityways/EventListener.js",
+									 "cityways/Map.js",
+									 "cityways/MapWidget.js",
+									 "cityways/maps.js",
+									 "cityways/maps/GoogleMapProvider.js",
+									 "cityways/maps/Marker.js",
+									 "cityways/maps/Polyline.js",
+									 "cityways/page.js",
+									 "cityways/page/SearchPage.js",
+									 "cityways/page/search.js",
+									 "cityways/page/search/PathsPanel.js",
+									 "cityways/page/search/SettingsPanel.js",
+				    				 "cityways/page/search/WidgetEventHandlers.js",
+									 "cityways/model.js",
+									 "cityways/model/PathModel.js",
+									 "cityways/template.js",
+									 "cityways/template/html.js",
+                					 "cityways/loader.js",
+                					 "cityways/loader/Geocoder.js",
+									 "cityways/loader/PathsLoader.js",
+                					 "cityways/loader/TemplatesLoader.js",
+                					 "cityways/widget.js",
+                					 "cityways/widget/map.js",
+                					 "cityways/widget/map/Station.js",
+                					 "cityways/widget/map/Path.js"
+									]
+				}			
+
+
+			]
+}

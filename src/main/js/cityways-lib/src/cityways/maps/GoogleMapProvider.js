@@ -170,6 +170,30 @@
 	 		cityways.logger.info("click!",args);
 	 		cityways.event.triggerEvent(self, cityways.event.ON_CLICK, args);
 	 	});
+
+	 	google.maps.event.addListener(self._googleMap, 'zoom_changed',function(e){
+	 		var zoom = self._googleMap.getZoom();
+	 		cityways.logger.debug("map_zoom: ", zoom);
+	 		// Пробежимся по всем маркерам
+	 		var keys = self._markers.getKeys();
+	 		for(var k in keys){
+	 			var marker = keys[k];
+	 			var nativeMarker = self._markers.get(marker).native;
+
+	 			cityways.logger.debug(marker.getMinZoom());
+	 			if(zoom > marker.getMinZoom()){
+	 				if(nativeMarker.getMap() == null){
+	 					nativeMarker.setMap(self._googleMap);
+	 				}
+	 			}else
+	 			{
+	 				if(nativeMarker.getMap() != null){
+	 					nativeMarker.setMap(null);
+	 				}
+	 			}
+	 		}
+	 	});
+
 	 },
 
 	 /*override*/
@@ -280,6 +304,14 @@
 	 		cityways.event.triggerEvent(marker,cityways.event.ON_CLICK,args);
 	 	});
 
+
+	 	var listener1 = cityways.event.addListener(marker,cityways.event.ON_CHANGED_LOCATION,function(e){
+	 		if(e.__fire__ == self)
+	 			return;
+	 		nativeMarker.setPosition(new google.maps.LatLng(e.location.lat,e.location.lon));
+	 	});
+
+
 	 	var listener1 = cityways.event.addListener(marker,cityways.event.ON_CHANGED_LOCATION,function(e){
 	 		if(e.__fire__ == self)
 	 			return;
@@ -351,12 +383,31 @@
 	 	this._polylines.pull(polyline);
 	 },
 
-	 /*override*/
-	 destroy : function(marker){
+	 /* override */
+	 alignment : function(points){
+	 	var map = this._googleMap;
+		//Определяем область показа маркеров
+		var latlngbounds = new google.maps.LatLngBounds();  
+		for(var i=0;i < points.length; i++){
+			var myLatLng = new google.maps.LatLng(points[i].lat, points[i].lon);
+			latlngbounds.extend(myLatLng);
+		}
+		
 
-	 }
+        //Центрируем и масштабируем карту
+        map.setCenter( latlngbounds.getCenter(), map.fitBounds(latlngbounds));   
 
-	}
+
+    },
+
+
+
+    /*override*/
+    destroy : function(marker){
+
+    }
+
+}
 }
 
 );

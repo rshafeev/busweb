@@ -18,16 +18,18 @@
  */
  cityways.page.SearchPage = cityways.Class({
  	constructor :  function(currentCity, options) {
- 		this._headerHeight = 134;
+ 		var self = this;
+ 		self._headerHeight = 134;
+
  		var routeTypes = null;
 
  		if(options.routeTypes == undefined){
  			routeTypes = [];
  		}else
- 		routeTypes = options.routeTypes;
+ 			routeTypes = options.routeTypes;
 	 	// Инициализируем библиотеку 
-	 	cityways.initialize(options);
-	 	var self = this;
+	 	cityways.page.search.initialize(options);
+	 	
 	 	// Сохраним параметры
 	 	this._currentCity = currentCity;
 
@@ -216,8 +218,8 @@
 	 	if(this._mapWidget.getStartMarker() == null ||
 	 		this._mapWidget.getFinishMarker() == null){
 	 		cityways.alert(cityways.lang.translate("message.warn"),
-	 			           cityways.lang.translate("message.warn.destinations_none") ,
-	 			           "warn");
+	 			cityways.lang.translate("message.warn.destinations_none") ,
+	 			"warn");
 	 	return null;
 	 }
 	 var opts = {

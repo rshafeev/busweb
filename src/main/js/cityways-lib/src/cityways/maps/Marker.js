@@ -19,6 +19,7 @@
  * @param {String} options.iconFileName [dest]
  * @param {Number} options.lat desc1 [dest]
  * @param {Number} options.lon desc2 [dest]
+ * @param {Number} options.minZoom 
  * @param {String} options.title 
  */
  cityways.maps.Marker = cityways.Class({
@@ -37,6 +38,12 @@
  		}
  		if(options && options.iconFileName != undefined){
  			this.setIcon(options.iconFileName);
+ 		}
+ 		if(options && options.minZoom != undefined){
+ 			this.setMinZoom(options.minZoom);
+ 		}else
+ 		{
+ 			this.setMinZoom(0);
  		}
  	},
 
@@ -211,6 +218,14 @@
 
 	 getTitle : function(){
 	 	return this._title;
+	 },
+
+	 setMinZoom : function(minZoom){
+	 	this._minZoom = minZoom;
+	 },
+
+	 getMinZoom : function(){
+	 	return this._minZoom;
 	 }
 
 

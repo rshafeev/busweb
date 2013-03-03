@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
@@ -21,8 +23,14 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.pgis.bus.data.*;
+import com.pgis.bus.data.helpers.LoadDirectRouteOptions;
+import com.pgis.bus.data.helpers.LoadRouteOptions;
+import com.pgis.bus.data.helpers.LoadRouteRelationOptions;
 import com.pgis.bus.data.impl.DataBaseService;
+import com.pgis.bus.data.models.RouteGeoData;
+import com.pgis.bus.data.models.RoutePart;
 import com.pgis.bus.data.orm.City;
 import com.pgis.bus.data.orm.Route;
 import com.pgis.bus.data.repositories.RepositoryException;
@@ -33,10 +41,15 @@ import com.pgis.bus.server.models.data.CitiesModel;
 import com.pgis.bus.server.models.data.CityModel;
 import com.pgis.bus.server.models.data.RouteSchemeModel;
 import com.pgis.bus.server.models.data.RouteTypeModel;
-import com.pgis.bus.server.models.data.RoutesModel;
 import com.pgis.bus.server.models.page.ArticlesPageModel;
 import com.pgis.bus.server.models.page.MainPageModel;
 import com.pgis.bus.server.models.page.RoutesPageModel;
+import com.pgis.bus.server.models.request.LoadPathOptions;
+import com.pgis.bus.server.models.response.ErrorModel;
+import com.pgis.bus.server.models.response.GeomPathModel;
+import com.pgis.bus.server.models.response.GeomRouteModel;
+import com.pgis.bus.server.models.response.RouteModel;
+import com.pgis.bus.server.models.response.RoutesModel;
 
 @Controller
 @RequestMapping(value = "routes")
@@ -55,6 +68,35 @@ public class RoutesController extends BaseController {
 	@Autowired
 	private MessageSource messageSource;
 
+	@ResponseBody
+	@RequestMapping(value = "get/{route_id}", method = RequestMethod.GET)
+	public String get(@PathVariable String route_id) {
+		try {
+			log.debug("getRoute");
+			
+			Locale locale = LocaleContextHolder.getLocale();
+			String lang_id = LanguageHelper.getDataBaseLanguage(locale);
+			
+			LoadRouteRelationOptions loadRouteRelationOptions = new LoadRouteRelationOptions();
+			loadRouteRelationOptions.setLoadStationsData(true);
+			
+			LoadDirectRouteOptions loadDirectRouteOptions = new LoadDirectRouteOptions();
+			loadDirectRouteOptions.setLoadScheduleData(false);
+			loadDirectRouteOptions
+					.setLoadRouteRelationOptions(loadRouteRelationOptions);
+			LoadRouteOptions opts = new LoadRouteOptions();
+			opts.setLoadRouteNamesData(true);
+			opts.setDirectRouteOptions(loadDirectRouteOptions);
+			
+			Route route = db.getRoute(Integer.valueOf(route_id), opts);
+			RouteModel model = new RouteModel(route,locale);
+			return (new Gson()).toJson(model);
+		} catch (Exception e) {
+			log.debug("error",e);
+			return (new Gson()).toJson(new ErrorModel(e));
+		}
+	}
+	
 	@RequestMapping(value = "")
 	public ModelAndView routes(
 			@CookieValue(value = "city_key", defaultValue = "") String city_key) {
@@ -98,7 +140,7 @@ public class RoutesController extends BaseController {
 			RoutesPageModel model = new RoutesPageModel(navModel);
 			model.setRoutes(routesModel);
 			model.setCitiesModel(citiesModel);
-
+			model.setLanguage(locale);
 			return new ModelAndView("routes", "model", model);
 
 		} catch (RepositoryException e) {

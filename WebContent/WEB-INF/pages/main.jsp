@@ -19,8 +19,8 @@
 	<script type="text/javascript">
 			var currentCity = $.parseJSON('${model.getCitiesModel().getJSONSelectedCity()}');
 			var options = {
-					routeTypes : $.parseJSON('${model.getJsonRouteTypes()}'),
 					serverHost : "${myContext}",
+					routeTypes : $.parseJSON('${model.getJsonRouteTypes()}'),
 					resourceURI : "${myContext}/media/cityways/",
 					lang  : "${model.getLanguage()}"
 				};
