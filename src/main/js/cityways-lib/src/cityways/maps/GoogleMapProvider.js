@@ -179,7 +179,7 @@
 	 		for(var k in keys){
 	 			var marker = keys[k];
 	 			var nativeMarker = self._markers.get(marker).native;
-
+	 			
 	 			cityways.logger.debug(marker.getMinZoom());
 	 			if(zoom > marker.getMinZoom()){
 	 				if(nativeMarker.getMap() == null){

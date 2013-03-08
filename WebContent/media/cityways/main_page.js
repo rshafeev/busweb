@@ -1261,7 +1261,7 @@ cityways.EventListener = cityways.Class({
 	 		for(var k in keys){
 	 			var marker = keys[k];
 	 			var nativeMarker = self._markers.get(marker).native;
-
+	 			
 	 			cityways.logger.debug(marker.getMinZoom());
 	 			if(zoom > marker.getMinZoom()){
 	 				if(nativeMarker.getMap() == null){
@@ -2385,6 +2385,8 @@ cityways.page = {
 	 * @param {bool} value  true: show, false : hide
 	 */
 	 visible : function(value) {
+    if(value == undefined)
+      return this._visible;
 	 	if(this._visible == value)
 	 		return;
 	 	if (value == true) {
@@ -3086,7 +3088,7 @@ cityways.page = {
  		var self = this;
  		self._routesPage = routesPage;
  		self._selectedRoutes = new cityways.type.StringDictionary();
- 		var visible = (options != undefined && options.visible != undefined) ? options.visible : false;		
+ 		var visible = (options != undefined && options.visible != undefined) ? options.visible : true;		
  		$(document).ready(function() {
  			$('#cityways_routes_panel_scroll').tinyscrollbar();
  			self.visible(visible);
@@ -3127,21 +3129,21 @@ cityways.page = {
 	 		* @param {bool} value  true: show, false : hide
 	 		*/
 	 		visible : function(value) {
+
+	 			if(value == undefined)
+	 				return this._visible;
+	 			cityways.logger.info(value);
 	 			if(this._visible == value)
 	 				return;
 	 			if (value == true) {
-	 				$("#map_canvas").width('68%').css({
-	 					cursor : "auto",
-	 					backgroundColor : "rgb(226, 226, 226)"
-	 				});
-
+	 				$("#img_panel").attr("src",cityways.options.getResourcePath() + "images/arrow_right.png");
+	 				this._routesPage.getMapWidget().setWidth('68%');
 	 			} else {
-	 				$("#map_canvas").width('98.5%').css({
-	 					cursor : "auto",
-	 					backgroundColor : "rgb(226, 226, 226)"
-	 				});
+	 				$("#img_panel").attr("src",cityways.options.getResourcePath() + "images/arrow_left.png");
+	 				this._routesPage.getMapWidget().setWidth('98.5%');
 	 			}
 	 			this._visible = value;
+
 	 			$('#cityways_routes_panel_scroll').tinyscrollbar_update();
 	 		},
 
@@ -3181,7 +3183,7 @@ cityways.page = {
 	 					});
 	 					var linkID = "#route_link_" + routeID.toString();
 	 					$(linkID).css("background",color);
-	 					 
+
 	 				});
 	 			}else
 	 			{
@@ -3355,6 +3357,8 @@ cityways.page = {
 	  }
 
 
+
+
 	}
 	
 	/* EVENTS */
@@ -3409,6 +3413,16 @@ cityways.page = {
  			 */
  			 onSelectRoute : function(routeID){
  			 	this._routesPage.getRoutesPanel().selectRoute(routeID);
+ 			 },
+
+ 			 onChangeSelectboxCity : function(){
+ 			 		var nameFromCombo = $("#selectbox_city").val();
+			 	document.location.href = cityways.options.ServerHost + 'routes/' + nameFromCombo;
+ 			 },
+
+ 			 onShowPanel : function(){
+ 			 	var visible = this._routesPage.getRoutesPanel().visible();
+ 			 	this._routesPage.getRoutesPanel().visible(visible==true ? false : true);
  			 }
 
 			}

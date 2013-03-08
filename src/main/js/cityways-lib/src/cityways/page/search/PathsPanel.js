@@ -65,6 +65,8 @@
 	 * @param {bool} value  true: show, false : hide
 	 */
 	 visible : function(value) {
+    if(value == undefined)
+      return this._visible;
 	 	if(this._visible == value)
 	 		return;
 	 	if (value == true) {
