@@ -20,6 +20,7 @@
  cityways.type.ObjectDictionary = cityways.Class({
  	
  	constructor :  function() {
+ 		this._values = {};
  		this._keys = {};
  		this._size = 0;
  		if(cityways.type.__dictionary__id__ == undefined)
@@ -33,7 +34,14 @@
 	 * @memberOf cityways.type.Dictionary.prototype
 	 * @type {Object} 
 	 */
-	 _keys : null,
+	 _values : null,
+
+     
+     /**
+      * [_keys description]
+      * @type {[type]}
+      */
+     _keys : null,
 
 	/**
 	 * Количество элементов в словаре
@@ -52,21 +60,23 @@
 	 /* override */
 	 put : function(key, value){
 	 	if(key.__dictionary__id__ != undefined){
-	 		if(this._keys[key.__dictionary__id__] != undefined){
+	 		if(this._values[key.__dictionary__id__] != undefined){
 	 			return false;
 	 		}
 	 	}
 	 	else{
 	 		key.__dictionary__id__ = this._nextID();
 	 	}
-	 	this._keys[key.__dictionary__id__] = value;
+	 	this._values[key.__dictionary__id__] = value;
+	 	this._keys[key.__dictionary__id__] = key;
 	 	this._size++;
 	 	return true;
 	 },
 
 	 /* override */
 	 pull : function(key){
-	 	if(key.__dictionary__id__ != undefined && this._keys[key.__dictionary__id__]){
+	 	if(key.__dictionary__id__ != undefined && this._values[key.__dictionary__id__]){
+	 		delete this._values[key.__dictionary__id__];
 	 		delete this._keys[key.__dictionary__id__];
 	 		this._size--;
 	 	}
@@ -74,10 +84,14 @@
 
 	 /* override */
 	 get : function(key){
-	 	if(key.__dictionary__id__ == undefined || this._keys[key.__dictionary__id__] == undefined ){
+	 	if(key.__dictionary__id__ == undefined || this._values[key.__dictionary__id__] == undefined ){
 	 		return null;
 	 	}
-	 	return this._keys[key.__dictionary__id__];
+	 	return this._values[key.__dictionary__id__];
+	 },
+
+	 getKeys : function(){
+	 	return this._keys;
 	 },
 
 	 /* override */
@@ -87,7 +101,7 @@
 
 	 /* override */
 	 getAsAssociativeArray: function(){
-	 	return this._keys;
+	 	return this._values;
 	 }
 	}
 });

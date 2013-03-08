@@ -12,6 +12,7 @@ import org.junit.Test;
 import org.postgresql.util.PGInterval;
 
 import com.pgis.bus.data.orm.type.Path_t;
+import com.pgis.bus.net.models.PathsModel;
 import com.pgis.bus.net.models.path.PathModel;
 import com.pgis.bus.server.helpers.PathsModelConverter;
 
@@ -89,6 +90,22 @@ public class PathsModelConverterTest {
 		assertNotNull(path);
 		assertEquals(1,path.getTransitions().size());
 		assertEquals(2,path.getRoutes().size());
+		
+	}
+	
+	@Test
+	public void makePathsModelTest() throws CloneNotSupportedException{
+		Path_t[] data = new Path_t[2*data1.length];
+		System.arraycopy(data1, 0, data, 0, data1.length);
+		for(int i=data1.length; i < data.length; i++){
+			data[i] = data1[i-data1.length].clone();
+			data[i].path_id = 2;
+		}
+		List<Path_t> elems = Arrays.asList(data);
+		
+		PathsModel paths = PathsModelConverter.makePathsModel(elems);
+		assertNotNull(paths);
+		assertEquals(2,paths.getPaths().size());
 		
 	}
 	

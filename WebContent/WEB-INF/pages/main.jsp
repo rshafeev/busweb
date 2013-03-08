@@ -19,13 +19,14 @@
 	<script type="text/javascript">
 			var currentCity = $.parseJSON('${model.getCitiesModel().getJSONSelectedCity()}');
 			var options = {
+					serverHost : "${myContext}",
 					routeTypes : $.parseJSON('${model.getJsonRouteTypes()}'),
-					serverHost : "${myContext}/",
 					resourceURI : "${myContext}/media/cityways/",
 					lang  : "${model.getLanguage()}"
 				};
+			cityways.logger.info("options",options);
 			cityways.page.setCurrent( new cityways.page.SearchPage(currentCity,options) );
-					
+			
 		$(document).ready(function() {
 
 	 	});

@@ -30,23 +30,21 @@ public class BasicServiceListener implements ServletContextListener {
 			.getLogger(BasicServiceListener.class);
 
 	public BasicServiceListener() {
-
+		
 	}
 
-	@Override
 	public void contextDestroyed(ServletContextEvent sce) {
 		DBConnectionFactory.free();
 	}
 
 
-	@Override
 	public void contextInitialized(ServletContextEvent event) {
 		ServletContext context = event.getServletContext();
 		AppProperties.DefaultCity = context.getInitParameter("defaultCity");
 
-		//DBConnectionFactory.init(new DBConnectionManager("jdbc/busPoolDB"));
-		TestDataSource source = new TestDataSource();
-		DBConnectionFactory.init(new TestDBConnectionManager(source.getDataSource()));
+		DBConnectionFactory.init(new DBConnectionManager("jdbc/busPoolDB"));
+		//TestDataSource source = new TestDataSource();
+		//DBConnectionFactory.init(new TestDBConnectionManager(source.getDataSource()));
 		log.debug("contextInitialized");
 
 	}

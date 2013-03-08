@@ -14,30 +14,7 @@
 /**
  * @class cityways.maps.goog
  */
- cityways.Geocoder = {
+ cityways.maps.goog = {
 
-    /**
-     * [getCodeAddress description]
-     * @param  {[type]}   lat      [description]
-     * @param  {[type]}   lon      [description]
-     * @param  {Function} callback [description]
-     */
-     getCodeAddress : function(lat, lon, callback) {
-        var latlng = new google.maps.LatLng(lat, lon);
-        var geocoder = new google.maps.Geocoder();
-        geocoder.geocode({
-            'latLng' : latlng
-        }, function(results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
-                if (results[1]) {
-                    callback(getShortAddress(results[0].formatted_address));
-                } else {
-                    callback("("  + lat.toString() + ", "  + lon + ")");
-                }
-            } else {
-                callback("("  + lat.toString() + ", "  + lon + ")");
-            }
-        });
-    }
 
 };

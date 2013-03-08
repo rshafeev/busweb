@@ -5,6 +5,7 @@ import java.util.Locale;
 
 import com.pgis.bus.data.orm.City;
 import com.pgis.bus.data.orm.StringValue;
+import com.pgis.bus.net.models.Location;
 import com.pgis.bus.server.helpers.LanguageHelper;
 
 public class CityModel {
@@ -12,7 +13,7 @@ public class CityModel {
 	private String name;
 	private String key;
 
-	private LocationModel location;
+	private Location location;
 	
 	
 	private int scale;
@@ -41,15 +42,15 @@ public class CityModel {
 		this.name = name;
 	}
 
-	public LocationModel getLocation() {
+	public Location getLocation() {
 		return location;
 	}
 
-	public void setLocation(LocationModel location) {
+	public void setLocation(Location location) {
 		this.location = location;
 	}
 
-	public CityModel(int id, String name, LocationModel location) {
+	public CityModel(int id, String name, Location location) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -66,7 +67,7 @@ public class CityModel {
 			this.name = city.name.get("c_ru").value;
 
 		this.id = city.id;
-		this.location = new LocationModel();
+		this.location = new Location();
 		this.location.setLat(city.lat);
 		this.location.setLon(city.lon);
 		this.scale = city.scale;

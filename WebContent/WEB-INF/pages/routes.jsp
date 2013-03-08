@@ -8,19 +8,21 @@
 	<jsp:attribute name="page_head">	
 	<script type="text/javascript"
 			src="http://maps.google.com/maps/api/js?sensor=false&libraries=drawing"></script>
+	
+	<script src="${myContext}/media/js/libs/selectbox.js"></script>
+	<script src="${myContext}/media/js/libs/jquery.poshytip.js"></script>
+	<script type="text/javascript"
+			src="http://underscorejs.ru/underscore.js"></script>
+	<script src="${myContext}/media/cityways/main_page.js"></script>
 	<script type="text/javascript">
-		cityways.helper.styles.includeCSSFile("${myContext}/media/css/pages/",
-												[{
-													name : "routes.css"
-												}]);
-		var pageOptions = {
-			currentCity : $.parseJSON('${model.getCitiesModel().getJSONSelectedCity()}')
-		}
+		var options = {
+			currentCity : $.parseJSON('${model.getCitiesModel().getJSONSelectedCity()}'),
+			serverHost : "${myContext}",
+			resourceURI : "${myContext}/media/cityways/",
+			lang  : "${model.getLanguage()}"
+		};
 		
-		cityways.options.ServerHost = "${myContext}";
-		cityways.options.ResourceURI = "${myContext}/media/cityways/";
-		cityways.language.setCode("${model.getLanguage()}");
-		cityways.page.Current = new cityways.page.RoutesPage(pageOptions);
+		cityways.page.setCurrent( new cityways.page.RoutesPage(options));
 
 		/*
 		$(document).ready(function() {
@@ -50,10 +52,6 @@
 		});
 		*/
 	</script>
-	<script src="${myContext}/media/js/libs/selectbox.js"></script>
-	<script src="${myContext}/media/js/libs/jquery.poshytip.js"></script>
-	<script src="${myContext}/media/js/routes/routes.js"></script>	
-	<script src="${myContext}/media/js/routes/RSchems.js"></script>
 	</jsp:attribute>
 
 	<jsp:attribute name="content">
@@ -74,7 +72,7 @@
 						<jsp:directive.include file="widgets/city_table.jsp" />
 </div>
 <div class="routes_inform">
-<div id="right_routes_column_scrollbar" class="scrollbar_body_routes">
+<div id="cityways_routes_panel_scroll" class="scrollbar_body_routes">
 			 <div class="scrollbar">
 					<div class="track">
 						<div class="thumb">
@@ -89,7 +87,7 @@
 	</div>
 
 				</div>
-				</div>
+				</div> 
 		</div>	
 		</div>
 	

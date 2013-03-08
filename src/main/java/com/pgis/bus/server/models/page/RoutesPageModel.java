@@ -4,7 +4,7 @@ import java.util.Collection;
 import com.google.gson.Gson;
 import com.pgis.bus.server.models.NavigationModel;
 import com.pgis.bus.server.models.data.CitiesModel;
-import com.pgis.bus.server.models.data.RoutesModel;
+import com.pgis.bus.server.models.response.RoutesModel;
 
 public class RoutesPageModel extends PageModel {
 	private CitiesModel citiesModel;

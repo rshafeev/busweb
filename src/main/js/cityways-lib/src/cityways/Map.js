@@ -55,64 +55,95 @@
     if(options.mapProvider == undefined)
     	options.mapProvider = cityways.maps.GOOGLE_PROVIDER;
 
-  	this._div = div;
-  	this._options = options;
-  	this.setMapProvider(options.mapProvider);
+    this._div = div;
+    this._options = options;
+    this.setMapProvider(options.mapProvider);
   },
 
   members : {
-  		
-  		_mapProvider : null,
 
-  		_mapObjects : null,
+        /**
+         * [_mapProvider description]
+         * @type {[type]}
+         */
+         _mapProvider : null,
 
-  		_div : null,
-  		
-  		_options : null,
+         _mapObjects : null,
 
-  		setMapProvider : function(mapProviderID){
-  			  if(mapProviderID == cityways.maps.GOOGLE_PROVIDER)
-          {
-     			 	this._mapProvider = new cityways.maps.GoogleMapProvider(this._div,this._options);
+         _div : null,
+
+         _options : null,
+
+         setMapProvider : function(mapProviderID){
+           if(mapProviderID == cityways.maps.GOOGLE_PROVIDER)
+           {
+            this._mapProvider = new cityways.maps.GoogleMapProvider(this._div,this._options);
           }
-     			else
+          else
           {
-     				this._mapProvider = new cityways.maps.GoogleMapProvider(this._div,this._options);
+           this._mapProvider = new cityways.maps.GoogleMapProvider(this._div,this._options);
 
-          }
-          var self = this;
-         
-          cityways.event.addListener(self._mapProvider,cityways.event.ON_CLICK, function(e){
-                cityways.event.triggerEvent(self, cityways.event.ON_CLICK, e);
-              }
-            );
-  		},
+         }
+         var self = this;
 
-
-  		/* override */
-  		addMarker : function(marker){
-  			this._mapProvider.addMarker(marker);
-  		},
-
-  		/* override */
-  		destroy : function(){
-        this._mapProvider.destroy();
-  		},
-
-  		/* override */
-  		resize : function(w,h){
-  			this._mapProvider.resize(w,h);
-  		},
+         cityways.event.addListener(self._mapProvider,cityways.event.ON_CLICK, function(e){
+          cityways.event.triggerEvent(self, cityways.event.ON_CLICK, e);
+        }
+        );
+       },
 
 
-      setHeight : function(h){
-        this._mapProvider.setHeight(h);
-      }
+       /* override */
+       addMarker : function(marker){
+         this._mapProvider.addMarker(marker);
+       },
 
+       /* override */
+       removeMarker : function(marker){
+        this._mapProvider.removeMarker(marker);
+      },
 
+      /* override */
+      addPolyline : function(polyline){
+        this._mapProvider.addPolyline(polyline);
+      },
 
+      /* override */
+      removePolyline : function(polyline){
+        this._mapProvider.removePolyline(polyline);
+      },
 
-  }
-  
+      /* override */
+      resize : function(w,h){
+       this._mapProvider.resize(w,h);
+     },
+
+     /* override */
+     setHeight : function(h){
+      this._mapProvider.setHeight(h);
+    },
+
+    /* override */
+    setWidth : function(w){
+      this._mapProvider.setWidth(w);
+    },
+
+    /* override */
+    getNativeMapObj : function(){
+      this._mapProvider.getNativeMapObj();
+    },
+
+    /* override */
+    destroy : function(){
+      this._mapProvider.destroy();
+    },
+
+    /* override */
+    alignment : function(points){
+     this._mapProvider.alignment(points);
+
+   }
+ }
+
 
 });

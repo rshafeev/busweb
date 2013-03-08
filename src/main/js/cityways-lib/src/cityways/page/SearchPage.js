@@ -18,21 +18,23 @@
  */
  cityways.page.SearchPage = cityways.Class({
  	constructor :  function(currentCity, options) {
- 		this._headerHeight = 134;
+ 		var self = this;
+ 		self._headerHeight = 134;
+
  		var routeTypes = null;
 
  		if(options.routeTypes == undefined){
  			routeTypes = [];
  		}else
- 		routeTypes = options.routeTypes;
+ 			routeTypes = options.routeTypes;
 	 	// Инициализируем библиотеку 
-	 	cityways.initialize(options);
-	 	var self = this;
+	 	cityways.page.search.initialize(options);
+	 	
 	 	// Сохраним параметры
 	 	this._currentCity = currentCity;
 
 	 	// Создадим обработчик событий главной страницы
-	 	this._widgetEventHandlers = new cityways.page.search.WidgetEventHandlers();
+	 	this._widgetEventHandlers = new cityways.page.search.WidgetEventHandlers(this);
 	 	
 	 	
 	 	// Создадим панель настроек
@@ -56,6 +58,7 @@
 
 	 members : { 
 
+	 	
  	/**
  	 * [_headerHeight description]
 	 * @private
@@ -203,6 +206,10 @@
 	  	return this._pathsPanel;
 	  },
 
+	  getMapWidget : function(){
+	  	return this._mapWidget;
+	  },
+
 	/**
 	 * @memberOf cityways.page.SearchPage.prototype
 	 * @return {Object} [description]
@@ -211,8 +218,8 @@
 	 	if(this._mapWidget.getStartMarker() == null ||
 	 		this._mapWidget.getFinishMarker() == null){
 	 		cityways.alert(cityways.lang.translate("message.warn"),
-	 			           cityways.lang.translate("message.warn.destinations_none") ,
-	 			           "warn");
+	 			cityways.lang.translate("message.warn.destinations_none") ,
+	 			"warn");
 	 	return null;
 	 }
 	 var opts = {

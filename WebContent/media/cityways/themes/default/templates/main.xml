@@ -1,28 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <templates>
-	<template id="template-main-waysPanelHeader">
-	<![CDATA[
-<div class="result_numb" id="result_numb_<%=index%>"
-			onclick="on_selectDetailWay(<%=index%>)">
-			<div id="rout_numb">
+	<template id="template-main-pathsPanelHeader">
+		<![CDATA[
+		<div class="result_numb" id="path_header_<%=index%>"
+		onclick="cityways.page.Events.onSelectPath(<%=index%>)">
+		<div id="rout_numb">
 
-				<div class="numb">
-					<a id="way_ref_<%=index%>"
-						style="color: white; font-size: 24px; font-weight: 900;"
-						onclick="on_selectWay(<%=index%>)">
-						<%=index%>
-
-					</a>
-				</div>
-
-
-			</div>
-			<div id="cost_info">
-				<p><%= locale("cost") + cost  + " " + locale("UAH") %></p>
-				<p><%= locale("time") + time%></p>
-			</div>
+			<div class="numb">
+				<a id="path_ref_<%=index%>"
+				style="color: white; font-size: 24px; font-weight: 900;"
+				onclick="cityways.page.Events.onSelectPath(<%=index%>)">
+				<%=index%>
+			</a>
 		</div>
+
+		<div id="icons_menu">
+			<% _.each(routes,function(route,key){ %>
+			<img src="<%=resourcePath%>images/transport/25/<%=route.type%>.png"/>
+			<% if (route.type != "metro") { %>
+			<a>№<%=route.name%></a>
+			<% } %>
+
+			<% if (key < routes.length-1) { %>
+			<img src="<%=resourcePath%>images/plus.png"/>
+			<% } %>
+			<% }); %>
+		</div>
+	</div>
+	<div id="cost_info">
+		<p><%= locale("cost") + cost  + " " + locale("UAH") %></p>
+		<p><%= locale("time") + time%></p>
+	</div>
+</div>
 <div id="res_text" style="width: 322px; margin-left: 10px; white-space: normal; "> 
 <div id="print">
 				<a href="#"><img src="media/cityways/themes/default/images/print.png"
@@ -46,30 +56,50 @@
 				<p><%= locale("transferFrom") %></p>
 				<p><%= locale("transferTo") %></p>
 </div>
+]]>
+</template>
+<template id="template-main-pathsPanelTransition"> <![CDATA[
+	<div class="line_height">
+		<p><%= locale("from") %> : <%= route_from %> </p>
+		<p><%= locale("to") %> : <%= route_to %> </p>
+        <p><%= locale("distance") %> : <%= distance %> <%=locale("m.")%> </p>
+        <% if(move_time != ""){ %>
+        	<p><%= locale("move_time") %> : <%= move_time %> </p>
+        <%} %>
+        <p> ------------------------ </p>
+	</div>
 	]]>
-	</template>
-	<template id="template-main-waysPanelInfo"> <![CDATA[
-		<p><%= value %></p>
-		<p><%= locale("path_time") %></p>
+</template>
+<template id="template-main-pathsPanelRoute"> <![CDATA[
+	<div id="path_route_<%=route_id%>" >
+		<p><%= locale("Number") %> : 
+		    <a href="<%=host%>route/<%=route_id%>" target="_blank">№ <%= route_name %> </a> 
+		 </p>
+		<p><%= locale("Start") %> : <%= route_start %> </p>
+		<p><%= locale("Finish") %> : <%= route_finish %> </p>
+		<p><%= locale("Cost") %> : <%= route_cost %> </p>	
+        <p><%= locale("Move_time") %> : <%= route_move %> </p>	
+        <p><%= locale("Wait_time") %> : <%= route_wait %> </p>	
+        <p><%= locale("Frequency") %> : <%= route_freq %> </p>	
+        <p><%= locale("Distance") %> : <%= route_distance %> <%=locale("km.")%> </p>
+        <p> ------------------------ </p>
+        <br>
+	</div>
+	]]>
+</template>
 
-		<div class="start"> 
-			<div class="userplace">
-				<input type="text" id="username" />
-			</div>
-			<div class="buttonplace">
-				<input type="button" value="Проверить" />
-			</div>
-		</div>
+<template id="template-main-pathsPanelInfo"> <![CDATA[
+	<div id="path_info_<%=index%>" style="display:none">
+		<%=content%>
+	</div>
 	]]>
-	</template>
+</template>
 	
 
 	
-	<template id="template-main-product"><![CDATA[
-		<div>
-			<p>sdfdsf</p>
-
-		</div>
+<template id="template-main-product"><![CDATA[
+	<div>
+	</div>
 	]]>
-	</template>
+</template>
 </templates>

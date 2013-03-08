@@ -13,14 +13,14 @@
 /**
  * @namespace cityways.template.html
  */
-cityways.template.html = {
+ cityways.template.html = {
 
 	/**
 	 * [_templates description]
 	 * @private
 	 * @type {Object}
 	 */
-	_templates : {},
+	 _templates : {},
 
 	/**
 	 * Возвращает html шаблон со словаря _templates. Если такой не сущействует,
@@ -28,29 +28,47 @@ cityways.template.html = {
 	 * @param  {[type]}   templateName [description]
 	 * @param  {Function} callback     [description]
 	 */
-	get : function(templateName, callback) {
-		var templates = cityways.template.html._templates;
-		if (templates[templateName] === undefined) {
-			var loader = new cityways.loader.TemplatesLoader();
-			var fileName = cityways.template.html._getFileByTemplateName(templateName);
-			loader.loadHtmlTemplates(fileName, function(e) {
-                        cityways.extend(cityways.template.html._templates,e);
-                        cityways.logger.info(templates);
-                        callback(templates[templateName]);
-            		});
-		} else {
-			callback(templates[templateName]);
-		}
+	 get : function(templateName, callback) {
+	 	var templates = cityways.template.html._templates;
+	 	if (templates[templateName] === undefined) {
+	 		var loader = new cityways.loader.TemplatesLoader();
+	 		var fileName = cityways.template.html._getFileByTemplateName(templateName);
+	 		loader.loadHtmlTemplates(fileName, function(e) {
+	 			cityways.extend(cityways.template.html._templates,e);
+	 			cityways.logger.info(templates);
+	 			callback(templates[templateName]);
+	 		});
+	 	} else {
+	 		callback(templates[templateName]);
+	 	}
 
-	},
+	 },
 
+	 getTemplates : function(templatesName, callback){
+	 	var loadedTemlate = 0;
+	 	var count = templatesName.length;
+	 	var iscall = false;
+	 	var templates = {};
+	 	for(var i=0; i < count; i++){
+	 		(function(ind){
+	 			cityways.template.html.get(templatesName[ind],function(template){
+	 				loadedTemlate++;
+	 				templates[templatesName[ind]] = template;
+	 				if(iscall == false && loadedTemlate == count){
+	 					iscall = true;
+	 					callback(templates);
+	 				}
+	 			});
+	 		})(i);
+	 	}
+	 },
 	/**
 	 * [_getFileByTemplateName description]
 	 * @private
 	 * @param  {String} templateName [description]
 	 * @return {String}              [description]
 	 */
-	_getFileByTemplateName : function(templateName) {
+	 _getFileByTemplateName : function(templateName) {
 		// templateName = template-<file_name>-<name>
 		return "main";
 	}

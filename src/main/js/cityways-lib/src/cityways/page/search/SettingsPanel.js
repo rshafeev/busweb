@@ -56,7 +56,7 @@
      * @type {Dictionary<Object>}
      */
      _routeTypes : null,
-    
+
     /**
      * [init description]
      * @memberOf cityways.page.search.SettingsPanel.prototype
@@ -125,11 +125,11 @@
         else
         {
            this._routeTypes[routeType].enabled = val;
-        }
+       }
 
-        if(routeType == "auto" && val == true){
+       if(routeType == "auto" && val == true){
              // Если выбран проезд на автомобиле, тогда отключим все другие виды транспорта
-            for(var i in this._routeTypes){
+             for(var i in this._routeTypes){
                 if(i != routeType && this.isEnabledRouteTypeBtn(i) == true)  
                     this.enableRouteTypeBtn(i, false);
             }
@@ -143,12 +143,12 @@
             }
         }
         else
-        if(routeType != "auto" && val == true && val == this.isEnabledRouteTypeBtn("auto") == true){
+            if(routeType != "auto" && val == true && val == this.isEnabledRouteTypeBtn("auto") == true){
             // Если был выбран вид транспорта, отличный от автомобиля, тогда отключим транспорт "автомобиль"
-             this.enableRouteTypeBtn("auto", false);
+            this.enableRouteTypeBtn("auto", false);
         } 
 
-   },
+    },
 
 
     /**
@@ -161,26 +161,44 @@
         return this._routeTypes[routeType].enabled;
     },
 
-
-    setStartLocation : function(addr){
+    /**
+     * [setStartLocation description]
+     * @param {[type]} addr [description]
+     */
+     setStartLocation : function(addr){
         $('#a_input_form').val(addr);
     },
 
-    setFinishLocation : function(addr){
+    /**
+     * [setFinishLocation description]
+     * @param {[type]} addr [description]
+     */
+     setFinishLocation : function(addr){
         $('#b_input_form').val(addr);
     },    
 
-
-    getAlgType : function(){
+    /**
+     * [getAlgType description]
+     * @return {[type]} [description]
+     */
+     getAlgType : function(){
         return "c_opt";
     },
 
-    isTransitions : function(){
+    /**
+     * [isTransitions description]
+     * @return {Boolean} [description]
+     */
+     isTransitions : function(){
         var checked = $("#cways_menu_transitions_none").is(':checked');
         return checked == true ? false : true ;
     },
 
-    getStartingTime : function(){
+    /**
+     * [getStartingTime description]
+     * @return {[type]} [description]
+     */
+     getStartingTime : function(){
         var res = {
             dayID : 'c_Sunday',
             timeStartSecs : (10 * 60 * 60 + 10 * 60)
@@ -188,29 +206,38 @@
         return res;
     },
 
+    /**
+     * [setDiscount description]
+     * @param {[type]} discountID [description]
+     * @param {[type]} val        [description]
+     */
+     setDiscount : function(discountID, val){
+         if(discountID == "discount_none"){
+            $("#cways_menu_discount_metro").attr('disabled','disabled');
+            $("#cways_menu_discount_tram").attr('disabled','disabled');
+            $("#cways_menu_discount_trolley").attr('disabled','disabled');
+        }
 
-    setDiscount : function(discountID, val){
-             if(discountID == "discount_none"){
-                    $("#cways_menu_discount_metro").attr('disabled','disabled');
-                    $("#cways_menu_discount_tram").attr('disabled','disabled');
-                    $("#cways_menu_discount_trolley").attr('disabled','disabled');
-             }
+        if(discountID == "discount_pref"){
+            $("#cways_menu_discount_metro").attr('disabled','disabled');
+            $("#cways_menu_discount_tram").attr('disabled','disabled');
+            $("#cways_menu_discount_trolley").attr('disabled','disabled');
+        }
 
-             if(discountID == "discount_pref"){
-                    $("#cways_menu_discount_metro").attr('disabled','disabled');
-                    $("#cways_menu_discount_tram").attr('disabled','disabled');
-                    $("#cways_menu_discount_trolley").attr('disabled','disabled');
-             }
-
-             if(discountID == "discount_other"){
-                    $("#cways_menu_discount_metro").removeAttr('disabled');
-                    $("#cways_menu_discount_tram").removeAttr('disabled');
-                    $("#cways_menu_discount_trolley").removeAttr('disabled');
-             }
+        if(discountID == "discount_other"){
+            $("#cways_menu_discount_metro").removeAttr('disabled');
+            $("#cways_menu_discount_tram").removeAttr('disabled');
+            $("#cways_menu_discount_trolley").removeAttr('disabled');
+        }
 
     },
 
-    getDiscount: function(discountID){
+    /**
+     * [getDiscount description]
+     * @param  {[type]} discountID [description]
+     * @return {[type]}            [description]
+     */
+     getDiscount: function(discountID){
         return $("#cways_menu_" + discountID).is(':checked');
     },
 
@@ -222,7 +249,7 @@
      * Например  если значение словаря dict["bus"] равно 0, тогда проезд на автобусе бесплатный.
      * Если равно 1 - проезд платный, 0.5 - скидка 50%.
      */
-    getCheckedDiscounts : function(){
+     getCheckedDiscounts : function(){
         var dict = {};
         dict["metro"] = 0.5;
         dict["tram"] = 0.0;

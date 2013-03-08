@@ -52,9 +52,29 @@
  cityways.maps.GoogleMapProvider = cityways.Class(
  {
  	constructor :  	function( div, options) {
- 		
- 		this._init( div, options);
-		
+ 		this._div = div;
+ 		this._options = options;
+ 		this._markers = new cityways.type.ObjectDictionary();
+ 		this._polylines = new cityways.type.ObjectDictionary();
+
+ 		var self = this;
+ 		$(document).ready(function() {
+ 			var googleMapOptions = {
+ 				zoom : self._options.zoom,
+ 				center : new google.maps.LatLng(self._options.center.lat, self._options.center.lon),
+ 				mapTypeId : google.maps.MapTypeId.ROADMAP,
+ 				minZoom : self._options.minZoom
+ 			};
+ 			self._googleMap= new google.maps.Map(document.getElementById(self._div),googleMapOptions);
+ 			self._googleMap.setOptions({
+ 				draggableCursor : 'crosshair'
+ 			});
+ 			self._registerListeners();
+ 			self.resize(self._width,self._height);
+ 			self.refresh(self);
+ 			cityways.event.triggerEvent(self, cityways.event.ON_LOADED, self);
+ 		});		
+
  	},
 
  	members : {
@@ -63,17 +83,12 @@
       * [markers description]
       * @private
       * @memberOf cityways.Map.prototype
-      * @type {cityways.type.ObjectDictionary<cityways.maps.Marker, google.maps.Marker>}
+      * @type {cityways.type.ObjectDictionary<cityways.maps.Marker, Object>}
       */
       _markers : null,
 
-     /**
-      * [_markerListeners description]
-      * @private
-      * @memberOf cityways.Map.prototype
-      * @type {cityways.type.ObjectDictionary<cityways.maps.Marker, Array<cityways.EventListener> >}
-      */
-      _markerListeners : null,
+      _polylines : null,
+
 
 	/**
 	 * @private
@@ -113,38 +128,13 @@
      */
      _options : null,
 
-     _init : function( div, options){
-     	this._div = div;
- 		this._options = options;
- 		this._markers = new cityways.type.ObjectDictionary();
- 		this._markerListeners = new cityways.type.ObjectDictionary();
-
-     	var self = this;
- 		$(document).ready(function() {
- 			var googleMapOptions = {
- 				zoom : self._options.zoom,
- 				center : new google.maps.LatLng(self._options.center.lat, self._options.center.lon),
- 				mapTypeId : google.maps.MapTypeId.ROADMAP,
- 				minZoom : self._options.minZoom
- 			};
- 			self._googleMap= new google.maps.Map(document.getElementById(self._div),googleMapOptions);
- 			self._googleMap.setOptions({
- 				draggableCursor : 'crosshair'
- 			});
- 			self._registerListeners();
- 			self.resize(self._width,self._height);
- 			self._refresh(self);
- 			cityways.event.triggerEvent(self, cityways.event.ON_LOADED, self);
- 		});		
-
-     },
 	/**
 	 * [_refresh description]
 	 * @private
 	 * @memberOf cityways.map.GoogleMap.prototype
 	 * @return {[type]}        [description]
 	 */
-	 _refresh : function(){
+	 refresh : function(){
 	 	if(this._googleMap == undefined)
 	 		return;
 	 	var markers = this._markers.getAsAssociativeArray();
@@ -180,6 +170,30 @@
 	 		cityways.logger.info("click!",args);
 	 		cityways.event.triggerEvent(self, cityways.event.ON_CLICK, args);
 	 	});
+
+	 	google.maps.event.addListener(self._googleMap, 'zoom_changed',function(e){
+	 		var zoom = self._googleMap.getZoom();
+	 		cityways.logger.debug("map_zoom: ", zoom);
+	 		// Пробежимся по всем маркерам
+	 		var keys = self._markers.getKeys();
+	 		for(var k in keys){
+	 			var marker = keys[k];
+	 			var nativeMarker = self._markers.get(marker).native;
+
+	 			cityways.logger.debug(marker.getMinZoom());
+	 			if(zoom > marker.getMinZoom()){
+	 				if(nativeMarker.getMap() == null){
+	 					nativeMarker.setMap(self._googleMap);
+	 				}
+	 			}else
+	 			{
+	 				if(nativeMarker.getMap() != null){
+	 					nativeMarker.setMap(null);
+	 				}
+	 			}
+	 		}
+	 	});
+
 	 },
 
 	 /*override*/
@@ -255,8 +269,13 @@
 	 		nativeMarker.setIcon(new google.maps.MarkerImage(marker.getIcon()));
 	 	nativeMarker.setPosition(new google.maps.LatLng(marker.getLocation().lat,
 	 		marker.getLocation().lon));
-	 	this._markers.put(marker, nativeMarker);
-
+	 	if(marker.getTitle() != null){
+	 		nativeMarker.setTitle(marker.getTitle());
+	 	}
+	 	this._markers.put(marker, {
+	 		native : nativeMarker,
+	 		lesteners : []
+	 	});
 	 	var self = this;
 	 	cityways.event.triggerEvent(marker,cityways.event.ON_CHANGED_LOCATION, {
 	 		marker : marker,
@@ -285,12 +304,30 @@
 	 		cityways.event.triggerEvent(marker,cityways.event.ON_CLICK,args);
 	 	});
 
-	 	cityways.event.addListener(marker,cityways.event.ON_CHANGED_LOCATION,function(e){
+
+	 	var listener1 = cityways.event.addListener(marker,cityways.event.ON_CHANGED_LOCATION,function(e){
 	 		if(e.__fire__ == self)
 	 			return;
-
 	 		nativeMarker.setPosition(new google.maps.LatLng(e.location.lat,e.location.lon));
 	 	});
+
+
+	 	var listener1 = cityways.event.addListener(marker,cityways.event.ON_CHANGED_LOCATION,function(e){
+	 		if(e.__fire__ == self)
+	 			return;
+	 		nativeMarker.setPosition(new google.maps.LatLng(e.location.lat,e.location.lon));
+	 	});
+
+	 	var listener2 = cityways.event.addListener(marker,cityways.event.ON_CHANGED_OPTIONS,function(e){
+	 		if(e.__fire__ == self)
+	 			return;
+	 		if(e.options != undefined){
+	 			if(e.options.title != undefined)
+	 				nativeMarker.setTitle(e.options.title);
+	 		}
+	 	});
+
+	 	this._markers.get(marker).lesteners = [listener1, listener2];
 
 	 	if(this._googleMap != undefined) {
 	 		nativeMarker.setMap(this._googleMap);
@@ -298,24 +335,79 @@
 
 	 },
 
+	 /*override*/
 	 removeMarker : function(marker){
-	 	var nativeMarker = this._markers.get(marker);
-	 	if(nativeMarker == undefined)
+	 	var val = this._markers.get(marker);
+	 	if(val == undefined || val.native == undefined)
 	 		return;
-
-	 	if(nativeMarker != undefined ){
-	 		nativeMarker.setMap(null);
-	 		google.maps.event.clearInstanceListeners(nativeMarker);
-	 		
-	 		for(var i=0; i < marker.googleListeners.length; i++){
-	 			cityways.event.removeListener(marker.googleListeners[i]);
-	 		}
-	 		marker.googleListeners = null;
-
+	 	var listeners = val.lesteners;
+	 	var native = val.native;
+	 	google.maps.event.clearInstanceListeners(native);
+	 	native.setMap(null);
+	 	for(var i=0; i < listeners.length; i++){
+	 		cityways.event.removeListener(listeners[i]);
 	 	}
+	 	this._markers.pull(marker);
+	 },
 
-	 }
-	}
+
+	 /*override*/
+	 addPolyline : function(polyline){
+	 	var points = polyline.getPoints();
+	 	var path = [];
+	 	for(var i=0; i < points.length; i++){
+	 		path.push(new google.maps.LatLng(points[i][0],points[i][1]));
+	 	}
+	 	var nativePLine = new google.maps.Polyline();
+	 	nativePLine.setOptions({
+	 		strokeColor : polyline.getColor(),
+	 		strokeOpacity : polyline.getOpacity(),
+	 		strokeWeight : polyline.getWeight(),
+	 		map : this._googleMap,
+	 		path : new google.maps.MVCArray(path)
+	 	});
+	 	this._polylines.put(polyline,{
+	 		native : nativePLine,
+	 		listeners : []
+	 	});
+	 	
+	 },
+
+	 /*override*/
+	 removePolyline : function(polyline){
+	 	var val = this._polylines.get(polyline);
+	 	if(val == undefined || val.native == undefined)
+	 		return;
+	 	var nativePLine = val.native;
+	 	nativePLine.setMap(null);
+	 	this._polylines.pull(polyline);
+	 },
+
+	 /* override */
+	 alignment : function(points){
+	 	var map = this._googleMap;
+		//Определяем область показа маркеров
+		var latlngbounds = new google.maps.LatLngBounds();  
+		for(var i=0;i < points.length; i++){
+			var myLatLng = new google.maps.LatLng(points[i].lat, points[i].lon);
+			latlngbounds.extend(myLatLng);
+		}
+		
+
+        //Центрируем и масштабируем карту
+        map.setCenter( latlngbounds.getCenter(), map.fitBounds(latlngbounds));   
+
+
+    },
+
+
+
+    /*override*/
+    destroy : function(marker){
+
+    }
+
+}
 }
 
 );

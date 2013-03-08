@@ -177,6 +177,7 @@ cityways.type.Dictionary = cityways.Class({
  cityways.type.ObjectDictionary = cityways.Class({
  	
  	constructor :  function() {
+ 		this._values = {};
  		this._keys = {};
  		this._size = 0;
  		if(cityways.type.__dictionary__id__ == undefined)
@@ -190,7 +191,14 @@ cityways.type.Dictionary = cityways.Class({
 	 * @memberOf cityways.type.Dictionary.prototype
 	 * @type {Object} 
 	 */
-	 _keys : null,
+	 _values : null,
+
+     
+     /**
+      * [_keys description]
+      * @type {[type]}
+      */
+     _keys : null,
 
 	/**
 	 * Количество элементов в словаре
@@ -209,21 +217,23 @@ cityways.type.Dictionary = cityways.Class({
 	 /* override */
 	 put : function(key, value){
 	 	if(key.__dictionary__id__ != undefined){
-	 		if(this._keys[key.__dictionary__id__] != undefined){
+	 		if(this._values[key.__dictionary__id__] != undefined){
 	 			return false;
 	 		}
 	 	}
 	 	else{
 	 		key.__dictionary__id__ = this._nextID();
 	 	}
-	 	this._keys[key.__dictionary__id__] = value;
+	 	this._values[key.__dictionary__id__] = value;
+	 	this._keys[key.__dictionary__id__] = key;
 	 	this._size++;
 	 	return true;
 	 },
 
 	 /* override */
 	 pull : function(key){
-	 	if(key.__dictionary__id__ != undefined && this._keys[key.__dictionary__id__]){
+	 	if(key.__dictionary__id__ != undefined && this._values[key.__dictionary__id__]){
+	 		delete this._values[key.__dictionary__id__];
 	 		delete this._keys[key.__dictionary__id__];
 	 		this._size--;
 	 	}
@@ -231,10 +241,14 @@ cityways.type.Dictionary = cityways.Class({
 
 	 /* override */
 	 get : function(key){
-	 	if(key.__dictionary__id__ == undefined || this._keys[key.__dictionary__id__] == undefined ){
+	 	if(key.__dictionary__id__ == undefined || this._values[key.__dictionary__id__] == undefined ){
 	 		return null;
 	 	}
-	 	return this._keys[key.__dictionary__id__];
+	 	return this._values[key.__dictionary__id__];
+	 },
+
+	 getKeys : function(){
+	 	return this._keys;
 	 },
 
 	 /* override */
@@ -244,7 +258,7 @@ cityways.type.Dictionary = cityways.Class({
 
 	 /* override */
 	 getAsAssociativeArray: function(){
-	 	return this._keys;
+	 	return this._values;
 	 }
 	}
 });
@@ -358,7 +372,9 @@ cityways.lang = {
             message = key;
         }
         return message;
-    }
+    },
+
+
     
     
 };
@@ -548,7 +564,7 @@ cityways.lang.uk = {
 	  		var evtListeners = listeners.get(listener.object)[listener.evt];
 	  		for(var i=0; i < evtListeners.length; i++){
 	  			if(evtListeners[i] == listener){
-	  				evtListeners.remove(i);
+	  				evtListeners.splice(i,1);
 	  				return true;
 	  			}
 	  		}
@@ -728,65 +744,96 @@ cityways.EventListener = cityways.Class({
     if(options.mapProvider == undefined)
     	options.mapProvider = cityways.maps.GOOGLE_PROVIDER;
 
-  	this._div = div;
-  	this._options = options;
-  	this.setMapProvider(options.mapProvider);
+    this._div = div;
+    this._options = options;
+    this.setMapProvider(options.mapProvider);
   },
 
   members : {
-  		
-  		_mapProvider : null,
 
-  		_mapObjects : null,
+        /**
+         * [_mapProvider description]
+         * @type {[type]}
+         */
+         _mapProvider : null,
 
-  		_div : null,
-  		
-  		_options : null,
+         _mapObjects : null,
 
-  		setMapProvider : function(mapProviderID){
-  			  if(mapProviderID == cityways.maps.GOOGLE_PROVIDER)
-          {
-     			 	this._mapProvider = new cityways.maps.GoogleMapProvider(this._div,this._options);
+         _div : null,
+
+         _options : null,
+
+         setMapProvider : function(mapProviderID){
+           if(mapProviderID == cityways.maps.GOOGLE_PROVIDER)
+           {
+            this._mapProvider = new cityways.maps.GoogleMapProvider(this._div,this._options);
           }
-     			else
+          else
           {
-     				this._mapProvider = new cityways.maps.GoogleMapProvider(this._div,this._options);
+           this._mapProvider = new cityways.maps.GoogleMapProvider(this._div,this._options);
 
-          }
-          var self = this;
-         
-          cityways.event.addListener(self._mapProvider,cityways.event.ON_CLICK, function(e){
-                cityways.event.triggerEvent(self, cityways.event.ON_CLICK, e);
-              }
-            );
-  		},
+         }
+         var self = this;
 
-
-  		/* override */
-  		addMarker : function(marker){
-  			this._mapProvider.addMarker(marker);
-  		},
-
-  		/* override */
-  		destroy : function(){
-        this._mapProvider.destroy();
-  		},
-
-  		/* override */
-  		resize : function(w,h){
-  			this._mapProvider.resize(w,h);
-  		},
+         cityways.event.addListener(self._mapProvider,cityways.event.ON_CLICK, function(e){
+          cityways.event.triggerEvent(self, cityways.event.ON_CLICK, e);
+        }
+        );
+       },
 
 
-      setHeight : function(h){
-        this._mapProvider.setHeight(h);
-      }
+       /* override */
+       addMarker : function(marker){
+         this._mapProvider.addMarker(marker);
+       },
 
+       /* override */
+       removeMarker : function(marker){
+        this._mapProvider.removeMarker(marker);
+      },
 
+      /* override */
+      addPolyline : function(polyline){
+        this._mapProvider.addPolyline(polyline);
+      },
 
+      /* override */
+      removePolyline : function(polyline){
+        this._mapProvider.removePolyline(polyline);
+      },
 
-  }
-  
+      /* override */
+      resize : function(w,h){
+       this._mapProvider.resize(w,h);
+     },
+
+     /* override */
+     setHeight : function(h){
+      this._mapProvider.setHeight(h);
+    },
+
+    /* override */
+    setWidth : function(w){
+      this._mapProvider.setWidth(w);
+    },
+
+    /* override */
+    getNativeMapObj : function(){
+      this._mapProvider.getNativeMapObj();
+    },
+
+    /* override */
+    destroy : function(){
+      this._mapProvider.destroy();
+    },
+
+    /* override */
+    alignment : function(points){
+     this._mapProvider.alignment(points);
+
+   }
+ }
+
 
 });
 /**
@@ -828,14 +875,24 @@ cityways.EventListener = cityways.Class({
  		cityways.event.addListener(this._map,cityways.event.ON_CLICK,function(e){
  			self._onClickMap(e);
  		});
+ 		this._paths = [];
  	},
 
  	members: {
 
+  	/**
+ 	 * [_paths description]
+ 	 * @private
+ 	 * @memberOf cityways.MapWidget.prototype
+ 	 * @property 
+ 	 * @type {cityways.type.ObjectDictionary<Object,Object>}
+ 	 */   
+ 	 _paths : null,
+
  	/**
  	 * [map description]
  	 * @private
- 	 * @memberOf cityways.maps.MapWidget.prototype
+ 	 * @memberOf cityways.MapWidget.prototype
  	 * @type {cityways.Map}
  	 */
  	 _map : null, 
@@ -843,7 +900,7 @@ cityways.EventListener = cityways.Class({
  	/**
  	 * [options description]
  	 * @private
- 	 * @memberOf cityways.maps.MapWidget.prototype
+ 	 * @memberOf cityways.MapWidget.prototype
  	 * @type {[Object}
  	 */
  	 _options : null,
@@ -851,7 +908,7 @@ cityways.EventListener = cityways.Class({
 	/**
 	 * [startMarker description]
 	 * @private
-	 * @memberOf cityways.maps.MapWidget.prototype
+	 * @memberOf cityways.MapWidget.prototype
 	 * @type {cityways.maps.Marker}
 	 */
 	 _startMarker  : null,
@@ -859,7 +916,7 @@ cityways.EventListener = cityways.Class({
 	/**
 	 * [finishMarker description]
 	 * @private
-	 * @memberOf cityways.maps.MapWidget.prototype
+	 * @memberOf cityways.MapWidget.prototype
 	 * @type {cityways.maps.Marker}
 	 */
 	 _finishMarker : null,
@@ -943,7 +1000,40 @@ cityways.EventListener = cityways.Class({
 
 	 getFinishMarker : function(){
 	 	return this._finishMarker;
-	 }
+	 },
+
+
+	 removeAllPaths : function(){
+	 	var self = this;
+	 	for (var i = 0; i < self._paths.length; i++) {
+	 		var polylines = self._paths[i].getAllPolylines();
+	 		var stations = self._paths[i].getAllStations();
+	 		for(var j=0;j < polylines.length; j++){
+	 			this._map.removePolyline(polylines[j]);
+	 		} 
+	 		for(var j=0;j < stations.length; j++){
+	 			this._map.removeMarker(stations[j]);
+	 		} 
+	 		
+	 	};
+	 },
+
+	 /**
+	  * [addPath description]
+	  * @param {cityways.widget.map.Path} path [description]
+	  */
+	  addPath : function(path){
+	  	var self = this;
+	  	var polylines = path.getAllPolylines();
+	  	var stations = path.getAllStations();
+	  	for(var j=0;j < polylines.length; j++){
+	  		self._map.addPolyline(polylines[j]);
+	  	} 
+	  	for(var j=0;j < stations.length; j++){
+	  		self._map.addMarker(stations[j]);
+	  	} 
+	  	self._paths.push(path);
+	  }
 
 
 	}
@@ -1044,9 +1134,29 @@ cityways.EventListener = cityways.Class({
  cityways.maps.GoogleMapProvider = cityways.Class(
  {
  	constructor :  	function( div, options) {
- 		
- 		this._init( div, options);
-		
+ 		this._div = div;
+ 		this._options = options;
+ 		this._markers = new cityways.type.ObjectDictionary();
+ 		this._polylines = new cityways.type.ObjectDictionary();
+
+ 		var self = this;
+ 		$(document).ready(function() {
+ 			var googleMapOptions = {
+ 				zoom : self._options.zoom,
+ 				center : new google.maps.LatLng(self._options.center.lat, self._options.center.lon),
+ 				mapTypeId : google.maps.MapTypeId.ROADMAP,
+ 				minZoom : self._options.minZoom
+ 			};
+ 			self._googleMap= new google.maps.Map(document.getElementById(self._div),googleMapOptions);
+ 			self._googleMap.setOptions({
+ 				draggableCursor : 'crosshair'
+ 			});
+ 			self._registerListeners();
+ 			self.resize(self._width,self._height);
+ 			self.refresh(self);
+ 			cityways.event.triggerEvent(self, cityways.event.ON_LOADED, self);
+ 		});		
+
  	},
 
  	members : {
@@ -1055,17 +1165,12 @@ cityways.EventListener = cityways.Class({
       * [markers description]
       * @private
       * @memberOf cityways.Map.prototype
-      * @type {cityways.type.ObjectDictionary<cityways.maps.Marker, google.maps.Marker>}
+      * @type {cityways.type.ObjectDictionary<cityways.maps.Marker, Object>}
       */
       _markers : null,
 
-     /**
-      * [_markerListeners description]
-      * @private
-      * @memberOf cityways.Map.prototype
-      * @type {cityways.type.ObjectDictionary<cityways.maps.Marker, Array<cityways.EventListener> >}
-      */
-      _markerListeners : null,
+      _polylines : null,
+
 
 	/**
 	 * @private
@@ -1105,38 +1210,13 @@ cityways.EventListener = cityways.Class({
      */
      _options : null,
 
-     _init : function( div, options){
-     	this._div = div;
- 		this._options = options;
- 		this._markers = new cityways.type.ObjectDictionary();
- 		this._markerListeners = new cityways.type.ObjectDictionary();
-
-     	var self = this;
- 		$(document).ready(function() {
- 			var googleMapOptions = {
- 				zoom : self._options.zoom,
- 				center : new google.maps.LatLng(self._options.center.lat, self._options.center.lon),
- 				mapTypeId : google.maps.MapTypeId.ROADMAP,
- 				minZoom : self._options.minZoom
- 			};
- 			self._googleMap= new google.maps.Map(document.getElementById(self._div),googleMapOptions);
- 			self._googleMap.setOptions({
- 				draggableCursor : 'crosshair'
- 			});
- 			self._registerListeners();
- 			self.resize(self._width,self._height);
- 			self._refresh(self);
- 			cityways.event.triggerEvent(self, cityways.event.ON_LOADED, self);
- 		});		
-
-     },
 	/**
 	 * [_refresh description]
 	 * @private
 	 * @memberOf cityways.map.GoogleMap.prototype
 	 * @return {[type]}        [description]
 	 */
-	 _refresh : function(){
+	 refresh : function(){
 	 	if(this._googleMap == undefined)
 	 		return;
 	 	var markers = this._markers.getAsAssociativeArray();
@@ -1172,6 +1252,30 @@ cityways.EventListener = cityways.Class({
 	 		cityways.logger.info("click!",args);
 	 		cityways.event.triggerEvent(self, cityways.event.ON_CLICK, args);
 	 	});
+
+	 	google.maps.event.addListener(self._googleMap, 'zoom_changed',function(e){
+	 		var zoom = self._googleMap.getZoom();
+	 		cityways.logger.debug("map_zoom: ", zoom);
+	 		// Пробежимся по всем маркерам
+	 		var keys = self._markers.getKeys();
+	 		for(var k in keys){
+	 			var marker = keys[k];
+	 			var nativeMarker = self._markers.get(marker).native;
+
+	 			cityways.logger.debug(marker.getMinZoom());
+	 			if(zoom > marker.getMinZoom()){
+	 				if(nativeMarker.getMap() == null){
+	 					nativeMarker.setMap(self._googleMap);
+	 				}
+	 			}else
+	 			{
+	 				if(nativeMarker.getMap() != null){
+	 					nativeMarker.setMap(null);
+	 				}
+	 			}
+	 		}
+	 	});
+
 	 },
 
 	 /*override*/
@@ -1247,8 +1351,13 @@ cityways.EventListener = cityways.Class({
 	 		nativeMarker.setIcon(new google.maps.MarkerImage(marker.getIcon()));
 	 	nativeMarker.setPosition(new google.maps.LatLng(marker.getLocation().lat,
 	 		marker.getLocation().lon));
-	 	this._markers.put(marker, nativeMarker);
-
+	 	if(marker.getTitle() != null){
+	 		nativeMarker.setTitle(marker.getTitle());
+	 	}
+	 	this._markers.put(marker, {
+	 		native : nativeMarker,
+	 		lesteners : []
+	 	});
 	 	var self = this;
 	 	cityways.event.triggerEvent(marker,cityways.event.ON_CHANGED_LOCATION, {
 	 		marker : marker,
@@ -1277,12 +1386,30 @@ cityways.EventListener = cityways.Class({
 	 		cityways.event.triggerEvent(marker,cityways.event.ON_CLICK,args);
 	 	});
 
-	 	cityways.event.addListener(marker,cityways.event.ON_CHANGED_LOCATION,function(e){
+
+	 	var listener1 = cityways.event.addListener(marker,cityways.event.ON_CHANGED_LOCATION,function(e){
 	 		if(e.__fire__ == self)
 	 			return;
-
 	 		nativeMarker.setPosition(new google.maps.LatLng(e.location.lat,e.location.lon));
 	 	});
+
+
+	 	var listener1 = cityways.event.addListener(marker,cityways.event.ON_CHANGED_LOCATION,function(e){
+	 		if(e.__fire__ == self)
+	 			return;
+	 		nativeMarker.setPosition(new google.maps.LatLng(e.location.lat,e.location.lon));
+	 	});
+
+	 	var listener2 = cityways.event.addListener(marker,cityways.event.ON_CHANGED_OPTIONS,function(e){
+	 		if(e.__fire__ == self)
+	 			return;
+	 		if(e.options != undefined){
+	 			if(e.options.title != undefined)
+	 				nativeMarker.setTitle(e.options.title);
+	 		}
+	 	});
+
+	 	this._markers.get(marker).lesteners = [listener1, listener2];
 
 	 	if(this._googleMap != undefined) {
 	 		nativeMarker.setMap(this._googleMap);
@@ -1290,24 +1417,79 @@ cityways.EventListener = cityways.Class({
 
 	 },
 
+	 /*override*/
 	 removeMarker : function(marker){
-	 	var nativeMarker = this._markers.get(marker);
-	 	if(nativeMarker == undefined)
+	 	var val = this._markers.get(marker);
+	 	if(val == undefined || val.native == undefined)
 	 		return;
-
-	 	if(nativeMarker != undefined ){
-	 		nativeMarker.setMap(null);
-	 		google.maps.event.clearInstanceListeners(nativeMarker);
-	 		
-	 		for(var i=0; i < marker.googleListeners.length; i++){
-	 			cityways.event.removeListener(marker.googleListeners[i]);
-	 		}
-	 		marker.googleListeners = null;
-
+	 	var listeners = val.lesteners;
+	 	var native = val.native;
+	 	google.maps.event.clearInstanceListeners(native);
+	 	native.setMap(null);
+	 	for(var i=0; i < listeners.length; i++){
+	 		cityways.event.removeListener(listeners[i]);
 	 	}
+	 	this._markers.pull(marker);
+	 },
 
-	 }
-	}
+
+	 /*override*/
+	 addPolyline : function(polyline){
+	 	var points = polyline.getPoints();
+	 	var path = [];
+	 	for(var i=0; i < points.length; i++){
+	 		path.push(new google.maps.LatLng(points[i][0],points[i][1]));
+	 	}
+	 	var nativePLine = new google.maps.Polyline();
+	 	nativePLine.setOptions({
+	 		strokeColor : polyline.getColor(),
+	 		strokeOpacity : polyline.getOpacity(),
+	 		strokeWeight : polyline.getWeight(),
+	 		map : this._googleMap,
+	 		path : new google.maps.MVCArray(path)
+	 	});
+	 	this._polylines.put(polyline,{
+	 		native : nativePLine,
+	 		listeners : []
+	 	});
+	 	
+	 },
+
+	 /*override*/
+	 removePolyline : function(polyline){
+	 	var val = this._polylines.get(polyline);
+	 	if(val == undefined || val.native == undefined)
+	 		return;
+	 	var nativePLine = val.native;
+	 	nativePLine.setMap(null);
+	 	this._polylines.pull(polyline);
+	 },
+
+	 /* override */
+	 alignment : function(points){
+	 	var map = this._googleMap;
+		//Определяем область показа маркеров
+		var latlngbounds = new google.maps.LatLngBounds();  
+		for(var i=0;i < points.length; i++){
+			var myLatLng = new google.maps.LatLng(points[i].lat, points[i].lon);
+			latlngbounds.extend(myLatLng);
+		}
+		
+
+        //Центрируем и масштабируем карту
+        map.setCenter( latlngbounds.getCenter(), map.fitBounds(latlngbounds));   
+
+
+    },
+
+
+
+    /*override*/
+    destroy : function(marker){
+
+    }
+
+}
 }
 
 );
@@ -1333,7 +1515,8 @@ cityways.EventListener = cityways.Class({
  * @param {String} options.iconFileName [dest]
  * @param {Number} options.lat desc1 [dest]
  * @param {Number} options.lon desc2 [dest]
- * 
+ * @param {Number} options.minZoom 
+ * @param {String} options.title 
  */
  cityways.maps.Marker = cityways.Class({
  	constructor : function(options) {
@@ -1352,9 +1535,17 @@ cityways.EventListener = cityways.Class({
  		if(options && options.iconFileName != undefined){
  			this.setIcon(options.iconFileName);
  		}
+ 		if(options && options.minZoom != undefined){
+ 			this.setMinZoom(options.minZoom);
+ 		}else
+ 		{
+ 			this.setMinZoom(0);
+ 		}
  	},
 
  	members :  {
+
+ 		_title : null,
 
 
 	/**
@@ -1433,7 +1624,7 @@ cityways.EventListener = cityways.Class({
 	 			},
 	 			__fire__ : this
 	 		};
-	 		cityways.event.triggerEvent(this,cityways.maps.ON_CHANGED_OPTIONS,args);
+	 		cityways.event.triggerEvent(this,cityways.event.ON_CHANGED_OPTIONS,args);
 	 	}
 	 },
 
@@ -1471,7 +1662,7 @@ cityways.EventListener = cityways.Class({
 	 		location : this._location,
 	 		__fire__ : this
 	 	};
-	 	cityways.event.triggerEvent(this,cityways.maps.ON_CHANGED_LOCATION,args);
+	 	cityways.event.triggerEvent(this,cityways.event.ON_CHANGED_LOCATION,args);
 	 },
 
 	 setAddress : function(address){
@@ -1483,7 +1674,7 @@ cityways.EventListener = cityways.Class({
 	 			__fire__ : this
 	 		};
 	 		this._address = address;
-	 		cityways.event.triggerEvent(this,cityways.maps.ON_CHANGED_ADDRESS,args);
+	 		cityways.event.triggerEvent(this,cityways.event.ON_CHANGED_ADDRESS,args);
 	 	}
 	 },
 	 
@@ -1496,7 +1687,7 @@ cityways.EventListener = cityways.Class({
 	 		},
 	 		__fire__ : this
 	 	};
-	 	cityways.event.triggerEvent(this,cityways.maps.ON_MARKER_OPTIONS,args);
+	 	cityways.event.triggerEvent(this,cityways.event.ON_CHANGED_OPTIONS,args);
 	 },
 
 	 destroy : function(){
@@ -1507,14 +1698,30 @@ cityways.EventListener = cityways.Class({
 	 	return this._draggable;
 	 },
 
-	 /**
-	  * Возвращает карты, на которых размещен маркер.
-	  * Обратим внимание, что один и тот же маркер можно разместить на нескольких картах.
-	  * @return { cityways.type.ObjectDictionary}     Возвращает словарь, в котором ключами выступают 
-	  * объекты типа {@link cityways.Map, а значения: нативные маркеры от данных провайдеров}
-	  */
-	 getMaps : function(){
 
+	 setTitle : function(title){
+	 	var self = this;
+	 	self._title = title;
+
+	 	var args = {
+	 		options : {
+	 			title : title
+	 		},
+	 		__fire__ : self
+	 	};
+	 	cityways.event.triggerEvent(self,cityways.event.ON_CHANGED_OPTIONS,args);
+	 },
+
+	 getTitle : function(){
+	 	return this._title;
+	 },
+
+	 setMinZoom : function(minZoom){
+	 	this._minZoom = minZoom;
+	 },
+
+	 getMinZoom : function(){
+	 	return this._minZoom;
 	 }
 
 
@@ -1558,6 +1765,89 @@ cityways.EventListener = cityways.Class({
 
 
 /**
+ * @overview Class {@link cityways.maps.Polyline}.
+ * @see Project url: {@link http://ways.in.ua}.
+ * @copyright 
+ * CityWays-lib is copyright (c) 2012, {@link http://premiumgis.com|PremiumGIS} Inc. All Rights Reserved. 
+ * CityWays-lib is free software, licensed under the MIT license. 
+ * See the file {@link http://api.ways.in.ua/license.txt|license.txt} in this distribution for more details.
+ * @author Roman Shafeyev <rs@premiumgis.com>
+ * 
+ * @requires cityways/maps.js
+ * @requires cityways/Class.js
+ */
+
+
+/**
+ * [Marker description]
+ * @class cityways.maps.Polyline
+ * @param {Object} options Опции
+ * @param {Array<Object>} options.points The stroke width in pixels.
+ * @param {Number} options.weight The stroke width in pixels.
+ * @param {Number} options.opacity The stroke opacity between 0.0 and 1.0.
+ * @param {String} options.color The stroke color. All CSS3 colors are supported except for extended named colors.
+ * @param {Boolean} options.visible Whether this polyline is visible on the map. Defaults to true.
+ */
+ cityways.maps.Polyline = cityways.Class({
+ 	constructor : function(options) {
+ 		this._points = options.points;
+ 		if(options != undefined && options.strokeWeight != undefined){
+
+ 		}else{
+
+ 		}
+
+ 		this._options = options;
+ 	},
+
+ 	members :  {
+ 		_options : null,
+
+ 		_points : null,
+
+ 		getPoints : function(){
+ 			return this._points;
+ 		},
+
+ 		getColor : function(){
+ 			return this._options.color;
+ 		},
+
+ 		getWeight : function(){
+ 			return this._options.weight;
+ 		},
+
+ 		getOpacity : function(){
+ 			return this._options.opacity;
+ 		},
+
+ 		setColor : function(color){
+ 			this._options.color = color;
+ 		},
+
+ 		setWeight : function(weight){
+ 			this._options.weight = weight;
+ 		},	   
+
+ 		setOpacity : function(opacity){
+ 			var self = this;
+ 			self._options.opacity = opacity;
+ 			var args = {
+ 				options : {
+ 					opacity : opacity
+ 				},
+ 				__fire__ : self
+ 			};
+ 			cityways.event.triggerEvent(self,cityways.event.ON_CHANGED_OPTIONS,args);
+ 		}
+
+
+
+ 	}
+ });
+
+
+/**
  * @overview Namespace {@link cityways.page}.
  * @see Project url: {@link http://ways.in.ua}.
  * @copyright 
@@ -1598,6 +1888,97 @@ cityways.page = {
     
 };
 /**
+ * @overview Class {@link cityways.page.ColorsGenerator}.
+ * @see Project url: {@link http://ways.in.ua}.
+ * @copyright 
+ * CityWays-lib is copyright (c) 2012, {@link http://premiumgis.com|PremiumGIS} Inc. All Rights Reserved. 
+ * CityWays-lib is free software, licensed under the MIT license. 
+ * See the file {@link http://api.ways.in.ua/license.txt|license.txt} in this distribution for more details.
+ * @author Roman Shafeyev <rs@premiumgis.com>
+ * 
+ * @requires cityways/page.js
+ * @requires cityways/Class.js
+ */
+
+/**
+ * [SearchPage description]
+ * @class cityways.page.ColorsGenerator
+ * @param  {Object} options [description]
+ */
+ cityways.page.ColorsGenerator = cityways.Class({
+ 	constructor :  function() {
+ 		var self = this;
+
+ 		self._numOfSteps = 200;
+ 		self._step = 0;
+ 		self._colors = [];
+ 		var colors = [];
+ 		for(var i=0; i < self._numOfSteps; i++){
+ 			var color = self._rainbow(i, self._numOfSteps);
+ 			colors.push(color);
+ 		}
+ 		for(var i=0; i < self._numOfSteps; i++){
+ 			var ind =  parseInt(Math.floor(Math.random() * (colors.length  -1)) );
+ 			if(colors.length ==0)
+ 				break;
+ 			if(ind <0 || ind >= colors.length)
+ 				ind = 0;
+ 			self._colors.push(colors[ind]);
+ 			colors.splice(ind,1);
+ 		}
+ 		
+ 			
+ 	},
+
+ 	members : { 
+ 		_numOfSteps : null,
+
+ 		_step : null,
+ 		
+ 		_colors : null,
+
+ 		next : function(){
+ 			var self = this;
+ 			self._step  = self._step  + 1;
+ 			if(self._step >= self._numOfSteps)
+ 				self._step = 0;
+ 			return self._colors[self._step-1];
+ 		},
+ 		/**
+ 		 * This function generates vibrant, "evenly spaced" colours (i.e. no clustering). 
+ 		 * This is ideal for creating easily distiguishable vibrant markers in Google Maps and other apps.
+ 		 * HSV to RBG adapted from: http://mjijackson.com/2008/02/rgb-to-hsl-and-rgb-to-hsv-color-model-conversion-algorithms-in-javascript
+ 		 * @author Adam Cole
+ 		 * @param  {[type]} numOfSteps [description]
+ 		 * @param  {[type]} step       [description]
+ 		 * @return {[type]}            [description]
+ 		 */
+ 		 _rainbow : function(numOfSteps, step) {
+ 		 	var r, g, b;
+ 		 	var h = step / numOfSteps;
+ 		 	var i = ~~(h * 6);
+ 		 	var f = h * 6 - i;
+ 		 	var q = 1 - f;
+ 		 	switch(i % 6){
+ 		 		case 0: r = 1, g = f, b = 0; break;
+ 		 		case 1: r = q, g = 1, b = 0; break;
+ 		 		case 2: r = 0, g = 1, b = f; break;
+ 		 		case 3: r = 0, g = q, b = 1; break;
+ 		 		case 4: r = f, g = 0, b = 1; break;
+ 		 		case 5: r = 1, g = 0, b = q; break;
+ 		 	}
+ 		 	var c = "#" + ("00" + (~ ~(r * 255)).toString(16)).slice(-2) + 
+ 		 	("00" + (~ ~(g * 255)).toString(16)).slice(-2) + ("00" + 
+ 		 		(~ ~(b * 255)).toString(16)).slice(-2);
+ 		 	return (c);
+ 		 }
+ 		}
+ 	});
+
+
+
+
+/**
  * @overview Class {@link cityways.page.SearchPage}.
  * @see Project url: {@link http://ways.in.ua}.
  * @copyright 
@@ -1617,21 +1998,23 @@ cityways.page = {
  */
  cityways.page.SearchPage = cityways.Class({
  	constructor :  function(currentCity, options) {
- 		this._headerHeight = 134;
+ 		var self = this;
+ 		self._headerHeight = 134;
+
  		var routeTypes = null;
 
  		if(options.routeTypes == undefined){
  			routeTypes = [];
  		}else
- 		routeTypes = options.routeTypes;
+ 			routeTypes = options.routeTypes;
 	 	// Инициализируем библиотеку 
-	 	cityways.initialize(options);
-	 	var self = this;
+	 	cityways.page.search.initialize(options);
+	 	
 	 	// Сохраним параметры
 	 	this._currentCity = currentCity;
 
 	 	// Создадим обработчик событий главной страницы
-	 	this._widgetEventHandlers = new cityways.page.search.WidgetEventHandlers();
+	 	this._widgetEventHandlers = new cityways.page.search.WidgetEventHandlers(this);
 	 	
 	 	
 	 	// Создадим панель настроек
@@ -1655,6 +2038,7 @@ cityways.page = {
 
 	 members : { 
 
+	 	
  	/**
  	 * [_headerHeight description]
 	 * @private
@@ -1802,6 +2186,10 @@ cityways.page = {
 	  	return this._pathsPanel;
 	  },
 
+	  getMapWidget : function(){
+	  	return this._mapWidget;
+	  },
+
 	/**
 	 * @memberOf cityways.page.SearchPage.prototype
 	 * @return {Object} [description]
@@ -1810,8 +2198,8 @@ cityways.page = {
 	 	if(this._mapWidget.getStartMarker() == null ||
 	 		this._mapWidget.getFinishMarker() == null){
 	 		cityways.alert(cityways.lang.translate("message.warn"),
-	 			           cityways.lang.translate("message.warn.destinations_none") ,
-	 			           "warn");
+	 			cityways.lang.translate("message.warn.destinations_none") ,
+	 			"warn");
 	 	return null;
 	 }
 	 var opts = {
@@ -1862,75 +2250,73 @@ cityways.page = {
  */
  cityways.page.search = {
 
+  initialize : function(options){
 
- };
+    // В случае, если инициализация уже была выполнена, выходим
+    if(cityways._initialized == true){
+      return;
+    }
+    if(options != undefined && options.lang){
+      cityways.lang.setCode(options.lang);
+    }
+    else
+      cityways.lang.setCode();
 
+    if(options != undefined && options.theme)
+      cityways.options.Theme = options.theme;
+    else
+      cityways.options.Theme = "default";
 
-  /*
-  	Переопределим функцию инициализации библиотеки
-  */
-  cityways.initialize = function(options){
+    if(options != undefined && options.resourceURI)
+      cityways.options.ResourceURI = options.resourceURI;
+    else
+      cityways.options.ResourceURI = cityways.util.getScriptLocation("main_page") + "/";
 
-  	// В случае, если инициализация уже была выполнена, выходим
-  	if(cityways._initialized == true){
-  		return;
-  	}
-  	if(options != undefined && options.lang){
-  		cityways.lang.setCode(options.lang);
-  	}
-  	else
-  		cityways.lang.setCode();
+    if(options != undefined && options.serverHost != undefined){
 
-  	if(options != undefined && options.theme)
-  		cityways.options.Theme = options.theme;
-  	else
-  		cityways.options.Theme = "default";
+     cityways.options.ServerHost = options.serverHost;
+     if(options.serverHost == "" || options.serverHost[options.serverHost.length-1] != "/")
+       cityways.options.ServerHost = cityways.options.ServerHost + "/";
+   }
+   else
+    cityways.options.ServerHost = "http://ways.in.ua/";
 
-  	if(options != undefined && options.resourceURI)
-  		cityways.options.ResourceURI = options.resourceURI;
-  	else
-  		cityways.options.ResourceURI = cityways.util.getScriptLocation("main_page") + "/";
+  var linkFiles = [];
 
-  	if(options != undefined && options.serverHost)
-  		cityways.options.ServerHost = options.serverHost;
-  	else
-  		cityways.options.ServerHost = "http://ways.in.ua/";
+  var cssFile1 = cityways.helper.document.selectCSSFile(cityways.options.getResourcePath() + "css/",
+    [{
+      name : "main.css"
+    }]);
+  linkFiles.push(cssFile1);
+  var cssFile2 = cityways.helper.document.selectCSSFile(cityways.options.ServerHost + "media/css/busWeb/",
+    [{
+      name : "busWeb.css"
+    },
+    {
+      name : "busWeb_ff.css",
+      browsers : {mozilla : {max : 10}}
+    },
+    {
+      name : "busWeb_ie8",
+      browsers : {msie : {max : 8.0}}
+    }]);
+  linkFiles.push(cssFile2);
+  if(document.readyState == undefined || (document.readyState != "interactive" &&
+    document.readyState != "complete")){
+    for(var i=0; i< linkFiles.length;  i++ ){
+      cityways.helper.document.appendCSSFile(linkFiles[i],"write");
+    }
+  }else
+  {
+    for(var i=0; i< linkFiles.length;  i++ ){
+      cityways.helper.document.appendCSSFile(linkFiles[i],"inner");
+    }
 
-  	var linkFiles = [];
+  }
+  cityways._initialized = true;
+}
+};
 
-  	var cssFile1 = cityways.helper.document.selectCSSFile(cityways.options.getResourcePath() + "css/",
-  		[{
-  			name : "main.css"
-  		}]);
-  	linkFiles.push(cssFile1);
-  	var cssFile2 = cityways.helper.document.selectCSSFile(cityways.options.ServerHost + "media/css/busWeb/",
-  		[{
-  			name : "busWeb.css"
-  		},
-  		{
-  			name : "busWeb_ff.css",
-  			browsers : {mozilla : {max : 10}}
-  		},
-  		{
-  			name : "busWeb_ie8",
-  			browsers : {msie : {max : 8.0}}
-  		}]);
-  	linkFiles.push(cssFile2);
-  	cityways.logger.debug(document.readyState);
-  	if(document.readyState == undefined || (document.readyState != "interactive" &&
-  	                                        document.readyState != "complete")){
-  		for(var i=0; i< linkFiles.length;  i++ ){
-  			cityways.helper.document.appendCSSFile(linkFiles[i],"write");
-  		}
-  	}else
-  	{
-  		for(var i=0; i< linkFiles.length;  i++ ){
-  			cityways.helper.document.appendCSSFile(linkFiles[i],"inner");
-  		}
-
-  	}
-  	cityways._initialized = true;
-  };
 
 /**
  * @overview Class {@link cityways.page.search.PathsPanel}.
@@ -1958,20 +2344,32 @@ cityways.page = {
  		var self = this;
  		$(document).ready(function() {
 
-			var el = document.getElementById('ways_panel');
-			el.style.display = 'block';
+ 			var el = document.getElementById('ways_panel');
+ 			el.style.display = 'block';
 
  			$('#cityways_path_panel_scroll').tinyscrollbar();
- 		    self.visible(visible);
+ 			self.visible(visible);
  		});
-		
+
  	    // Добавим обработчик события изменения размеров окна
  	    $(window).bind("resize", function(e) {
  	    	self.on_resize_window(e);
  	    });
- 	},
+    },
 
- 	members : {	
+    members : {	
+      _currentPathIndex : null,
+	/**
+	 * Текущие пути, по данным которым отображена информация в правой панеле PathsPanel
+	 * @private
+	 * @memberOf cityways.page.SearchPage.prototype
+	 * @type {Object}
+     * @property {Array<{@link cityways.model.PathModel}>} paths
+     * @property {Number}                             findTime 
+     */
+     _currentPathsInfo : null,
+
+
 	/**
 	 * Видимость панели.
 	 * @private
@@ -2022,9 +2420,168 @@ cityways.page = {
 	 */
 	 on_resize_window : function(e){
 	 	$('#cityways_path_panel_scroll').tinyscrollbar_update();
-	 }
+	 },
 
-	}});
+
+     /**
+    * [_onMakePathsPanelContent description]
+    * @private
+    * @memberOf cityways.page.search.WidgetEventHandlers.prototype
+    * @param  {[type]} self      [description]
+    * @param  {[type]} data      [description]
+    * @param  {[type]} templates [description]
+    * @return {[type]}           [description]
+    */
+    _makePathsPanelContent : function(data, templates) {
+    	var page = cityways.page.Current;
+    	var t_header = templates["template-main-pathsPanelHeader"];
+    	var t_info = templates["template-main-pathsPanelInfo"];
+      var t_route = templates["template-main-pathsPanelRoute"];
+      var t_transition = templates["template-main-pathsPanelTransition"];
+      var paths = data.paths;
+      var htmlBody = "";
+      for (var i = 0; i <paths.length; i++) {
+
+        var path = paths[i];
+        var headerParams = {
+         index : i + 1,
+         locale : cityways.lang.translate,
+         cost : path.getFullCost(),
+         time: path.getWalkingTime(),
+         routes : paths[i].routes,
+         resourcePath : cityways.options.getResourcePath(),
+         host : cityways.options.ServerHost
+       };
+       var pathInfoContent = "";
+       for(var j=0;j < paths[i].routes.length; j++ ){
+        var route = paths[i].routes[j];
+        var routeParams = {
+          locale        : cityways.lang.translate,
+          route_id      : route.ID,
+          route_name    : route.name,
+          route_type    : route.type,
+          route_cost    : route.cost,
+          route_distance: Math.round(route.distance/10.0)/100.0, // перемедем м. в км., оставив 2 знака после запятой
+          route_start   : route.start,
+          route_finish  : route.finish,
+          route_freq    : route.finish,
+          route_move    : cityways.helper.time.secsToLocaleString(route.moveTimeSecs),    
+          route_wait    : cityways.helper.time.secsToLocaleString(route.wait),
+          host : cityways.options.ServerHeeost         
+        };   
+
+        pathInfoContent = pathInfoContent + t_route(routeParams);
+        if(j < paths[i].routes.length - 1){
+          var trans = paths[i].transitions[j];
+          var move_time = "";
+          if(trans.moveTimeSecs > 60){
+            move_time = cityways.helper.time.secsToLocaleString(trans.moveTimeSecs)
+          }
+          var transParams = {
+            locale      : cityways.lang.translate,
+            route_from  : paths[i].getRouteByID(trans.fromRouteID).name,
+            route_to    : paths[i].getRouteByID(trans.toRouteID).name,
+            distance    : parseInt(trans.distance),
+            move_time   : move_time
+          };
+          pathInfoContent = pathInfoContent + t_transition(transParams);
+        }
+      }
+      var infoParams = {
+        index : i +1,
+        content : pathInfoContent
+      };
+      htmlBody = htmlBody + t_header(headerParams) + t_info(infoParams);
+    }
+    this.setContent(htmlBody);
+    if(paths.length >0){
+      this.selectPath(1);
+    }
+  },
+
+   /**
+    * [setPathsInfo description]
+    * @memberOf cityways.page.search.WidgetEventHandlers.prototype
+    * @param {[type]} e [description]
+    */
+    setPathsInfo : function(e, findOptions){
+    	var self = this;
+      self._searchPage.getMapWidget().removeAllPaths();
+      if(e.error != undefined||  e.paths == undefined || e.paths.length == 0)
+      {
+        self._searchPage.getMapWidget().removeAllPaths();
+        self.setContent("<div><p>Не найдено.</p> </div>");
+        return;
+      }
+      self._currentPathsInfo = e;
+      cityways.template.html.getTemplates([
+        "template-main-pathsPanelHeader",
+        "template-main-pathsPanelInfo",
+        "template-main-pathsPanelTransition",
+        "template-main-pathsPanelRoute"], 
+        function(templates) {
+         self._makePathsPanelContent(e,templates);
+       });
+
+    },
+
+    /**
+     * [getCurrentPaths description]
+     * @memberOf cityways.page.SearchPage.prototype
+     * @return {Array<{@link cityways.model.Path}>} [description]
+     */
+     getCurrentPaths : function(){
+      if(this._currentPathsInfo!=undefined)
+        return this._currentPathsInfo.paths;
+      return [];
+    },
+
+
+    /**
+     * [getfindTime description]
+     * @memberOf cityways.page.SearchPage.prototype
+     * @return {Number} [description]
+     */
+     getfindTime : function(){
+      if(this._currentPathsInfo!=undefined)
+        return this._currentPathsInfo.findTime;
+      return 0;
+    },
+    _selectPath : function(pathModel){
+      var self = this;
+      var path = new cityways.widget.map.Path(pathModel);
+      self._searchPage.getMapWidget().removeAllPaths();
+      self._searchPage.getMapWidget().addPath(path);
+      
+    },
+
+    selectPath : function(pathIndex){
+      var self = this;
+      for(var i=1;i <= this._currentPathsInfo.paths.length; i++ ){
+        var id = "#path_info_" + i.toString();
+        cityways.logger.info(id);
+        if( i == pathIndex)
+          $(id).show();
+        else
+          $(id).hide();
+      }
+      
+      self._currentPathIndex = pathIndex - 1;
+
+      var pathModel = self._currentPathsInfo.paths[pathIndex-1];
+      if(pathModel.hasGeomData() == false){
+       var loader  = new cityways.loader.PathsLoader();
+       loader.loadGeomDataForPath(pathModel , function(e){
+        self._selectPath(pathModel);
+      });
+     }else
+     {
+      self._selectPath(pathModel);
+    }
+
+  }
+
+}});
 /**
  * @overview Class {@link cityways.page.search.SettingsPanel}.
  * @see Project url: {@link http://ways.in.ua}.
@@ -2083,7 +2640,7 @@ cityways.page = {
      * @type {Dictionary<Object>}
      */
      _routeTypes : null,
-    
+
     /**
      * [init description]
      * @memberOf cityways.page.search.SettingsPanel.prototype
@@ -2152,11 +2709,11 @@ cityways.page = {
         else
         {
            this._routeTypes[routeType].enabled = val;
-        }
+       }
 
-        if(routeType == "auto" && val == true){
+       if(routeType == "auto" && val == true){
              // Если выбран проезд на автомобиле, тогда отключим все другие виды транспорта
-            for(var i in this._routeTypes){
+             for(var i in this._routeTypes){
                 if(i != routeType && this.isEnabledRouteTypeBtn(i) == true)  
                     this.enableRouteTypeBtn(i, false);
             }
@@ -2170,12 +2727,12 @@ cityways.page = {
             }
         }
         else
-        if(routeType != "auto" && val == true && val == this.isEnabledRouteTypeBtn("auto") == true){
+            if(routeType != "auto" && val == true && val == this.isEnabledRouteTypeBtn("auto") == true){
             // Если был выбран вид транспорта, отличный от автомобиля, тогда отключим транспорт "автомобиль"
-             this.enableRouteTypeBtn("auto", false);
+            this.enableRouteTypeBtn("auto", false);
         } 
 
-   },
+    },
 
 
     /**
@@ -2188,26 +2745,44 @@ cityways.page = {
         return this._routeTypes[routeType].enabled;
     },
 
-
-    setStartLocation : function(addr){
+    /**
+     * [setStartLocation description]
+     * @param {[type]} addr [description]
+     */
+     setStartLocation : function(addr){
         $('#a_input_form').val(addr);
     },
 
-    setFinishLocation : function(addr){
+    /**
+     * [setFinishLocation description]
+     * @param {[type]} addr [description]
+     */
+     setFinishLocation : function(addr){
         $('#b_input_form').val(addr);
     },    
 
-
-    getAlgType : function(){
+    /**
+     * [getAlgType description]
+     * @return {[type]} [description]
+     */
+     getAlgType : function(){
         return "c_opt";
     },
 
-    isTransitions : function(){
+    /**
+     * [isTransitions description]
+     * @return {Boolean} [description]
+     */
+     isTransitions : function(){
         var checked = $("#cways_menu_transitions_none").is(':checked');
         return checked == true ? false : true ;
     },
 
-    getStartingTime : function(){
+    /**
+     * [getStartingTime description]
+     * @return {[type]} [description]
+     */
+     getStartingTime : function(){
         var res = {
             dayID : 'c_Sunday',
             timeStartSecs : (10 * 60 * 60 + 10 * 60)
@@ -2215,29 +2790,38 @@ cityways.page = {
         return res;
     },
 
+    /**
+     * [setDiscount description]
+     * @param {[type]} discountID [description]
+     * @param {[type]} val        [description]
+     */
+     setDiscount : function(discountID, val){
+         if(discountID == "discount_none"){
+            $("#cways_menu_discount_metro").attr('disabled','disabled');
+            $("#cways_menu_discount_tram").attr('disabled','disabled');
+            $("#cways_menu_discount_trolley").attr('disabled','disabled');
+        }
 
-    setDiscount : function(discountID, val){
-             if(discountID == "discount_none"){
-                    $("#cways_menu_discount_metro").attr('disabled','disabled');
-                    $("#cways_menu_discount_tram").attr('disabled','disabled');
-                    $("#cways_menu_discount_trolley").attr('disabled','disabled');
-             }
+        if(discountID == "discount_pref"){
+            $("#cways_menu_discount_metro").attr('disabled','disabled');
+            $("#cways_menu_discount_tram").attr('disabled','disabled');
+            $("#cways_menu_discount_trolley").attr('disabled','disabled');
+        }
 
-             if(discountID == "discount_pref"){
-                    $("#cways_menu_discount_metro").attr('disabled','disabled');
-                    $("#cways_menu_discount_tram").attr('disabled','disabled');
-                    $("#cways_menu_discount_trolley").attr('disabled','disabled');
-             }
-
-             if(discountID == "discount_other"){
-                    $("#cways_menu_discount_metro").removeAttr('disabled');
-                    $("#cways_menu_discount_tram").removeAttr('disabled');
-                    $("#cways_menu_discount_trolley").removeAttr('disabled');
-             }
+        if(discountID == "discount_other"){
+            $("#cways_menu_discount_metro").removeAttr('disabled');
+            $("#cways_menu_discount_tram").removeAttr('disabled');
+            $("#cways_menu_discount_trolley").removeAttr('disabled');
+        }
 
     },
 
-    getDiscount: function(discountID){
+    /**
+     * [getDiscount description]
+     * @param  {[type]} discountID [description]
+     * @return {[type]}            [description]
+     */
+     getDiscount: function(discountID){
         return $("#cways_menu_" + discountID).is(':checked');
     },
 
@@ -2249,7 +2833,7 @@ cityways.page = {
      * Например  если значение словаря dict["bus"] равно 0, тогда проезд на автобусе бесплатный.
      * Если равно 1 - проезд платный, 0.5 - скидка 50%.
      */
-    getCheckedDiscounts : function(){
+     getCheckedDiscounts : function(){
         var dict = {};
         dict["metro"] = 0.5;
         dict["tram"] = 0.0;
@@ -2302,11 +2886,29 @@ cityways.page = {
  */
  cityways.page.search.WidgetEventHandlers = cityways.Class({
 
- 	constructor :  function() {
-
+ 	constructor :  function(mainPage) {
+ 		this._mainPage = mainPage;
  	},
 
  	members : { 
+ 			/**
+ 			 * [_mainPage description]
+ 			 * @private 
+ 			 * @memberOf cityways.page.search.WidgetEventHandlers.prototype
+ 			 * @type {cityways.page.SearchPage}
+ 			 */
+ 			 _mainPage : null,
+
+ 			/**
+ 			 * [onSelectPath description]
+			 * @memberOf cityways.page.search.WidgetEventHandlers.prototype
+ 			 * @param  {Number} pathIndex [description]
+ 			 */
+ 			 onSelectPath : function(pathIndex){
+ 			 	var self = this;
+ 			    self._mainPage.getPathsPanel().selectPath(pathIndex);
+ 			 	
+ 			 },
 
 			/**
 			 * [onRouteTypeClick description]
@@ -2315,87 +2917,14 @@ cityways.page = {
 			 * @param  {[type]} routeType    [description]
 			 * @param  {[type]} includeTitle [description]
 			 * @param  {[type]} excludeTitle [description]
-			 * @return {[type]}              [description]
 			 */
 			 onRouteTypeClick : function(routeType) {
-			 	var page = cityways.page.Current;
-			 	cityways.logger.info(page.getSettingsPanel());
-			 	if (page.getSettingsPanel().isEnabledRouteTypeBtn(routeType) == true) {
-			 		page.getSettingsPanel().enableRouteTypeBtn(routeType, false);
+			 	cityways.logger.info(this._mainPage.getSettingsPanel());
+			 	if (this._mainPage.getSettingsPanel().isEnabledRouteTypeBtn(routeType) == true) {
+			 		this._mainPage.getSettingsPanel().enableRouteTypeBtn(routeType, false);
 			 	} else {
-			 		page.getSettingsPanel().enableRouteTypeBtn(routeType, true);
+			 		this._mainPage.getSettingsPanel().enableRouteTypeBtn(routeType, true);
 			 	}
-
-			 },
-
-			/**
-			 * [_onMakePathsPanelContent description]
-			 * @private
-			 * @memberOf cityways.page.search.WidgetEventHandlers.prototype
-			 * @param  {[type]} self      [description]
-			 * @param  {[type]} data      [description]
-			 * @param  {[type]} templates [description]
-			 * @return {[type]}           [description]
-			 */
-			 _onMakePathsPanelContent : function(data, templates) {
-			 	var page = cityways.page.Current;
-			 	var headersTemplate = templates["template-main-waysPanelHeader"];
-			 	var infoTemplate = templates["template-main-waysPanelInfo"];
-			 	cityways.logger.info(templates);
-			 	var paths = data.paths;
-			 	var htmlBody = "";
-			 	for (var i = 0; i < paths.length; i++) {
-			 		var path = new cityways.model.Path(paths[i]);
-			 		cityways.logger.info(path.getFullCost());
-			 		var params = {
-			 			index : i + 1,
-			 			locale : cityways.lang.translate,
-			 			cost : path.getFullCost(),
-			 			time: path.getWalkingTime()
-			 		};
-			 		htmlBody = htmlBody + headersTemplate(params);
-			 	}
-			 	page.getPathsPanel().setContent(htmlBody);
-			 },
-
-			/**
-			 * [_onLoadedPaths description]
-			 * @private
-			 * @memberOf cityways.page.search.WidgetEventHandlers.prototype
-			 * @param  {[type]} self [description]
-			 * @param  {[type]} e    [description]
-			 * @return {[type]}      [description]
-			 */
-			 _onLoadedPaths : function(e) {
-			 	if(e.error != undefined||  e.paths == undefined || e.paths.length == 0){
-			 		var page = cityways.page.Current;
-			 		page.getPathsPanel().setContent("<div><p>Не найдено.</p> </div>");
-			 		return;
-			 	}
-
-			 	var data = e.data;
-			 	var templates = {};
-			 	var loadedTemplates = 0;
-			 	var templatesCount = 2;
-			 	var self = this;
-
-			 	cityways.template.html.get(
-			 		"template-main-waysPanelHeader", function(template) {
-			 			loadedTemplates++;
-			 			templates["template-main-waysPanelHeader"] = template;
-			 			if (loadedTemplates == templatesCount) {
-			 				self._onMakePathsPanelContent(e,templates);
-			 			}
-			 		});
-
-			 	cityways.template.html.get(
-			 		"template-main-waysPanelInfo", function(template) {
-			 			loadedTemplates++;
-			 			templates["template-main-waysPanelInfo"] = template;
-			 			if (loadedTemplates == templatesCount) {
-			 				self._onMakePathsPanelContent(e,templates);
-			 			}
-			 		});
 
 			 },
 
@@ -2405,25 +2934,22 @@ cityways.page = {
 			 * @return {[type]} [description]
 			 */
 			 onFindBtnClick : function() {
-			 	var page = cityways.page.Current;
-			 	var findOptions = page.getPathsOptions();
+			 	var findOptions = this._mainPage.getPathsOptions();
 			 	if(findOptions == null)
 			 		return;
-			 	page.getPathsPanel().visible(true);
+			 	this._mainPage.getPathsPanel().visible(true);
 			 	var loadGif = cityways.options.getResourcePath()	+ "images/load.gif";
-			 	page.getPathsPanel().setContent("<div class='loader_text'><img src='"
+			 	this._mainPage.getPathsPanel().setContent("<div class='loader_text'><img src='"
 			 		+ loadGif + "'/></div>");
 			 	
 			 	var loader = new cityways.loader.PathsLoader();
 			 	var self = this;
 			 	loader.findShortestPaths(findOptions, function(e) {
-			 		cityways.logger.info("findShortestPaths");
-			 		self._onLoadedPaths(e);
+			 		self._mainPage.getPathsPanel().setPathsInfo(e, findOptions);
 			 	});
-
 			 	return;
 
-},
+			 },
 
 			/**
 			 * [on_selectDetailWay description]
@@ -2436,19 +2962,630 @@ cityways.page = {
 			 	cityways.logger.info("OK");
 			 },
 
-
+			/**
+		     * [onDiscountChanged description]
+		     * @memberOf cityways.page.search.WidgetEventHandlers.prototype
+			 * @param  {[type]} val        [description]
+			 * @param  {[type]} discountID [description]
+			 */
 			 onDiscountChanged : function(val, discountID){
 			 	var val = $("#cways_menu_" + discountID).is(':checked');
-			 	var page = cityways.page.Current;
-			 	page.getSettingsPanel().setDiscount(discountID,val);
+			 	this._mainPage.getSettingsPanel().setDiscount(discountID,val);
 			 },
 
+			/**
+			 * [onChangeSelectboxCity description]
+			 * @memberOf cityways.page.search.WidgetEventHandlers.prototype
+			 */
 			 onChangeSelectboxCity : function(){
 			 	var nameFromCombo = $("#selectbox_city").val();
 			 	document.location.href = cityways.options.ServerHost + 'home/' + nameFromCombo;
 			 }
+
 			}
 		});
+
+/**
+ * @overview Namespace {@link cityways.page.routes}.
+ * @see Project url: {@link http://ways.in.ua}.
+ * @copyright 
+ * CityWays-lib is copyright (c) 2012, {@link http://premiumgis.com|PremiumGIS} Inc. All Rights Reserved. 
+ * CityWays-lib is free software, licensed under the MIT license. 
+ * See the file {@link http://api.ways.in.ua/license.txt|license.txt} in this distribution for more details.
+ * @author Roman Shafeyev <rs@premiumgis.com>
+ * 
+ * @requires cityways/page.js
+ */
+
+/**
+ * @namespace cityways.page.routes
+ */
+
+ cityways.page.routes = {
+
+   COLORS : [
+       "black",
+       "red",
+       "yellow",
+       "green"
+   ],
+   initialize : function(options){
+     if(cityways._initialized == true){
+      return;
+    }
+    if(options != undefined && options.lang){
+      cityways.lang.setCode(options.lang);
+    }
+    else
+      cityways.lang.setCode();
+
+    if(options != undefined && options.theme)
+      cityways.options.Theme = options.theme;
+    else
+      cityways.options.Theme = "default";
+
+    if(options != undefined && options.resourceURI)
+      cityways.options.ResourceURI = options.resourceURI;
+    else
+      cityways.options.ResourceURI = cityways.util.getScriptLocation("main_page") + "/";
+
+    if(options != undefined && options.serverHost != undefined){
+
+     cityways.options.ServerHost = options.serverHost;
+     if(options.serverHost == "" || options.serverHost[options.serverHost.length-1] != "/")
+       cityways.options.ServerHost = cityways.options.ServerHost + "/";
+   }
+   else
+    cityways.options.ServerHost = "http://ways.in.ua/";
+
+  cityways._initialized = true;
+
+  var linkFiles = [];
+
+  var cssFile1 = cityways.helper.document.selectCSSFile(cityways.options.ServerHost + "media/css/pages/",
+    [{
+      name : "routes.css"
+    }]);
+  linkFiles.push(cssFile1);
+
+  if(document.readyState == undefined || (document.readyState != "interactive" &&
+    document.readyState != "complete")){
+    for(var i=0; i< linkFiles.length;  i++ ){
+      cityways.helper.document.appendCSSFile(linkFiles[i],"write");
+    }
+  }else
+  {
+    for(var i=0; i< linkFiles.length;  i++ ){
+      cityways.helper.document.appendCSSFile(linkFiles[i],"inner");
+    }
+
+  }
+}
+};
+/**
+ * @overview Class {@link cityways.page.routes.RoutesPanel}.
+ * @see Project url: {@link http://ways.in.ua}.
+ * @copyright 
+ * CityWays-lib is copyright (c) 2012, {@link http://premiumgis.com|PremiumGIS} Inc. All Rights Reserved. 
+ * CityWays-lib is free software, licensed under the MIT license. 
+ * See the file {@link http://api.ways.in.ua/license.txt|license.txt} in this distribution for more details.
+ * @author Roman Shafeyev <rs@premiumgis.com>
+ * 
+ * @requires cityways/page/routes.js
+ * @requires cityways/Class.js
+ */
+
+/**
+ * [SearchPage description]
+ * @class cityways.page.routes.RoutesPanel
+ * @param  {Object} options [description]
+ */
+ cityways.page.routes.RoutesPanel = cityways.Class({
+ 	
+ 	constructor :  function(routesPage, options) {
+ 		var self = this;
+ 		self._routesPage = routesPage;
+ 		self._selectedRoutes = new cityways.type.StringDictionary();
+ 		var visible = (options != undefined && options.visible != undefined) ? options.visible : false;		
+ 		$(document).ready(function() {
+ 			$('#cityways_routes_panel_scroll').tinyscrollbar();
+ 			self.visible(visible);
+ 			selectbox_initialize();
+ 		});
+ 	    // Добавим обработчик события изменения размеров окна
+ 	    $(window).bind("resize", function(e) {
+ 	    	self._on_resize_window(e);
+ 	    });
+
+ 	    self._colorsGenerator = new cityways.page.ColorsGenerator();
+ 	},
+
+ 	members : {
+
+ 		_colorsGenerator : null,
+
+ 		_selectedRoutes : null,
+
+ 			/**
+	 		* Видимость панели.
+	 		* @private
+	 		* @memberOf cityways.page.routes.RoutesPanel.prototype
+	 		* @type {bool}
+	 		*/
+	 		_visible : null,
+
+ 			/**
+	 		* Видимость панели.
+	 		* @private
+	 		* @memberOf cityways.page.routes.RoutesPanel.prototype
+	 		* @type {bool}
+	 		*/
+	 		_routesPage : null,
+
+			/**
+	 		* @memberOf cityways.page.routes.RoutesPanel.prototype
+	 		* @param {bool} value  true: show, false : hide
+	 		*/
+	 		visible : function(value) {
+	 			if(this._visible == value)
+	 				return;
+	 			if (value == true) {
+	 				$("#map_canvas").width('68%').css({
+	 					cursor : "auto",
+	 					backgroundColor : "rgb(226, 226, 226)"
+	 				});
+
+	 			} else {
+	 				$("#map_canvas").width('98.5%').css({
+	 					cursor : "auto",
+	 					backgroundColor : "rgb(226, 226, 226)"
+	 				});
+	 			}
+	 			this._visible = value;
+	 			$('#cityways_routes_panel_scroll').tinyscrollbar_update();
+	 		},
+
+	 		/**
+	 		* [on_resize_window description]
+	 		* @private
+			* @memberOf cityways.page.routes.RoutesPanel.prototype
+	 		* @param  {Object} e [description]
+	 		*/
+	 		_on_resize_window : function(e){
+	 			$('#cityways_routes_panel_scroll').tinyscrollbar_update();
+	 		},
+
+	 		isSelectedRoute : function(routeID){
+	 			var self = this;
+	 			for(var i=0;i < self._selectedRoutes.length; i++){
+	 				self._selectedRoutes[i].id == routeID
+	 			}
+	 			return false;
+	 		},
+
+	 		selectRoute : function(routeID){
+	 			var self = this;
+	 			var map = self._routesPage.getMapWidget();
+	 			if(self._selectedRoutes.get(routeID) == null){
+	 				var loader = new cityways.loader.RoutesLoader();
+	 				loader.getRoute(routeID, function(e){
+	 					var color = self._colorsGenerator.next()
+	 					var options = {
+	 						color : color
+	 					};
+	 					var route = new	cityways.widget.map.Route(e.route,options);
+	 					map.addRoute(route,true);
+	 					self._selectedRoutes.put(routeID, {
+	 						selected : true,
+	 						route : route
+	 					});
+	 					var linkID = "#route_link_" + routeID.toString();
+	 					$(linkID).css("background",color);
+	 					 
+	 				});
+	 			}else
+	 			{
+	 				var rInfo = self._selectedRoutes.get(routeID);
+	 				if(rInfo.selected == false){
+	 					rInfo.selected = true;
+	 					map.addRoute(rInfo.route,true);
+	 					var linkID = "#route_link_" + routeID.toString();
+	 					$(linkID).css("background",rInfo.route.getColor());
+	 				}else{
+	 					rInfo.selected = false;
+	 					map.removeRoute(rInfo.route);
+	 					var linkID = "#route_link_" + routeID.toString();
+	 					$(linkID).css("background","");
+	 				}
+	 			}
+
+	 		}
+
+	 	}
+
+
+	 });
+/**
+ * @overview Class {@link cityways.page.routes.RoutesMapWidget}.
+ * @see Project url: {@link http://ways.in.ua}.
+ * @copyright 
+ * CityWays-lib is copyright (c) 2012, {@link http://premiumgis.com|PremiumGIS} Inc. All Rights Reserved. 
+ * CityWays-lib is free software, licensed under the MIT license. 
+ * See the file {@link http://api.ways.in.ua/license.txt|license.txt} in this distribution for more details.
+ * @author Roman Shafeyev <rs@premiumgis.com>
+ * 
+ * @requires cityways/Class.js
+ */
+
+/**
+ * [MapWidget description]
+ * @class cityways.page.routes.RoutesMapWidget
+ * @constructor 
+ * @param  {String} div     ID dom элемента, в который будет помещена карта
+ * @param  {Object} options Начальные опции карты
+ * @example // Структура объекта options:
+ * options = {
+ * 			  mapProvider : {String}, 			// Провайдер карты, значения: "google", "yandex"
+ *    		  providerKey : {String},           // Key провайдера(только для yandex карт)
+ *      	  zoom        : {Number},           // Масштаб карты
+ *      	  center : {						// Координаты центральной точки карты 
+ * 			     lat : {Number},	            // Широта
+ * 			     lng : {Number}	                // Долгота
+ * 			  }
+ * };
+ */
+ cityways.page.routes.RoutesMapWidget  =  cityways.Class({
+
+ 	constructor :  function(div,options){
+ 		var self = this;
+ 		self._options = options;
+ 		self._options.minZoom = options.zoom - 2;
+ 		self._map = new cityways.Map(div,options);
+ 		self._routes = [];
+ 	},
+
+ 	members: {
+
+  	/**
+ 	 * [_routes description]
+ 	 * @private
+ 	 * @memberOf cityways.maps.MapWidget.prototype
+ 	 * @type Array<{cityways.widget.map.Route}>
+ 	 */   
+ 	 _routes : null,
+
+ 	/**
+ 	 * [map description]
+ 	 * @private
+ 	 * @memberOf cityways.maps.MapWidget.prototype
+ 	 * @type {cityways.Map}
+ 	 */
+ 	 _map : null, 
+
+ 	/**
+ 	 * [options description]
+ 	 * @private
+ 	 * @memberOf cityways.maps.MapWidget.prototype
+ 	 * @type {[Object}
+ 	 */
+ 	 _options : null,
+
+
+ 	 getMap : function(){
+ 	 	return this._map;
+ 	 },
+
+ 	 resizeMap : function(w,h){
+ 	 	if(this._map != undefined){
+ 	 		this._map.resize(w,h);
+ 	 	}
+ 	 },
+
+ 	 setHeight : function(h){
+ 	 	if(this._map != undefined){
+ 	 		this._map.setHeight(h);
+ 	 	}
+ 	 	cityways.logger.info("widget setHeight()",h);
+ 	 },
+
+ 	 setWidth : function(w){
+ 	 	if(this._map != undefined){
+ 	 		this._map.setWidth(w);
+ 	 	}		
+ 	 },
+
+
+
+ 	 removeAllRoutes : function(){
+ 	 	var self = this;
+ 	 	for (var i = 0; i < self._paths.length; i++) {
+ 	 		var polylines = self._paths[i].getAllPolylines();
+ 	 		var stations = self._paths[i].getAllStations();
+ 	 		for(var j=0;j < polylines.length; j++){
+ 	 			this._map.removePolyline(polylines[j]);
+ 	 		} 
+ 	 		for(var j=0;j < stations.length; j++){
+ 	 			this._map.removeMarker(stations[j]);
+ 	 		} 
+
+ 	 	};
+ 	 },
+
+	 /**
+	  * [addPath description]
+	  * @param {cityways.widget.map.Route} path [description]
+	  */
+	  addRoute : function(route,isCentroid){
+	  	var self = this;
+	  	var polylines = route.getAllPolylines();
+	  	var stations = route.getAllStations();
+	  	var alignmentPoints = [];
+	  	for(var j=0;j < polylines.length; j++){
+	  		self._map.addPolyline(polylines[j]);
+	  	} 
+	  	for(var j=0;j < stations.length; j++){
+	  		self._map.addMarker(stations[j]);
+	  		alignmentPoints.push({
+	  			lat : stations[j].getLocation().lat,
+	  			lon : stations[j].getLocation().lon
+	  		});
+	  	} 
+	  	if(isCentroid == true){
+	  		self._map.alignment(alignmentPoints);
+	  	}
+	  	self._routes.push(route);
+	  },
+
+	  removeRoute : function(route){
+	  	var self = this;
+	  	var polylines = route.getAllPolylines();
+	  	var stations = route.getAllStations();
+	  	for(var j=0;j < polylines.length; j++){
+	  		self._map.removePolyline(polylines[j]);
+	  	} 
+	  	for(var j=0;j < stations.length; j++){
+	  		self._map.removeMarker(stations[j]);
+	  	} 
+	  	for(var i=0;i < self._routes.length; i++){
+	  		if(self._routes[i] == route){
+	  			self._routes.splice(i,1);
+	  			break;
+	  		}
+	  	}
+	  }
+
+
+	}
+	
+	/* EVENTS */
+
+	 /**
+	 * Вызывается при изменении адреса начальной или конечной точки назначения.
+	 * @event cityways.MapWidget#ON_CHANGED_DESTINATION_ADDR.
+	 * @property {String} addr Новый адрес точки назначения.
+	 * @property {String} dest "start" : если изменился адрес начальной точки, "finish" : конечной.
+	 * @property {cityways.maps.Marker} marker Маркер, у которго был изменен адрес.
+	 */
+
+
+	});
+/**
+ * @overview Class {@link cityways.page.routes.WidgetEventHandlers}.
+ * @see Project url: {@link http://ways.in.ua}.
+ * @copyright 
+ * CityWays-lib is copyright (c) 2012, {@link http://premiumgis.com|PremiumGIS} Inc. All Rights Reserved. 
+ * CityWays-lib is free software, licensed under the MIT license. 
+ * See the file {@link http://api.ways.in.ua/license.txt|license.txt} in this distribution for more details.
+ * @author Roman Shafeyev <rs@premiumgis.com>
+ * 
+ * @requires cityways/page/routes.js
+ * @requires cityways/Class.js
+ */
+
+ /**
+ * [SettingsPanel description]
+ * @class cityways.page.routes.WidgetEventHandlers
+ */
+ cityways.page.routes.WidgetEventHandlers = cityways.Class({
+
+ 	constructor :  function(routesPage) {
+ 		var self = this;
+ 		self._routesPage = routesPage;
+ 	},
+
+ 	members : { 
+ 			/**
+ 			 * [_mainPage description]
+ 			 * @private 
+ 			 * @memberOf cityways.page.routes.WidgetEventHandlers.prototype
+ 			 * @type {cityways.page.SearchPage}
+ 			 */
+ 			 _routesPage : null,
+
+ 			/**
+ 			 * [onSelectPath description]
+			 * @memberOf cityways.page.routes.WidgetEventHandlers.prototype
+ 			 * @param  {Number} routeID [description]
+ 			 */
+ 			 onSelectRoute : function(routeID){
+ 			 	this._routesPage.getRoutesPanel().selectRoute(routeID);
+ 			 }
+
+			}
+		});
+
+/**
+ * @overview Class {@link cityways.page.RoutesPage}.
+ * @see Project url: {@link http://ways.in.ua}.
+ * @copyright 
+ * CityWays-lib is copyright (c) 2012, {@link http://premiumgis.com|PremiumGIS} Inc. All Rights Reserved. 
+ * CityWays-lib is free software, licensed under the MIT license. 
+ * See the file {@link http://api.ways.in.ua/license.txt|license.txt} in this distribution for more details.
+ * @author Roman Shafeyev <rs@premiumgis.com>
+ * 
+ * @requires cityways/page.js
+ * @requires cityways/Class.js
+ */
+
+/**
+ * [SearchPage description]
+ * @class cityways.page.RoutesPage
+ * @param  {Object} options [description]
+ */
+ cityways.page.RoutesPage = cityways.Class({
+ 	constructor :  function(options) {
+ 		// Инициализируем библиотеку 
+ 		cityways.page.routes.initialize(options);
+
+ 		var self = this;
+ 		var routeTypes = null;
+
+ 		if(options.routeTypes == undefined){
+ 			routeTypes = [];
+ 		}else
+ 		routeTypes = options.routeTypes;
+
+ 		// Создадим боковую панель памршрутов
+ 		self._routesPanel = new cityways.page.routes.RoutesPanel(this);
+ 		// Создадим обработчик событий главной страницы
+	 	self._widgetEventHandlers = new cityways.page.routes.WidgetEventHandlers(self);
+	 	
+
+	 	// Сохраним параметры
+	 	self._currentCity = options.currentCity;
+
+	 	// Создадим виджет карты
+	 	self._makeMapWidget(self._currentCity);
+
+	 	$(document).ready(function() {
+	 		$("#map_canvas").width('68%').css({
+	 			cursor : "auto",
+	 			backgroundColor : "rgb(226, 226, 226)"
+	 		});
+	 		
+	 		self._onResizeWindow();
+	 	});
+
+	 	// Добавим обработчик события изменения размеров окна
+	 	$(window).bind("resize", function(e) {
+	 		self._onResizeWindow(e);
+	 	});
+	 },
+
+	 members : { 
+
+	/**
+	 * [mapWidget description]
+	 * @memberOf cityways.page.RoutesPage.prototype
+	 * @type {cityways.Map}
+	 */
+	 _mapWidget : null,
+
+	 /**
+	  * [pathsPanel description]
+	  * @private
+	  * @memberOf cityways.page.RoutesPage.prototype
+	  * @type {cityways.page.routes.RoutesPanel}
+	  */
+	  _routesPanel : null,
+
+	/**
+	 * [widgetEventHandlers description]
+	 * @private
+	 * @memberOf cityways.page.RoutesPage.prototype
+	 * @type {[type]}
+	 */
+	 _widgetEventHandlers : null,
+
+	/**
+	 * @private
+	 * @memberOf cityways.page.RoutesPage.prototype
+	 * @type {Object}
+	 * @example 
+	 * var currentCity = {
+	 * scale : {Number},
+	 * location : {
+	 * 			     lat : {Number},
+	 * 			     lon : {Number}	
+	 * 			  }
+	 * };
+	 */
+	 _currentCity : null,
+
+
+	 
+	 _makeMapWidget : function(city){
+	 	var self  = this;
+	 	var city  = self._currentCity;
+	 	var mapOptions = {
+	 		mapProvider : cityways.maps.GOOGLE_PROVIDER,
+	 		zoom : city.scale,
+	 		center : {
+	 			lat : city.location.lat,
+	 			lon : city.location.lon
+	 		}
+	 	};
+
+	 	var mapWidget = new cityways.page.routes.RoutesMapWidget("map_canvas", mapOptions);
+	 	this._mapWidget = mapWidget;
+	 },
+
+	/**
+	 * [on_resize_window description]
+	 * @private
+	 * @memberOf cityways.page.SearchPage.prototype
+	 * @param  {Object} e [description]
+	 */
+	 _onResizeWindow : function(e){
+	 	this._mapWidget.setHeight(cityways.util.getWindowSize().height -53 );
+	 },
+
+
+	/**
+	 * 
+	 * Возвращает текущий город.
+	 * @memberOf cityways.page.SearchPage.prototype
+	 * @return {Object} [description]
+	 */
+	 getCurrentCity : function() {
+	 	return this._currentCity;
+	 },
+
+	/**
+	 * [getWidgetEventHandlers description]
+	 * @memberOf cityways.page.SearchPage.prototype
+	 * @return {cityways.page.search.WidgetEventHandlers} [description]
+	 */
+	 getWidgetEventHandlers : function() {
+	 	return this._widgetEventHandlers;
+	 },
+
+	 getMapWidget : function(){
+	 	return this._mapWidget;
+	 },
+
+	 getRoutesPanel : function(){
+	 	return this._routesPanel;
+	 },
+
+	/**
+	 * [_prepareNotes description]
+	 * @private
+	 * @memberOf cityways.page.SearchPage.prototype
+	 */
+	 _prepareNotes : function() {
+	 	$('.demo-tip-darkgray').poshytip({
+	 		className : 'tip-darkgray',
+	 		showTimeout : 1,
+	 		bgImageFrameSize : 11,
+	 		offsetX : -25
+	 	});
+	 }
+	}
+});
+
+
+
 
 /**
  * @overview Namespace {@link cityways.model}.
@@ -2470,7 +3607,7 @@ cityways.page = {
 
  };
 /**
- * @overview Class {@link cityways.model.Path}.
+ * @overview Class {@link cityways.model.PathModel}.
  * @see Project url: {@link http://ways.in.ua}.
  * @copyright 
  * CityWays-lib is copyright (c) 2012, {@link http://premiumgis.com|PremiumGIS} Inc. All Rights Reserved. 
@@ -2484,17 +3621,37 @@ cityways.page = {
 
  /**
  * [Path description]
- * @class cityways.model.Path
- * @param  {Object} rowPath Данные пути, полученные от сервера
+ * @class cityways.model.PathModel
+ * @param  {Object} rowPathData Данные пути, полученные от сервера
  */
- cityways.model.Path = cityways.Class({
+ cityways.model.PathModel = cityways.Class({
  	
- 	constructor : function(rowPath) {
- 		cityways.extend(this, rowPath);
+ 	constructor : function(rowPathData) {
+ 		cityways.extend(this, rowPathData);
+ 		this._isHasGeomData = false;
 
  	},
 
  	members : {
+
+
+ 	_isHasGeomData  : null,
+
+
+ 	/**
+ 	 * [startLocation description]
+     * @memberOf cityways.model.Path.prototype
+ 	 * @type {[type]}
+ 	 */
+ 	 startLocation : null,
+
+ 	/**
+ 	 * [finishLocation description]
+ 	 * @memberOf cityways.model.Path.prototype
+ 	 * @type {Object}
+ 	 */
+ 	 finishLocation : null,
+
 
  	/**
  	 * [pathID description]
@@ -2511,11 +3668,11 @@ cityways.page = {
  	 input : null,
 
  	/**
- 	 * [out description]
+ 	 * [output description]
  	 * @memberOf cityways.model.Path.prototype
  	 * @type {Object}
  	 */
- 	 out : null,
+ 	 output : null,
 
  	/**
  	 * [transitions description]
@@ -2527,6 +3684,9 @@ cityways.page = {
  	/**
  	 * [routes description]
  	 * @memberOf cityways.model.Path.prototype
+ 	 * @property {Number} ID
+ 	 * @property {Number} startInd
+ 	 * @property {Number} finishInd
  	 * @type {Array<Object>}
  	 */
  	 routes : [],
@@ -2561,8 +3721,127 @@ cityways.page = {
 		time += this.input.moveTimeSecs;
 		time += this.output.moveTimeSecs;			 
 		return cityways.helper.time.secsToLocaleString(time);
+	},
+
+	/**
+	 * [setGeomData description]
+	 * @param {[type]} data [description]
+	 */
+	 setGeomData : function(data){
+	 	cityways.logger.info("setGeomData1()", data);
+	 	cityways.logger.info("setGeomData2()", this.routes);
+	 	for(var i=0;i < data.routes.length; i++){
+	 		var routeData = data.routes[i];
+	 		var route = this.getRouteByID(routeData.ID);
+	 		if(route!=null){
+	 			route.stations = routeData.stations;
+	 			route.roads = routeData.roads;
+	 			cityways.logger.info("setGeomData3()",route);
+	 		}
+	 		
+	 	}
+	 	
+	 	this._isHasGeomData = true;
+	 },
+
+	 hasGeomData : function(){
+	 	return this._isHasGeomData;
+	 },
+
+	 getRouteByID : function(id){
+	 	if(this.routes == undefined)
+	 		return null;
+	 	for(var i=0;i < this.routes.length; i++)
+	 	{
+	 		if(this.routes[i].ID == id)
+	 			return this.routes[i];
+	 	}
+
+	 	return null;
+	 }
+
+
 	}
-}
+});
+/**
+ * @overview Class {@link cityways.model.RouteModel}.
+ * @see Project url: {@link http://ways.in.ua}.
+ * @copyright 
+ * CityWays-lib is copyright (c) 2012, {@link http://premiumgis.com|PremiumGIS} Inc. All Rights Reserved. 
+ * CityWays-lib is free software, licensed under the MIT license. 
+ * See the file {@link http://api.ways.in.ua/license.txt|license.txt} in this distribution for more details.
+ * @author Roman Shafeyev <rs@premiumgis.com>
+ * 
+ * @requires cityways/model.js
+ * @requires cityways/Class.js
+ */
+
+ /**
+ * [Path description]
+ * @class cityways.model.RouteModel
+ * @param  {Object} rowPathData Данные пути, полученные от сервера
+ */
+ cityways.model.RouteModel = cityways.Class({
+ 	
+ 	constructor : function(data) {
+ 		cityways.extend(this, data);
+ 		
+
+ 	},
+
+ 	members : {
+
+	/**
+ 	 * [startLocation description]
+     * @memberOf cityways.model.RouteModel.prototype
+ 	 * @type {Number}
+ 	 */
+ 	 ID: null,
+
+	/**
+ 	 * [startLocation description]
+     * @memberOf cityways.model.RouteModel.prototype
+ 	 * @type {Number}
+ 	 */ 	 
+ 	 cost: null,
+
+	/**
+ 	 * [startLocation description]
+     * @memberOf cityways.model.RouteModel.prototype
+ 	 * @type {String}
+ 	 */ 
+ 	 name: null,
+
+	/**
+ 	 * [startLocation description]
+     * @memberOf cityways.model.RouteModel.prototype
+ 	 * @type {String}
+ 	 */ 
+ 	 type: null,
+
+	/**
+ 	 * [startLocation description]
+     * @memberOf cityways.model.RouteModel.prototype
+ 	 * @type {cityways.model.RouteWayModel}
+ 	 */ 
+ 	 directWay : null,
+
+	/**
+ 	 * [startLocation description]
+     * @memberOf cityways.model.RouteModel.prototype
+ 	 * @type {cityways.model.RouteWayModel}
+ 	 */ 
+ 	 reverseWay : null,
+
+	/**
+ 	 * [startLocation description]
+     * @memberOf cityways.model.RouteModel.prototype
+ 	 * @type {Object}
+ 	 */ 
+ 	 timetable : null
+
+
+	}
 });
 /**
  * @overview Namespace {@link cityways.template}.
@@ -2598,14 +3877,14 @@ cityways.page = {
 /**
  * @namespace cityways.template.html
  */
-cityways.template.html = {
+ cityways.template.html = {
 
 	/**
 	 * [_templates description]
 	 * @private
 	 * @type {Object}
 	 */
-	_templates : {},
+	 _templates : {},
 
 	/**
 	 * Возвращает html шаблон со словаря _templates. Если такой не сущействует,
@@ -2613,29 +3892,47 @@ cityways.template.html = {
 	 * @param  {[type]}   templateName [description]
 	 * @param  {Function} callback     [description]
 	 */
-	get : function(templateName, callback) {
-		var templates = cityways.template.html._templates;
-		if (templates[templateName] === undefined) {
-			var loader = new cityways.loader.TemplatesLoader();
-			var fileName = cityways.template.html._getFileByTemplateName(templateName);
-			loader.loadHtmlTemplates(fileName, function(e) {
-                        cityways.extend(cityways.template.html._templates,e);
-                        cityways.logger.info(templates);
-                        callback(templates[templateName]);
-            		});
-		} else {
-			callback(templates[templateName]);
-		}
+	 get : function(templateName, callback) {
+	 	var templates = cityways.template.html._templates;
+	 	if (templates[templateName] === undefined) {
+	 		var loader = new cityways.loader.TemplatesLoader();
+	 		var fileName = cityways.template.html._getFileByTemplateName(templateName);
+	 		loader.loadHtmlTemplates(fileName, function(e) {
+	 			cityways.extend(cityways.template.html._templates,e);
+	 			cityways.logger.info(templates);
+	 			callback(templates[templateName]);
+	 		});
+	 	} else {
+	 		callback(templates[templateName]);
+	 	}
 
-	},
+	 },
 
+	 getTemplates : function(templatesName, callback){
+	 	var loadedTemlate = 0;
+	 	var count = templatesName.length;
+	 	var iscall = false;
+	 	var templates = {};
+	 	for(var i=0; i < count; i++){
+	 		(function(ind){
+	 			cityways.template.html.get(templatesName[ind],function(template){
+	 				loadedTemlate++;
+	 				templates[templatesName[ind]] = template;
+	 				if(iscall == false && loadedTemlate == count){
+	 					iscall = true;
+	 					callback(templates);
+	 				}
+	 			});
+	 		})(i);
+	 	}
+	 },
 	/**
 	 * [_getFileByTemplateName description]
 	 * @private
 	 * @param  {String} templateName [description]
 	 * @return {String}              [description]
 	 */
-	_getFileByTemplateName : function(templateName) {
+	 _getFileByTemplateName : function(templateName) {
 		// templateName = template-<file_name>-<name>
 		return "main";
 	}
@@ -2775,25 +4072,102 @@ cityways.template.html = {
         cityways.logger.info("findShortestPaths",options);
         if(callback == null)
             throw new Error("resultFunc was not defined");
+        var url = cityways.options.ServerHost + "paths/find.json";
+        cityways.logger.info("url: " + url);
 
+        var args = {
+            error : null,
+            paths : [],
+            findTime : 0
+        };
         $.ajax({
-         url : cityways.options.ServerHost + "/paths/find.json",
+         url : url,
          type : "POST",
          data : {data: $.toJSON(options ) },
-         success : function(data) {
+         success : function(e) {
             try{
-                cityways.logger.info(data);
-                var obj = $.parseJSON(data);
-                callback(obj);
+               
+                var obj = $.parseJSON(e);
+
+                if(obj.error != undefined||  obj.paths == undefined || obj.paths.length == 0)
+                {
+                    args.error = e.error;
+                    callback(args);
+                    return;
+                }
+                cityways.logger.info(obj);
+                for (var i = 0; i < obj.paths.length; i++) 
+                {
+                    var path = new cityways.model.PathModel(obj.paths[i]);
+                    path.startLocation = options.p1;
+                    path.finishLocation = options.p2;
+                    args.paths.push(path);
+                }
+
+                args.findTime = obj.findTime;
+                callback(args);
+                return;
             }
             catch(e){
                 cityways.logger.error("Catch error", e, data);
                 callback({  error : e });
-
+                return;
             }
-          }
+        }
+    });
+},
+
+    /**
+     * [getPathGeom description]
+     * @memberOf cityways.loader.PathsLoader.prototype
+     * @param  {cityways.model.PathModel}   path     [description]
+     * @param  {Function} callback [description]
+     */
+     loadGeomDataForPath : function(path,callback){
+       cityways.logger.info("findShortestPaths");
+       if(callback == null)
+        throw new Error("resultFunc was not defined");
+    var url = cityways.options.ServerHost + "paths/get.json";
+    var inputData = {
+        p1 : path.startLocation,
+        p2 : path.finishLocation,
+        routeParts : []
+    };
+
+    for (var i = 0; i < path.routes.length; i++) {
+        inputData.routeParts.push({
+            ID : path.routes[i].ID,
+            startInd : path.routes[i].startInd,
+            finishInd : path.routes[i].finishInd
         });
     }
+
+    cityways.logger.info("inputData:",inputData);
+    $.ajax({
+     url : url,
+     type : "POST",
+     data : {data: $.toJSON(inputData) },
+     success : function(data) {
+        try{
+           
+            var obj = $.parseJSON(data);
+            path.setGeomData(obj);
+            var args ={
+                      path: path, 
+                      success : true
+                      };
+            callback(args);
+            return;
+        }
+        catch(e){
+            cityways.logger.error("Catch error", e, data);
+            callback({  error : e });
+
+        }
+    }
+});
+
+}
 }
 });
 /**
@@ -2855,3 +4229,361 @@ cityways.template.html = {
 	 }
 	}
 });
+/**
+ * @overview Class {@link cityways.loader.PathsLoader}.
+ * @see Project url: {@link http://ways.in.ua}.
+ * @copyright 
+ * CityWays-lib is copyright (c) 2012, {@link http://premiumgis.com|PremiumGIS} Inc. All Rights Reserved. 
+ * CityWays-lib is free software, licensed under the MIT license. 
+ * See the file {@link http://api.ways.in.ua/license.txt|license.txt} in this distribution for more details.
+ * @author Roman Shafeyev <rs@premiumgis.com>
+ * 
+ * @requires cityways/loader.js
+ * @requires cityways/Class.js
+ */
+
+ /**
+  * [PathsLoader description]
+  * @class cityways.loader.PathsLoader
+  */
+  cityways.loader.RoutesLoader = cityways.Class({
+
+  	/* constructor */
+  	constructor : function() {
+
+  	},
+
+    members : {
+	/**
+     * @memberOf cityways.loader.PathsLoader.prototype
+     * @param {Object}   options Опции, по которым будет производиться поиск крат. пути
+     * @param {Function} callback Callback функция
+     * @example
+     * var options = {
+     *       cityID : Integer,
+     *       p1 : {
+     *           lat : Double,
+     *           lon : Double
+     *       },
+     *       p2 : {
+     *           lat : Double,
+     *           lon : Double
+     *       },
+     *       outTime : {
+     *           dayID : 'c_Sunday',
+     *           timeStart : Integer(secs)
+     *       },
+     *       algStrategy : 'c_time', 'c_cost',
+     *       usageRouteTypes : [
+     *          {
+     *       discount : 1.0,
+     *       route_type_id : "c_route_station_input"
+     *   },
+     *   ...
+     *       ]
+     *   };
+     */
+     getRoute : function(routeID, callback) {
+        cityways.logger.info("findShortestPaths",options);
+        if(callback == null)
+            throw new Error("resultFunc was not defined");
+        var url = cityways.options.ServerHost + "routes/get/" + routeID.toString();
+        cityways.logger.info("url: " + url);
+
+        var args = {
+            error : null,
+            route : null
+        };
+
+        $.ajax({
+         url : url,
+         type : "GET",
+         success : function(e) {
+            try{
+                var routeData = $.parseJSON(e);
+                cityways.logger.debug(routeData);
+                if(routeData.error != undefined)
+                {
+                    args.error = routeData.error;
+                    callback(args);
+                    return;
+                }
+                args.route = new cityways.model.RouteModel(routeData);
+                callback(args);
+                return;
+            }
+            catch(e){
+                args.error = e;
+                callback(args);
+                return;
+            }
+        }
+    });
+    }
+
+}
+});
+/**
+ * @overview Namespace {@link cityways.widget}.
+ * @see Project url: {@link http://ways.in.ua}.
+ * @copyright 
+ * CityWays-lib is copyright (c) 2012, {@link http://premiumgis.com|PremiumGIS} Inc. All Rights Reserved. 
+ * CityWays-lib is free software, licensed under the MIT license. 
+ * See the file {@link http://api.ways.in.ua/license.txt|license.txt} in this distribution for more details.
+ * @author Roman Shafeyev <rs@premiumgis.com>
+ * 
+ * @requires cityways.js
+ */
+
+/**
+ * @namespace cityways.widget
+ */
+ cityways.widget = {
+
+
+ };
+/**
+ * @overview Namespace {@link cityways.widget.map}.
+ * @see Project url: {@link http://ways.in.ua}.
+ * @copyright 
+ * CityWays-lib is copyright (c) 2012, {@link http://premiumgis.com|PremiumGIS} Inc. All Rights Reserved. 
+ * CityWays-lib is free software, licensed under the MIT license. 
+ * See the file {@link http://api.ways.in.ua/license.txt|license.txt} in this distribution for more details.
+ * @author Roman Shafeyev <rs@premiumgis.com>
+ * 
+ * @requires cityways.js
+ */
+
+/**
+ * @namespace cityways.widget
+ */
+ cityways.widget.map = {
+
+
+ };
+/**
+ * @overview Class {@link cityways.widget.map.StationMarke}.
+ * @see Project url: {@link http://ways.in.ua}.
+ * @copyright 
+ * CityWays-lib is copyright (c) 2012, {@link http://premiumgis.com|PremiumGIS} Inc. All Rights Reserved. 
+ * CityWays-lib is free software, licensed under the MIT license. 
+ * See the file {@link http://api.ways.in.ua/license.txt|license.txt} in this distribution for more details.
+ * @author Roman Shafeyev <rs@premiumgis.com>
+ * 
+ * @requires cityways/maps.js
+ * @requires cityways/Class.js
+ */
+
+
+/**
+ * [Marker description]
+ * @class cityways.maps.Station
+ * @extends {cityways.maps.Marker}
+ * @param {Object} options Опции маркера
+ * @param {String} options.iconFileName [dest]
+ * @param {Number} options.lat desc1 [dest]
+ * @param {Number} options.lon desc2 [dest]
+ * 
+ */
+ cityways.widget.map.Station = cityways.Class({
+ 	extends : [cityways.maps.Marker],
+ 	constructor : function(options) {
+ 		//  Вызовем конструктор родителя
+ 		cityways.maps.Marker.call(this, options);
+ 		this._draggable = false;
+ 	},
+
+ 	members :  {
+ 		_stationID : null,
+
+ 		setID : function(id){
+ 			this._stationID = id;
+ 		}
+	}
+});
+
+
+/**
+ * @overview Class {@link cityways.widget.map.Route}.
+ * @see Project url: {@link http://ways.in.ua}.
+ * @copyright 
+ * CityWays-lib is copyright (c) 2012, {@link http://premiumgis.com|PremiumGIS} Inc. All Rights Reserved. 
+ * CityWays-lib is free software, licensed under the MIT license. 
+ * See the file {@link http://api.ways.in.ua/license.txt|license.txt} in this distribution for more details.
+ * @author Roman Shafeyev <rs@premiumgis.com>
+ * 
+ * @requires cityways/maps.js
+ * @requires cityways/Class.js
+ */
+
+
+/**
+ * [Marker description]
+ * @class cityways.widget.map.Route 
+ * @param {cityways.model.RouteModel} routeModel Опции маршрута
+ * 
+ */
+ cityways.widget.map.Route = cityways.Class({
+ 	constructor : function(routeModel,options) {
+ 		var self = this;
+ 		var minZoom = 14;
+ 		self._routeModel = routeModel;
+ 		self._stations = [];
+ 		self._polylines = [];
+ 		if(options != undefined && options.color != undefined){
+ 			self._color = options.color;
+ 		}else {
+ 			self._color = "blue";
+ 		}
+
+ 		for(var i=0;i < routeModel.reverseWay.stations.length; i++){
+ 			var stData = routeModel.reverseWay.stations[i];
+ 			var st = new cityways.widget.map.Station();
+ 			st.setID(stData.id);
+ 			st.setLocation(stData.location.lat, stData.location.lon);
+ 			st.setIcon(cityways.options.getResourcePath() + "images/station.png");
+ 			st.setTitle(stData.name);
+ 			if(i==0 || i == routeModel.reverseWay.stations.length -1){
+ 				st.setMinZoom(0);
+ 			}else{
+ 				st.setMinZoom(minZoom);
+ 			}
+ 			self._stations.push(st);
+ 		}
+
+ 		for(var i=0;i < routeModel.reverseWay.roads.length; i++){
+ 			var line = new cityways.maps.Polyline(
+ 				{	points : routeModel.reverseWay.roads[i],
+ 					color : self._color,
+ 					opacity : 0.5,
+ 					weight : 6
+ 				});
+ 			self._polylines.push(line);
+ 		}
+
+ 		for(var i=0;i < routeModel.directWay.stations.length; i++){
+ 			var stData = routeModel.directWay.stations[i];
+ 			var st = new cityways.widget.map.Station();
+ 			st.setID(stData.id);
+ 			if(i==0 || i == routeModel.reverseWay.stations.length -1){
+ 				st.setMinZoom(0);
+ 			}else{
+ 				st.setMinZoom(minZoom);
+ 			}
+ 			st.setLocation(stData.location.lat, stData.location.lon);
+ 			st.setIcon(cityways.options.getResourcePath() + "images/station.png");
+ 			st.setTitle(stData.name);
+ 			self._stations.push(st);
+ 		}
+
+ 		for(var i=0;i < routeModel.directWay.roads.length; i++){
+ 			var line = new cityways.maps.Polyline(
+ 				{	points : routeModel.directWay.roads[i],
+ 					color : self._color,
+ 					opacity : 0.5,
+ 					weight : 6
+ 				});
+ 			self._polylines.push(line);
+ 		}
+
+ 	},
+
+ 	members :  {
+ 		_routeModel : null,
+
+ 		_stations : null,
+
+ 		_polylines : null,
+
+ 		_color : null,
+
+ 		getAllStations : function(){
+ 			return this._stations;
+ 		},
+
+ 		getAllPolylines : function(){
+ 			return this._polylines;
+ 		},
+
+ 		getColor : function(){
+ 			return this._color;
+ 		}
+
+
+
+ 	}
+ });
+
+
+/**
+ * @overview Class {@link cityways.widget.map.Path}.
+ * @see Project url: {@link http://ways.in.ua}.
+ * @copyright 
+ * CityWays-lib is copyright (c) 2012, {@link http://premiumgis.com|PremiumGIS} Inc. All Rights Reserved. 
+ * CityWays-lib is free software, licensed under the MIT license. 
+ * See the file {@link http://api.ways.in.ua/license.txt|license.txt} in this distribution for more details.
+ * @author Roman Shafeyev <rs@premiumgis.com>
+ * 
+ * @requires cityways/maps.js
+ * @requires cityways/Class.js
+ */
+
+
+/**
+ * [Marker description]
+ * @class cityways.widget.map.Path
+ * @param {cityways.model.PathModel} pathModel Опции маркера
+ * 
+ */
+ cityways.widget.map.Path = cityways.Class({
+ 	constructor : function(pathModel) {
+ 		var self = this;
+ 		self._pathModel = pathModel;
+ 		self._stations = [];
+ 		self._polylines = [];
+
+ 		for(var i=0;i < pathModel.routes.length; i++){
+ 			var roadsData = pathModel.routes[i].roads;
+ 			var stationsData =  pathModel.routes[i].stations;
+ 			for(var j=0;j < pathModel.routes[i].stations.length; j++){
+ 				var stData = pathModel.routes[i].stations[j];
+ 				var st = new cityways.widget.map.Station();
+ 				st.setLocation(stData.location.lat, stData.location.lon);
+ 				st.setIcon(cityways.options.getResourcePath() + "images/station.png");
+ 				st.setTitle(stData.name);
+ 				self._stations.push(st);
+
+ 			}
+ 			for(var j=0;j < pathModel.routes[i].roads.length; j++){
+ 				var line = new cityways.maps.Polyline(
+ 					{	points : pathModel.routes[i].roads[j],
+ 						color : "blue",
+ 						opacity : 0.5,
+ 						weight : 6
+ 					});
+ 				self._polylines.push(line);
+ 			}
+ 		}
+ 	},
+
+ 	members :  {
+ 		_pathModel : null,
+
+ 		_stations : null,
+
+ 		_polylines : null,
+
+ 		getAllStations : function(){
+ 			return this._stations;
+ 		},
+
+ 		getAllPolylines : function(){
+ 			return this._polylines;
+ 		}
+
+
+
+ 	}
+ });
+
+
