@@ -1,5 +1,5 @@
 /**
- * @overview Interface {@link cityways.maps.IMap}.
+ * @overview Interface {@link cityways.type.IDictionary}.
  * @see Project url: {@link http://ways.in.ua}.
  * @copyright 
  * CityWays-lib is copyright (c) 2012, {@link http://premiumgis.com|PremiumGIS} Inc. All Rights Reserved. 
@@ -14,7 +14,7 @@
  */
 
 /**
- * @class cityways.maps.IMap
+ * @class cityways.type.IDictionary
  * @classdesc Абстрактный класс 
  */
  function (){
@@ -26,7 +26,7 @@
 	/**
 	 * Добавляет пару ключ-значение в словарь
 	 * @abstract
-	 * @memberOf cityways.type.Dictionary.prototype
+	 * @memberOf cityways.type.IDictionary.prototype
 	 * @param  {Object|String} key   Ключ
 	 * @param  {Object} value        Значени
 	 * @return {bool}       Возвращает true, если добавление пары ключ-значение прошло успешно.
@@ -36,7 +36,7 @@
 	/**
 	 * Удаляет пару ключ-значение из словаря
 	 * @abstract
-	 * @memberOf cityways.type.Dictionary.prototype
+	 * @memberOf cityways.type.IDictionary.prototype
 	 * @param  {Object|String} key Ключ
 	 */
 	pull : function(key){},
@@ -44,7 +44,7 @@
 	/**
 	 * Возвращает значение по ключ. В случае, если нет значения, соотв. данному ключу, будет возвращен null.
 	 * @abstract
-	 * @memberOf cityways.type.Dictionary.prototype
+	 * @memberOf cityways.type.IDictionary.prototype
 	 * @param  {Object|String} key Ключ
 	 * @return {Object}     Значение
 	 */
@@ -53,7 +53,7 @@
 	/**
 	 * Количество пар ключ-значение в словаре
 	 * @abstract
-	 * @memberOf cityways.type.Dictionary.prototype
+	 * @memberOf cityways.type.IDictionary.prototype
 	 * @return {Number} Возвращает Количество пар ключ-значение в словаре
 	 */
 	size : function(){},

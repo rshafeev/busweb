@@ -13,7 +13,7 @@
 
 /**
  * @class cityways.maps.GoogleMapProvider
- * @extends {cityways.maps.IMap}
+ * @extends {cityways.maps.IMapProvider}
  * @classdesc Размещает  карту Google Maps(v3) внутри заданного HTML контейнера, которым обычно является div элемент.
  * @param  {String} div     ID dom элемента, в который будет помещена карта
  * @param  {cityways.Map} map

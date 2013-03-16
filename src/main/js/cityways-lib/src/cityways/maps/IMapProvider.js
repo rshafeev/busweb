@@ -1,5 +1,5 @@
 /**
- * @overview Interface {@link cityways.type.IMapProvider}.
+ * @overview Interface {@link cityways.maps.IMapProvider}.
  * @see Project url: {@link http://ways.in.ua}.
  * @copyright 
  * CityWays-lib is copyright (c) 2012, {@link http://premiumgis.com|PremiumGIS} Inc. All Rights Reserved. 
@@ -14,7 +14,7 @@
  */
 
 /**
- * @class cityways.type.IMapProvider
+ * @class cityways.maps.IMapProvider
  * @classdesc Абстрактный класс 
  */
  function (){
@@ -25,7 +25,7 @@
 
      /**
      * Событие вызывается, когда произошло нажатие клавиши мыши на карте 
-     * @event cityways.maps.IMap#ON_CLICK
+     * @event cityways.maps.IMapProvider#ON_CLICK
      * @property {Number} lat Широта  геогр. точки
      * @property {Number} lon Долгота геогр. точки
      */
@@ -33,13 +33,13 @@
 
     /**
      * Событие вызывается, когда инициализации карты закончено.
-     * @event cityways.maps.IMap#ON_LOADED
+     * @event cityways.maps.IMapProvider#ON_LOADED
      */
      ON_LOADED : true,
 
      /**
       * Событие вызывается, когда был изменен размер карты.
-      * @event  cityways.maps.IMap#ON_RESIZE
+      * @event  cityways.maps.IMapProvider#ON_RESIZE
       * @property {Number} wigth  Ширина карты
       * @property {Number} height Высота карты
       */
@@ -52,7 +52,7 @@
 	 * Возвращает нативный объект карты в зависимости от выбранного провайдера. Например, в случае провайдера "google", 
 	 * функция вернет объект типа {google.maps.Map}
 	 * @abstract
-	 * @memberOf cityways.maps.IMap.prototype
+	 * @memberOf cityways.maps.IMapProvider.prototype
 	 * @return {Object} Нативный объект карты
 	 */
 	 getNativeMapObj : function(){},
@@ -60,7 +60,7 @@
 	 /**
 	  * Изменяет размер html контейнера, в котором размещена карта.
 	  * @abstract
-	  * @memberOf cityways.maps.IMap.prototype
+	  * @memberOf cityways.maps.IMapProvider.prototype
 	  * @param  {Number} w Ширина, пикс
 	  * @param  {Number} h Высота, пикс
 	  */
@@ -69,7 +69,7 @@
 	 /**
 	  * Изменяет высоту html контейнера, в котором размещена карта
 	  * @abstract
-	  * @memberOf cityways.maps.IMap.prototype
+	  * @memberOf cityways.maps.IMapProvider.prototype
 	  * @param {Number} h Высота, пикс
 	  */
 	  setHeight : function(h){},
@@ -77,7 +77,7 @@
 	 /**
 	  * Изменяет ширину html контейнера, в котором размещена карта
 	  * @abstract
-	  * @memberOf cityways.maps.IMap.prototype
+	  * @memberOf cityways.maps.IMapProvider.prototype
 	  * @param {Number} w Ширина, пикс
 	  */
 	  setWidth : function(w){},
@@ -85,7 +85,7 @@
 	/**
 	 * Добавляет на карту маркер
 	 * @abstract
-	 * @memberOf cityways.maps.IMap.prototype
+	 * @memberOf cityways.maps.IMapProvider.prototype
 	 * @param {cityways.maps.Marker} marker Маркер
 	 */
 	 addMarker : function(marker){},
@@ -93,7 +93,7 @@
   	/**
      * Удаляет с карты маркер
      * @abstract
-     * @memberOf cityways.maps.IMap.prototype
+     * @memberOf cityways.maps.IMapProvider.prototype
      * @param {cityways.maps.Marker} marker Маркер
      */
      removeMarker : function(marker){},
@@ -101,7 +101,7 @@
   	/**
      * Добавляет на карту полилинию
      * @abstract
-     * @memberOf cityways.maps.IMap.prototype
+     * @memberOf cityways.maps.IMapProvider.prototype
      * @param {cityways.maps.Polyline} polyline 
      */
      addPolyline : function(polyline){},
@@ -109,7 +109,7 @@
   	/**
      * Удаляет с карты полилинию
      * @abstract
-     * @memberOf cityways.maps.IMap.prototype
+     * @memberOf cityways.maps.IMapProvider.prototype
      * @param {cityways.maps.Polyline} polyline
      */
      removePolyline : function(polyline){},
@@ -117,7 +117,7 @@
   	/**
      * Удаляет с карты маркер
      * @abstract
-     * @memberOf cityways.maps.IMap.prototype
+     * @memberOf cityways.maps.IMapProvider.prototype
      * @param {cityways.maps.Marker} marker Маркер
      */
      destroy : function(marker){}

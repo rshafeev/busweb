@@ -93,7 +93,7 @@
                 return;
             }
             catch(e){
-                cityways.logger.error("Catch error", e, data);
+                cityways.logger.error("Catch error", e);
                 callback({  error : e });
                 return;
             }

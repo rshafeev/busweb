@@ -37,7 +37,7 @@ public class PathsController extends BaseController {
 			throw new Exception("Options error");
 		// get ways
 		long findTime = System.currentTimeMillis();
-		Collection<Path_t> ways = db.getShortestPaths(options);
+		Collection<Path_t> ways = super.getDB().Paths().getShortestPaths(options);
 		log.debug("Ways elems: " + ways.size());
 		findTime = System.currentTimeMillis() - findTime;
 		PathsModel model = PathsModelConverter.makePathsModel(ways);
@@ -59,7 +59,7 @@ public class PathsController extends BaseController {
 
 			RoutePart[] parts = pathOptions.getRouteParts();
 			for (int i = 0; i < parts.length; i++) {
-				Collection<RouteGeoData> routeData = db.getGeoDataByRoutePart(
+				Collection<RouteGeoData> routeData = super.getDB().Routes().getGeoDataByRoutePart(
 						parts[i], lang_id);
 				GeomRouteModel routeModel = new GeomRouteModel(parts[i],
 						routeData);

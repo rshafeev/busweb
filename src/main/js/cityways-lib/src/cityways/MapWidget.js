@@ -46,7 +46,6 @@
  	 * [_paths description]
  	 * @private
  	 * @memberOf cityways.MapWidget.prototype
- 	 * @property 
  	 * @type {cityways.type.ObjectDictionary<Object,Object>}
  	 */   
  	 _paths : null,

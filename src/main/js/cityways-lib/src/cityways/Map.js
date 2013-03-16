@@ -12,7 +12,7 @@
 
 /**
  * @class cityways.Map
- * @extends {cityways.maps.IMap}
+ * @extends {cityways.maps.IMapProvider}
  * @classdesc Размещает карту внутри заданного HTML контейнера, которым обычно является div элемент.
  * Так как данный класс является абстрактным, то в зависимости от типа карты(cityways.maps.GOOGLE_PROVIDER), 
  * класс Map расширяет в конструкторе свою функциональность за счет наследников ({@link cityways.maps.GoogleMap}).

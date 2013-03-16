@@ -102,7 +102,7 @@ public class HomeController extends BaseController {
 		try {
 			log.debug("city_key: " + city_key);
 			Locale locale = LocaleContextHolder.getLocale();
-			CitiesModel citiesModel = prepareCitiesModel(db.getAllCities(),
+			CitiesModel citiesModel = prepareCitiesModel(super.getDB().Cities().getAllCities(),
 					city_key);
 			if (citiesModel == null || citiesModel.getSelectedCity() == null) {
 				return new ModelAndView("redirect:/error");
@@ -111,7 +111,7 @@ public class HomeController extends BaseController {
 					locale, NavigationModel.pages_enum.c_Home);
 			
 			Collection<RouteTypeModel> routeTypes = new ArrayList<RouteTypeModel>();
-			for(String routeType :db.getRouteTypesForCity(citiesModel
+			for(String routeType :super.getDB().Cities().getRouteTypesForCity(citiesModel
 					.getSelectedCity().getId()) ){
 				routeTypes.add(new RouteTypeModel(routeType));
 			}

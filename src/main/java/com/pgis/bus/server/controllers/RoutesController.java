@@ -73,13 +73,13 @@ public class RoutesController extends BaseController {
 	public String get(@PathVariable String route_id) {
 		try {
 			log.debug("getRoute");
-			
+
 			Locale locale = LocaleContextHolder.getLocale();
 			String lang_id = LanguageHelper.getDataBaseLanguage(locale);
-			
+
 			LoadRouteRelationOptions loadRouteRelationOptions = new LoadRouteRelationOptions();
 			loadRouteRelationOptions.setLoadStationsData(true);
-			
+
 			LoadDirectRouteOptions loadDirectRouteOptions = new LoadDirectRouteOptions();
 			loadDirectRouteOptions.setLoadScheduleData(false);
 			loadDirectRouteOptions
@@ -87,16 +87,17 @@ public class RoutesController extends BaseController {
 			LoadRouteOptions opts = new LoadRouteOptions();
 			opts.setLoadRouteNamesData(true);
 			opts.setDirectRouteOptions(loadDirectRouteOptions);
-			
-			Route route = db.getRoute(Integer.valueOf(route_id), opts);
-			RouteModel model = new RouteModel(route,locale);
+
+			Route route = super.getDB().Routes()
+					.getRoute(Integer.valueOf(route_id), opts);
+			RouteModel model = new RouteModel(route, locale);
 			return (new Gson()).toJson(model);
 		} catch (Exception e) {
-			log.debug("error",e);
+			log.debug("error", e);
 			return (new Gson()).toJson(new ErrorModel(e));
 		}
 	}
-	
+
 	@RequestMapping(value = "")
 	public ModelAndView routes(
 			@CookieValue(value = "city_key", defaultValue = "") String city_key) {
@@ -113,8 +114,8 @@ public class RoutesController extends BaseController {
 		try {
 			// Создали модель, которая хранит в себе список городов и
 			// выбранный город(текущий)
-			CitiesModel citiesModel = HomeController.prepareCitiesModel(
-					db.getAllCities(), city_key);
+			CitiesModel citiesModel = HomeController.prepareCitiesModel(super
+					.getDB().Cities().getAllCities(), city_key);
 
 			// Если city_key нет в БД, то переходим на страницу "Ошибка"
 			if (citiesModel == null || citiesModel.getSelectedCity() == null) {
@@ -154,7 +155,8 @@ public class RoutesController extends BaseController {
 
 		Collection<RoutesModel> models = null;
 		try {
-			Collection<String> types = db.getRouteTypesForCity(cityID);
+			Collection<String> types = super.getDB().Cities()
+					.getRouteTypesForCity(cityID);
 			String lang_id = LanguageHelper.getDataBaseLanguage(locale);
 
 			models = new ArrayList<RoutesModel>();
@@ -162,8 +164,8 @@ public class RoutesController extends BaseController {
 				String routeTypeName = messageSource.getMessage("basic."
 						+ routeTypeID, null, locale);
 
-				Collection<Route> routes = db.getRoutes(routeTypeID, cityID,
-						lang_id);
+				Collection<Route> routes = super.getDB().Routes()
+						.getRoutes(routeTypeID, cityID, lang_id);
 				log.debug(Integer.toString(routes.size()));
 				RoutesModel routesModel = new RoutesModel();
 
