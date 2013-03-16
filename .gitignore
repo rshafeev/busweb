@@ -12,7 +12,6 @@
 .directory
 bin*/
 target*/
-build/
 bin/
 target/
 WebContent/WEB-INF/classes
