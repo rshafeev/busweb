@@ -33,29 +33,6 @@
 		<p><%= locale("time") + time%></p>
 	</div>
 </div>
-<div id="res_text" style="width: 322px; margin-left: 10px; white-space: normal; "> 
-<div id="print">
-				<a href="#"><img src="media/cityways/themes/default/images/print.png"
-					title="Print"></a>
-
-			</div>
-			<div id="clipboard">
-				<a href="#"><img src="media/cityways/themes/default/images/chain.png"
-					title="Clipboard"></a>
-			</div>
-				<p><%= locale("byFootToStation") + footTo%></p>
-				<p><%= locale("timeFoot") %></p>
-				<p><%= locale("distanceFoot")  %></p>
-				<p><%= locale("cost")  %></p>
-				<p><%= locale("interval")  %></p>
-				<p><%= locale("time") %></p>
-				<p><%= locale("distanceTransport") %></p>
-				<p><%= locale("getIn")  %></p>
-				<p><%= locale("getOut") %></p>
-				<p><%= locale("transfer") %></p>
-				<p><%= locale("transferFrom") %></p>
-				<p><%= locale("transferTo") %></p>
-</div>
 ]]>
 </template>
 <template id="template-main-pathsPanelTransition"> <![CDATA[
@@ -94,9 +71,6 @@
 	</div>
 	]]>
 </template>
-	
-
-	
 <template id="template-main-product"><![CDATA[
 	<div>
 	</div>
