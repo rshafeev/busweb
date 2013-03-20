@@ -22,6 +22,6 @@ cityways.lang.en = {
 	'time.minute': "minute",
 	'time.minutes10': "minutes",
 	'time.minutes': "minutes",
-	'time.minutes_ru': "minutes"
-    
+	'time.minutes_ru': "minutes",
+    'foot_path': "Go by foot to station"
 };

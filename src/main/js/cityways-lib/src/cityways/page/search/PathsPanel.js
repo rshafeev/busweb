@@ -116,6 +116,8 @@
     */
     _makePathsPanelContent : function(data, templates) {
     	var page = cityways.page.Current;
+      var t_footTo = templates["template-main-productFootInfoTo"];
+      var t_footFrom = templates["template-main-productFootInfoFrom"];
     	var t_header = templates["template-main-pathsPanelHeader"];
     	var t_info = templates["template-main-pathsPanelInfo"];
       var t_route = templates["template-main-pathsPanelRoute"];
@@ -123,7 +125,11 @@
       var paths = data.paths;
       var htmlBody = "";
       for (var i = 0; i <paths.length; i++) {
-
+       
+          var routeTo = paths[i].routes[0];
+           for(var j=0;j < paths[i].routes.length; j++ ){
+          var routeFrom = paths[i].routes[j];
+}
         var path = paths[i];
         var headerParams = {
          index : i + 1,
@@ -135,6 +141,20 @@
          host : cityways.options.ServerHost
        };
        var pathInfoContent = "";
+ var footParamsTo = {
+         locale : cityways.lang.translate,
+         route_start   : routeTo.start,
+          time: path.getWalkingTime(),
+          host : cityways.options.ServerHost
+       };    
+pathInfoContent = pathInfoContent + t_footTo(footParamsTo);
+                 var footParamsFrom = {
+         locale : cityways.lang.translate,
+         route_finish  : routeFrom.finish,
+          time: path.getWalkingTime(),
+          host : cityways.options.ServerHost
+       };
+       pathInfoContent = pathInfoContent + t_footFrom(footParamsFrom);
        for(var j=0;j < paths[i].routes.length; j++ ){
         var route = paths[i].routes[j];
         var routeParams = {
@@ -149,10 +169,11 @@
           route_freq    : route.finish,
           route_move    : cityways.helper.time.secsToLocaleString(route.moveTimeSecs),    
           route_wait    : cityways.helper.time.secsToLocaleString(route.wait),
-          host : cityways.options.ServerHeeost         
+          host : cityways.options.ServerHost         
         };   
 
-        pathInfoContent = pathInfoContent + t_route(routeParams);
+     
+      pathInfoContent = pathInfoContent + t_route(routeParams);
         if(j < paths[i].routes.length - 1){
           var trans = paths[i].transitions[j];
           var move_time = "";
@@ -166,14 +187,17 @@
             distance    : parseInt(trans.distance),
             move_time   : move_time
           };
-          pathInfoContent = pathInfoContent + t_transition(transParams);
+         pathInfoContent = pathInfoContent + t_transition(transParams);
         }
       }
       var infoParams = {
         index : i +1,
         content : pathInfoContent
       };
-      htmlBody = htmlBody + t_header(headerParams) + t_info(infoParams);
+
+    
+      htmlBody = htmlBody + t_header(headerParams) + t_info(infoParams);//выводит шапку
+
     }
     this.setContent(htmlBody);
     if(paths.length >0){
@@ -197,6 +221,8 @@
       }
       self._currentPathsInfo = e;
       cityways.template.html.getTemplates([
+        "template-main-productFootInfoTo",
+        "template-main-productFootInfoFrom",
         "template-main-pathsPanelHeader",
         "template-main-pathsPanelInfo",
         "template-main-pathsPanelTransition",

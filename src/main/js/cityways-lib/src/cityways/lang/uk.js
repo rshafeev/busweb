@@ -22,6 +22,6 @@ cityways.lang.uk = {
 	'time.minute' : "хвилина",
 	'time.minutes10' : "хвилин",
 	'time.minutes' : "хвилини",
-	'time.minutes_ru' : "хвилин"
-
+	'time.minutes_ru' : "хвилин",
+	'foot_path': "Пешком до станции"
 };

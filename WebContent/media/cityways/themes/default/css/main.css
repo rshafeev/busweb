@@ -23,3 +23,26 @@
             line-height : 35px;
             display : inline-block;
 }
+
+.line_height
+{
+      /*background: green;*/
+}
+
+.path_routes
+{
+      line-height: 15px;
+      margin-left: 15px;
+      font-family: Arial, Verdana;
+      font-size: 12px;
+
+}
+.line_dots
+{
+      margin-top: 10px;
+      padding-bottom: 1px;
+background-color: #9b9b9b;
+border-bottom:1px solid #F4F4F4;
+
+      width: 340px;
+}

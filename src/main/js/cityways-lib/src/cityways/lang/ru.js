@@ -33,7 +33,7 @@
  	'title.trolley_exclude' : "",
  	'title.bus_exclude' : "Не использовать автобус",
  	'title.auto_exclude' : "",
-
+ 	'foot_path': "Пешком до станции",
  	'message.warn' : "Предупреждение",
  	'message.warn.destinations_none' : "Пожалуйста, установите на карте начальную и конечную точки передвижения."
  };
