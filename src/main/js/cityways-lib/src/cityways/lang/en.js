@@ -23,5 +23,17 @@ cityways.lang.en = {
 	'time.minutes10': "minutes",
 	'time.minutes': "minutes",
 	'time.minutes_ru': "minutes",
-    'foot_path': "Go by foot to station"
+    'foot_path': "Go by foot to station",
+    'Number': "Route number",
+    'Start': "Get on at station",
+    'Finish' : "Alight at station",
+    'Cost': "Cost",
+    'Move_time': "Trip time",
+    'Wait_time': "Service interval",
+    'Distance': "Distance",
+    'from': "From station",
+    'to': "To station",
+    'move_time': "Trip time",
+    'distance': "Distance",
+    'transfer': "Transfer"
 };

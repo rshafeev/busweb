@@ -176,6 +176,7 @@ pathInfoContent = pathInfoContent + t_footTo(footParamsTo);
       pathInfoContent = pathInfoContent + t_route(routeParams);
         if(j < paths[i].routes.length - 1){
           var trans = paths[i].transitions[j];
+            //var route = paths[i].routes[j];
           var move_time = "";
           if(trans.moveTimeSecs > 60){
             move_time = cityways.helper.time.secsToLocaleString(trans.moveTimeSecs)
@@ -184,6 +185,8 @@ pathInfoContent = pathInfoContent + t_footTo(footParamsTo);
             locale      : cityways.lang.translate,
             route_from  : paths[i].getRouteByID(trans.fromRouteID).name,
             route_to    : paths[i].getRouteByID(trans.toRouteID).name,
+            resourcePath : cityways.options.getResourcePath(),
+             //route_type    : route.type,
             distance    : parseInt(trans.distance),
             move_time   : move_time
           };

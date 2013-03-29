@@ -37,6 +37,8 @@
 </template>
 <template id="template-main-pathsPanelTransition"> <![CDATA[
 	<div class="path_routes">
+		<p><%= locale("transfer") %> : </p>
+		<p><%= route_from %><img src="<%=resourcePath%>images/arrow_refresh.png"/><%= route_to %></p>
 		<p><%= locale("from") %> : <%= route_from %> </p>
 		<p><%= locale("to") %> : <%= route_to %> </p>
         <p><%= locale("distance") %> : <%= distance %> <%=locale("m.")%> </p>

@@ -415,9 +415,22 @@ cityways.lang = {
  	'title.trolley_exclude' : "",
  	'title.bus_exclude' : "Не использовать автобус",
  	'title.auto_exclude' : "",
-
+ 	'foot_path': "Пешком до станции",
  	'message.warn' : "Предупреждение",
- 	'message.warn.destinations_none' : "Пожалуйста, установите на карте начальную и конечную точки передвижения."
+ 	'message.warn.destinations_none' : "Пожалуйста, установите на карте начальную и конечную точки передвижения.",
+ 	 'Number': "Номер маршрута",
+    'Start': "Садиться на остановке",
+    'Finish' : "Выходить на остановке",
+    'Cost': "Стоимость",
+    'Move_time': "В пути",
+    'Wait_time': "Интервал движения",
+    'Distance': "Расстояние",
+    'from': "С остановки",
+    'to': "На остановку",
+    'move_time': "Время в пути",
+    'distance': "Расстояние",
+    'transfer': "Пересадка"
+
  };
 
 /**
@@ -445,7 +458,19 @@ cityways.lang.en = {
 	'time.minutes10': "minutes",
 	'time.minutes': "minutes",
 	'time.minutes_ru': "minutes",
-    'foot_path': "Go by foot to station"
+    'foot_path': "Go by foot to station",
+    'Number': "Route number",
+    'Start': "Get on at station",
+    'Finish' : "Alight at station",
+    'Cost': "Cost",
+    'Move_time': "Trip time",
+    'Wait_time': "Service interval",
+    'Distance': "Distance",
+    'from': "From station",
+    'to': "To station",
+    'move_time': "Trip time",
+    'distance': "Distance",
+    'transfer': "Transfer"
 };
 
 /**
@@ -473,7 +498,18 @@ cityways.lang.uk = {
 	'time.minutes10' : "хвилин",
 	'time.minutes' : "хвилини",
 	'time.minutes_ru' : "хвилин",
-	'foot_path': "Пешком до станции"
+	'foot_path': "Пешком до станции",
+	'Number': "Номер маршрута",
+    'Start': "Садиться на остановке",
+    'Finish' : "Выходить на остановке",
+    'Cost': "Стоимость",
+    'Move_time': "В пути",
+    'Wait_time': "Интервал движения",
+    'Distance': "Расстояние",
+    'from': "С остановки",
+    'to': "На остановку",
+    'move_time': "Время в пути",
+    'distance': "Расстояние"
 };
 
 /**
@@ -2495,6 +2531,7 @@ pathInfoContent = pathInfoContent + t_footTo(footParamsTo);
       pathInfoContent = pathInfoContent + t_route(routeParams);
         if(j < paths[i].routes.length - 1){
           var trans = paths[i].transitions[j];
+            //var route = paths[i].routes[j];
           var move_time = "";
           if(trans.moveTimeSecs > 60){
             move_time = cityways.helper.time.secsToLocaleString(trans.moveTimeSecs)
@@ -2503,6 +2540,8 @@ pathInfoContent = pathInfoContent + t_footTo(footParamsTo);
             locale      : cityways.lang.translate,
             route_from  : paths[i].getRouteByID(trans.fromRouteID).name,
             route_to    : paths[i].getRouteByID(trans.toRouteID).name,
+            resourcePath : cityways.options.getResourcePath(),
+             //route_type    : route.type,
             distance    : parseInt(trans.distance),
             move_time   : move_time
           };
