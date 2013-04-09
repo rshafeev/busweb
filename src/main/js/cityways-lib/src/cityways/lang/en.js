@@ -35,5 +35,7 @@ cityways.lang.en = {
     'to': "To station",
     'move_time': "Trip time",
     'distance': "Distance",
-    'transfer': "Transfer"
+    'transfer': "Transfer",
+    'km': "km",
+    'm': "m"
 };

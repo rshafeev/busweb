@@ -461,7 +461,7 @@
     margin-top: 7px;
     margin-bottom:5px;
     border-radius: 5px;
-    text-align: justify;
+    text-align: left;
    box-shadow: 0 0 6px rgba(0,0,0,0.5);
     background-image: linear-gradient(bottom,rgb(186,186,186) 17%,rgb(224,224,224) 69%);
     background-image: -o-linear-gradient(bottom,rgb(186,186,186) 17%,rgb(224,224,224) 69%);
@@ -509,11 +509,16 @@
     color: #434B4D;
     padding: 3px;
     line-height: 25px;
-    white-space: nowrap;
-  /*  text-align: justify;*/
+    /*white-space: nowrap;*/
+    text-align: justify;
     font-weight: bold;
 }
 
 #block_bus a:hover {
 color:#5794BF;
+}
+
+#block_bus a:active
+{
+    border-radius: 5px;
 }

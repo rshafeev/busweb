@@ -8,9 +8,10 @@
 .contacts_info h3 {
     font-size: 20px;
     line-height: 22px;
-    color: green;
+   color: rgb(19, 163, 128);
     text-align: center;
-    margin-top: 10px;
+    margin-top: 20px;
+    text-shadow: 1px 1px 1px black;
 }
 
 .contacts_info h6 {

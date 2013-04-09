@@ -1071,7 +1071,7 @@ input {
 
 .selectTabs_first,.selectTabs_second {
 	height: 85px;
-	width: 330px;
+	width: 350px;
 	overflow: hidden;
 }
 
@@ -1198,7 +1198,7 @@ input {
 	border-bottom: 2px solid white;
 	border-right: 2px solid white;
 	border-left: 2px solid white;
-	width: 320px;
+	width: 335px;
 	height: 75px;
 	border-bottom-left-radius: 5px;
 	border-top-left-radius: 5px;

@@ -62,7 +62,7 @@
    </jsp:attribute>
 
 	<jsp:attribute name="right_column">
-     	<p> Text </p>
+     
    </jsp:attribute>
 
 </ui:columns>
