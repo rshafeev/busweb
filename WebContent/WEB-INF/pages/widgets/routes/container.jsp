@@ -8,21 +8,21 @@ com.google.gson.*"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <div id="containerv">
-	<c:forEach var="routesModel" items="${model.getRoutes()}">
+	<c:forEach var="routesList" items="${model.getRoutesLists()}">
 		<div id="block_bus">
 
 			<div id="bus_label">
-				<p style="">${routesModel.getRouteType().getName() }</p>
+				<p style="">${routesList.getRouteType().getName() }</p>
 			</div>
-			<c:forEach var="route" items="${routesModel.getRoutes()}">
+			<c:forEach var="route" items="${routesList.getRoutesList()}">
 				
-				<a id="route_link_${route.getRouteID()}" class="demo-tip-darkgray"
-				onclick = "cityways.page.Events.onSelectRoute(${route.getRouteID()});"
-				title="${route.getName()} 
-<spring:message code="routespanel.routnumber" text="default" />: ${route.getName()}
+				<a id="route_link_${route.getId()}" class="demo-tip-darkgray"
+				onclick = "cityways.page.Events.onSelectRoute(${route.getId()});"
+				title="${route.getNumber()} 
+<spring:message code="routespanel.routnumber" text="default" />: ${route.getNumber()}
 <spring:message code="routespanel.routcost" text="default" />: ${route.getCost()} <spring:message code="routespanel.uah" text="default" /> 
 <spring:message code="routespanel.routinterval" text="default" />: 5 <spring:message code="routespanel.minutes" text="default" />
-<spring:message code="routespanel.routworktime" text="default" />: 6:30 - 23:30">${route.getName()}</a>
+<spring:message code="routespanel.routworktime" text="default" />: 6:30 - 23:30">${route.getNumber()}</a>
 				
 			</c:forEach>
 		</div>

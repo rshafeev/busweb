@@ -1,7 +1,15 @@
 package com.pgis.bus.server.controllers;
 
-import org.slf4j.Logger;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Locale;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -14,55 +22,31 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Locale;
-
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.google.gson.Gson;
-import com.pgis.bus.data.*;
-import com.pgis.bus.data.helpers.LoadDirectRouteOptions;
-import com.pgis.bus.data.helpers.LoadRouteOptions;
-import com.pgis.bus.data.helpers.LoadRouteRelationOptions;
-import com.pgis.bus.data.impl.DataBaseService;
-import com.pgis.bus.data.models.RouteGeoData;
-import com.pgis.bus.data.models.RoutePart;
-import com.pgis.bus.data.orm.City;
-import com.pgis.bus.data.orm.Route;
-import com.pgis.bus.data.repositories.RepositoryException;
+import com.pgis.bus.data.helpers.LocaleHelper;
+import com.pgis.bus.data.service.IDataBaseService;
+import com.pgis.bus.data.service.IDataModelsService;
+import com.pgis.bus.net.models.city.CitiesModel;
+import com.pgis.bus.net.models.route.RouteModel;
+import com.pgis.bus.net.models.route.RouteTypeModel;
+import com.pgis.bus.net.models.route.RoutesListModel;
 import com.pgis.bus.server.AppProperties;
-import com.pgis.bus.server.helpers.LanguageHelper;
 import com.pgis.bus.server.models.NavigationModel;
-import com.pgis.bus.server.models.data.CitiesModel;
-import com.pgis.bus.server.models.data.CityModel;
-import com.pgis.bus.server.models.data.RouteSchemeModel;
-import com.pgis.bus.server.models.data.RouteTypeModel;
-import com.pgis.bus.server.models.page.ArticlesPageModel;
-import com.pgis.bus.server.models.page.MainPageModel;
+import com.pgis.bus.server.models.data.RoutesListExtModel;
 import com.pgis.bus.server.models.page.RoutesPageModel;
-import com.pgis.bus.server.models.request.LoadPathOptions;
 import com.pgis.bus.server.models.response.ErrorModel;
-import com.pgis.bus.server.models.response.GeomPathModel;
-import com.pgis.bus.server.models.response.GeomRouteModel;
-import com.pgis.bus.server.models.response.RouteModel;
-import com.pgis.bus.server.models.response.RoutesModel;
 
 @Controller
 @RequestMapping(value = "routes")
 public class RoutesController extends BaseController {
-	private static final Logger log = LoggerFactory
-			.getLogger(RoutesController.class);
+	private static final Logger log = LoggerFactory.getLogger(RoutesController.class);
 
 	public RoutesController() {
 		super();
 	}
 
-	public RoutesController(IDataBaseService db) {
-		super(db);
+	public RoutesController(IDataBaseService dbService, IDataModelsService modelsService) {
+		super(dbService, modelsService);
 	}
 
 	@Autowired
@@ -70,37 +54,19 @@ public class RoutesController extends BaseController {
 
 	@ResponseBody
 	@RequestMapping(value = "get/{route_id}", method = RequestMethod.GET)
-	public String get(@PathVariable String route_id) {
+	public String get(@PathVariable Integer routeID) {
 		try {
-			log.debug("getRoute");
-
-			Locale locale = LocaleContextHolder.getLocale();
-			String lang_id = LanguageHelper.getDataBaseLanguage(locale);
-
-			LoadRouteRelationOptions loadRouteRelationOptions = new LoadRouteRelationOptions();
-			loadRouteRelationOptions.setLoadStationsData(true);
-
-			LoadDirectRouteOptions loadDirectRouteOptions = new LoadDirectRouteOptions();
-			loadDirectRouteOptions.setLoadScheduleData(false);
-			loadDirectRouteOptions
-					.setLoadRouteRelationOptions(loadRouteRelationOptions);
-			LoadRouteOptions opts = new LoadRouteOptions();
-			opts.setLoadRouteNamesData(true);
-			opts.setDirectRouteOptions(loadDirectRouteOptions);
-
-			Route route = super.getDB().Routes()
-					.getRoute(Integer.valueOf(route_id), opts);
-			RouteModel model = new RouteModel(route, locale);
-			return (new Gson()).toJson(model);
-		} catch (Exception e) {
+			log.debug("get()");
+			RouteModel route = super.getModelsService().Routes().get(routeID);
+			return (new Gson()).toJson(route);
+		} catch (SQLException e) {
 			log.debug("error", e);
 			return (new Gson()).toJson(new ErrorModel(e));
 		}
 	}
 
 	@RequestMapping(value = "")
-	public ModelAndView routes(
-			@CookieValue(value = "city_key", defaultValue = "") String city_key) {
+	public ModelAndView routes(@CookieValue(value = "city_key", defaultValue = "") String city_key) {
 		log.debug("city_key(CookieValue): " + city_key);
 		if (city_key == null || city_key.length() == 0)
 			city_key = AppProperties.DefaultCity;
@@ -109,13 +75,13 @@ public class RoutesController extends BaseController {
 	}
 
 	@RequestMapping(value = "{city_key}")
-	public ModelAndView routesCity(@PathVariable String city_key,
-			HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView routesCity(@PathVariable String city_key, HttpServletRequest request,
+			HttpServletResponse response) {
 		try {
 			// Создали модель, которая хранит в себе список городов и
 			// выбранный город(текущий)
-			CitiesModel citiesModel = HomeController.prepareCitiesModel(super
-					.getDB().Cities().getAllCities(), city_key);
+			CitiesModel citiesModel = HomeController.prepareCitiesModel(super.getDbService().Cities().getAll(),
+					city_key);
 
 			// Если city_key нет в БД, то переходим на страницу "Ошибка"
 			if (citiesModel == null || citiesModel.getSelectedCity() == null) {
@@ -131,66 +97,48 @@ public class RoutesController extends BaseController {
 			Locale locale = LocaleContextHolder.getLocale();
 
 			// Создаем модель навигации
-			NavigationModel navModel = new NavigationModel(messageSource,
-					locale, NavigationModel.pages_enum.c_Routes);
+			NavigationModel navModel = new NavigationModel(messageSource, locale, NavigationModel.pages_enum.c_Routes);
 
-			// Создаем модель маршрутов
-			Collection<RoutesModel> routesModel = prepareRoutesModels(
-					citiesModel.getSelectedCity().getId(), locale);
+			//
+			int cityID = citiesModel.getSelectedCity().getId();
+			Collection<RouteTypeModel> routeTypes = prepareRouteTypesModel(cityID, locale);
+			// Создаем модель данных
 
 			RoutesPageModel model = new RoutesPageModel(navModel);
-			model.setRoutes(routesModel);
+			model.setRoutesLists(prepareRoutesListModel(cityID, routeTypes));
 			model.setCitiesModel(citiesModel);
 			model.setLanguage(locale);
 			return new ModelAndView("routes", "model", model);
 
-		} catch (RepositoryException e) {
+		} catch (SQLException e) {
 			log.debug("Error:", e);
 			return null;
 		}
 	}
 
-	private Collection<RoutesModel> prepareRoutesModels(int cityID,
-			Locale locale) {
-
-		Collection<RoutesModel> models = null;
-		try {
-			Collection<String> types = super.getDB().Cities()
-					.getRouteTypesForCity(cityID);
-			String lang_id = LanguageHelper.getDataBaseLanguage(locale);
-
-			models = new ArrayList<RoutesModel>();
-			for (String routeTypeID : types) {
-				String routeTypeName = messageSource.getMessage("basic."
-						+ routeTypeID, null, locale);
-
-				Collection<Route> routes = super.getDB().Routes()
-						.getRoutes(routeTypeID, cityID, lang_id);
-				log.debug(Integer.toString(routes.size()));
-				RoutesModel routesModel = new RoutesModel();
-
-				Collection<RouteSchemeModel> routeSchemes = new ArrayList<RouteSchemeModel>();
-				for (Route r : routes) {
-
-					RouteSchemeModel routeSchemeModel = new RouteSchemeModel();
-					routeSchemeModel.setName(r.getFullName(lang_id));
-					routeSchemeModel.setRouteID(r.getId());
-					routeSchemeModel.setCost(r.getCost());
-					routeSchemes.add(routeSchemeModel);
-					log.debug(routeSchemeModel.toString());
-				}
-
-				routesModel.setRoutes(routeSchemes);
-				routesModel.setRouteType(new RouteTypeModel(routeTypeID));
-				models.add(routesModel);
-			}
-
-		} catch (RepositoryException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	private Collection<RouteTypeModel> prepareRouteTypesModel(int cityID, Locale locale) throws SQLException {
+		Collection<RouteTypeModel> routeTypes = super.getModelsService().Cities().getRouteTypesByCity(cityID);
+		for (RouteTypeModel routeType : routeTypes) {
+			String routeTypeName = messageSource.getMessage("basic." + routeType.getId(), null, locale);
+			routeType.setName(routeTypeName);
 		}
+		return routeTypes;
+	}
 
-		return models;
+	private Collection<RoutesListExtModel> prepareRoutesListModel(int cityID, Collection<RouteTypeModel> types)
+			throws SQLException {
+		// Получаем текущий язык (локаль)
+		Locale locale = LocaleContextHolder.getLocale();
+		String langID = LocaleHelper.getDataBaseLanguage(locale);
+		Collection<RoutesListExtModel> model = new ArrayList<RoutesListExtModel>();
+		for (RouteTypeModel routeType : types) {
+			RoutesListModel dbRoutesList = super.getModelsService().Routes().getRoutesList(cityID, routeType.getDbId());
+			RoutesListExtModel routesList = new RoutesListExtModel();
+			routesList.setRoutesList(locale, messageSource, dbRoutesList);
+			routesList.setRouteType(routeType);
+			model.add(routesList);
+		}
+		return model;
 	}
 
 }

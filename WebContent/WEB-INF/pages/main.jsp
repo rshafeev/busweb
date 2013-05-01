@@ -15,22 +15,22 @@
 	<script src="${myContext}/media/js/libs/selectbox.js"></script>
 	<script src="${myContext}/media/js/libs/jquery.poshytip.js"></script>
 	<script src="${myContext}/media/cityways/main_page.js"></script>
-	
+
 	<script type="text/javascript">
-			var currentCity = $.parseJSON('${model.getCitiesModel().getJSONSelectedCity()}');
-			var options = {
-					serverHost : "${myContext}",
-					routeTypes : $.parseJSON('${model.getJsonRouteTypes()}'),
-					resourceURI : "${myContext}/media/cityways/",
-					lang  : "${model.getLanguage()}"
-				};
-			cityways.logger.info("options",options);
-			cityways.page.setCurrent( new cityways.page.SearchPage(currentCity,options) );
-			
+		var currentCity = $.parseJSON('${model.JsonSelectedCity()}');
+		var options = {
+			serverHost : "${myContext}",
+			routeTypes : $.parseJSON('${model.JsonRouteTypes()}'),
+			resourceURI : "${myContext}/media/cityways/",
+			lang : "${model.getLanguage()}"
+		};
+		cityways.logger.info("options", options);
+
+		cityways.page.setCurrent(new cityways.page.SearchPage(currentCity, options));
+
 		$(document).ready(function() {
 
-	 	});
-
+		});
 	</script>
 
 	</jsp:attribute>
@@ -104,3 +104,4 @@
 	<jsp:attribute name="foot">
 	</jsp:attribute>
 </ui:base>
+

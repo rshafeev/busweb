@@ -26,7 +26,7 @@ public class BasicServiceListener implements ServletContextListener {
 	}
 
 	public void contextDestroyed(ServletContextEvent sce) {
-		DBConnectionFactory.free();
+		DBConnectionFactory.dispose();
 	}
 
 

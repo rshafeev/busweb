@@ -14,11 +14,6 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.premiumgis</groupId>
-			<artifactId>busWeb.net</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>com.premiumgis</groupId>
 			<artifactId>busWeb.data</artifactId>
 			<version>0.0.1</version>
 		</dependency>
@@ -85,21 +80,23 @@
 		</dependency>
 
 
+		<!-- Logging  -->
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
-			<version>1.0.2</version>
+			<version>1.0.9</version>
 		</dependency>
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-core</artifactId>
-			<version>1.0.2</version>
+			<version>1.0.9</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging</artifactId>
 			<version>1.1.1</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
@@ -215,7 +212,7 @@
 				</execution>
 			</executions>
 		</plugin>
-			<!--
+			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
@@ -237,7 +234,7 @@
 					</execution>
 				</executions>
 			</plugin>
-		-->
+		
 	</plugins>
 
 </build>

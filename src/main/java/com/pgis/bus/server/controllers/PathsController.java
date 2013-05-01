@@ -12,32 +12,39 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
-import com.pgis.bus.data.models.RouteGeoData;
-import com.pgis.bus.data.models.RoutePart;
+import com.pgis.bus.data.helpers.LocaleHelper;
 import com.pgis.bus.data.orm.type.Path_t;
-import com.pgis.bus.net.models.PathsModel;
-import com.pgis.bus.net.request.FindPathsOptions;
+import com.pgis.bus.data.params.FindPathsParams;
+import com.pgis.bus.data.service.IDataBaseService;
+import com.pgis.bus.data.service.IDataModelsService;
+import com.pgis.bus.net.models.LangEnumModel;
+import com.pgis.bus.net.models.path.PathsModel;
+import com.pgis.bus.net.request.FindPathsRequest;
 import com.pgis.bus.net.request.data.RouteTypeDiscount;
-import com.pgis.bus.server.helpers.LanguageHelper;
 import com.pgis.bus.server.helpers.PathsModelConverter;
-import com.pgis.bus.server.models.request.LoadPathOptions;
 import com.pgis.bus.server.models.response.ErrorModel;
 import com.pgis.bus.server.models.response.GeomPathModel;
-import com.pgis.bus.server.models.response.GeomRouteModel;
 
 @Controller
 @RequestMapping(value = "paths/")
 public class PathsController extends BaseController {
-	private static final Logger log = LoggerFactory
-			.getLogger(PathsController.class);
+	private static final Logger log = LoggerFactory.getLogger(PathsController.class);
 
-	private PathsModel findShortestPaths(FindPathsOptions options)
-			throws Exception {
-		if (options == null)
+	public PathsController() {
+		super();
+	}
+
+	public PathsController(IDataBaseService dbService, IDataModelsService modelsService) {
+		super(dbService, modelsService);
+	}
+
+	private PathsModel findShortestPaths(FindPathsRequest request) throws Exception {
+		if (request == null)
 			throw new Exception("Options error");
 		// get ways
 		long findTime = System.currentTimeMillis();
-		Collection<Path_t> ways = super.getDB().Paths().getShortestPaths(options);
+		FindPathsParams params = new FindPathsParams(request);
+		Collection<Path_t> ways = super.getDbService().Paths().findShortestPaths(params);
 		log.debug("Ways elems: " + ways.size());
 		findTime = System.currentTimeMillis() - findTime;
 		PathsModel model = PathsModelConverter.makePathsModel(ways);
@@ -50,22 +57,18 @@ public class PathsController extends BaseController {
 	public String get(String data) {
 		try {
 			log.debug("load_path.json");
-			LoadPathOptions pathOptions = (new Gson()).fromJson(data,
-					LoadPathOptions.class);
+			FindPathsRequest pathsOptions = (new Gson()).fromJson(data, FindPathsRequest.class);
 			Locale locale = LocaleContextHolder.getLocale();
-			String lang_id = LanguageHelper.getDataBaseLanguage(locale);
 
 			GeomPathModel model = new GeomPathModel();
 
-			RoutePart[] parts = pathOptions.getRouteParts();
-			for (int i = 0; i < parts.length; i++) {
-				Collection<RouteGeoData> routeData = super.getDB().Routes().getGeoDataByRoutePart(
-						parts[i], lang_id);
-				GeomRouteModel routeModel = new GeomRouteModel(parts[i],
-						routeData);
-				model.addRouteGeoDataModel(routeModel);
-			}
-			return (new Gson()).toJson(model);
+			/*
+			 * RoutePart[] parts = pathsOptions.getRouteParts(); for (int i = 0; i < parts.length; i++) {
+			 * Collection<RouteGeoData> routeData = super.getDB().Routes().getGeoDataByRoutePart(parts[i], lang_id);
+			 * GeomRouteModel routeModel = new GeomRouteModel(parts[i], routeData);
+			 * model.addRouteGeoDataModel(routeModel); } return (new Gson()).toJson(model);
+			 */
+			return null;
 		} catch (Exception e) {
 			return (new Gson()).toJson(new ErrorModel(e));
 		}
@@ -76,19 +79,18 @@ public class PathsController extends BaseController {
 	public String find(String data) {
 		try {
 			log.debug("find.json");
-			FindPathsOptions options = (new Gson()).fromJson(data,
-					FindPathsOptions.class);
+			FindPathsRequest options = (new Gson()).fromJson(data, FindPathsRequest.class);
 
 			if (options == null)
 				throw new Exception("Options error");
 			for (RouteTypeDiscount routeType : options.getRouteTypes()) {
 				routeType.setRouteType("c_route_" + routeType.getRouteType());
 			}
-			
+
 			// Получим объект с информацией о текущей локали
 			Locale locale = LocaleContextHolder.getLocale();
 			options.setMaxDistance(500);
-			options.setLangID(LanguageHelper.getDataBaseLanguage(locale));
+			options.setLangID(LangEnumModel.valueOf(LocaleHelper.getLangID(locale)));
 			log.debug(options.toString());
 			// get paths
 			PathsModel model = findShortestPaths(options);

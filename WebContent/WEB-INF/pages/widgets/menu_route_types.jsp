@@ -14,9 +14,9 @@
 		</div>
 		<div class="mini_table_transp_temp"></div>
 		<div class="mini_table_transp_list">
-			<c:forEach var="routeType" items="${model.getRouteTypes()}">
-				<a id="cways_menu_route_btn_${routeType.getName()}" href="#"
-					onclick="cityways.page.Events.onRouteTypeClick('${routeType.getName()}');"
+			<c:forEach var="routeType" items="${model.getRouteTypesIds()}">
+				<a id="cways_menu_route_btn_${routeType}" href="#"
+					onclick="cityways.page.Events.onRouteTypeClick('${routeType}');"
 					class="demo-tip-darkgray">
 				</a>
 			</c:forEach>

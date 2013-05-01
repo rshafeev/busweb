@@ -1,19 +1,15 @@
 package com.pgis.bus.server.models.page;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Locale;
 
-import com.google.gson.Gson;
+import com.pgis.bus.net.models.city.CitiesModel;
+import com.pgis.bus.server.helpers.JSONHelper;
 import com.pgis.bus.server.models.NavigationModel;
-import com.pgis.bus.server.models.data.CitiesModel;
-import com.pgis.bus.server.models.data.RouteTypeModel;
 
 public class MainPageModel extends PageModel {
 	private CitiesModel citiesModel;
-	private Collection<RouteTypeModel> routeTypes;
+	private Collection<String> routeTypeIds;
 
-	
 	public MainPageModel(NavigationModel navigationModel) {
 		super(navigationModel);
 	}
@@ -26,24 +22,19 @@ public class MainPageModel extends PageModel {
 		return citiesModel;
 	}
 
-	public String getJsonCitiesModel() {
-		return (new Gson()).toJson(citiesModel);
+	public Collection<String> getRouteTypesIds() {
+		return routeTypeIds;
 	}
 
-	public Collection<RouteTypeModel> getRouteTypes() {
-		return routeTypes;
+	public void setRouteTypes(Collection<String> routeTypeIds) {
+		this.routeTypeIds = routeTypeIds;
 	}
 
-	public String getJsonRouteTypes() {
-		Collection<String> arr = new ArrayList<String>();
-		for (RouteTypeModel rType : routeTypes) {
-			arr.add(rType.getName());
-		}
-		return (new Gson()).toJson(arr);
+	public String JsonSelectedCity() {
+		return JSONHelper.toJson(this.getCitiesModel().getSelectedCity());
 	}
 
-	public void setRouteTypes(Collection<RouteTypeModel> routeTypes) {
-		this.routeTypes = routeTypes;
+	public String JsonRouteTypes() {
+		return JSONHelper.toJson(this.routeTypeIds);
 	}
-
 }

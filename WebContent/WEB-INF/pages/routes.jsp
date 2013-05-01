@@ -15,8 +15,9 @@
 			src="http://underscorejs.ru/underscore.js"></script>
 	<script src="${myContext}/media/cityways/main_page.js"></script>
 	<script type="text/javascript">
-		var options = {
-			currentCity : $.parseJSON('${model.getCitiesModel().getJSONSelectedCity()}'),
+
+	var options = {
+			currentCity : $.parseJSON('${model.JsonSelectedCity()}'),
 			serverHost : "${myContext}",
 			resourceURI : "${myContext}/media/cityways/",
 			lang  : "${model.getLanguage()}"
