@@ -36,15 +36,15 @@
 ]]>
 </template>
 <template id="template-main-pathsPanelTransition"> <![CDATA[
-	<div class="path_routes">
+	<div class="path_routes" style="margin-top:-15px;">
 		<p><%= locale("transfer") %> : </p>
 		<p><%= route_from %><img src="<%=resourcePath%>images/arrow_refresh.png"/><%= route_to %></p>
-		<p><%= locale("from") %> : <%= route_from %> </p>
+		<p><%= locale("from") %> : <%= route_from %></p>
 		<p><%= locale("to") %> : <%= route_to %> </p>
-        <p><%= locale("distance") %> : <%= distance %> <%=locale("m.")%> </p>
-        <% if(move_time != ""){ %>
+		<% if(move_time != ""){ %>
         	<p><%= locale("move_time") %> : <%= move_time %> </p>
         <%} %>
+        <p><%= locale("distance") %> : <%= distance %> <%=locale("m.")%> </p>     
         <div class="line_dots"></div>
 	</div>
 	]]>
@@ -52,16 +52,14 @@
 <template id="template-main-pathsPanelRoute"> <![CDATA[
 	<div class="path_routes">
 	<div id="path_route_<%=route_id%>">
-		<p><%= locale("Number") %> : 
-		    <a href="<%=host%>route/<%=route_id%>" target="_blank">№ <%= route_name %> </a> 
+		<p><a href="<%=host%>route/<%=route_id%>" target="_blank"><%= route_name %> </a> 
 		 </p>
 		<p><%= locale("Start") %> : <%= route_start %> </p>
 		<p><%= locale("Finish") %> : <%= route_finish %> </p>
-		<p><%= locale("Cost") %> : <%= route_cost %> </p>	
+		<p><%= locale("Cost") %> : <%= route_cost %> <%= locale("UAH") %></p>	
         <p><%= locale("Move_time") %> : <%= route_move %> </p>	
         <p><%= locale("Wait_time") %> : <%= route_wait %> </p>	
-        <p><%= locale("Frequency") %> : <%= route_freq %> </p>	
-        <p><%= locale("Distance") %> : <%= route_distance %> <%=locale("km.")%> </p>
+        <p><%= locale("Distance") %> : <%= route_distance %> <%=locale("km")%> </p>
         <div class="line_dots"></div>
         <br>
 	</div>
@@ -77,7 +75,7 @@
 </template>
 <template id="template-main-productFootInfoTo"><![CDATA[
 	<div class="path_routes">
-		<p><%= locale("foot_path") %> <%= route_start %> 100 <%=locale("m.")%> (<%=time%>)</p>
+		<p><%= locale("foot_path") %> "<%= route_start %>"" 100 <%=locale("m")%> (<%=time%>)</p>
 		 <div class="line_dots"></div>
 	</div>
 	]]>
@@ -85,7 +83,7 @@
 
 <template id="template-main-productFootInfoFrom"><![CDATA[
 	<div class="path_routes">
-		<p><%= locale("foot_path") %> : <%= route_finish %> 100 <%=locale("m.")%> (<%=time%>)</p>
+		<p><%= locale("foot_path_from") %> "<%= route_finish %>" 100 <%=locale("m")%> (<%=time%>)</p>
 		<div class="line_dots"></div>
 	</div>
 	]]>

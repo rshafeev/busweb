@@ -51,7 +51,7 @@
 						<jsp:attribute name="right_column">
 						<div class="contacts_info">
 							<h3>
-								<spring:message code="about.contacts" text="default text" />:
+								<spring:message code="about.contacts" text="default text" />
 							</h3>
 							<div class="inf">
 								<div class="img_div">

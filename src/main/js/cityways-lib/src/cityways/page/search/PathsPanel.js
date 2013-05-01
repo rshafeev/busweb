@@ -144,6 +144,7 @@
  var footParamsTo = {
          locale : cityways.lang.translate,
          route_start   : routeTo.start,
+         resourcePath : cityways.options.getResourcePath(),
           time: path.getWalkingTime(),
           host : cityways.options.ServerHost
        };    
@@ -181,15 +182,16 @@ pathInfoContent = pathInfoContent + t_footTo(footParamsTo);
           if(trans.moveTimeSecs > 60){
             move_time = cityways.helper.time.secsToLocaleString(trans.moveTimeSecs)
           }
+          
           var transParams = {
-            locale      : cityways.lang.translate,
-            route_from  : paths[i].getRouteByID(trans.fromRouteID).name,
-            route_to    : paths[i].getRouteByID(trans.toRouteID).name,
-            resourcePath : cityways.options.getResourcePath(),
-             //route_type    : route.type,
-            distance    : parseInt(trans.distance),
-            move_time   : move_time
-          };
+locale : cityways.lang.translate,
+route_from : paths[i].getRouteByID(trans.fromRouteID).name,
+route_to : paths[i].getRouteByID(trans.toRouteID).name,
+resourcePath : cityways.options.getResourcePath(),
+//route_type : route.type,
+distance : parseInt(trans.distance),
+move_time : move_time
+};
          pathInfoContent = pathInfoContent + t_transition(transParams);
         }
       }

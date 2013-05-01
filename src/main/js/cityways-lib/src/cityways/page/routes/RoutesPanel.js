@@ -116,7 +116,7 @@
 	 						route : route
 	 					});
 	 					var linkID = "#route_link_" + routeID.toString();
-	 					$(linkID).css("background",color);
+	 					$(linkID).css({"background": color, "border-radius": "10px"});
 
 	 				});
 	 			}else

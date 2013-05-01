@@ -416,6 +416,7 @@ cityways.lang = {
  	'title.bus_exclude' : "Не использовать автобус",
  	'title.auto_exclude' : "",
  	'foot_path': "Пешком до станции",
+    'foot_path_from': "Пешком от станции",
  	'message.warn' : "Предупреждение",
  	'message.warn.destinations_none' : "Пожалуйста, установите на карте начальную и конечную точки передвижения.",
  	 'Number': "Номер маршрута",
@@ -429,7 +430,9 @@ cityways.lang = {
     'to': "На остановку",
     'move_time': "Время в пути",
     'distance': "Расстояние",
-    'transfer': "Пересадка"
+    'transfer': "Пересадка",
+    'km': "км",
+    'm': "м"
 
  };
 
@@ -470,7 +473,9 @@ cityways.lang.en = {
     'to': "To station",
     'move_time': "Trip time",
     'distance': "Distance",
-    'transfer': "Transfer"
+    'transfer': "Transfer",
+    'km': "km",
+    'm': "m"
 };
 
 /**
@@ -509,7 +514,9 @@ cityways.lang.uk = {
     'from': "С остановки",
     'to': "На остановку",
     'move_time': "Время в пути",
-    'distance': "Расстояние"
+    'distance': "Расстояние",
+    'km': "км",
+      'm': "м"
 };
 
 /**
@@ -2499,6 +2506,7 @@ cityways.page = {
  var footParamsTo = {
          locale : cityways.lang.translate,
          route_start   : routeTo.start,
+         resourcePath : cityways.options.getResourcePath(),
           time: path.getWalkingTime(),
           host : cityways.options.ServerHost
        };    
@@ -2536,15 +2544,16 @@ pathInfoContent = pathInfoContent + t_footTo(footParamsTo);
           if(trans.moveTimeSecs > 60){
             move_time = cityways.helper.time.secsToLocaleString(trans.moveTimeSecs)
           }
+          
           var transParams = {
-            locale      : cityways.lang.translate,
-            route_from  : paths[i].getRouteByID(trans.fromRouteID).name,
-            route_to    : paths[i].getRouteByID(trans.toRouteID).name,
-            resourcePath : cityways.options.getResourcePath(),
-             //route_type    : route.type,
-            distance    : parseInt(trans.distance),
-            move_time   : move_time
-          };
+locale : cityways.lang.translate,
+route_from : paths[i].getRouteByID(trans.fromRouteID).name,
+route_to : paths[i].getRouteByID(trans.toRouteID).name,
+resourcePath : cityways.options.getResourcePath(),
+//route_type : route.type,
+distance : parseInt(trans.distance),
+move_time : move_time
+};
          pathInfoContent = pathInfoContent + t_transition(transParams);
         }
       }
@@ -3246,7 +3255,7 @@ pathInfoContent = pathInfoContent + t_footTo(footParamsTo);
 	 						route : route
 	 					});
 	 					var linkID = "#route_link_" + routeID.toString();
-	 					$(linkID).css("background",color);
+	 					$(linkID).css({"background": color, "border-radius": "10px"});
 
 	 				});
 	 			}else
