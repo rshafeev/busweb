@@ -49,17 +49,18 @@
 	   
 	<servlet-mapping> 
 		<servlet-name>springapp</servlet-name>
-		<url-pattern>/</url-pattern>
+		<url-pattern>/*</url-pattern>
+		<!--
 		<url-pattern>/error</url-pattern>
 		<url-pattern>/home</url-pattern>
-		<url-pattern>/home/**</url-pattern>
+		<url-pattern>/home/*</url-pattern>
 		<url-pattern>/routes</url-pattern>
-		<url-pattern>/routes/**</url-pattern>
+		<url-pattern>/routes/*</url-pattern>
 		<url-pattern>/about</url-pattern>
-		<url-pattern>/about/**</url-pattern>
+		<url-pattern>/about/*</url-pattern>
 		<url-pattern>/help</url-pattern>
-		<url-pattern>/help/**</url-pattern>
-		
+		<url-pattern>/help/*</url-pattern>
+		-->
 	</servlet-mapping> 
 	
 

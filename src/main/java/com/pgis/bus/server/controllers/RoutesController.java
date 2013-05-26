@@ -53,7 +53,7 @@ public class RoutesController extends BaseController {
 	private MessageSource messageSource;
 
 	@ResponseBody
-	@RequestMapping(value = "get/{route_id}", method = RequestMethod.GET)
+	@RequestMapping(value = "get/{routeID}", method = RequestMethod.GET)
 	public String get(@PathVariable Integer routeID) {
 		try {
 			log.debug("get()");

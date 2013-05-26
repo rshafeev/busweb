@@ -7,7 +7,7 @@
 	<artifactId>busWeb</artifactId>
 	<version>0.0.1 </version>
 	<properties>
-		<spring.version>3.1.2.RELEASE</spring.version>
+		<spring.version>3.2.2.RELEASE</spring.version>
 		<tomcat.version>7.0.39</tomcat.version>
 	</properties>
 
@@ -16,16 +16,10 @@
 			<groupId>com.premiumgis</groupId>
 			<artifactId>busWeb.data</artifactId>
 			<version>0.0.1</version>
+			<scope>compile</scope>
 		</dependency>
 		
-
-
-		<!-- Spring 3 dependencies -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-core</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
+    	<!-- Spring 3 dependencies -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
@@ -37,21 +31,6 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${spring.version}</version>
 			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-core</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-config</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-web</artifactId>
-			<version>${spring.version}</version>
 		</dependency>
 
 		<dependency>
