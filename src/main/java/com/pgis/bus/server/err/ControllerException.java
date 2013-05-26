@@ -1,6 +1,6 @@
 package com.pgis.bus.server.err;
 
-import com.pgis.bus.data.repositories.RepositoryException;
+import com.pgis.bus.data.exp.RepositoryException;
 
 public class ControllerException extends Exception {
 

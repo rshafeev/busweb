@@ -1,6 +1,6 @@
 package com.pgis.bus.server.models.response;
 
-import com.pgis.bus.data.repositories.RepositoryException;
+import com.pgis.bus.data.exp.RepositoryException;
 import com.pgis.bus.server.err.ControllerException;
 import com.pgis.bus.server.err.ControllerException.err_enum;
 
