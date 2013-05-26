@@ -18,24 +18,22 @@ import com.pgis.bus.data.DBConnectionFactory;
  */
 
 public class BasicServiceListener implements ServletContextListener {
-	private static final Logger log = LoggerFactory
-			.getLogger(BasicServiceListener.class);
+	private static final Logger log = LoggerFactory.getLogger(BasicServiceListener.class);
 
 	public BasicServiceListener() {
-		
+
 	}
 
 	public void contextDestroyed(ServletContextEvent sce) {
 		DBConnectionFactory.dispose();
 	}
 
-
 	public void contextInitialized(ServletContextEvent event) {
 		ServletContext context = event.getServletContext();
 		AppProperties.DefaultCity = context.getInitParameter("defaultCity");
 		DBConnectionFactory.init("jdbc/busPoolDB");
-		//TestDataSource source = new TestDataSource();
-		//DBConnectionFactory.init(new TestDBConnectionManager(source.getDataSource()));
+		// TestDataSource source = new TestDataSource();
+		// DBConnectionFactory.init(new TestDBConnectionManager(source.getDataSource()));
 		log.debug("contextInitialized");
 
 	}
