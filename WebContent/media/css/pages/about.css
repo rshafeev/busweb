@@ -1,5 +1,4 @@
 .contacts_info {
-    /*vertical-align: top;*/
     height: 100%;
     width: 100%;
     text-align: left;
@@ -48,7 +47,7 @@
 .text_div {
     width: 200px;
     height: auto;
-    float: center;
+    float: inherit;
     margin-left: 60px;
 }
 .icons_div {

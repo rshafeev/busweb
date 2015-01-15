@@ -229,7 +229,7 @@
 	 	outTime : this._settingsPanel.getStartingTime(),
 	 	algStrategy : this._settingsPanel.getAlgType(),
 	 	routeTypes : this._settingsPanel.getEnabledRouteTypes(),
-	 	isTransitions  : this._settingsPanel.isTransitions()
+	 	transitions  : this._settingsPanel.isTransitions()
 	 };
 	 return opts;
 	},

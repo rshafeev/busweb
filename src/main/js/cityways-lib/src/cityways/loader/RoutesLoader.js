@@ -69,8 +69,11 @@
          type : "GET",
          success : function(e) {
             try{
-                var routeData = $.parseJSON(e);
+                console.log("json:" ,e );
+                var routeData = e;
+                //var routeData = $.parseJSON(e);
                 cityways.logger.debug(routeData);
+                console.log("routeData:" , routeData );
                 if(routeData.error != undefined)
                 {
                     args.error = routeData.error;
@@ -78,10 +81,12 @@
                     return;
                 }
                 args.route = new cityways.model.RouteModel(routeData);
+                console.log("success:" , args.route );
                 callback(args);
                 return;
             }
             catch(e){
+                console.log("error!", e);
                 args.error = e;
                 callback(args);
                 return;

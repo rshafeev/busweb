@@ -182,7 +182,7 @@
      * @return {[type]} [description]
      */
      getAlgType : function(){
-        return "c_opt";
+        return "opt";
     },
 
     /**
@@ -200,7 +200,7 @@
      */
      getStartingTime : function(){
         var res = {
-            dayID : 'c_Sunday',
+            dayID : 'Sunday',
             timeStartSecs : (10 * 60 * 60 + 10 * 60)
         };
         return res;

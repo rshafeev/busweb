@@ -2251,7 +2251,7 @@ cityways.page = {
 	 	outTime : this._settingsPanel.getStartingTime(),
 	 	algStrategy : this._settingsPanel.getAlgType(),
 	 	routeTypes : this._settingsPanel.getEnabledRouteTypes(),
-	 	isTransitions  : this._settingsPanel.isTransitions()
+	 	transitions  : this._settingsPanel.isTransitions()
 	 };
 	 return opts;
 	},
@@ -2505,7 +2505,7 @@ cityways.page = {
        var pathInfoContent = "";
  var footParamsTo = {
          locale : cityways.lang.translate,
-         route_start   : routeTo.start,
+         route_start   : routeTo.startStation,
          resourcePath : cityways.options.getResourcePath(),
           time: path.getWalkingTime(),
           host : cityways.options.ServerHost
@@ -2513,7 +2513,7 @@ cityways.page = {
 pathInfoContent = pathInfoContent + t_footTo(footParamsTo);
                  var footParamsFrom = {
          locale : cityways.lang.translate,
-         route_finish  : routeFrom.finish,
+         route_finish  : routeFrom.finishStation,
           time: path.getWalkingTime(),
           host : cityways.options.ServerHost
        };
@@ -2527,11 +2527,11 @@ pathInfoContent = pathInfoContent + t_footTo(footParamsTo);
           route_type    : route.type,
           route_cost    : route.cost,
           route_distance: Math.round(route.distance/10.0)/100.0, // перемедем м. в км., оставив 2 знака после запятой
-          route_start   : route.start,
-          route_finish  : route.finish,
+          route_start   : route.startStation,
+          route_finish  : route.finishStation,
           route_freq    : route.finish,
           route_move    : cityways.helper.time.secsToLocaleString(route.moveTimeSecs),    
-          route_wait    : cityways.helper.time.secsToLocaleString(route.wait),
+          route_wait    : cityways.helper.time.secsToLocaleString(route.waitBeforeTimeSecs),
           host : cityways.options.ServerHost         
         };   
 
@@ -2841,7 +2841,7 @@ move_time : move_time
      * @return {[type]} [description]
      */
      getAlgType : function(){
-        return "c_opt";
+        return "opt";
     },
 
     /**
@@ -2859,7 +2859,7 @@ move_time : move_time
      */
      getStartingTime : function(){
         var res = {
-            dayID : 'c_Sunday',
+            dayID : 'Sunday',
             timeStartSecs : (10 * 60 * 60 + 10 * 60)
         };
         return res;
@@ -3241,6 +3241,7 @@ move_time : move_time
 	 		selectRoute : function(routeID){
 	 			var self = this;
 	 			var map = self._routesPage.getMapWidget();
+
 	 			if(self._selectedRoutes.get(routeID) == null){
 	 				var loader = new cityways.loader.RoutesLoader();
 	 				loader.getRoute(routeID, function(e){
@@ -3248,7 +3249,9 @@ move_time : move_time
 	 					var options = {
 	 						color : color
 	 					};
+						console.log("route:");
 	 					var route = new	cityways.widget.map.Route(e.route,options);
+
 	 					map.addRoute(route,true);
 	 					self._selectedRoutes.put(routeID, {
 	 						selected : true,
@@ -3819,7 +3822,7 @@ move_time : move_time
 	 	cityways.logger.info("setGeomData2()", this.routes);
 	 	for(var i=0;i < data.routes.length; i++){
 	 		var routeData = data.routes[i];
-	 		var route = this.getRouteByID(routeData.ID);
+	 		var route = this.getRouteByID(routeData.id);
 	 		if(route!=null){
 	 			route.stations = routeData.stations;
 	 			route.roads = routeData.roads;
@@ -3838,9 +3841,12 @@ move_time : move_time
 	 getRouteByID : function(id){
 	 	if(this.routes == undefined)
 	 		return null;
-	 	for(var i=0;i < this.routes.length; i++)
+		 console.log("getRouteByID: ",id);
+		 console.log("getRouteByID: ", this);
+
+		 for(var i=0;i < this.routes.length; i++)
 	 	{
-	 		if(this.routes[i].ID == id)
+	 		if(this.routes[i].id == id)
 	 			return this.routes[i];
 	 	}
 
@@ -4162,6 +4168,7 @@ move_time : move_time
         var url = cityways.options.ServerHost + "paths/find.json";
         cityways.logger.info("url: " + url);
 
+        //data : {data: $.toJSON(options ) },
         var args = {
             error : null,
             paths : [],
@@ -4170,11 +4177,16 @@ move_time : move_time
         $.ajax({
          url : url,
          type : "POST",
-         data : {data: $.toJSON(options ) },
+            headers: {
+                "Accept": "application/json; charset=utf-8",
+                "Content-Type": "application/json; charset=UTF-8"
+            },
+         data : $.toJSON(options ),
          success : function(e) {
             try{
-               
-                var obj = $.parseJSON(e);
+               console.log(e);
+                var obj = e;
+                //var obj = $.parseJSON(e);
 
                 if(obj.error != undefined||  obj.paths == undefined || obj.paths.length == 0)
                 {
@@ -4211,7 +4223,7 @@ move_time : move_time
      * @param  {Function} callback [description]
      */
      loadGeomDataForPath : function(path,callback){
-       cityways.logger.info("findShortestPaths");
+       cityways.logger.info("findShortestPaths: ", path);
        if(callback == null)
         throw new Error("resultFunc was not defined");
     var url = cityways.options.ServerHost + "paths/get.json";
@@ -4223,21 +4235,26 @@ move_time : move_time
 
     for (var i = 0; i < path.routes.length; i++) {
         inputData.routeParts.push({
-            ID : path.routes[i].ID,
-            startInd : path.routes[i].startInd,
-            finishInd : path.routes[i].finishInd
+            id : path.routes[i].id,
+            startInd : path.routes[i].startRelationIndex,
+            finishInd : path.routes[i].finishRelationIndex
         });
     }
-
-    cityways.logger.info("inputData:",inputData);
+    
+    cityways.logger.info("findShortestPaths() inputData:",inputData);
     $.ajax({
      url : url,
      type : "POST",
-     data : {data: $.toJSON(inputData) },
+        headers: {
+            "Accept": "application/json; charset=utf-8",
+            "Content-Type": "application/json; charset=UTF-8"
+        },
+     data :$.toJSON(inputData),
      success : function(data) {
         try{
-           
-            var obj = $.parseJSON(data);
+            var obj = data;
+            cityways.logger.info("findShortestPaths responce: ", data);
+            //var obj = $.parseJSON(data);
             path.setGeomData(obj);
             var args ={
                       path: path, 
@@ -4387,8 +4404,11 @@ move_time : move_time
          type : "GET",
          success : function(e) {
             try{
-                var routeData = $.parseJSON(e);
+                console.log("json:" ,e );
+                var routeData = e;
+                //var routeData = $.parseJSON(e);
                 cityways.logger.debug(routeData);
+                console.log("routeData:" , routeData );
                 if(routeData.error != undefined)
                 {
                     args.error = routeData.error;
@@ -4396,10 +4416,12 @@ move_time : move_time
                     return;
                 }
                 args.route = new cityways.model.RouteModel(routeData);
+                console.log("success:" , args.route );
                 callback(args);
                 return;
             }
             catch(e){
+                console.log("error!", e);
                 args.error = e;
                 callback(args);
                 return;
@@ -4523,14 +4545,15 @@ move_time : move_time
  			self._color = "blue";
  		}
 
- 		for(var i=0;i < routeModel.reverseWay.stations.length; i++){
- 			var stData = routeModel.reverseWay.stations[i];
+ 		for(var i=0;i < routeModel.reverseWay.relations.length; i++){
+ 			var stData = routeModel.reverseWay.relations[i].currStation;
+
  			var st = new cityways.widget.map.Station();
  			st.setID(stData.id);
  			st.setLocation(stData.location.lat, stData.location.lon);
  			st.setIcon(cityways.options.getResourcePath() + "images/station.png");
  			st.setTitle(stData.name);
- 			if(i==0 || i == routeModel.reverseWay.stations.length -1){
+ 			if(i==0 || i == routeModel.reverseWay.relations.length -1){
  				st.setMinZoom(0);
  			}else{
  				st.setMinZoom(minZoom);
@@ -4538,21 +4561,25 @@ move_time : move_time
  			self._stations.push(st);
  		}
 
- 		for(var i=0;i < routeModel.reverseWay.roads.length; i++){
+ 		for(var i=0;i < routeModel.reverseWay.relations.length; i++){
+			if(routeModel.reverseWay.relations[i].geom == null)
+				continue;
+			
  			var line = new cityways.maps.Polyline(
- 				{	points : routeModel.reverseWay.roads[i],
+ 				{	points : routeModel.reverseWay.relations[i].geom.points,
  					color : self._color,
  					opacity : 0.5,
  					weight : 6
  				});
+			console.log("geom:", routeModel.reverseWay.relations[i].geom);
  			self._polylines.push(line);
  		}
 
- 		for(var i=0;i < routeModel.directWay.stations.length; i++){
- 			var stData = routeModel.directWay.stations[i];
+ 		for(var i=0;i < routeModel.directWay.relations.length; i++){
+ 			var stData = routeModel.directWay.relations[i].currStation;
  			var st = new cityways.widget.map.Station();
  			st.setID(stData.id);
- 			if(i==0 || i == routeModel.reverseWay.stations.length -1){
+ 			if(i==0 || i == routeModel.reverseWay.relations.length -1){
  				st.setMinZoom(0);
  			}else{
  				st.setMinZoom(minZoom);
@@ -4563,9 +4590,11 @@ move_time : move_time
  			self._stations.push(st);
  		}
 
- 		for(var i=0;i < routeModel.directWay.roads.length; i++){
- 			var line = new cityways.maps.Polyline(
- 				{	points : routeModel.directWay.roads[i],
+ 		for(var i=0;i < routeModel.directWay.relations.length; i++){
+			if(routeModel.directWay.relations[i].geom == null)
+				continue;
+			var line = new cityways.maps.Polyline(
+ 				{	points : routeModel.directWay.relations[i].geom.points,
  					color : self._color,
  					opacity : 0.5,
  					weight : 6

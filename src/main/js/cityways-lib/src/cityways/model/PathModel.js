@@ -124,7 +124,7 @@
 	 	cityways.logger.info("setGeomData2()", this.routes);
 	 	for(var i=0;i < data.routes.length; i++){
 	 		var routeData = data.routes[i];
-	 		var route = this.getRouteByID(routeData.ID);
+	 		var route = this.getRouteByID(routeData.id);
 	 		if(route!=null){
 	 			route.stations = routeData.stations;
 	 			route.roads = routeData.roads;
@@ -143,9 +143,12 @@
 	 getRouteByID : function(id){
 	 	if(this.routes == undefined)
 	 		return null;
-	 	for(var i=0;i < this.routes.length; i++)
+		 console.log("getRouteByID: ",id);
+		 console.log("getRouteByID: ", this);
+
+		 for(var i=0;i < this.routes.length; i++)
 	 	{
-	 		if(this.routes[i].ID == id)
+	 		if(this.routes[i].id == id)
 	 			return this.routes[i];
 	 	}
 

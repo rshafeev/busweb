@@ -2,8 +2,9 @@ package com.pgis.bus.server.models.page;
 
 import java.util.Collection;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pgis.bus.net.models.city.CitiesModel;
-import com.pgis.bus.server.helpers.JSONHelper;
 import com.pgis.bus.server.models.NavigationModel;
 
 public class MainPageModel extends PageModel {
@@ -30,11 +31,19 @@ public class MainPageModel extends PageModel {
 		this.routeTypeIds = routeTypeIds;
 	}
 
-	public String JsonSelectedCity() {
-		return JSONHelper.toJson(this.getCitiesModel().getSelectedCity());
+	public String JsonRouteTypes() {
+		try {
+			return (new ObjectMapper()).writeValueAsString(routeTypeIds);
+		} catch (JsonProcessingException e) {
+		}
+		return null;
 	}
 
-	public String JsonRouteTypes() {
-		return JSONHelper.toJson(this.routeTypeIds);
+	public String JsonSelectedCity() {
+		try {
+			return (new ObjectMapper()).writeValueAsString(this.citiesModel.getSelectedCity());
+		} catch (JsonProcessingException e) {
+		}
+		return null;
 	}
 }

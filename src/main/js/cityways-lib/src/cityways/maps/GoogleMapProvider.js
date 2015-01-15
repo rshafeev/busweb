@@ -68,6 +68,7 @@
  			self._googleMap= new google.maps.Map(document.getElementById(self._div),googleMapOptions);
  			self._googleMap.setOptions({
  				draggableCursor : 'crosshair'
+				
  			});
  			self._registerListeners();
  			self.resize(self._width,self._height);

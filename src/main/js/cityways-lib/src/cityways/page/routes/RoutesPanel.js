@@ -102,6 +102,7 @@
 	 		selectRoute : function(routeID){
 	 			var self = this;
 	 			var map = self._routesPage.getMapWidget();
+
 	 			if(self._selectedRoutes.get(routeID) == null){
 	 				var loader = new cityways.loader.RoutesLoader();
 	 				loader.getRoute(routeID, function(e){
@@ -109,7 +110,9 @@
 	 					var options = {
 	 						color : color
 	 					};
+						console.log("route:");
 	 					var route = new	cityways.widget.map.Route(e.route,options);
+
 	 					map.addRoute(route,true);
 	 					self._selectedRoutes.put(routeID, {
 	 						selected : true,

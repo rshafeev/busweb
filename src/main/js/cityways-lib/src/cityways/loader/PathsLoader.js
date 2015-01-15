@@ -59,6 +59,7 @@
         var url = cityways.options.ServerHost + "paths/find.json";
         cityways.logger.info("url: " + url);
 
+        //data : {data: $.toJSON(options ) },
         var args = {
             error : null,
             paths : [],
@@ -67,11 +68,16 @@
         $.ajax({
          url : url,
          type : "POST",
-         data : {data: $.toJSON(options ) },
+            headers: {
+                "Accept": "application/json; charset=utf-8",
+                "Content-Type": "application/json; charset=UTF-8"
+            },
+         data : $.toJSON(options ),
          success : function(e) {
             try{
-               
-                var obj = $.parseJSON(e);
+               console.log(e);
+                var obj = e;
+                //var obj = $.parseJSON(e);
 
                 if(obj.error != undefined||  obj.paths == undefined || obj.paths.length == 0)
                 {
@@ -108,7 +114,7 @@
      * @param  {Function} callback [description]
      */
      loadGeomDataForPath : function(path,callback){
-       cityways.logger.info("findShortestPaths");
+       cityways.logger.info("findShortestPaths: ", path);
        if(callback == null)
         throw new Error("resultFunc was not defined");
     var url = cityways.options.ServerHost + "paths/get.json";
@@ -120,21 +126,26 @@
 
     for (var i = 0; i < path.routes.length; i++) {
         inputData.routeParts.push({
-            ID : path.routes[i].ID,
-            startInd : path.routes[i].startInd,
-            finishInd : path.routes[i].finishInd
+            id : path.routes[i].id,
+            startInd : path.routes[i].startRelationIndex,
+            finishInd : path.routes[i].finishRelationIndex
         });
     }
-
-    cityways.logger.info("inputData:",inputData);
+    
+    cityways.logger.info("findShortestPaths() inputData:",inputData);
     $.ajax({
      url : url,
      type : "POST",
-     data : {data: $.toJSON(inputData) },
+        headers: {
+            "Accept": "application/json; charset=utf-8",
+            "Content-Type": "application/json; charset=UTF-8"
+        },
+     data :$.toJSON(inputData),
      success : function(data) {
         try{
-           
-            var obj = $.parseJSON(data);
+            var obj = data;
+            cityways.logger.info("findShortestPaths responce: ", data);
+            //var obj = $.parseJSON(data);
             path.setGeomData(obj);
             var args ={
                       path: path, 

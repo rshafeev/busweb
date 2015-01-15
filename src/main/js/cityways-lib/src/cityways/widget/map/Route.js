@@ -31,14 +31,15 @@
  			self._color = "blue";
  		}
 
- 		for(var i=0;i < routeModel.reverseWay.stations.length; i++){
- 			var stData = routeModel.reverseWay.stations[i];
+ 		for(var i=0;i < routeModel.reverseWay.relations.length; i++){
+ 			var stData = routeModel.reverseWay.relations[i].currStation;
+
  			var st = new cityways.widget.map.Station();
  			st.setID(stData.id);
  			st.setLocation(stData.location.lat, stData.location.lon);
  			st.setIcon(cityways.options.getResourcePath() + "images/station.png");
  			st.setTitle(stData.name);
- 			if(i==0 || i == routeModel.reverseWay.stations.length -1){
+ 			if(i==0 || i == routeModel.reverseWay.relations.length -1){
  				st.setMinZoom(0);
  			}else{
  				st.setMinZoom(minZoom);
@@ -46,21 +47,25 @@
  			self._stations.push(st);
  		}
 
- 		for(var i=0;i < routeModel.reverseWay.roads.length; i++){
+ 		for(var i=0;i < routeModel.reverseWay.relations.length; i++){
+			if(routeModel.reverseWay.relations[i].geom == null)
+				continue;
+			
  			var line = new cityways.maps.Polyline(
- 				{	points : routeModel.reverseWay.roads[i],
+ 				{	points : routeModel.reverseWay.relations[i].geom.points,
  					color : self._color,
  					opacity : 0.5,
  					weight : 6
  				});
+			console.log("geom:", routeModel.reverseWay.relations[i].geom);
  			self._polylines.push(line);
  		}
 
- 		for(var i=0;i < routeModel.directWay.stations.length; i++){
- 			var stData = routeModel.directWay.stations[i];
+ 		for(var i=0;i < routeModel.directWay.relations.length; i++){
+ 			var stData = routeModel.directWay.relations[i].currStation;
  			var st = new cityways.widget.map.Station();
  			st.setID(stData.id);
- 			if(i==0 || i == routeModel.reverseWay.stations.length -1){
+ 			if(i==0 || i == routeModel.reverseWay.relations.length -1){
  				st.setMinZoom(0);
  			}else{
  				st.setMinZoom(minZoom);
@@ -71,9 +76,11 @@
  			self._stations.push(st);
  		}
 
- 		for(var i=0;i < routeModel.directWay.roads.length; i++){
- 			var line = new cityways.maps.Polyline(
- 				{	points : routeModel.directWay.roads[i],
+ 		for(var i=0;i < routeModel.directWay.relations.length; i++){
+			if(routeModel.directWay.relations[i].geom == null)
+				continue;
+			var line = new cityways.maps.Polyline(
+ 				{	points : routeModel.directWay.relations[i].geom.points,
  					color : self._color,
  					opacity : 0.5,
  					weight : 6

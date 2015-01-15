@@ -9,6 +9,10 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.pgis.bus.data.orm.Route;
+import com.pgis.bus.data.orm.RouteWay;
+import com.pgis.bus.data.orm.type.LangEnum;
+import com.pgis.bus.net.models.route.RouteWayModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +26,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.google.gson.Gson;
 import com.pgis.bus.data.helpers.LocaleHelper;
 import com.pgis.bus.data.service.IDataBaseService;
 import com.pgis.bus.data.service.IDataModelsService;
@@ -52,16 +55,31 @@ public class RoutesController extends BaseController {
 	@Autowired
 	private MessageSource messageSource;
 
-	@ResponseBody
 	@RequestMapping(value = "get/{routeID}", method = RequestMethod.GET)
-	public String get(@PathVariable Integer routeID) {
+	@ResponseBody
+	public Object get(@PathVariable Integer routeID) {
 		try {
 			log.debug("get()");
-			RouteModel route = super.getModelsService().Routes().get(routeID);
-			return (new Gson()).toJson(route);
-		} catch (SQLException e) {
+			Locale locale = LocaleContextHolder.getLocale();
+			LangEnum lang = LangEnum.valueOf(locale);
+			Route route = this.getDbService().Routes().get(routeID);
+			RouteWay directWay = route.getDirectRouteWay();
+			RouteWay reverseWay = route.getReverseRouteWay();
+			directWay.getRouteRelations();
+			reverseWay.getRouteRelations();
+			
+			RouteModel model = route.toModel(lang);
+			RouteWayModel directWayModel =  directWay.toModel(lang);
+			RouteWayModel reverseWayModel =  reverseWay.toModel(lang);
+			model.setDirectWay(directWayModel);
+			model.setReverseWay(reverseWayModel);
+
+			//RouteModel route = super.getModelsService().Routes().get(routeID);
+			log.debug("route:" +  model);
+			return model;
+		} catch (Exception e) {
 			log.debug("error", e);
-			return (new Gson()).toJson(new ErrorModel(e));
+			return new ErrorModel(e);
 		}
 	}
 
@@ -71,7 +89,6 @@ public class RoutesController extends BaseController {
 		if (city_key == null || city_key.length() == 0)
 			city_key = AppProperties.DefaultCity;
 		return new ModelAndView("redirect:/routes/" + city_key);
-
 	}
 
 	@RequestMapping(value = "{city_key}")

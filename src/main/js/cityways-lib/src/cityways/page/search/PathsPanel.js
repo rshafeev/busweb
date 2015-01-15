@@ -143,7 +143,7 @@
        var pathInfoContent = "";
  var footParamsTo = {
          locale : cityways.lang.translate,
-         route_start   : routeTo.start,
+         route_start   : routeTo.startStation,
          resourcePath : cityways.options.getResourcePath(),
           time: path.getWalkingTime(),
           host : cityways.options.ServerHost
@@ -151,7 +151,7 @@
 pathInfoContent = pathInfoContent + t_footTo(footParamsTo);
                  var footParamsFrom = {
          locale : cityways.lang.translate,
-         route_finish  : routeFrom.finish,
+         route_finish  : routeFrom.finishStation,
           time: path.getWalkingTime(),
           host : cityways.options.ServerHost
        };
@@ -165,11 +165,11 @@ pathInfoContent = pathInfoContent + t_footTo(footParamsTo);
           route_type    : route.type,
           route_cost    : route.cost,
           route_distance: Math.round(route.distance/10.0)/100.0, // перемедем м. в км., оставив 2 знака после запятой
-          route_start   : route.start,
-          route_finish  : route.finish,
+          route_start   : route.startStation,
+          route_finish  : route.finishStation,
           route_freq    : route.finish,
           route_move    : cityways.helper.time.secsToLocaleString(route.moveTimeSecs),    
-          route_wait    : cityways.helper.time.secsToLocaleString(route.wait),
+          route_wait    : cityways.helper.time.secsToLocaleString(route.waitBeforeTimeSecs),
           host : cityways.options.ServerHost         
         };   
 
