@@ -7,17 +7,17 @@
 .contacts_info h3 {
     font-size: 20px;
     line-height: 22px;
-   color: rgb(19, 163, 128);
+    color: #13a380;
     text-align: center;
     margin-top: 20px;
-    text-shadow: 1px 1px 1px black;
+    text-shadow: 1px 1px 1px #000;
 }
 
 .contacts_info h6 {
     font-family: Verdana, Arial, Tahoma;
     font-size: 13px;
     font-weight: normal;
-    color: black;
+    color: #000;
     margin-top: -10px;
     line-height: 30px;
     display: inline;
@@ -47,11 +47,12 @@
 .text_div {
     width: 200px;
     height: auto;
-    float: inherit;
+    float: center;
     margin-left: 60px;
 }
+
 .icons_div {
     width: auto;
     height: auto;
     margin-left: 40px;
-}
+} 

@@ -66,7 +66,7 @@ public class PathsController extends BaseController {
             GeomPathModel model = new GeomPathModel();
             RoutePart[] parts = options.getRouteParts();
             for (int i = 0; i < parts.length; i++) {
-                Collection<RouteGeoData> routeData = super.getDbService().Paths().getGeoDataByRoutePart(parts[i],lang_id);
+                Collection<RouteGeoData> routeData = super.getDbService().Paths().getGeoDataByRoutePart(parts[i], lang_id);
                 GeomRouteModel routeModel = new GeomRouteModel(parts[i], routeData);
                 model.addRouteGeoDataModel(routeModel);
             }
@@ -85,7 +85,6 @@ public class PathsController extends BaseController {
             if (options == null)
                 throw new Exception("Options error");
             for (RouteTypeDiscount routeType : options.getRouteTypes()) {
-                //routeType.setId("c_route_" + routeType.getId());
             }
 
             // Получим объект с информацией о текущей локали

@@ -9,43 +9,43 @@ import com.pgis.bus.server.models.NavigationModel;
 import com.pgis.bus.server.models.data.RoutesListExtModel;
 
 public class RoutesPageModel extends PageModel {
-	private CitiesModel citiesModel;
-	private Collection<RoutesListExtModel> routesLists;
+    private CitiesModel citiesModel;
+    private Collection<RoutesListExtModel> routesLists;
 
-	public RoutesPageModel(NavigationModel navigationModel) {
-		super(navigationModel);
-	}
+    public RoutesPageModel(NavigationModel navigationModel) {
+        super(navigationModel);
+    }
 
-	public void setCitiesModel(CitiesModel citiesModel) {
-		this.citiesModel = citiesModel;
-	}
+    public void setCitiesModel(CitiesModel citiesModel) {
+        this.citiesModel = citiesModel;
+    }
 
-	public CitiesModel getCitiesModel() {
-		return citiesModel;
-	}
+    public CitiesModel getCitiesModel() {
+        return citiesModel;
+    }
 
-	public String JsonCitiesModel() {
-		try {
-			return (new ObjectMapper()).writeValueAsString(citiesModel);
-		} catch (JsonProcessingException e) {
-		}
-		return null;
-	}
+    public String JsonCitiesModel() {
+        try {
+            return (new ObjectMapper()).writeValueAsString(citiesModel);
+        } catch (JsonProcessingException e) {
+        }
+        return null;
+    }
 
-	public String JsonSelectedCity() {
-		try {
-			return (new ObjectMapper()).writeValueAsString(citiesModel.getSelectedCity());
-		} catch (JsonProcessingException e) {
-		}
-		return null;
-	}
+    public String JsonSelectedCity() {
+        try {
+            return (new ObjectMapper()).writeValueAsString(citiesModel.getSelectedCity());
+        } catch (JsonProcessingException e) {
+        }
+        return null;
+    }
 
-	public Collection<RoutesListExtModel> getRoutesLists() {
-		return routesLists;
-	}
+    public Collection<RoutesListExtModel> getRoutesLists() {
+        return routesLists;
+    }
 
-	public void setRoutesLists(Collection<RoutesListExtModel> routesLists) {
-		this.routesLists = routesLists;
-	}
+    public void setRoutesLists(Collection<RoutesListExtModel> routesLists) {
+        this.routesLists = routesLists;
+    }
 
 }

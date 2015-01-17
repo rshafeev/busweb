@@ -23,26 +23,26 @@ import com.pgis.bus.server.controllers.InfoController;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 public class HomeControllerTest extends ControllerTestConf {
-	private static final Logger log = LoggerFactory.getLogger(HomeControllerTest.class);
-	private HomeController controller = null;
+    private static final Logger log = LoggerFactory.getLogger(HomeControllerTest.class);
+    private HomeController controller = null;
 
-	@Before
-	public void before() throws SQLException {
+    @Before
+    public void before() throws SQLException {
 
-		controller = new HomeController();
-		this.mockMvc = standaloneSetup(controller).build();
+        controller = new HomeController();
+        this.mockMvc = standaloneSetup(controller).build();
 
-	}
+    }
 
-	@Test
-	public void testHomePage() throws Exception {
-		log.info("testHomePage() ");
+    @Test
+    public void testHomePage() throws Exception {
+        log.info("testHomePage() ");
 
-		MockHttpServletResponse response = this.mockMvc.perform(get("/")).andDo(print())
-				.andExpect(status().isOk()).andReturn().getResponse();
-		
+        MockHttpServletResponse response = this.mockMvc.perform(get("/")).andDo(print())
+                .andExpect(status().isOk()).andReturn().getResponse();
+
 		/*
 		{"cityID":1,"p1":{"lat":50.05030523150393,"lon":36.20613098144531},"p2":{"lat":50.02560818681963,"lon":36.33659362792969},"outTime":{"dayID":"c_Sunday","timeStartSecs":36600},"algStrategy":"c_opt","routeTypes":[{"id":"metro","discount":1},{"id":"bus","discount":1}],"isTransitions":true}
 		* * * */
-	}
+    }
 }

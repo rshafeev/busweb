@@ -18,18 +18,10 @@
 
     <script type="text/javascript">
         (function () {
-            var cssFile = cityways.helper.document.selectCSSFile("${myContext}/media/css/basic/",
+            var cssFile = cityways.helper.document.selectCSSFile("${myContext}/media/css/",
                     [{
                         name: "basic.css"
-                    },
-                        {
-                            name: "basic_ff.css",
-                            browsers: {mozilla: {max: 10}},
-                        },
-                        {
-                            name: "basic_ie8",
-                            browsers: {msie: {max: 8.0}}
-                        }]);
+                    }]);
             cityways.helper.document.appendCSSFile(cssFile, "write");
 
         })();

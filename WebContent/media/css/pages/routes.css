@@ -3,18 +3,18 @@
     width: 100%;
     position: relative;
     overflow: hidden;
-    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.506);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.506);
     z-index: 4;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid #FFF;
     border-radius: 10px 10px 5px 5px;
-    background: rgb(226, 226, 226);
+    background: #e2e2e2;
 }
 
 #routes_wrapper {
     float: left;
     width: 100%;
     height: 100%;
-    background: rgb(226, 226, 226);
+    background: #e2e2e2;
     border-radius: 4px;
 }
 
@@ -23,10 +23,10 @@
     margin-left: 3px;
     width: 98.7%;
     height: 97.6%;
-    border: 2px solid white;
+    border: 2px solid #FFF;
     z-index: 4;
     border-radius: 5px 5px 10px 10px;
-    background: rgb(226, 226, 226);
+    background: #e2e2e2;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
@@ -37,17 +37,7 @@
     margin-left: -31%;
     background-image: linear-gradient(bottom, rgb(194, 194, 194) 35%,
     rgb(245, 245, 245) 68%);
-    background-image: -o-linear-gradient(bottom, rgb(194, 194, 194) 35%,
-    rgb(245, 245, 245) 68%);
-    background-image: -moz-linear-gradient(bottom, rgb(194, 194, 194) 35%,
-    rgb(245, 245, 245) 68%);
-    background-image: -webkit-linear-gradient(bottom, rgb(194, 194, 194) 35%,
-    rgb(245, 245, 245) 68%);
-    background-image: -ms-linear-gradient(bottom, rgb(194, 194, 194) 35%,
-    rgb(245, 245, 245) 68%);
-    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.35, rgb(194, 194, 194)), color-stop(0.68, rgb(245, 245, 245)));
     box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
-    height: 100%;
     overflow: hidden;
     border-radius: 4px 4px 4px 0;
     height: 97.6%;
@@ -67,35 +57,22 @@
 }
 
 #routes_panel {
-    /*display:none;*/
     width: 375px;
     height: 100%;
 }
 
 #containerv {
-    margin: 0 auto;
     width: 98%;
+    margin: 0 auto;
 }
 
 #contentv {
-    padding: 2px 0;
     width: 100%;
+    padding: 2px 0;
 }
 
 .link_name {
     background-image: linear-gradient(bottom, rgb(36, 70, 171) 31%, rgb(50, 131, 201) 66%, rgb(77, 140, 235) 83%);
-    background-image: -o-linear-gradient(bottom, rgb(36, 70, 171) 31%, rgb(50, 131, 201) 66%, rgb(77, 140, 235) 83%);
-    background-image: -moz-linear-gradient(bottom, rgb(36, 70, 171) 31%, rgb(50, 131, 201) 66%, rgb(77, 140, 235) 83%);
-    background-image: -webkit-linear-gradient(bottom, rgb(36, 70, 171) 31%, rgb(50, 131, 201) 66%, rgb(77, 140, 235) 83%);
-    background-image: -ms-linear-gradient(bottom, rgb(36, 70, 171) 31%, rgb(50, 131, 201) 66%, rgb(77, 140, 235) 83%);
-    background-image: -webkit-gradient(
-            linear,
-            left bottom,
-            left top,
-            color-stop(0.31, rgb(36, 70, 171)),
-            color-stop(0.66, rgb(50, 131, 201)),
-            color-stop(0.83, rgb(77, 140, 235))
-    );
     border: none;
     border-radius: 10px;
     width: 340px;
@@ -142,10 +119,6 @@
     float: left;
 }
 
-.view-source .my_text a:hover, .view-source a:active {
-    /*background:#9d9d9d;*/
-}
-
 .my_text {
     text-align: justify;
     width: 94%;
@@ -174,7 +147,7 @@
     font-family: Arial, Tahoma, sans-serif;
     font-size: 16px;
     font-style: normal;
-    text-shadow: white 1px 1px 0px;
+    text-shadow: #FFF 1px 1px 0;
     padding-top: 10px;
     margin-left: 10px;
 }
@@ -185,26 +158,25 @@
     box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
-/***********************Podskazki**************************************/
 .tip-darkgray {
     opacity: 0.95;
     z-index: 1000;
     text-align: left;
     text-shadow: #444 0 1px 1px;
     border: 1px solid #888;
-    padding: 8px;
     min-width: 50px;
     max-width: 530px;
     color: #fff;
     background-color: #999;
-    background-image: url("../images/tip-darkgray.png");
+    background-image: url(../images/tip-darkgray.png);
+    padding: 8px;
 }
 
 .tip-darkgray .tip-inner {
     font: 12px/18px arial, helvetica, sans-serif;
     margin-top: -1px;
-    padding: 0 4px 3px 4px;
-    color: white;
+    color: #FFF;
+    padding: 0 4px 3px;
 }
 
 .tip-darkgray .tip-arrow-top {
@@ -214,11 +186,11 @@
     left: 0;
     width: 16px;
     height: 10px;
-    background: url("../images/tip-darkgray_arrows.png") no-repeat;
+    background: url(../images/tip-darkgray_arrows.png) no-repeat;
 }
 
 .title {
-    color: yellow;
+    color: #FF0;
 }
 
 .tip-darkgray .tip-arrow-right {
@@ -228,7 +200,7 @@
     left: 100%;
     width: 11px;
     height: 21px;
-    background: url("../images/tip-darkgray_arrows.png") no-repeat -22px 0;
+    background: url(../images/tip-darkgray_arrows.png) no-repeat -22px 0;
 }
 
 .tip-darkgray .tip-arrow-bottom {
@@ -238,7 +210,7 @@
     left: 0;
     width: 22px;
     height: 13px;
-    background: url("../images/tip-darkgray_arrows.png") no-repeat -44px 0;
+    background: url(../images/tip-darkgray_arrows.png) no-repeat -44px 0;
 }
 
 .tip-darkgray .tip-arrow-left {
@@ -248,10 +220,9 @@
     left: 0;
     width: 11px;
     height: 21px;
-    background: url("../images/tip-darkgray_arrows.png") no-repeat -66px 0;
+    background: url(../images/tip-darkgray_arrows.png) no-repeat -66px 0;
 }
 
-/******************стили вкладки города*********************/
 .selectbox {
     vertical-align: middle;
     cursor: pointer;
@@ -263,7 +234,6 @@
 .selectbox .select {
     width: 100px;
     height: 30px;
-    padding: 0 45px 0 10px;
     font: 14px/30px Arial, Tahoma, sans-serif;
     color: #333;
     text-shadow: 1px 1px #FFF;
@@ -274,6 +244,7 @@
     box-shadow: inset 1px -1px #F1F1F1, inset -1px 0 #F1F1F1, 0 1px 2px rgba(0, 0, 0, 0.1);
     margin-left: 5px;
     margin-top: 10px;
+    padding: 0 45px 0 10px;
 }
 
 .selectbox .select:hover {
@@ -283,7 +254,7 @@
 
 .selectbox .select:active {
     background: #f5f5f5;
-    box-shadow: inset 0px 1px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.1);
 }
 
 .selectbox.focused .select {
@@ -329,20 +300,19 @@
 .selectbox ul.dropdown {
     top: 33px;
     width: 100%;
-    margin: 0;
-    padding: 4px 0;
     background: #FFF;
     border: 1px solid #C6CBD0;
     border-radius: 5px 5px 10px 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     font: 14px/18px Arial, Tahoma, sans-serif;
-    margin-top: 10px;
     z-index: 1;
+    margin: 10px 0 0;
+    padding: 4px 0;
 }
 
 .selectbox li {
-    padding: 5px 10px 6px;
     color: #231F20;
+    padding: 5px 10px 6px;
 }
 
 .selectbox li:hover, .selectbox li.selected {
@@ -359,7 +329,6 @@
     background: none;
 }
 
-/**************************Scrollbody****************************************************/
 .scrollbar_body_routes {
     width: 100%;
 }
@@ -376,9 +345,9 @@
     position: absolute;
     left: 0;
     top: 0;
-    padding: 0;
-    margin: 0;
     width: 375px;
+    margin: 0;
+    padding: 0;
 }
 
 .scrollbar_body_routes .scrollbar {
@@ -396,24 +365,18 @@
     width: 3px;
     border-radius: 4px;
     border: solid 1px #DDD;
-    background: #EEE;
-    background: -webkit-linear-gradient(left, #EEE, white);
-    background: -moz-linear-gradient(left, #EEE, white);
-    background: -o-linear-gradient(left, #EEE, white);
+    background: 0;
     cursor: pointer;
     position: relative;
-    padding: 0 1px;
     bottom: 5px;
     height: 95%;
+    padding: 0 1px;
 }
 
 .scrollbar_body_routes .thumb {
     border: solid 1px #70B6C4;
-    background: #70B6C4;
     border-radius: 4px;
-    background: -webkit-linear-gradient(left, #98CED8, #70B6C4);
-    background: -moz-linear-gradient(left, #98CED8, #70B6C4);
-    background: -o-linear-gradient(left, #98CED8, #70B6C4);
+    background: 0;
     cursor: pointer;
     height: 20px;
     width: 5px;
@@ -441,13 +404,10 @@
 }
 
 .scrollbar_body_routes .thumb:hover {
-    padding: 1px;
     display: block;
     border: solid 1px #919191;
-    background: #70B6C4;
-    background: -webkit-linear-gradient(left, #98CED8, #70B6C4);
-    background: -moz-linear-gradient(left, #98CED8, #70B6C4);
-    background: -o-linear-gradient(left, #98CED8, #70B6C4);
+    background: 0;
+    padding: 1px;
 }
 
 .scrollbar_body_routes .track:hover {
@@ -466,17 +426,6 @@
     text-align: left;
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
     background-image: linear-gradient(bottom, rgb(186, 186, 186) 17%, rgb(224, 224, 224) 69%);
-    background-image: -o-linear-gradient(bottom, rgb(186, 186, 186) 17%, rgb(224, 224, 224) 69%);
-    background-image: -moz-linear-gradient(bottom, rgb(186, 186, 186) 17%, rgb(224, 224, 224) 69%);
-    background-image: -webkit-linear-gradient(bottom, rgb(186, 186, 186) 17%, rgb(224, 224, 224) 69%);
-    background-image: -ms-linear-gradient(bottom, rgb(186, 186, 186) 17%, rgb(224, 224, 224) 69%);
-    background-image: -webkit-gradient(
-            linear,
-            left bottom,
-            left top,
-            color-stop(0.17, rgb(186, 186, 186)),
-            color-stop(0.69, rgb(224, 224, 224))
-    );
 }
 
 #bus_label {
@@ -487,31 +436,20 @@
     margin-left: 5px;
     border-radius: 7px;
     background-image: linear-gradient(bottom, rgb(30, 136, 168) 17%, rgb(54, 175, 255) 69%);
-    background-image: -o-linear-gradient(bottom, rgb(30, 136, 168) 17%, rgb(54, 175, 255) 69%);
-    background-image: -moz-linear-gradient(bottom, rgb(30, 136, 168) 17%, rgb(54, 175, 255) 69%);
-    background-image: -webkit-linear-gradient(bottom, rgb(30, 136, 168) 17%, rgb(54, 175, 255) 69%);
-    background-image: -ms-linear-gradient(bottom, rgb(30, 136, 168) 17%, rgb(54, 175, 255) 69%);
-    background-image: -webkit-gradient(
-            linear,
-            left bottom,
-            left top,
-            color-stop(0.17, rgb(30, 136, 168)),
-            color-stop(0.69, rgb(54, 175, 255))
-    );
-    text-shadow: 0px 0px 0px black, 0 0 2em white;
+    text-shadow: 0 0 0 black, 0 0 2em #FFF;
     line-height: 27px;
     text-align: center;
 }
 
 #block_bus a {
-    margin: 5px;
     font-family: Verdana;
     font-size: 12px;
     color: #434B4D;
-    padding: 3px;
     line-height: 25px;
     text-align: justify;
     font-weight: bold;
+    margin: 5px;
+    padding: 3px;
 }
 
 #block_bus a:hover {
@@ -520,4 +458,4 @@
 
 #block_bus a:active {
     border-radius: 5px;
-}
+} 

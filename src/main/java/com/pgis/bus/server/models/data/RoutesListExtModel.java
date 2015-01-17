@@ -12,43 +12,43 @@ import com.pgis.bus.net.models.route.RoutesListModel;
 
 public class RoutesListExtModel {
 
-	private Collection<RouteInfoExtModel> routesList;
-	private RouteTypeModel routeType;
-	private int cityID;
+    private Collection<RouteInfoExtModel> routesList;
+    private RouteTypeModel routeType;
+    private int cityID;
 
-	public RoutesListExtModel() {
+    public RoutesListExtModel() {
 
-	}
+    }
 
-	public Collection<RouteInfoExtModel> getRoutesList() {
-		return routesList;
-	}
+    public Collection<RouteInfoExtModel> getRoutesList() {
+        return routesList;
+    }
 
-	public void setRoutesList(Locale locale, MessageSource messageSource, RoutesListModel model) {
-		routesList = new ArrayList<RouteInfoExtModel>();
-		for (RouteInfoModel dbRouteModel : model.getRoutesList()) {
-			routesList.add(new RouteInfoExtModel(locale, messageSource, dbRouteModel));
-		}
-	}
+    public void setRoutesList(Locale locale, MessageSource messageSource, RoutesListModel model) {
+        routesList = new ArrayList<RouteInfoExtModel>();
+        for (RouteInfoModel dbRouteModel : model.getRoutesList()) {
+            routesList.add(new RouteInfoExtModel(locale, messageSource, dbRouteModel));
+        }
+    }
 
-	public void setRoutesList(Collection<RouteInfoExtModel> routesList) {
-		this.routesList = routesList;
-	}
+    public void setRoutesList(Collection<RouteInfoExtModel> routesList) {
+        this.routesList = routesList;
+    }
 
-	public RouteTypeModel getRouteType() {
-		return routeType;
-	}
+    public RouteTypeModel getRouteType() {
+        return routeType;
+    }
 
-	public void setRouteType(RouteTypeModel routeType) {
-		this.routeType = routeType;
-	}
+    public void setRouteType(RouteTypeModel routeType) {
+        this.routeType = routeType;
+    }
 
-	public int getCityID() {
-		return cityID;
-	}
+    public int getCityID() {
+        return cityID;
+    }
 
-	public void setCityID(int cityID) {
-		this.cityID = cityID;
-	}
+    public void setCityID(int cityID) {
+        this.cityID = cityID;
+    }
 
 }

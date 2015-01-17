@@ -265,13 +265,7 @@ getMainPage().getMainPageData().clearWaysData();
 				}
 			%>
 		</div>
-		
-		
-		
-		
-		
-		
-		
+
 		<%
 			i++;
 			}
@@ -280,8 +274,6 @@ getMainPage().getMainPageData().clearWaysData();
 
 	<div id="foot-ways"></div>
 </div>
-
-
 
 
 <script type="text/javascript">

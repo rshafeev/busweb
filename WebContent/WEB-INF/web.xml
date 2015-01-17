@@ -1,68 +1,67 @@
-<?xml version="1.0" encoding="UTF-8"?> 
-<web-app version="2.4" xmlns="java.sun.com/xml/ns/j2ee" 
-	xmlns:xsi="www.w3.org/2001/XMLSchema-instance" 
-	xsi:schemaLocation="java.sun.com/xml/ns/j2ee 
-	java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"> 
-    
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>
-		   WEB-INF/springapp-servlet.xml
-		</param-value>
-	</context-param>
-	<listener>
-		<listener-class>com.pgis.bus.server.listeners.BasicServiceListener</listener-class>
-	</listener>
- 
-	<servlet>
-		<servlet-name>jsp</servlet-name>
-		<servlet-class>org.apache.jasper.servlet.JspServlet</servlet-class>
-	</servlet>
-		
-	<servlet> 
-		<servlet-name>springapp</servlet-name> 
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class> 
-		<load-on-startup>1</load-on-startup> 
-	</servlet> 
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4" xmlns="java.sun.com/xml/ns/j2ee"
+         xmlns:xsi="www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="java.sun.com/xml/ns/j2ee
+	java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 
-	<error-page>
-		<error-code>404</error-code>
-		<location>/error</location>
-	</error-page>
-	
-	<welcome-file-list> 
-		<welcome-file> 
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            WEB-INF/springapp-servlet.xml
+        </param-value>
+    </context-param>
+    <listener>
+        <listener-class>com.pgis.bus.server.listeners.BasicServiceListener</listener-class>
+    </listener>
+
+    <servlet>
+        <servlet-name>jsp</servlet-name>
+        <servlet-class>org.apache.jasper.servlet.JspServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>springapp</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error</location>
+    </error-page>
+
+    <welcome-file-list>
+        <welcome-file>
             /
-		</welcome-file> 
-	</welcome-file-list> 
- 
-	<servlet-mapping>  
-		<servlet-name>default</servlet-name>  
-		<url-pattern>/media/*</url-pattern>
-		<url-pattern>/api/*</url-pattern>
-	</servlet-mapping>  
-	
-	<servlet-mapping>
-		<servlet-name>jsp</servlet-name>
-		<url-pattern>/WEB-INF/pages/*</url-pattern>
-	</servlet-mapping>
-	   
-	<servlet-mapping> 
-		<servlet-name>springapp</servlet-name>
-		<url-pattern>/*</url-pattern>
-		<!--
-		<url-pattern>/error</url-pattern>
-		<url-pattern>/home</url-pattern>
-		<url-pattern>/home/*</url-pattern>
-		<url-pattern>/routes</url-pattern>
-		<url-pattern>/routes/*</url-pattern>
-		<url-pattern>/about</url-pattern>
-		<url-pattern>/about/*</url-pattern>
-		<url-pattern>/help</url-pattern>
-		<url-pattern>/help/*</url-pattern>
-		-->
-	</servlet-mapping> 
-	
+        </welcome-file>
+    </welcome-file-list>
 
- 
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>/media/*</url-pattern>
+        <url-pattern>/api/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>jsp</servlet-name>
+        <url-pattern>/WEB-INF/pages/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>springapp</servlet-name>
+        <url-pattern>/*</url-pattern>
+        <!--
+        <url-pattern>/error</url-pattern>
+        <url-pattern>/home</url-pattern>
+        <url-pattern>/home/*</url-pattern>
+        <url-pattern>/routes</url-pattern>
+        <url-pattern>/routes/*</url-pattern>
+        <url-pattern>/about</url-pattern>
+        <url-pattern>/about/*</url-pattern>
+        <url-pattern>/help</url-pattern>
+        <url-pattern>/help/*</url-pattern>
+        -->
+    </servlet-mapping>
+
+
 </web-app>

@@ -1,59 +1,59 @@
-<%@ tag body-content="empty"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="ui" tagdir="/WEB-INF/tags/ui"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ tag body-content="empty" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="ui" tagdir="/WEB-INF/tags/ui" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-<%@ attribute name="page_head" required="true" fragment="true"%>
-<%@ attribute name="left_column" required="true" fragment="true"%>
-<%@ attribute name="right_column" required="true" fragment="true"%>
+<%@ attribute name="page_head" required="true" fragment="true" %>
+<%@ attribute name="left_column" required="true" fragment="true" %>
+<%@ attribute name="right_column" required="true" fragment="true" %>
 
-<c:set var="myContext" value="${pageContext.request.contextPath}" />
+<c:set var="myContext" value="${pageContext.request.contextPath}"/>
 
 <ui:base>
 	<jsp:attribute name="page_head">
 	<script type="text/javascript">
-				var cssFile = cityways.helper.document.selectCSSFile("${myContext}/media/css/columns/",
-				[{
-					name : "columns.css"
-					}
-					]);
-			cityways.helper.document.appendCSSFile(cssFile,"write");
+        var cssFile = cityways.helper.document.selectCSSFile("${myContext}/media/css/",
+                [{
+                    name: "columns.css"
+                }
+                ]);
+        cityways.helper.document.appendCSSFile(cssFile, "write");
 
 
-		$(document).ready(function() {
-			$('#left_column_scrollbar').tinyscrollbar();
-			$('#left_column_scrollbar').tinyscrollbar_update();
-			$(window).bind("resize", function(e) {
-				$('#left_column_scrollbar').tinyscrollbar_update();
-			});
-		});
-	</script>
-	<jsp:invoke fragment="page_head" />
+        $(document).ready(function () {
+            $('#left_column_scrollbar').tinyscrollbar();
+            $('#left_column_scrollbar').tinyscrollbar_update();
+            $(window).bind("resize", function (e) {
+                $('#left_column_scrollbar').tinyscrollbar_update();
+            });
+        });
+    </script>
+	<jsp:invoke fragment="page_head"/>
 	</jsp:attribute>
 
 	<jsp:attribute name="content">
 	
 	<div class="columns_content">
-	<div class="columns_content_left">
-	   <div id="left_column_scrollbar" class="scrollbar_body">
-			 <div class="scrollbar">
-				<div class="track">
-					<div class="thumb">
-						<div class="end"></div>
-					</div>
-				</div>
-			</div>
-			  <div class="viewport"> 
-				 <div class="overview">  
-		 			<jsp:invoke fragment="left_column" />
-		 		 </div> 
-			</div>  
-	   </div>
-	</div> 
-	<div class="columns_content_right">
-		<jsp:invoke fragment="right_column" />
-	</div>
-	</div>   
+        <div class="columns_content_left">
+            <div id="left_column_scrollbar" class="scrollbar_body">
+                <div class="scrollbar">
+                    <div class="track">
+                        <div class="thumb">
+                            <div class="end"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="viewport">
+                    <div class="overview">
+                        <jsp:invoke fragment="left_column"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="columns_content_right">
+            <jsp:invoke fragment="right_column"/>
+        </div>
+    </div>
 	</jsp:attribute>
 	<jsp:attribute name="foot">
 	</jsp:attribute>

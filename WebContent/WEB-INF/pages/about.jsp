@@ -10,7 +10,6 @@
 <jsp:attribute name="page_head">
 <title><spring:message code="about.title" text="default text"/></title>
 <script type="text/javascript">
-    //includeCSSFile("${myContext}/media/css/pages", "about", []);
     var cssFile = cityways.helper.document.selectCSSFile("${myContext}/media/css/pages/",
             [{
                 name: "about.css"
@@ -63,8 +62,6 @@
 
                             <div class="inf">
                                 <div class="img_div">
-                                    <!-- 	<img style="padding: 5px;"
-		src="${myContext}/media/css/images/adres.png" /><br> -->
                                     <img style="padding: 3px;"
                                          src="${myContext}/media/css/images/Phone.png"/><br>
                                     <img style="padding: 3px;"

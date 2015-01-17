@@ -1,54 +1,48 @@
-
 .help_link_text_info {
-	margin-left: 5%;
-	margin-right: 5%;
-	margin-top: 2%;
-	margin-bottom: 2%;
-	width: 90%;
-	height: 98%;
-	display: inline-block;
+    width: 90%;
+    height: 98%;
+    display: inline-block;
+    margin: 2% 5%;
 }
 
-
 .help_link_text_info h6 {
-	font-family: Verdana, Arial, Tahoma;
-	font-size: 13px;
-	font-weight: normal;
-	color: black;
-	line-height: 25px;
-	text-align: justify;
-	white-space: normal;
-	color: black;
-	margin-top: 20px;
-	display: inline;
+    font-family: Verdana, Arial, Tahoma;
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 25px;
+    text-align: justify;
+    white-space: normal;
+    color: #000;
+    margin-top: 20px;
+    display: inline;
 }
 
 .help_link_text_info h3 {
-	font-size: 20px;
-	line-height: 22px;
-	color: green;
-	text-align: center;
-	margin-top: 10px;
-	white-space: normal;
-	margin-bottom: 20px;
+    font-size: 20px;
+    line-height: 22px;
+    color: green;
+    text-align: center;
+    margin-top: 10px;
+    white-space: normal;
+    margin-bottom: 20px;
 }
 
 .help_link_text_info h4 {
-	font-family: Verdana, Arial, Tahoma;
-	font-size: 16px;
-	line-height: 20px;
-	color: blue;
-	font-weight: bold;
-	margin-top: 20px;
+    font-family: Verdana, Arial, Tahoma;
+    font-size: 16px;
+    line-height: 20px;
+    color: blue;
+    font-weight: bold;
+    margin-top: 20px;
 }
 
 .help_link_text_info img {
-	margin-left: 5px;
-	margin-right: 5px;
-	margin-top: 3px;
-	cursor: pointer;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 3px;
+    cursor: pointer;
 }
 
 .help_link_text_info img:hover {
-	margin-left: 10px;
-}
+    margin-left: 10px;
+} 

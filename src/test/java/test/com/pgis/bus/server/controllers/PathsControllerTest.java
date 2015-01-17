@@ -36,7 +36,7 @@ import static org.springframework.test.web.server.setup.MockMvcBuilders.standalo
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-public class PathsControllerTest extends ControllerTestConf{
+public class PathsControllerTest extends ControllerTestConf {
     private static final Logger log = LoggerFactory.getLogger(PathsControllerTest.class);
     private PathsController controller = null;
 
@@ -62,7 +62,7 @@ public class PathsControllerTest extends ControllerTestConf{
         IDataBaseService dbService = Mockito.mock(IDataBaseService.class);
         IPathsRepository pathsRepository = Mockito.mock(IPathsRepository.class);
         doReturn(pathsRepository).when(dbService).Paths();
-        doReturn(new ArrayList<Path_t>()).when(pathsRepository).getGeoDataByRoutePart(Mockito.any(RoutePart.class),Mockito.anyString());
+        doReturn(new ArrayList<Path_t>()).when(pathsRepository).getGeoDataByRoutePart(Mockito.any(RoutePart.class), Mockito.anyString());
         controller.setDbService(dbService);
         controller.setModelsService(dbModelsService);
 
@@ -74,7 +74,8 @@ public class PathsControllerTest extends ControllerTestConf{
                 .getResponse();
 
     }
-  @Test
+
+    @Test
     public void testFind() throws Exception {
         log.info("testFind() ");
 
@@ -84,7 +85,7 @@ public class PathsControllerTest extends ControllerTestConf{
         ObjectMapper json = new ObjectMapper();
         FindPathsRequest responeModel = json.readValue(jsonInputModel, FindPathsRequest.class);
         assertEquals(1, responeModel.getCityID());
-        
+
         // Mocking
         IDataModelsService dbModelsService = Mockito.mock(IDataModelsService.class);
         IDataBaseService dbService = Mockito.mock(IDataBaseService.class);
@@ -93,12 +94,12 @@ public class PathsControllerTest extends ControllerTestConf{
         doReturn(new ArrayList<Path_t>()).when(pathsRepository).findShortestPaths(Mockito.any(FindPathsParams.class));
         controller.setDbService(dbService);
         controller.setModelsService(dbModelsService);
-        
+
         // Testing
         MockHttpServletResponse response = this.mockMvc
                 .perform(
                         post("/paths/find.json").contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)
-                .body(jsonInputModel.getBytes())).andDo(print()).andReturn()
+                                .body(jsonInputModel.getBytes())).andDo(print()).andReturn()
                 .getResponse();
 
     }
