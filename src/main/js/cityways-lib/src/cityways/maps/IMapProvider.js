@@ -17,7 +17,7 @@
  * @class cityways.maps.IMapProvider
  * @classdesc Абстрактный класс 
  */
- function (){
+ function IMapProvider(){
 
  	var InterfaceDescription =  {
 
